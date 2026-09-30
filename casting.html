@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ON VOUS RAPPELLERA — Casting comédiens</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --blanc:#f7f4ee; --blanc-pur:#ffffff; --marine:#161616; --accent:#f26b1d; --or:#c8913a; --gris:#6b7280; --gris-clair:#e7e2d8; --texte:#1c1c1c; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html,body{max-width:100%;overflow-x:hidden;}
+  body{background:var(--blanc);color:var(--texte);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  .wrap{max-width:960px;margin:0 auto;padding:0 6%;}
+
+  .hero{padding:56px 0 50px;text-align:center;border-bottom:1px solid var(--gris-clair);}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.8rem;font-size:.7rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.6rem;opacity:0;animation:fadeUp .6s .1s forwards;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4.4rem);font-weight:700;line-height:1.05;letter-spacing:.02em;color:var(--marine);opacity:0;animation:fadeUp .6s .2s forwards;}
+  .hero h1 em{font-style:italic;color:var(--accent);}
+  .hero .sub{margin:1.8rem auto 0;font-size:1rem;color:var(--gris);max-width:640px;opacity:0;animation:fadeUp .6s .45s forwards;}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:1.8rem;opacity:0;animation:fadeUp .6s .55s forwards;}
+  .badge{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--marine);border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:8px 16px;border-radius:2px;}
+
+  section{padding:56px 0;border-bottom:1px solid var(--gris-clair);}
+  .sec-tag{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:1.2rem;display:block;}
+  h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.15;margin-bottom:1.4rem;color:var(--marine);}
+  p.lead{color:var(--gris);font-size:.97rem;max-width:680px;margin-bottom:1rem;}
+  p.lead strong{color:var(--texte);font-weight:500;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--gris-clair);margin-top:2rem;}
+  .card{background:var(--blanc-pur);padding:1.8rem;border-top:2px solid transparent;transition:border-color .3s;}
+  .card:hover{border-color:var(--accent);}
+  .card .num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;font-style:italic;color:var(--accent);line-height:1;margin-bottom:.6rem;}
+  .card h3{font-size:.95rem;font-weight:600;margin-bottom:.5rem;color:var(--marine);}
+  .card p{font-size:.86rem;color:var(--gris);line-height:1.7;}
+
+  .eco{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.8rem 2rem;margin-top:2rem;max-width:680px;}
+  .eco p{font-size:.94rem;color:var(--texte);margin-bottom:.6rem;}
+  .eco p:last-child{margin-bottom:0;}
+  .eco p em{color:var(--gris);font-style:italic;}
+  .eco .pct{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--accent);line-height:1;display:block;margin-bottom:.5rem;}
+
+  .video-box{margin:2.2rem auto 0;position:relative;width:100%;max-width:760px;aspect-ratio:16/9;background:#000;border:1px solid var(--gris-clair);box-shadow:0 14px 40px rgba(22,22,22,.14);opacity:0;animation:fadeUp .6s .35s forwards;}
+  .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  .photo-band{margin-top:2.4rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+  .photo-band a{display:block;overflow:hidden;border:1px solid var(--gris-clair);background:var(--blanc-pur);}
+  .photo-band img{display:block;width:100%;height:220px;object-fit:cover;transition:transform .35s ease;}
+  .photo-band a:hover img{transform:scale(1.04);}
+  @media(max-width:640px){.photo-band{grid-template-columns:repeat(2,1fr);}.photo-band img{height:140px;}}
+
+  .assur{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--gris-clair);margin-top:2rem;max-width:820px;}
+  .assur .col{background:var(--blanc-pur);padding:1.8rem;}
+  .assur h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;font-style:italic;margin-bottom:.7rem;}
+  .assur .oui h3{color:var(--or);}
+  .assur .non h3{color:var(--gris);}
+  .assur p{font-size:.9rem;color:var(--texte);line-height:1.7;}
+
+  ul.liste{list-style:none;max-width:680px;margin-top:1.4rem;display:flex;flex-direction:column;gap:12px;}
+  ul.liste li{position:relative;background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:14px 16px 14px 42px;border-radius:2px;font-size:.92rem;line-height:1.6;}
+  ul.liste li::before{content:"—";color:var(--accent);font-weight:600;position:absolute;left:16px;top:14px;}
+  .perso-nom{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-top:2.2rem;color:var(--accent);}
+  .video-hl{margin-top:.9rem;padding:.9rem 1rem;border-left:4px solid var(--accent);background:rgba(242,107,29,.07);border-radius:6px;}
+  .video-hl p{margin:0 0 .55rem;font-size:.95rem;}
+  .video-hl p:last-child{margin-bottom:0;}
+  .video-hl-a{background:#fff;border:1px dashed var(--accent);border-radius:6px;padding:.55rem .7rem;}
+  .video-hl-t{font-weight:700;font-size:1.05rem!important;color:var(--accent);}
+  .perso-lnk{display:inline-block;margin:.25rem .3rem 0 0;padding:.18rem .6rem;border:1px solid var(--accent);border-radius:999px;font-size:.85rem;text-decoration:none;color:var(--accent);}
+  .perso-lnk:hover{background:var(--accent);color:#fff;}
+  .perso-acc{margin-top:1.5rem;}
+  .perso-acc>summary{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;color:var(--accent);}
+  .perso-acc .acc-body p{font-size:.95rem;}
+  .perso-bio{max-width:860px;margin-top:.9rem;}
+  .perso-bio p{margin:.65rem 0;line-height:1.68;font-size:.97rem;}
+
+  .combo{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--gris-clair);margin-top:2rem;max-width:820px;}
+  .combo .c{background:var(--blanc-pur);padding:1.6rem;text-align:center;}
+  .combo .c strong{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--marine);display:block;margin-bottom:.4rem;}
+  .combo .c span{font-size:.84rem;color:var(--gris);}
+
+  /* Formulaire */
+  .form-sec{background:var(--blanc-pur);}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:720px;margin-top:1.6rem;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);}
+  input,textarea,select{background:var(--blanc);border:1px solid var(--gris-clair);color:var(--texte);font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:300;padding:12px 14px;border-radius:2px;outline:none;transition:border-color .25s;width:100%;}
+  input:focus,textarea:focus,select:focus{border-color:var(--accent);}
+  textarea{min-height:110px;resize:vertical;}
+  .qbloc{max-width:720px;margin-top:1.6rem;display:flex;flex-direction:column;gap:12px;}
+  .qrow{display:flex;align-items:flex-start;gap:12px;background:var(--blanc);border:1px solid var(--gris-clair);padding:14px 16px;border-radius:2px;}
+  .qcheck{color:var(--accent);font-weight:600;flex:none;margin-top:1px;}
+  .qrow span{font-size:.9rem;color:var(--texte);line-height:1.55;}
+  .note{font-size:.8rem;color:var(--gris);margin-top:1rem;font-style:italic;}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:15px 30px;border:none;border-radius:2px;cursor:pointer;margin-top:1.8rem;transition:background .25s;text-decoration:none;}
+  .btn:hover{background:#d95a10;}
+  #form-ok{display:none;margin-top:1.2rem;font-size:.9rem;color:var(--or);}
+
+  .contact-final{padding:50px 0 70px;text-align:center;border-bottom:none;}
+  .contact-final p{color:var(--gris);font-size:.9rem;}
+  .contact-final a{color:var(--texte);text-decoration:none;border-bottom:1px solid var(--accent);}
+
+  .etapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:2rem;}
+  .etape{background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:1.5rem;}
+  .enum{display:flex;align-items:center;gap:10px;margin-bottom:.7rem;}
+  .enum .n{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;font-style:italic;color:var(--accent);line-height:1;}
+  .enum .picto{font-size:1.5rem;line-height:1;}
+  .etape h3{font-size:.98rem;font-weight:600;color:var(--marine);margin:0 0 .5rem;}
+  .etape p{font-size:.86rem;color:var(--gris);line-height:1.65;margin:0;}
+  .etape.idf{background:linear-gradient(135deg,#fdf4e7,#fff);border:2px solid var(--accent);box-shadow:0 10px 30px rgba(242,107,29,.12);}
+  .etape.idf .tag-idf{display:inline-block;font-size:.63rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:var(--accent);padding:5px 10px;border-radius:2px;margin-bottom:.8rem;}
+  .bulle{margin-top:1rem;background:#fdf4e7;border:1px dashed var(--accent);border-radius:14px;padding:.85rem 1rem;font-size:.83rem;color:#7a4a12;line-height:1.6;font-style:italic;}
+  .bulle::before{content:"💬 ";font-style:normal;}
+  @media(max-width:640px){.fgrid{grid-template-columns:1fr;}.hero{padding:50px 0 44px;}}
+  #stats-casting table{table-layout:auto;}
+  #stats-casting td.ovr-noms{white-space:normal;word-break:break-word;text-align:left;font-size:.78rem;line-height:1.55;color:var(--gris);}
+  @media(max-width:768px){
+    #stats-casting th,#stats-casting td{padding:8px 7px!important;font-size:.78rem!important;letter-spacing:0!important;}
+    #stats-casting td.ovr-noms{font-size:.68rem!important;line-height:1.4;}
+  }
+  .acc{margin:1.2rem 0 .4rem;background:linear-gradient(135deg,#fdf4e7,#fff);border-left:5px solid var(--accent);border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);overflow:hidden;}
+  .acc summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:.7rem;padding:1.1rem 1.4rem;font-weight:700;color:var(--marine);font-size:1.05rem;user-select:none;transition:background .2s;}
+  .acc summary:hover{background:#faecd6;}
+  .acc summary::-webkit-details-marker{display:none;}
+  .acc .chev{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:transform .25s;}
+  .acc[open] .chev{transform:rotate(90deg);}
+  .acc .hint{margin-left:auto;font-weight:500;font-size:.72rem;color:#b07a2e;font-style:italic;white-space:nowrap;}
+  .acc[open] .hint{display:none;}
+  .acc .acc-body{padding:0 1.4rem 1.2rem;}
+  .acc .acc-body p{margin:0 0 .7rem;font-size:.92rem;line-height:1.7;}
+  .acc .acc-body p:last-child{margin-bottom:0;}
+</style>
+<link rel="canonical" href="https://onvousrappellera.fr/casting.html">
+</head>
+<body>
+<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#777;text-decoration:none;margin-left:18px">Accueil</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px">Espace entreprises</a><a href="/casting.html" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px">Casting comédiens</a></div>
+
+<div id="site-nav"></div>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Casting comédiens · Comédie satirique</div>
+    <h1>ON VOUS <em>RAPPELLERA</em></h1>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/rbZ6iufaujU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Teaser ON VOUS RAPPELLERA"></iframe>
+    </div>
+    <p class="sub">Une comédie satirique sur le monde du recrutement, créée et jouée au Festival d'Avignon en 2022, puis en tournée dans 15 villes de France. La pièce revient — et cherche ses comédiens.</p>
+    <div class="badges">
+      <span class="badge">Avignon 2022</span>
+      <span class="badge">15 villes en tournée</span>
+      <span class="badge">6 personnages</span>
+      <span class="badge">Paris 11e</span>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">L'histoire</span>
+    <h2>Une comédie née du terrain, une formation dissimulée</h2>
+    <p class="lead">Écrit par <strong>un professionnel du recrutement</strong>, le texte fait de chaque scène <strong>une formation dissimulée derrière les traits d'une comédie</strong>. C'est ce qui explique son double parcours : la pièce a été jouée dans des théâtres, mais aussi dans de <strong>grandes entreprises, des salons professionnels et des fédérations d'employeurs</strong>, pour enseigner le recrutement en faisant rire.</p>
+    <div class="grid">
+      <div class="card"><div class="num">2021</div><h3>L'écriture</h3><p>La pièce est écrite, puis répétée pendant plusieurs mois par une troupe de débutants.</p></div>
+      <div class="card"><div class="num">2022</div><h3>Avignon</h3><p>Elle est jouée pendant tout le Festival d'Avignon. Aucun professionnel du théâtre : 100&nbsp;% de «&nbsp;première fois sur scène&nbsp;».</p></div>
+      <div class="card"><div class="num">2022 → 2023</div><h3>La tournée</h3><p>Une trentaine de représentations dans les grandes villes de France : théâtres, entreprises, salons professionnels, fédérations d'employeurs.</p></div>
+      <div class="card"><div class="num">Début 2024</div><h3>La troupe se sépare</h3><p>Chacun part vers ses projets professionnels. Pour ma part, j'écris et je joue <a href="https://thierrybismuth.com/touschomeurs.html" target="_blank" style="color:inherit;font-weight:600;text-decoration:underline;"><em>Tous Chômeurs&nbsp;?</em></a> à Avignon et dans les entreprises.</p></div>
+      <div class="card"><div class="num">Juillet 2026</div><h3>La reprise</h3><p>Je décide de constituer des troupes — objectif : <strong>10 villes</strong> parmi les 24 premières villes de France. Jouer dès janvier, 1 à 2 fois par semaine, dans un théâtre local, puis au Festival d'Avignon.</p></div>
+      <div class="card"><div class="num">Et après ?</div><h3>La suite</h3><p>On l'écrira ensemble.</p></div>
+    </div>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-11.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-11.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-12.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-12.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-13.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-13.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">En toute transparence</span>
+    <h2>Ce qui est sûr, ce qui dépendra de vous</h2>
+    <h3 style="margin-top:1.8rem;color:var(--accent);">Ce qui est sûr</h3>
+    <div class="grid" style="grid-template-columns:repeat(2,1fr);">
+      <div class="card"><div class="num">✓</div><h3>La pièce fonctionne</h3><p>Déjà jouée <strong>entre 50 et 60 fois</strong>, dans des villes partout en France, avec des <strong>salles pleines</strong>.</p></div>
+      <div class="card"><div class="num">✓</div><h3>Le marketing, au plan national</h3><p>Je mets mon expérience et mes bases de données au service du remplissage des salles, à l'échelle nationale.</p></div>
+      <div class="card"><div class="num">✓</div><h3>Je me charge du théâtre</h3><p>Réservation, relation avec la salle et logistique : c'est moi qui m'en occupe.</p></div>
+      <div class="card"><div class="num">✓</div><h3>Des cachets déclarés</h3><p>De vrais <strong>cachets déclarés</strong> (cadre légal de la troupe) <strong>dès 100 spectateurs payants par soir</strong>.</p></div>
+    </div>
+    <h3 style="margin-top:2.4rem;color:var(--accent);">Ce qui dépendra de vous</h3>
+    <div class="grid" style="grid-template-columns:repeat(2,1fr);">
+      <div class="card"><div class="num">→</div><h3>Jouer dès octobre, en janvier… ou jamais</h3><p>Selon la <strong>vitesse de votre apprentissage</strong> : c'est vous qui donnez le tempo.</p></div>
+      <div class="card"><div class="num">→</div><h3>Remplir la salle</h3><p>À <strong>30, 50 ou 100 %</strong> — cela dépendra de votre <strong>communication locale</strong> : affiches dans les commerces, flyering, bouche-à-oreille.</p></div>
+    </div>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-01.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-01.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-07.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-07.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Le projet</span>
+    <h2>Des troupes de 7 à 8 comédiens — un projet souple</h2>
+    <p class="lead">Dans chaque ville, une troupe de <strong>7 à 8 comédiens</strong>, dont <strong>5 sur scène</strong> à chaque représentation.</p>
+    <ul class="liste">
+      <li><strong>On vise 10 troupes — donc 10 villes</strong> parmi les villes suivantes : Paris, Lyon, Marseille-Aix, Toulouse, Lille, Bordeaux, Nice, Nantes, Toulon, Douai-Lens, Rouen, Strasbourg, Grenoble, Montpellier, Saint-Étienne, Rennes, Tours, Avignon, Nancy, Clermont-Ferrand, Dijon, Angers, Reims, Nîmes et Valenciennes.</li>
+      <li><strong>Dès 5 comédiens, la pièce peut se jouer.</strong> Mais la taille visée, c'est <strong>8 comédiens</strong>, avec 5 personnes sur scène chaque soir de représentation — vous tournez d'une date à l'autre, ce qui vous retire de la pression.</li>
+      <li>Je nomme un <strong>coordonnateur</strong> par troupe pour piloter les répétitions et la mise en scène.</li>
+      <li>Je viens faire une <strong>journée entière de répétition filmée</strong> pour fixer la mise en scène.</li>
+      <li><strong>Dès que vous êtes prêts</strong>, je réserve le théâtre 1 à 2 fois par semaine (100 à 300 places).</li>
+      <li>Je m'occupe du <strong>théâtre, de la communication et de la billetterie</strong>.</li>
+      <li>Vous prenez en main la <strong>com locale</strong> : affiches dans les commerces, flyers, bouche-à-oreille.</li>
+      <li>En cas d'urgence, on peut <strong>dépêcher un comédien d'une autre ville</strong>.</li>
+      <li>Si le projet a lieu, nous sommes <strong>certains de jouer à Avignon en 2027</strong>.</li>
+      <li><strong>Et après ?</strong> Chaque rentrée, une nouvelle pièce — qu'on répète, qu'on joue toute l'année et qu'on amène à Avignon…</li>
+    </ul>
+    <details class="acc">
+      <summary><span class="chev">▶</span>🧍 Pourquoi 7 à 8 comédiens pour 5 sur scène&nbsp;?<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <ul style="list-style:none;margin:0 0 1.1rem;padding:0;font-size:1rem;line-height:1.9;font-style:italic;color:var(--marine);">
+        <li>«&nbsp;J'ai obtenu le rôle de mes rêves.&nbsp;»</li>
+        <li>«&nbsp;J'ai rencontré l'amour à 500&nbsp;km.&nbsp;»</li>
+        <li>«&nbsp;J'ai pris un CDI incompatible avec la passion.&nbsp;»</li>
+        <li>«&nbsp;Je ne m'entends pas avec la troupe.&nbsp;»</li>
+        <li>«&nbsp;Je ne retiens pas dix lignes de texte.&nbsp;»</li>
+        <li style="color:var(--gris);">…</li>
+      </ul>
+      <p style="margin:0 0 1rem;font-size:1rem;line-height:1.75;">Voilà des exemples de tout ce qui peut arriver entre le mois d'août et notre première sur scène en janvier prochain. Avec seulement cinq comédiens, chacun d'entre eux peut, à lui seul, mettre un terme au projet en l'abandonnant.</p>
+      <p style="margin:0 0 1rem;font-size:1.05rem;line-height:1.75;font-weight:700;color:var(--marine);">Donc vous serez 7 à 8.</p>
+      <p style="margin:0 0 .5rem;font-size:1rem;line-height:1.75;">Et grâce à ça&nbsp;:</p>
+      <ul style="margin:0;padding-left:1.15rem;font-size:1rem;line-height:1.8;">
+        <li>vous pouvez viser <strong>deux à trois représentations par semaine</strong> au lieu d'une ou deux — un objectif qui dépendra des actions locales de la troupe&nbsp;;</li>
+        <li>parce qu'on est plus nombreux, on pourra aller chercher <strong>davantage de représentations en entreprise</strong>&nbsp;;</li>
+        <li>parce que chacun pourra avoir des <strong>impératifs ponctuels</strong> (mariage d'une cousine, déplacement pro, tournage de deux jours) sans mettre une représentation en danger&nbsp;: votre personnage est tenu par un <strong>binôme</strong>.</li>
+      </ul>
+      </div>
+    </details>
+    <details class="acc" open>
+      <summary><span class="chev">▶</span>🎭 Pourquoi la pièce trouvera son public, dans chaque ville<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <p>Parce qu'elle est <strong>universelle</strong>. Elle parle du retour à l'emploi — pour tous ceux que ça concerne, ou que ça a concerné un jour. Des relations parfois toxiques en entreprise. De ce que c'est d'être un petit patron, ou un candidat « trop vieux pour le poste ». Du mal-être au travail — et en dehors. De l'envie de se reconvertir, au-delà du fantasme de tout plaquer.</p>
+      <p>Le grand public y voit un moment de détente ; les entreprises, l'amorce d'une formation. On peut la prendre dans sa légèreté désinvolte… ou tendre l'oreille aux chuchotements qui la rendent, par endroits, franchement dramatique.</p>
+      <p>C'est pourquoi je suis convaincu qu'elle trouvera son public : un <strong>seuil minimum de 100 spectateurs payants par date</strong> — avec l'ambition de monter à <strong>200 ou 300</strong> — sur 24 à 48 dates par ville, de janvier à juin. De quoi la faire monter, et en faire parler.</p>
+      </div>
+    </details>
+    <details class="acc">
+      <summary><span class="chev">▶</span>📣 La communication : qui fait quoi<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <p><strong>Nationalement, je m'en occupe.</strong> La pièce sera annoncée à l'essentiel des <strong>demandeurs d'emploi de votre ville</strong>, par e-mail et probablement par campagnes SMS. Elle sera aussi adressée à la plupart des <strong>recruteurs et patrons de PME locaux</strong>.</p>
+      <p>Elle sera proposée <strong>en public, mais aussi en privé</strong> : entreprises, associations, fédérations professionnelles — elle a déjà été jouée dans de nombreuses <strong>ANDRH, CCI et fédérations</strong>. Et bien entendu, elle sera diffusée sur les <strong>plateformes de billetterie et de vente en ligne</strong>.</p>
+      <p><strong>En local, ce sera à vous</strong> de la faire connaître : affichage dans les vitrines des commerces, un peu de flying — selon votre rythme, vos dispos et votre ambition.</p>
+      </div>
+    </details>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-02.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-02.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-05.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-05.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-08.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-08.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+    </div>
+    <div style="margin-top:2.2rem;background:var(--blanc-pur);border:2px solid var(--accent);border-radius:3px;padding:2rem 1.6rem;text-align:center;box-shadow:0 10px 30px rgba(242,107,29,.12);">
+      <div style="font-size:1.9rem;line-height:1;margin-bottom:.8rem;">🎭 ⏱️</div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:1.1rem;">
+        <div style="background:#fdf4e7;border:1px solid var(--accent);border-radius:14px;padding:.8rem 1.2rem;min-width:220px;">
+          <span style="display:block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;">Répétitions</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--marine);">1 à 2 fois par semaine</span>
+          <span style="display:block;font-size:.78rem;color:var(--gris);margin-top:.2rem;">à la discrétion de la troupe</span>
+        </div>
+        <div style="background:#fdf4e7;border:1px solid var(--accent);border-radius:14px;padding:.8rem 1.2rem;min-width:220px;">
+          <span style="display:block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;">Représentations</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--marine);">jusqu'à 3 fois par semaine</span>
+          <span style="display:block;font-size:.78rem;color:var(--gris);margin-top:.2rem;">objectif, selon les actions locales de la troupe</span>
+        </div>
+      </div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--marine);margin:0;line-height:1.5;">Le projet est donc <strong style="color:var(--accent);">tout à fait compatible</strong> avec vos autres projets artistiques ou professionnels en parallèle.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">La répartition des rôles</span>
+    <h2>Cinq comédiens sur scène, sept personnages</h2>
+    <p class="lead">Chaque soir, <strong>5 comédiens portent 7 personnages</strong> — <strong>Delphine</strong> et <strong>Johana</strong> tenues par deux comédiennes, <strong>Pascal</strong> tenu seul par un comédien, et deux comédien·nes qui portent chacun <strong>deux personnages qui ne se croisent jamais sur scène</strong> : <strong>Julien / Julia + le présentateur</strong> d'un côté, <strong>Daniel / Danielle + Dominique</strong> de l'autre.</p>
+    <div class="combo">
+      <div class="c"><strong>Pascal</strong><span>1 comédien · Homme</span></div>
+      <div class="c"><strong>Delphine</strong><span>1 comédienne · Femme</span></div>
+      <div class="c"><strong>Johana</strong><span>1 comédienne · Femme</span></div>
+      <div class="c"><strong>Julien / Julia + le présentateur</strong><span>1 comédien·ne · 2 personnages</span></div>
+      <div class="c"><strong>Daniel / Danielle + Dominique</strong><span>1 comédien·ne · 2 personnages</span></div>
+    </div>
+    <p class="lead" style="margin-top:1.6rem;"><strong>Julien / Julia</strong>, <strong>Daniel / Danielle</strong> et <strong>Dominique</strong> existent dans les deux versions, masculine et féminine : choisissez celle dans laquelle vous vous projetez.</p>
+    <div class="eco">
+      <p><strong>Sur le texte :</strong> j'y suis attaché, mais tout à fait ouvert à vos suggestions — même s'il me faudra avoir le dernier mot.</p>
+    </div>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-02-duo.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-02-duo.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/johana3.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/johana3.jpg" alt="Johana" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/johana4.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/johana4.jpg" alt="Johana" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Espace comédiens</span>
+    <h2>Le texte de la pièce</h2>
+    <div class="eco">
+      <span class="pct">Texte de casting 2026 — PDF, 14 scènes, 28 pages</span>
+      <p><b>Ce texte est déposé.</b> Il ne s'agit que d'une version brute du texte, diffusée à des fins de casting.</p>
+      <p>Il est en accès libre, en PDF, sans mot de passe : la psychologie de chaque personnage, l'intention de chaque scène, puis le texte des 14 scènes. Prenez le temps de le parcourir : soit il vous inspire, soit il ne vous inspire pas 🙂</p>
+      <p style="margin-top:1rem;"><a class="btn" href="https://thierrybismuth.com/ovr-texte-casting.pdf" target="_blank" rel="noopener">Ouvrir le texte (PDF) →</a></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Les personnages</span>
+    <h2>Les personnages en images</h2>
+    <p class="lead">Cliquez sur un nom pour déplier ou refermer le portrait du personnage : un synopsis à destination des comédiens, pour s'imprégner du rôle avant de travailler le texte.</p>
+    <details class="acc perso-acc" id="perso-pascal">
+      <summary><span class="chev">▶</span>Pascal<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body perso-bio">
+      <p>Pascal, c'est le fils de son père. Son père qui a créé la boîte, et qui l'a toujours porté, même si manifestement le fils n'a jamais vraiment brillé. Pascal est arrivé dans l'entreprise il y a quinze ans et en a repris les rênes. Delphine, la RH, arrivée cinq ans plus tard, est le seul témoin de cette histoire : elle connaît le fils, elle sait ce que le père a construit, et elle ne manque pas de le lui rappeler.</p>
+      <p>Il peut paraître un peu périmé, un genre de manager des années 80 : arrogant, un peu vulgaire, misogyne… Ça n'est pas totalement faux.</p>
+      <p>Mais on comprend, notamment à travers la scène finale avec Daniel(e), que c'est un petit patron dépassé. Il est en posture en permanence pour masquer sa panique. La boîte ne va pas bien, il ne sait pas manager, il ne trouve pas le moyen de sauver cette entreprise qui coule.</p>
+      <p>On voit bien dans sa scène avec Julien que même ses trucs et astuces ne fonctionnent pas. C'est d'ailleurs ce que lui dit également Johana dans une scène précédente, lorsqu'elle a essayé d'exploiter les conseils de son boss qui ne marchent jamais. Et on comprend bien que derrière cette arrogance se cache juste un manager dépassé, un fils qui est en train de couler la boîte du père. Et qu'il en a, derrière les apparences, pleinement conscience.</p>
+      <p>Il n'est d'ailleurs pas tout à fait naïf sur son entreprise : lorsque Delphine, lors de la fiche de poste, lui fait remarquer que l'entreprise est très loin de l'image qu'il veut en donner, il ne la contredit pas. Lorsque Daniel(e) lui explique que son management est périmé, il ne le contredit pas non plus — il lui demande même conseil.</p>
+      <p>Si on observe bien la trajectoire de Pascal, il se décompose scène après scène : Delphine lui marche dessus dès la scène 2, Johana va finir par le recadrer dans leur scène de débrief, Julien va le balader sur toute la ligne, et Daniel(e) lui dira enfin ses quatre vérités.</p>
+      <p>C'est la panique des petits patrons qui affrontent des crises qu'ils ne peuvent partager avec personne, et qui parfois prennent de mauvaises postures pour se rassurer.</p>
+      </div>
+    </details>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/pascal_et_elphine.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/pascal_et_elphine.jpg" alt="Pascal et Delphine" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/delphne_et_pascal.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/delphne_et_pascal.jpg" alt="Pascal" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/delphine_et_pascal2.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/delphine_et_pascal2.jpg" alt="Pascal et Delphine" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/pascal_et_julien.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/pascal_et_julien.jpg" alt="Pascal et Julien" loading="lazy"></a>
+    </div>
+    <details class="acc perso-acc" id="perso-delphine">
+      <summary><span class="chev">▶</span>Delphine<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body perso-bio">
+      <p>Delphine, c'est la mémoire de cette entreprise : elle y est arrivée il y a dix ans.</p>
+      <p>Elle n'a pas peur de son manager. Elle peut se jouer en opposition frontale, haute en couleur, ou dans une forme de résistance introspective — les deux fonctionnent. Mais elle n'est pas dupe, elle résiste, et on voit bien dès la fiche de poste qu'elle revient à plusieurs moments sur les réponses de son manager pour le mettre face à ses incohérences.</p>
+      <p>Elle peut se le permettre parce qu'elle a dix ans d'entreprise, qu'elle l'a connu en échec, et que manifestement elle sait tout de l'homme et de l'entreprise. C'est d'ailleurs ce que révèle Daniel(e) à Pascal dans la scène finale, à propos de sa relation avec Delphine.</p>
+      <p>Et en même temps, on voit bien qu'elle a par moments besoin de sortir de sa réserve de RH, comme elle le fait avec Daniel(e) le psy dans la scène inaugurale.</p>
+      <p>On peut laisser entrevoir, si on le souhaite, qu'elle fut autrefois un peu éprise de Pascal, qui s'est détourné d'elle. Ou bien on peut faire totalement l'impasse sur cette histoire. Il y a plusieurs moments dans le texte, dans sa discussion avec Pascal, où on peut par la gestuelle le laisser entendre (« c'est comme en amour, on veut des preuves »), mais ce n'est absolument pas indispensable.</p>
+      <p>Le fait est qu'elle est la meilleure RH possible. Elle tient tête à son manager. Elle pose exactement les bonnes questions et donne une master class de fiche de poste dans la scène 2. Dans sa discussion au téléphone, on comprend qu'elle est capable de déceler ce que le candidat cherche vraiment, et qu'elle n'est pas dupe de ce que l'entreprise a à offrir : elle en arrive même à conseiller le candidat pour qu'il manipule un peu le manager aux attentes irrationnelles. Elle est directe et fait dire au candidat en peu de mots ce que Pascal n'arrivera jamais à lui faire dire en entretien par la suite. Elle n'est dupe d'aucune des manipulations de Julien, le candidat pourtant passé maître en la matière, et ils jouent tous les deux une scène intelligente : un entretien dépourvu de toute hypocrisie.</p>
+      <p>Elle aime cette entreprise, elle lui a probablement consacré toute sa vie : on ne fait référence ni à un mari, ni à des enfants, ni à aucune autre occupation que cette entreprise.</p>
+      <p>Elle est ce à quoi aspire toute recruteuse, toute RH dans une entreprise : un vrai contre-pouvoir du manager opérationnel. Un vrai pont entre les candidats et l'entreprise, qui dépouille les uns et les autres de leurs faux-semblants.</p>
+      </div>
+    </details>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/delphine_et_pascal.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/delphine_et_pascal.jpg" alt="Delphine et Pascal" loading="lazy"></a>
+    </div>
+    <details class="acc perso-acc" id="perso-jerome">
+      <summary><span class="chev">▶</span>Dominique<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body perso-bio">
+      <p>Dominique, c'est le candidat parfait. Absolument parfait. Il a préparé son entretien, il est honnête, il démontre ses arguments, il explique ce qu'il peut apporter à l'entreprise, il sait aller au closing pour obtenir son deuxième entretien. Il est parfait. Et sincèrement, il a toute sa place à ce poste. Dominique, c'est objectivement le meilleur choix possible pour ce poste.</p>
+      <p>Et il fait ce que tout très bon candidat doit être amené à faire : renoncer à un poste lorsque, pendant le processus, il se rend compte que cette entreprise ne le mérite pas et que ce poste n'est pas fait pour lui. Il est le symbole du candidat capable de renoncer sans être obsédé par l'obtention du poste. Parce que son âge le lui permet, parce qu'il en a vu d'autres, parce qu'il est capable de transformer un entretien d'embauche avec la brillante Delphine en un moment de confidence et d'échange sincère.</p>
+      <p>C'est celui qui transforme un entretien en conversation.</p>
+      <p>Évidemment, il est trop vieux pour le poste. Évidemment, Pascal ne l'aurait pas validé. Mais il n'aura pas besoin de le faire, parce que les meilleurs candidats n'arrivent même pas jusqu'au manager, et se désistent d'eux-mêmes lorsque la proposition ne leur convient pas.</p>
+      <p>Dominique, c'est un peu de sagesse. C'est probablement la seule ancre de sagesse et de prise de recul dans cette pièce. Il explique pourquoi : il a vécu des problèmes de santé, de famille, personnels, qui mettent l'entreprise à sa place — et pas au-dessus de tout le reste. C'est évidemment une leçon à retenir, qu'il va faire passer à Delphine, qui va très bien l'entendre.</p>
+      </div>
+    </details>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/jerome.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/jerome.jpg" alt="Dominique" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/jerome_et_delphine.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/jerome_et_delphine.jpg" alt="Dominique et Delphine" loading="lazy"></a>
+    </div>
+    <details class="acc perso-acc" id="perso-johana">
+      <summary><span class="chev">▶</span>Johana<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body perso-bio">
+      <p>Johana symbolise la naïveté de nombreux projets de reconversion, qui veulent d'abord fuir une réalité avant de s'intéresser à celle qu'ils vont rejoindre.</p>
+      <p>Elle ne cherche pas un job chez ODYSSÉE BUREAUTIQUE : elle veut d'abord fuir le domaine de la santé. Et elle est prête à tout pour ça. Y compris, par moments, à reproduire des comportements qu'elle a détestés dans son job précédent.</p>
+      <p>Elle peut être jouée d'une naïveté absolue dans la scène de recrutement par Pascal, ou au contraire s'attacher d'ores et déjà à le manipuler.</p>
+      <p>Le fait est que son intégration sera une calamité. Assurée par le manager, sans pouvoir être accompagnée par la RH, puisqu'une opposition se met en place dès le départ : elle a vocation à remplacer Delphine. C'est donc une intégration catastrophique où seul le manager apporte sa vision et ses vices, sans que la RH puisse accompagner l'intégration.</p>
+      <p>Et il peut se passer littéralement deux choses, qui seront à la libre interprétation de la troupe : soit elle entre en résistance et interprète son texte comme une espèce de contrainte imposée par son manager — et dans ses échanges avec lui elle devient agressive, parce qu'elle lui en veut de vouloir faire d'elle ce qu'elle n'est pas, ou ce qu'elle a fui. Ou bien elle bascule et rentre dans l'ombre de son manager pour devenir un mini-Pascal. Pire que lui, en vérité. Ça se verra notamment dans la scène de débrief de la candidate, où elle lui proposera des choses que même lui n'aurait pas imaginées.</p>
+      <p>Bien entendu, ce processus de plongée en abyme se fait par étapes, et la scène charnière est celle de sa consultation chez le psy, où elle fait le bilan d'une partie de son intégration et décide de basculer.</p>
+      <p>À la fin, sur la scène avec Pascal, elle peut complètement lui marcher dessus — un peu comme Delphine est capable de lui marcher dessus dans la scène de la fiche de poste au départ. Ou bien, au contraire, elle entre en connivence avec lui.</p>
+      </div>
+    </details>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/johana.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/johana.jpg" alt="Johana" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/johana2.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/johana2.jpg" alt="Johana" loading="lazy"></a>
+    </div>
+    <details class="acc perso-acc" id="perso-daniel">
+      <summary><span class="chev">▶</span>Daniel / Danielle<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body perso-bio">
+      <p>Daniel(e) est témoin de tout ce qui se passe. On comprend à la fin de la pièce que ce n'est pas seulement un psy payé par la boîte : c'est d'abord le meilleur pote du manager, et les séances servent surtout à un management indirect des équipes. Tout dans sa posture en consultation tient davantage du coaching et du management que de la psychothérapie.</p>
+      <p>Il va voir successivement Delphine dans la scène inaugurale, puis Johana, et enfin Pascal : il peut donc porter un regard distancié, analytique, sur les réalités qui se trament.</p>
+      <p>Avec Delphine, il essaie de calmer son agressivité. Il la connaît depuis quinze ans — si elle l'appelle au bout de quinze ans, c'est qu'elle suit ses consultations depuis tant d'années. Il connaît donc par cœur le ressenti de Delphine pour ce manager qui détruit la boîte qu'elle aime tant. Mais ce manager est le pote de Daniel(e), et donc il s'attache autant qu'il le peut à apaiser.</p>
+      <p>Dans la scène avec Johana, c'est la même chose : il perçoit toute sa frustration et il s'attache à la mettre en empathie avec son manager. Quitte à le faire au sacrifice de la posture qu'une RH doit avoir vis-à-vis des candidats. D'une certaine manière, il sacrifie l'image que la recruteuse a des candidats pour sauver le management de son pote. Il contribue à son niveau à amener Johana sur la pente d'une forme de perversion vis-à-vis des candidats : « Votre rôle, c'est de savoir s'il est fait pour le poste » ; « Il vous manipule » ; soyez plus empathique avec votre manager et un peu moins avec les candidats. Bref, il est témoin du glissement de Johana, mais conserve son rôle d'accompagnement de son manager.</p>
+      <p>Évidemment, la scène finale avec Pascal, c'est le moment de vérité, au cours de laquelle Daniel(e) lui dit tout ce que Pascal ne peut entendre que de son ami. Il prend l'ascendant sur Pascal, qui scène après scène se décompose.</p>
+      <p>Daniel(e), ce n'est pas le mauvais psy. C'est d'abord un bon ami. Celui qui joue, d'une certaine manière, le RH auprès des deux RH. Celui qui assure un coaching de business en scène finale. Mais qui fait toujours ça avec une forme de désinvolture distanciée, que ce soit avec Delphine, Johana ou Pascal — précisément parce qu'il n'est pas pris dans le tourbillon de cette boîte.</p>
+      </div>
+    </details>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/david.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/david.jpg" alt="Daniel(e)" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/david_4.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/david_4.jpg" alt="Daniel(e)" loading="lazy"></a>
+    </div>
+    <details class="acc perso-acc" id="perso-julien">
+      <summary><span class="chev">▶</span>Julien / Julia<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body perso-bio">
+      <p>Julien, c'est le pire des candidats. Parce que c'est le meilleur en entretien. Parce qu'il dit exactement ce que chacun veut entendre, parce qu'il a réponse à tout, parce qu'il manipule les uns et les autres. Même s'il tombe sur un os avec Delphine, il va quand même obtenir son entretien avec Pascal, et manipuler Pascal jusqu'au bout. Jusqu'à ce que ce misogyne qui voulait une fille se retrouve à faire une proposition à Julien.</p>
+      <p>C'est le pire des candidats parce que c'est le meilleur en entretien, mais qu'il n'a aucune motivation pour le poste, aucun intérêt pour l'entreprise, aucun avenir dans cette entreprise s'il y était pris. Il le dit d'ailleurs dès sa scène inaugurale : il prend juste un emploi pour remplir son frigo et retrouver du Pôle emploi. Il quittera cette boîte à la première occasion. Mais il est tellement parfait en entretien que Delphine, qui a désespéré de ne pas trouver mieux, va le laisser passer sans être dupe, et que Pascal va tomber dans ses pièges.</p>
+      <p>Heureusement, le twist de leur entretien, c'est que même ce candidat prêt à tout ne prendra pas le poste : personne ne veut d'une entreprise comme ODYSSÉE BUREAUTIQUE, pas même un Julien affamé.</p>
+      <p>Il est celui que beaucoup de recruteurs craignent et critiquent : un parfait séducteur qui n'a aucun intérêt réel pour l'entreprise, mais qui peut passer toutes les étapes. Il est le Pascal en version candidat.</p>
+      <p>Mais on comprend également, comme on l'a fait pour Pascal, d'où lui vient cette posture. Il parle de son père qui s'est fait exploiter toute sa vie, de ce choix qu'il a fait de profiter de la vie et de découvrir le monde, de remettre l'entreprise, le poste, les managers et le salaire à leur juste place. Il est représentatif d'une génération qui rompt avec la génération X, qui n'est plus crédule des marques employeur et du marketing des services recrutement, qui a compris les règles du jeu — et qui les utilise parfois mieux que les employeurs et les recruteurs.</p>
+      </div>
+    </details>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/julien.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/julien.jpg" alt="Julien" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/julien2.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/julien2.jpg" alt="Julien" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/julien3.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/julien3.jpg" alt="Julien" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag" id="modele-eco">Modèle économique</span>
+    <h2>Un vrai cachet dès que la salle se remplit</h2>
+    <div class="eco">
+      <span class="pct">Un cachet dès que la marge le permet</span>
+      <p>Chaque représentation finance d'abord ses coûts : le <strong>théâtre</strong>, la <strong>communication</strong>, les <strong>droits d'auteur</strong>, la <strong>cagnotte d'Avignon</strong>, le <strong>matériel et les frais annexes</strong>. Sur ce qui reste — la <strong>marge brute</strong> — chaque comédien alimente une <strong>cagnotte personnelle</strong>, coordonnateur compris, indexée sur le nombre de <strong>spectateurs payants</strong> : <strong>1,30&nbsp;€ bruts par spectateur payant et par comédien, à partir du 50<sup>e</sup></strong> (les 49 premiers payants couvrent les coûts fixes de la soirée). Un soir à 90 payants, c'est 53,30&nbsp;€ de billetterie + 8,10&nbsp;€ de bar et souvenirs = <strong>61,40&nbsp;€</strong> ; à 140, 118,30&nbsp;€ + 12,60&nbsp;€ = <strong>130,90&nbsp;€</strong>. <strong>À partir du 50<sup>e</sup>, chaque spectateur compte.</strong> Dès que la cagnotte atteint <strong>120&nbsp;€</strong>, un <strong>cachet déclaré</strong> de 120&nbsp;€ bruts est versé, et la cagnotte repart avec le reliquat. Plus la salle se remplit, plus vous gagnez : la communication locale, c'est aussi votre intérêt direct.</p>
+      <div style="background:#fdf4e7;border:1px solid var(--accent);border-left:5px solid var(--accent);border-radius:14px;padding:1.4rem 1.7rem;margin:1.4rem 0;max-width:680px;">
+      <span style="display:block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;">Vos revenus, ligne par ligne</span>
+      <p style="font-size:.95rem;line-height:1.6;color:var(--marine);margin:0 0 .4rem;"><strong>Dans votre cagnotte personnelle</strong></p>
+      <ol style="font-size:.95rem;line-height:1.6;color:#3d3a35;margin:0 0 .9rem;padding-left:1.4rem;">
+        <li style="margin-bottom:.35rem;"><strong>Représentation grand public</strong> — <strong>1,30&nbsp;€ bruts par spectateur payant</strong>, à partir du 50<sup>e</sup>, pour chaque comédien sur scène ce soir-là.</li>
+        <li style="margin-bottom:.35rem;"><strong>Souvenirs</strong> — <strong>10&nbsp;% du prix</strong> des souvenirs vendus au stand par les personnages, après le tomber de rideau, répartis entre la troupe.</li>
+        <li style="margin-bottom:.35rem;"><strong>Bar</strong> — <strong>10&nbsp;% du prix des boissons</strong> servies par les personnages, après le tomber de rideau, répartis entre la troupe.</li>
+        <li style="margin-bottom:.35rem;"><strong>Atelier de mise en pratique</strong> (option vendue à une entreprise) — <strong>20&nbsp;% du prix de vente</strong>, soit 200&nbsp;€ sur un atelier à 1&nbsp;000&nbsp;€, divisés à parts égales entre les comédiens sur scène ce soir-là, qui animent ensuite l'atelier — 40&nbsp;€ chacun à cinq.</li>
+        <li style="margin-bottom:.35rem;"><strong>Apport d'affaires</strong> — <strong>10&nbsp;% du chiffre d'affaires B2B</strong> que vous avez vous-même apporté.</li>
+      </ol>
+      <p style="font-size:.95rem;line-height:1.6;color:var(--marine);margin:0 0 .4rem;"><strong>Versé directement, hors cagnotte</strong></p>
+      <ol start="6" style="font-size:.95rem;line-height:1.6;color:#3d3a35;margin:0 0 .9rem;padding-left:1.4rem;">
+        <li style="margin-bottom:.35rem;"><strong>Représentation en entreprise</strong> — <strong>120&nbsp;€ bruts forfaitaires</strong> par comédien sur scène, quelle que soit la jauge.</li>
+      </ol>
+      <p style="font-size:.95rem;line-height:1.65;color:var(--marine);margin:0;"><strong>La cagnotte se déclenche tous les 120&nbsp;€</strong> : un cachet déclaré de 120&nbsp;€ bruts est versé, et la cagnotte repart avec le reliquat.</p>
+    </div>
+      <p><strong>Précision importante : seules les entrées payantes comptent.</strong> Les invitations, places offertes, contremarques et entrées de service n'entrent jamais dans le décompte. Un soir à 90 payants et 30 invités reste un soir à 90 payants — donc 72&nbsp;€ de cagnotte, pas 96.</p>
+    </div>
+    <h2 id="missions-transverses" style="margin-top:3rem;">Vos missions transverses</h2>
+    <p class="lead">Sur scène, chacun a son personnage. En coulisses, <strong>chacun prend aussi une mission transverse</strong> : c'est ce qui permet à une troupe de tenir debout, en autonomie, dans sa ville.</p>
+    <div class="combo">
+      <div class="c"><strong>Régie</strong><span>Son, lumière, plateau — et aussi la relation avec les théâtres, le décor et le matériel (accessoires, costumes, goodies)</span></div>
+      <div class="c"><strong>Communication grand public</strong><span>Réseaux sociaux, presse locale, affichage, flyers locaux</span></div>
+      <div class="c"><strong>Commercial B2B</strong><span>Entreprises et DRH de la ville, CCI, salons professionnels, réseaux de franchise…</span></div>
+      <div class="c"><strong>Coordinateur des répétitions</strong><span>Planning, convocations, rythme de travail</span></div>
+      <div class="c"><strong>Administratif</strong><span>Contrats, GUSO, billetterie, suivi</span></div>
+    </div>
+    <div id="video-transverse" style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border:1px solid var(--gris-clair);box-shadow:0 10px 30px rgba(22,22,22,.14);margin:1.6rem 0 .6rem;scroll-margin-top:80px;"><iframe src="https://drive.google.com/file/d/1yNm77VD9xhis1_5KVzMqmTHA6FKa8f19/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;" title="ON VOUS RAPPELLERA — les missions transverses"></iframe></div>
+    <p style="margin-top:.9rem;"><a class="btn" href="https://drive.google.com/file/d/1yNm77VD9xhis1_5KVzMqmTHA6FKa8f19/view" target="_blank" rel="noopener">&#9654; Voir la vidéo «&nbsp;Les missions transverses&nbsp;»</a></p>
+    <p class="note" style="margin-top:.7rem;">Cette vidéo détaille chaque mission, une par une. <strong>À regarder avant d'enregistrer votre vidéo de casting</strong> : elle vous sera redemandée au moment de la confirmation d'engagement.</p>
+    <h2 style="margin-top:3rem;">Le modèle économique, chiffré</h2>
+    <p class="lead" style="margin-top:.4rem;">Places vendues à <strong>18&nbsp;€ TTC</strong> (TVA spectacle vivant 5,5&nbsp;% déduite). Troupe de <strong>5 comédiens</strong>, salle d'environ <strong>200 places</strong> louée 500&nbsp;€ la soirée. Communication budgétée à <strong>1&nbsp;€ par spectateur payant</strong>. Côté ventes du soir : <strong>30 % des spectateurs</strong> prennent une boisson (5 € en moyenne, 2 € d'achat) et <strong>30 %</strong> achètent pour 10 € de souvenirs (5 € d'achat), TVA de 20 % déduite — sous réserve des accords passés avec chaque salle pour le bar et la vente de souvenirs. Exemple pour 50, 100, 150 et 200 <strong>spectateurs payants</strong>. <span style="color:var(--gris);font-size:.9em;">Passez la souris (ou tapez) sur les libellés soulignés pour le détail.</span></p>
+    <style>
+      .tipw{border-bottom:1px dotted var(--accent);cursor:help;outline:none;}
+      .tipw:focus{background:#fdf7ef;}
+      #tipbox{position:fixed;z-index:9999;max-width:min(340px,86vw);background:var(--marine);color:#fff;
+        padding:.7rem .85rem;border-radius:10px;font-size:.8rem;line-height:1.5;
+        box-shadow:0 10px 30px rgba(0,0,0,.22);display:none;pointer-events:none;}
+    </style>
+    <div style="overflow-x:auto;margin-top:1.6rem;">
+    <table style="width:100%;border-collapse:collapse;border:1px solid var(--gris-clair);">
+      <thead><tr>
+        <th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:left;">Par représentation</th><th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">50 payants</th><th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">100 payants</th><th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">150 payants<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.68rem;opacity:.9;">possible en 2 représentations le même soir</span></th><th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">200 payants<br><span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.68rem;opacity:.9;">possible en 2 représentations le même soir</span></th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:#fdf7ef;"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Prix public du billet : 18 € TTC. Tarif unique, valable pour toutes les villes.">Billetterie</span> <span style='color:var(--gris);'>(spectateurs payants × 18 € TTC)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">900 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">1 800 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">2 700 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">3 600 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Billetterie de spectacle vivant : TVA à 5,5 %. Un taux réduit à 2,1 % existe pour les 140 premières représentations d'une nouvelle mise en scène — à confirmer avec l'expert-comptable.">TVA sur billetterie</span> <span style='color:var(--gris);'>(5,5 %)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 47 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 94 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 141 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 188 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">Recette HT</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>853 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>1 706 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>2 559 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>3 412 €</strong></td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;">Bar et souvenirs <span style='color:var(--gris);'>(par payant : 30 % × 5 € de boisson + 30 % × 10 € de souvenirs = 4,50 € de chiffre d'affaires ; marge après TVA et coût d'achat)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">83 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">165 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">248 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">330 €</td></tr>
+                <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Hypothèse de travail : 500 € la soirée, quelle que soit la jauge. C'est le prix à trouver localement, dans une salle d'environ 200 places, pour pouvoir y résider à l'année et accompagner la montée en puissance du public. En province, les salles municipales et polyvalentes se situent dans cette fourchette, souvent moins pour une association domiciliée dans la commune.">Théâtre</span> <span style='color:var(--gris);'>(500 € la soirée, jauge ~200 places)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 500 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 500 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 500 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 500 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Budget de communication indexé sur la fréquentation : 1 € par spectateur payant. Plus on investit en communication locale, plus la salle se remplit. Communication digitale, affiches et supports imprimés pris en charge par la Compagnie ; la communication locale est portée par la troupe.">Communication</span> <span style='color:var(--gris);'>(1 € par spectateur payant)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 100 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 150 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 200 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Provision de 50 € par représentation pour le festival d'Avignon 2027. Simulation : 25 représentations × 10 villes × 50 € = 12 500 €. Budget estimé d'Avignon (salle + communication + logement sur 3 semaines) = 12 000 €. La cagnotte finance donc le festival à elle seule.">Cagnotte Avignon 2027</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Droits d'auteur : 10 % de la recette hors taxes, reversés à l'auteur de la pièce.">Droits d'auteur</span> <span style='color:var(--gris);'>(10 % de la recette HT)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 85 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 171 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 256 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 341 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Décors, accessoires et petit matériel : forfait de 50 € par représentation.">Décors et matériel</span> <span style='color:var(--gris);'>(forfait)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 50 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Comptabilité, banque, assurances et frais administratifs : forfait de 100 € par représentation.">Frais annexes et admin</span> <span style='color:var(--gris);'>(forfait)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 100 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 100 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 100 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 100 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">Marge brute</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>100 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>901 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>1 701 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>2 501 €</strong></td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Montant crédité à la cagnotte de chaque comédien, coordonnateur compris : 1,30 € bruts par spectateur payant, à partir du 50e. Dès que la cagnotte atteint 120 €, un cachet déclaré de 120 € bruts est versé et la cagnotte repart avec le reliquat. Le montant de 120 € correspond au minimum conventionnel (119,42 €) arrondi à l&#39;euro supérieur : le cachet est donc déclarable quel que soit le rythme de jeu. Ce cachet inclut les répétitions, qui restent libres : ni rythme, ni lieu, ni hiérarchie imposés, la troupe s&#39;organise comme elle l&#39;entend.">Cagnotte comédiens</span> <span style='color:var(--gris);'>(5 comédiens × 1,30 € × payants comptés à partir du 50<sup>e</sup> — à 100 payants : 5 × 1,30 € × 51)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 7 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 332 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 657 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 982 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;">Cagnotte bar et souvenirs <span style='color:var(--gris);'>(10 % du chiffre d'affaires bar et souvenirs, soit 0,45 € par payant, partagés entre les 5 comédiens sur scène — à 100 payants : 15 € de bar + 30 € de souvenirs = 45 €, soit 9 € par comédien)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 23 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 45 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 68 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 90 €</td></tr>
+        <tr><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;background:#fdf7ef;"><em>Soit, par comédien sur scène : billetterie + bar et souvenirs</em> <span style='color:var(--gris);'>(pour information, déjà compté dans les deux lignes ci-dessus)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;background:#fdf7ef;"><em>5,80 €</em></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;background:#fdf7ef;"><em>75,30 €</em></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;background:#fdf7ef;"><em>144,80 €</em></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;background:#fdf7ef;"><em>214,30 €</em></td></tr>
+                <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="Cotisations patronales, environ 60 % du brut. Déclaration via le GUSO ou le régime de l'intermittence.">Charges patronales</span> <span style='color:var(--gris);'>(≈ 60 %)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 17 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 226 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 434 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 643 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">Coût troupe total <span style='color:var(--gris);'>(charges incluses)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>– 46 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>– 602 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>– 1 158 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>– 1 714 €</strong></td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;"><span class="tipw" tabindex="0" data-tip="Excédent brut d'exploitation : ce que la représentation dégage réellement une fois tous les coûts et la troupe payés.">EBE</span> <span style='color:var(--gris);'>(marge brute – coût troupe)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>54 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>298 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>542 €</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>787 €</strong></td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;"><span class="tipw" tabindex="0" data-tip="50 % de la marge (EBE) mis en commun entre les villes, uniquement lorsque la soirée dégage une marge une fois la troupe payée. Sert à soutenir les troupes qui démarrent ou traversent une mauvaise passe. Quand la soirée est à l&#39;équilibre ou en perte, rien n&#39;est prélevé.">Cagnotte mutualisée autres villes</span> <span style='color:var(--gris);'>(50 % de la marge, si marge)</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 27 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 149 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 271 €</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">– 394 €</td></tr>
+        <tr><td style="padding:12px 14px;font-size:.9rem;color:#fff;background:var(--marine);font-weight:700;"><span class="tipw" tabindex="0" data-tip="Résultat final de la représentation, après cagnotte mutualisée.">Marge nette</span></td><td style="padding:12px 14px;font-size:.9rem;color:#fff;background:var(--marine);font-weight:700;text-align:right;white-space:nowrap;">27 €</td><td style="padding:12px 14px;font-size:.9rem;color:#fff;background:var(--marine);font-weight:700;text-align:right;white-space:nowrap;">149 €</td><td style="padding:12px 14px;font-size:.9rem;color:#fff;background:var(--marine);font-weight:700;text-align:right;white-space:nowrap;">271 €</td><td style="padding:12px 14px;font-size:.9rem;color:#fff;background:var(--marine);font-weight:700;text-align:right;white-space:nowrap;">393 €</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 style="margin-top:2.4rem;">Ce que ça donne, comédien par comédien</h3>
+    <p class="lead" style="margin-top:.4rem;">Pour <strong>une représentation</strong>, et <strong>pour chaque comédien sur scène</strong>, coordonnateur compris. La cagnotte se cumule d'une date à l'autre : ce qui n'est pas versé un soir repart avec vous à la représentation suivante.</p>
+    <div style="margin-top:1.2rem;padding:1rem 1.2rem;border-left:4px solid var(--accent);background:#fdf7ef;border-radius:0 10px 10px 0;">
+      <p style="margin:0 0 .5rem;font-size:.92rem;line-height:1.7;"><strong>Le calcul, pour 100 spectateurs payants et par comédien sur scène</strong></p>
+      <p style="margin:0 0 .3rem;font-size:.92rem;line-height:1.7;">Billetterie : du 50<sup>e</sup> au 100<sup>e</sup> spectateur, 51 payants comptés × 1,30&nbsp;€ = <strong>66,30&nbsp;€</strong></p>
+      <p style="margin:0 0 .3rem;font-size:.92rem;line-height:1.7;">Bar : 100 × 30&nbsp;% × 5&nbsp;€ = 150&nbsp;€ de boissons × 10&nbsp;% = 15&nbsp;€ pour les 5 comédiens, soit <strong>3&nbsp;€</strong></p>
+      <p style="margin:0 0 .3rem;font-size:.92rem;line-height:1.7;">Souvenirs : 100 × 30&nbsp;% × 10&nbsp;€ = 300&nbsp;€ de souvenirs × 10&nbsp;% = 30&nbsp;€ pour les 5 comédiens, soit <strong>6&nbsp;€</strong></p>
+      <p style="margin:0;font-size:.92rem;line-height:1.7;">Total crédité en cagnotte : 66,30 + 3 + 6 = <strong>75,30&nbsp;€</strong></p>
+      <p style="margin:.9rem 0 .5rem;font-size:.92rem;line-height:1.7;"><strong>Le même calcul pour 150 spectateurs payants</strong> — par exemple deux représentations de 75 le même soir</p>
+      <p style="margin:0 0 .3rem;font-size:.92rem;line-height:1.7;">Billetterie : du 50<sup>e</sup> au 150<sup>e</sup> spectateur, 101 payants comptés × 1,30&nbsp;€ = <strong>131,30&nbsp;€</strong></p>
+      <p style="margin:0 0 .3rem;font-size:.92rem;line-height:1.7;">Bar : 150 × 30&nbsp;% × 5&nbsp;€ = 225&nbsp;€ de boissons × 10&nbsp;% = 22,50&nbsp;€ pour les 5 comédiens, soit <strong>4,50&nbsp;€</strong></p>
+      <p style="margin:0 0 .3rem;font-size:.92rem;line-height:1.7;">Souvenirs : 150 × 30&nbsp;% × 10&nbsp;€ = 450&nbsp;€ de souvenirs × 10&nbsp;% = 45&nbsp;€ pour les 5 comédiens, soit <strong>9&nbsp;€</strong></p>
+      <p style="margin:0;font-size:.92rem;line-height:1.7;">Total crédité en cagnotte : 131,30 + 4,50 + 9 = <strong>144,80&nbsp;€</strong> → un cachet de 120&nbsp;€ bruts versé le soir même, 24,80&nbsp;€ restent en cagnotte</p>
+      <p style="margin:.5rem 0 0;font-size:.85rem;line-height:1.6;color:var(--gris);">Hypothèses : 30&nbsp;% des spectateurs prennent une boisson à 5&nbsp;€ en moyenne, 30&nbsp;% achètent pour 10&nbsp;€ de souvenirs. Les 10&nbsp;% du bar et des souvenirs sont partagés à parts égales entre les comédiens sur scène ce soir-là. <strong>Ces ventes dépendent des accords passés avec chaque salle</strong>&nbsp;: quand la salle garde son bar ou n'autorise pas la vente de souvenirs, seule la part billetterie s'applique.</p>
+    </div>
+    <div style="overflow-x:auto;margin-top:1.2rem;">
+    <table style="width:100%;border-collapse:collapse;border:1px solid var(--gris-clair);">
+      <thead><tr>
+        <th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:left;">Spectateurs payants</th>
+        <th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">Billetterie (1,30&nbsp;€ à partir du 50<sup>e</sup>)</th>
+        <th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">Bar et souvenirs (10&nbsp;% partagés entre les 5)</th>
+        <th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">Crédité en cagnotte</th>
+        <th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">Cachet déclenché (120&nbsp;€ bruts)</th>
+        <th style="padding:12px 14px;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marine);text-align:right;">Reste en cagnotte</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">25</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">0&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">2,25&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>2,25&nbsp;€</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">0</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">2,25 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">50</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">1,30&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">4,50&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>5,80&nbsp;€</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">0</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">5,80 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">75</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">33,80&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">6,75&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>40,55&nbsp;€</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">0</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">40,55 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">100</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">66,30&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">9&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>75,30&nbsp;€</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">0</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">75,30 €</td></tr>
+        <tr style="background:var(--blanc-pur);"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">125</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">98,80&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">11,25&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>110,05&nbsp;€</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">0</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">110,05 €</td></tr>
+        <tr style="background:#fdf7ef;"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">150<br><span style="font-weight:400;font-size:.72rem;color:var(--gris);">possible en 2 représentations le même soir</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">131,30&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">13,50&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>144,80&nbsp;€</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">1 → 120 € versés</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">24,80 €</td></tr>
+        <tr style="background:#fdf7ef;"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">175</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">163,80&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">15,75&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>179,55&nbsp;€</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">1 → 120 € versés</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">59,55 €</td></tr>
+        <tr style="background:#fdf7ef;"><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;font-weight:700;">200<br><span style="font-weight:400;font-size:.72rem;color:var(--gris);">possible en 2 représentations le même soir</span></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">196,30&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">18&nbsp;€</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;"><strong>214,30&nbsp;€</strong></td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">1 → 120 € versés</td><td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;text-align:right;white-space:nowrap;">94,30 €</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:1.2rem;padding:1rem 1.2rem;border-left:4px solid var(--accent);background:#fdf7ef;border-radius:0 10px 10px 0;">
+      <p style="margin:0 0 .7rem;font-size:.92rem;line-height:1.7;"><strong>Sur une saison de 25 représentations</strong>, à remplissage constant&nbsp;: 100 payants → 1&nbsp;882&nbsp;€ de cagnotte, soit <strong>15 cachets</strong> · 150 → 3&nbsp;620&nbsp;€, soit <strong>30 cachets</strong> · 200 → 5&nbsp;357&nbsp;€, soit <strong>44 cachets</strong>.</p>
+      <p style="margin:0;font-size:.92rem;line-height:1.7;color:var(--gris);">Il faut <strong>133 spectateurs payants sur une même soirée</strong> pour qu'un cachet soit versé le soir même. En dessous, la cagnotte se remplit sans être versée — mais rien n'est perdu&nbsp;: elle est cumulative sur toute la saison. <strong>Les 49 premiers payants ne comptent pas dans la part billetterie</strong>&nbsp;: ils couvrent les coûts fixes de la soirée. Les ventes du bar et des souvenirs, elles, comptent dès le premier spectateur.</p>
+    </div>
+    <div style="margin-top:1.4rem;padding:1rem 1.2rem;border-left:4px solid var(--accent);background:#fdf7ef;border-radius:0 10px 10px 0;">
+      <p style="margin:0;font-size:.92rem;line-height:1.7;"><strong>Objectif : deux représentations par semaine</strong> — une grand public et une en entreprise. C&#39;est un objectif, pas une garantie : il dépendra des actions locales de la troupe, en communication comme en prospection B2B. Le cachet est fixé à <strong>120 € bruts</strong>, le minimum conventionnel (119,42 €) arrondi à l&#39;euro supérieur : il est donc déclarable quel que soit le rythme.</p>
+    </div>
+    <script>
+    (function(){
+      var box=document.createElement('div'); box.id='tipbox'; document.body.appendChild(box);
+      function show(el){
+        var t=el.getAttribute('data-tip'); if(!t) return;
+        box.textContent=t; box.style.display='block';
+        var r=el.getBoundingClientRect();
+        var top=r.bottom+8, left=r.left;
+        if(left+box.offsetWidth>window.innerWidth-12) left=Math.max(12,window.innerWidth-box.offsetWidth-12);
+        if(top+box.offsetHeight>window.innerHeight-12) top=Math.max(12,r.top-box.offsetHeight-8);
+        box.style.top=top+'px'; box.style.left=left+'px';
+      }
+      function hide(){ box.style.display='none'; }
+      document.querySelectorAll('.tipw').forEach(function(el){
+        el.addEventListener('mouseenter',function(){show(el);});
+        el.addEventListener('mouseleave',hide);
+        el.addEventListener('focus',function(){show(el);});
+        el.addEventListener('blur',hide);
+        el.addEventListener('click',function(e){e.preventDefault(); if(box.style.display==='block'){hide();}else{show(el);} });
+      });
+      window.addEventListener('scroll',hide,{passive:true});
+      window.addEventListener('resize',hide);
+    })();
+    </script>
+
+    <div id="apres-spectacle" style="background:var(--marine);color:#fff;border-radius:18px;padding:2.2rem 2rem;margin:3rem 0 1rem;max-width:760px;box-shadow:0 18px 50px rgba(22,22,22,.18);">
+      <span style="display:block;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;">Pour les comédiens qui étaient sur scène</span>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;line-height:1.15;margin:0 0 1.2rem;color:#fff;">Après le spectacle,<br>le spectacle continue.</p>
+      <p style="font-size:1.12rem;line-height:1.6;margin:0 0 1.2rem;color:#fff;"><strong style="color:var(--accent);">L'improvisation démarre au tomber de rideau.</strong></p>
+      <p style="font-size:1rem;line-height:1.7;margin:0 0 .9rem;color:#f7f4ee;">On ne tombe pas les costumes. Ce sont <strong>les personnages</strong> qui quittent la scène, rentrent dans la salle et <strong>investissent la buvette</strong>.</p>
+      <p style="font-size:1rem;line-height:1.7;margin:0 0 .9rem;color:#f7f4ee;"><strong>Derrière le bar</strong>, ce ne sont pas les comédiens&nbsp;: ce sont les personnages qui font encore le service.</p>
+      <p style="font-size:1rem;line-height:1.7;margin:0 0 1.2rem;color:#f7f4ee;"><strong>Au stand souvenirs</strong>, là encore, c'est Pascal, Delphine, Johana ou Daniel qui vous vendent le livre, les écocups et les magnets.</p>
+      <p style="font-size:.92rem;line-height:1.65;margin:0;padding-top:1rem;border-top:1px solid rgba(255,255,255,.25);color:#f7f4ee;">Ce temps d'improvisation fait partie de la représentation. <strong style="color:var(--accent);">10&nbsp;% du prix des boissons</strong> et <strong style="color:var(--accent);">10&nbsp;% du prix des souvenirs</strong> vendus par les personnages sont <strong>répartis entre les membres de la troupe</strong>, dans leur cagnotte.</p>
+    </div>
+
+        <h2 style="margin-top:3rem;">Les ventes additionnelles : la boutique de la troupe</h2>
+    <p class="lead">À la fin de chaque représentation, la troupe tient un <strong>stand souvenir</strong> dans le hall. On y trouve le <strong>livre de la pièce</strong>, les <strong>écocups aux couleurs des personnages</strong>, des <strong>magnets</strong> reprenant les répliques, des <strong>gourdes</strong>, des <strong>balles antistress</strong> — et la gamme continuera de s'étoffer au fil de la saison. Chaque article se vend <strong>à l'unité</strong>, ou dans un <strong>pack souvenir</strong> composé à la sortie.</p>
+
+    <div style="background:#fdf4e7;border:1px solid var(--accent);border-left:5px solid var(--accent);border-radius:14px;padding:1.5rem 1.8rem;margin-top:1.6rem;max-width:680px;">
+      <span style="display:block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;">Ce que ça vous rapporte</span>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--marine);line-height:1.45;margin:0;"><strong style="color:var(--accent);">10 % du prix de vente</strong> de chaque article est crédité dans la cagnotte, réparti entre les membres de la troupe.</p>
+    </div>
+
+    <div style="margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:flex-end;justify-content:center;">
+      <figure style="margin:0;flex:1 1 320px;max-width:460px;text-align:center;">
+        <img src="https://thierrybismuth.com/assets/ovr/magnets-ovr.png" alt="Magnets ON VOUS RAPPELLERA reprenant les répliques de la pièce, sur une porte de réfrigérateur" loading="lazy" style="width:100%;height:auto;border:1px solid var(--gris-clair);box-shadow:0 14px 40px rgba(22,22,22,.14);border-radius:6px;">
+        <figcaption style="font-size:.8rem;color:#6b6864;margin-top:.5rem;">Les magnets — une réplique par magnet <em>(visuel de travail)</em></figcaption>
+      </figure>
+      <figure style="margin:0;flex:0 1 200px;text-align:center;">
+        <img src="https://thierrybismuth.com/assets/ovr/ecocup-ovr.jpg" alt="Écocup ON VOUS RAPPELLERA à l'effigie d'un personnage" loading="lazy" style="width:100%;max-width:200px;height:auto;">
+        <figcaption style="font-size:.8rem;color:#6b6864;margin-top:.5rem;">Les écocups — une par personnage</figcaption>
+      </figure>
+      <figure style="margin:0;flex:1 1 300px;max-width:400px;text-align:center;">
+        <img src="https://thierrybismuth.com/assets/ovr/gourdes-ovr.png" alt="Gourdes ON VOUS RAPPELLERA" loading="lazy" style="width:100%;height:auto;border:1px solid var(--gris-clair);border-radius:6px;">
+        <figcaption style="font-size:.8rem;color:#6b6864;margin-top:.5rem;">Les gourdes <em>(visuel de travail)</em></figcaption>
+      </figure>
+      <figure style="margin:0;flex:1 1 300px;max-width:400px;text-align:center;">
+        <img src="https://thierrybismuth.com/assets/ovr/antistress-ovr.png" alt="Balles antistress ON VOUS RAPPELLERA" loading="lazy" style="width:100%;height:auto;border:1px solid var(--gris-clair);border-radius:6px;">
+        <figcaption style="font-size:.8rem;color:#6b6864;margin-top:.5rem;">Les balles antistress <em>(visuel de travail)</em></figcaption>
+      </figure>
+      <figure style="margin:0;flex:0 1 260px;text-align:center;">
+        <img src="https://thierrybismuth.com/assets/ovr/livre-recruter-jeu-enfant.jpg" alt="Livre « Recruter est un jeu d'enfant » — ODYSSÉE RH, Thierry Bismuth" loading="lazy" style="width:100%;max-width:260px;height:auto;border:1px solid var(--gris-clair);box-shadow:0 14px 40px rgba(22,22,22,.14);border-radius:2px;">
+        <figcaption style="font-size:.8rem;color:#6b6864;margin-top:.5rem;">Le livre « Recruter est un jeu d'enfant »</figcaption>
+      </figure>
+    </div>
+
+    <h2 style="margin-top:3rem;">Les représentations en entreprises</h2>
+    <p class="lead">La pièce se joue aussi <strong>en entreprise</strong> : texte adapté à l'univers du client, suivi d'une conférence-débat sur le recrutement. Elle a déjà été jouée chez <strong>La Poste, Veolia, Orange, Schlumberger, Safran, Saint-Gobain, AG2R La Mondiale, Peugeot, L'Adresse Immobilier et Babychou Services</strong>, et à l'invitation de la <strong>Fédération Française de la Franchise</strong>, de la <strong>CCI Nord-Isère</strong>, des <strong>ANDRH de Paris, Lille, Rennes, Nantes, Saint-Brieuc, Reims, Metz, Épernay, Montpellier et du Loiret</strong>, du <strong>Salon de l'Entrepreneur de Rennes</strong> et du <strong>syndicat viticole d'Épernay</strong>. Des représentations en entreprises sont possibles dans votre ville : un revenu additionnel pour la troupe, en semaine, hors billetterie.</p>
+    <div style="background:#fdf4e7;border:1px solid var(--accent);border-left:5px solid var(--accent);border-radius:14px;padding:1.5rem 1.8rem;margin-top:1.8rem;max-width:680px;">
+      <span style="display:block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;">Ça dépend de vous</span>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--marine);line-height:1.45;margin:0;">L'objectif est de jouer <strong style="color:var(--accent);">2 à 3 fois par semaine</strong> — il dépendra des actions locales de la troupe, en communication comme en prospection B2B.</p>
+    </div>
+<div class="b2b-eco" style="background:#fdf4e7;border:1px solid var(--accent);border-left:5px solid var(--accent);border-radius:14px;padding:1.5rem 1.8rem;margin-top:1.4rem;max-width:680px;">
+      <span style="display:block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;">La rémunération en B2B</span>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--marine);line-height:1.45;margin:0 0 .9rem;">En B2B, <strong style="color:var(--accent);">la recette ne dépend pas du nombre de spectateurs</strong>.</p>
+      <ul style="font-size:.92rem;line-height:1.65;color:#3d3a35;margin:0;padding-left:1.2rem;">
+        <li><strong>120 € bruts par comédien sur scène</strong>, forfaitaire — quelle que soit la jauge.</li>
+        <li><strong>Atelier de mise en pratique</strong> (option vendue au client, en plus de la conférence) : <strong>50 € bruts par comédien qui le co-anime</strong>, crédités dans sa cagnotte.</li>
+        <li><strong>Prime d'apport d'affaires : 10 % du chiffre d'affaires</strong> (spectacle, conférence, atelier et souvenirs inclus) pour celui qui a amené le client, créditée dans sa cagnotte.</li>
+        <li><strong>Déplacements :</strong> à votre charge dans votre département, à la charge de l'entreprise cliente en dehors.</li>
+      </ul>
+    </div>
+    
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Le parcours</span>
+    <h2>Comment ça va se passer, étape par étape</h2>
+    <p class="lead">Le parcours tient en six étapes, dont quatre consistent simplement à vous informer avant de décider.</p>
+    <div class="etapes">
+      <div class="etape"><div class="enum"><span class="n">1</span><span class="picto">📖</span></div><h3>Lisez cette page en entier</h3><p>La philosophie du projet, le modèle économique, les missions transverses, les troupes montées simultanément dans 10 villes.</p><p style="margin-top:.9rem;"><a class="btn" href="#video-transverse">&#129513; Voir tout de suite la vidéo «&nbsp;Les missions transverses&nbsp;»</a></p><p class="note" style="margin-top:.7rem;">Chaque comédien porte une mission en coulisses, en plus de son rôle. Autant le savoir <strong>avant</strong> d'enregistrer votre casting.</p><div class="bulle">C'est assez dense, mais c'est indispensable : je préfère que personne ne s'engage sans savoir 😀</div></div>
+      <div class="etape" id="video-presentation" style="scroll-margin-top:80px;"><div class="enum"><span class="n">2</span><span class="picto">🎥</span></div><h3>Regardez la vidéo d'une heure</h3><p>J'y présente à nouveau tous les éléments de vive voix, et je réponds aux questions posées ce jour-là.</p><div style="position:relative;width:100%;aspect-ratio:16/9;background:#000;border:1px solid var(--gris-clair);box-shadow:0 10px 30px rgba(22,22,22,.14);margin:1rem 0 .6rem;"><iframe src="https://drive.google.com/file/d/1oQjv2jxutiryyc6Y0ww_tS3umgUE1N8q/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;" title="ON VOUS RAPPELLERA — présentation du 23 juillet 2026"></iframe></div><p style="margin-top:.9rem;"><a class="btn" href="https://drive.google.com/file/d/1oQjv2jxutiryyc6Y0ww_tS3umgUE1N8q/view" target="_blank" rel="noopener">▶ Voir la vidéo de présentation</a></p><p class="note" style="margin-top:.7rem;">Enregistrement de la visio du 23 juillet 2026 — le mot de passe d'accès au formulaire de candidature y est communiqué.</p></div>
+      <div class="etape"><div class="enum"><span class="n">3</span><span class="picto">📝</span></div><h3>Découvrez le texte de la pièce</h3><p>Soit il vous inspire, soit il ne vous inspire pas 🙂</p><p style="margin-top:.9rem;"><a class="btn" href="https://thierrybismuth.com/ovr-texte-casting.pdf" target="_blank" rel="noopener">Ouvrir le texte de la pièce (PDF) →</a></p></div>
+      <div class="etape"><div class="enum"><span class="n">4</span><span class="picto">🙌</span></div><h3>Toujours motivé·e&nbsp;?</h3><p>On recrute sur <strong>toutes les villes</strong> — y compris celles qui affichent déjà 5 comédiens ou plus. Pourquoi&nbsp;?</p><p>Parce que les désistements, ça arrive. Parce qu'une troupe compte <strong>toujours entre 7 et 8 comédiens pour 5 rôles</strong>, pour que chacun puisse tourner et ne pas avoir à jouer tout le temps. Parce qu'il est possible de monter <strong>2 troupes dans les grandes villes</strong>.</p><p style="margin-top:.9rem;"><a class="btn" href="#video-transverse">&#129513; Dernier point avant de filmer : la vidéo «&nbsp;Les missions transverses&nbsp;»</a></p><div class="bulle">Donc si le projet vous parle : foncez 😀</div></div>
+    </div>
+
+    <h2 style="margin-top:3rem;">Comment&nbsp;?</h2>
+    <div class="etapes">
+      <div class="etape"><div class="enum"><span class="n">5</span><span class="picto">🎬</span></div><h3>J'enregistre ma vidéo</h3><p>La scène et le personnage de <strong>mon choix</strong>, à partir du texte de la pièce, filmés simplement — <strong>1 à 3 minutes</strong> — <strong>plus une petite minute de présentation</strong>, avant ou après la scène, dans la même vidéo.</p><div class="video-hl"><p class="video-hl-t">Le texte n'a pas besoin d'être su, la qualité d'image n'a aucune importance : c'est votre jeu qui compte.</p><p class="video-hl-a">👉 Au tout début de la vidéo, annoncez <strong>votre nom</strong>, <strong>votre ville</strong> et <strong>le nom du personnage</strong> que vous jouez.</p><p class="video-hl-a">👉 Dans la <strong>même vidéo</strong>, avant ou après la scène (comme vous préférez), <strong>présentez-vous une petite minute</strong>&nbsp;: qui vous êtes, votre parcours, ce qui vous donne envie de ce projet. Une seule vidéo, deux parties.</p><p>Le texte n'a pas à être su <strong>à la lettre</strong>. Si vous avez besoin d'improviser un peu, aucun problème. Essayez quand même de coller un peu à la scène, pour voir si vous arrivez à retenir dix lignes de texte&nbsp;😀</p><p><strong>Quelqu'un peut vous donner la réplique — ou pas du tout&nbsp;:</strong> ça ne pose aucun problème.</p><p>Si <strong>plusieurs personnages</strong> vous intéressent, n'hésitez pas à m'envoyer <strong>une vidéo pour chacun des personnages auxquels vous postulez</strong>.</p><p>C'est votre <strong>façon d'incarner le personnage</strong> dont j'ai besoin&nbsp;: savoir si elle correspond à celui que j'ai en tête. Vous en trouverez les caractéristiques dans les portraits ci-dessus&nbsp;: <a class="perso-lnk" href="#perso-pascal">Pascal</a> <a class="perso-lnk" href="#perso-delphine">Delphine</a> <a class="perso-lnk" href="#perso-johana">Johana</a> <a class="perso-lnk" href="#perso-julien">Julien / Julia</a> <a class="perso-lnk" href="#perso-daniel">Daniel / Danielle</a> <a class="perso-lnk" href="#perso-jerome">Dominique</a></p></div><p style="margin-top:.6rem;">Ensuite, au choix : <strong>envoyez directement le fichier depuis votre téléphone</strong> au moment de la signature, ou déposez la vidéo sur <strong>YouTube</strong> (en « non répertorié ») ou sur <strong>Google Drive</strong> partagé à « Tous les utilisateurs disposant du lien », puis <strong>gardez le lien sous la main</strong>. La vidéo doit s’ouvrir en un clic.</p></div>
+      <div class="etape"><div class="enum"><span class="n">6</span><span class="picto">✍️</span></div><h3>Je remplis ma candidature, vidéo comprise</h3><p>Un formulaire de candidature simplifié — 16 points, sans jargon — qui rappelle les modalités du partenariat. <strong>Le lien de votre vidéo se colle dans ce même formulaire</strong> : une seule démarche, une seule fois.</p><p style="margin-top:.9rem;"><a class="btn" href="https://thierrybismuth.com/ovr-contrat-prive.html">Remplir ma candidature et envoyer ma vidéo →</a></p><p class="note" style="margin-top:.7rem;">Accès protégé — le mot de passe est communiqué dans la vidéo de présentation.</p><div class="bulle" style="margin-top:.9rem;">⏱️ Une fois la candidature envoyée et la vidéo transmise, <strong>c'est moi qui reviens vers vous sous 72 heures</strong> — vous n'avez plus rien à faire.</div></div>
+    </div>
+    <div class="photo-band">
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-03.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-03.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-06.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-06.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/ovr-09.jpg" target="_blank" rel="noopener"><img src="https://thierrybismuth.com/assets/ovr/ovr-09.jpg" alt="ON VOUS RAPPELLERA — photo de scène" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<section id="stats-casting" style="display:none;">
+  <div class="wrap">
+    <h2 style="text-align:center;">Où en est le casting&nbsp;?</h2>
+    <p class="lead" style="max-width:700px;margin:0 auto 1.6rem;text-align:center;">Ville par ville : le nombre de comédiens déjà validés et les rôles sur lesquels nous cherchons encore. <strong>On joue à partir de 5 comédiens</strong> — les villes affichées en vert ont déjà de quoi jouer, et on y recrute toujours pour atteindre 8. <strong>Les 27 villes restent ouvertes</strong> — celles qui n’ont pas encore de comédien sont regroupées en bas du tableau, dans un bloc à déplier. Mis à jour une fois par jour.</p>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+    <table style="width:100%;max-width:820px;margin:0 auto;border-collapse:collapse;background:var(--blanc-pur);border:1px solid var(--gris-clair);">
+      <thead><tr style="background:var(--marine);color:#fff;">
+        <th style="padding:11px 14px;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-align:left;">Ville</th>
+        <th style="padding:11px 14px;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-align:right;">Comédiens inscrits</th>
+        <th style="padding:11px 14px;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-align:left;">Rôles encore disponibles</th>
+      </tr></thead>
+      <tbody id="stats-body"></tbody>
+    </table>
+    </div>
+    <p id="stats-maj" style="margin-top:.8rem;font-size:.75rem;color:var(--gris);text-align:center;"></p>
+
+    <p style="max-width:820px;margin:1.2rem auto 0;font-size:.92rem;line-height:1.75;color:var(--marine);background:var(--blanc);border-left:4px solid var(--accent);padding:1rem 1.2rem;"><strong>On peut jouer dès 5 comédiens : les villes en vert ont déjà de quoi monter sur scène.</strong> On y recrute quand même, parce qu'on vise 8 comédiens par troupe, avec <strong>au maximum deux personnes par rôle</strong> : un rôle disparaît de cette colonne dès qu'il a ses deux comédiens. <strong>Cliquez sur un rôle</strong> pour ouvrir le portrait du personnage. <strong>Paris compte 3 troupes</strong> : le calcul y est fait sur les trois.</p>
+
+
+    <div style="max-width:700px;margin:2rem auto 0;background:var(--blanc-pur);border:1px solid var(--gris-clair);border-left:5px solid var(--accent);border-radius:3px;padding:1.5rem 1.7rem;">
+      <span style="display:block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;">Un rôle vous plaît mais il est déjà tenu&nbsp;?</span>
+      <p style="margin:0;font-size:1rem;line-height:1.75;">Postulez quand même. On sera en <strong>doublon</strong>, ou vous rejoindrez <strong>une autre troupe</strong>, ou je vous proposerai <strong>un autre rôle</strong>. L'essentiel, c'est de monter à bord.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="sec-tag">Questions fréquentes</span>
+    <h2>La FAQ</h2>
+
+    <details class="acc" open>
+      <summary><span class="chev">▶</span>💶 Les représentations sont-elles payées&nbsp;?<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <p><strong>Les 49 premiers spectateurs payants</strong> de la soirée servent à couvrir les coûts fixes&nbsp;: théâtre, communication, droits d'auteur, cagnotte Avignon, matériel.</p>       <p>Chaque comédien sur scène — coordonnateur compris — gagne <strong>1,30&nbsp;€ bruts par spectateur payant, à partir du 50<sup>e</sup></strong>. Cet argent alimente une <strong>cagnotte personnelle</strong> qui reste acquise et se cumule d'une représentation à l'autre. S'y ajoutent <strong>10&nbsp;% des goodies</strong> vendus par les comédiens (avant et après le spectacle), <strong>10&nbsp;% des boissons</strong> quand la troupe tient le bar, et <strong>10&nbsp;% du chiffre d'affaires B2B</strong> que vous avez apporté.</p>       <p><strong>Dès que la cagnotte atteint 120&nbsp;€</strong>, elle est versée sous forme de <strong>cachet déclaré</strong> de 120&nbsp;€ bruts, et repart avec le reliquat. Exemple&nbsp;: 150 payants = 131,30&nbsp;€ + 13,50&nbsp;€ de bar et souvenirs = 144,80&nbsp;€ → un cachet versé le soir même, et 24,80&nbsp;€ restent en cagnotte. À 100 payants = 66,30&nbsp;€ + 9&nbsp;€ = 75,30&nbsp;€ → le cachet tombe à la deuxième date.</p>       <p style="color:var(--gris);font-size:.92rem;">Seules les entrées payantes comptent&nbsp;: invitations, contremarques et places offertes n'entrent jamais dans le décompte.</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="chev">▶</span>🌙 Une soirée, un cachet : pourquoi jouer deux fois le même soir&nbsp;?<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <p>Il arrive que <strong>la jauge d'une salle</strong> — son nombre de places — ne permette pas de rentabiliser une soirée.</p>
+      <p>Dans ce cas, on joue <strong>deux fois dans la même soirée</strong>&nbsp;: une fois à <strong>19h</strong>, une fois à <strong>21h</strong>.</p>
+      <p>Cela permet de réunir <strong>150 spectateurs</strong> sur la soirée et de <strong>déclencher un cachet immédiat</strong>, à deux conditions&nbsp;: <strong>au moins 50 spectateurs payants à chaque séance</strong>, et <strong>les mêmes comédiens sur scène aux deux séances</strong>.</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="chev">▶</span>🔁 Comment s'organise la rotation dans une troupe de 7 à 8&nbsp;?<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <p>Dans chaque troupe, <strong>chaque personnage est tenu par un binôme</strong> de deux comédiens — c'est le cas pour tout le monde. Il n'y a <strong>ni troupe principale, ni doublure</strong>&nbsp;: tout le monde tourne régulièrement.</p>
+      <p><strong>La Compagnie décide en dernier ressort</strong> quels comédiens montent sur scène à chaque représentation. À niveau de préparation équivalent entre les deux comédiens d'un même personnage, <strong>un équilibre est trouvé</strong>. La Compagnie est <strong>seule juge</strong> pour décider si un comédien est prêt à monter sur scène.</p>
+      <p>Cinq comédiens sont sur scène à chaque représentation. Donc <strong>si vous êtes 7, vous jouez en moyenne 5 représentations sur 7</strong>&nbsp;; si vous êtes 8, 5 sur 8.</p>
+      <p>Cela permet de <strong>ne pas exposer la troupe</strong> en cas de désistement, définitif ou provisoire, d'un comédien — avant les premières représentations de janvier ou en cours d'année 2027.</p>
+      <p>Et cela permet d'aller chercher collectivement <strong>plus de représentations en B2B</strong>, donc de jouer plus souvent.</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="chev">▶</span>🎭 Et si je veux jouer plus souvent&nbsp;?<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <p>Vous avez la possibilité d'<strong>apprendre deux personnages</strong>. Cela vous permet de tourner plus souvent, en cas d'indisponibilité des uns ou des autres.</p>
+      <p>C'est <strong>totalement optionnel</strong>, pour ceux qui en ont envie.</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="chev">▶</span>🧩 Qu'est-ce qu'une mission transverse&nbsp;?<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <p>Chaque comédien assume, <strong>en plus de son personnage</strong>, une mission transverse — environ <strong>une heure par semaine</strong> : régie, communication grand public, commercial B2B, coordination des répétitions ou administratif. Le détail est donné plus haut et dans la vidéo. Vous choisirez la vôtre une fois dans l'équipe.</p>
+      <p style="margin-top:.9rem;"><a class="btn" href="#video-transverse">&#9654; Voir la vidéo qui détaille chaque mission</a></p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="chev">▶</span>🏛️ Où est-ce qu'on répète&nbsp;?<span class="hint">👆 cliquer pour déplier</span></summary>
+      <div class="acc-body">
+      <p><strong>Je me charge de vous trouver une salle de répétition.</strong></p>
+      <p>C'est souvent <strong>un amphithéâtre de faculté</strong> ou <strong>une salle de maison de retraite</strong>, qui vous accorde <strong>deux fois deux heures par semaine</strong>.</p>
+      <p>En contrepartie, la troupe y donne <strong>une représentation gratuite</strong> pour leurs étudiants ou leurs pensionnaires.</p>
+      <p><strong>À Paris</strong>, le bureau de Châtillon est déjà à votre disposition, 24h/24 et 7 jours sur 7.</p>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<section id="encore-des-questions">
+  <div class="wrap">
+    <div style="max-width:660px;background:var(--blanc-pur);border:1px solid var(--gris-clair);border-left:5px solid var(--accent);border-radius:3px;padding:1.7rem 1.9rem;">
+      <span style="display:block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;">Une dernière question&nbsp;?</span>
+      <p style="margin:0 0 1.2rem;font-size:1rem;line-height:1.75;">Si, après avoir parcouru <strong>toute cette page</strong> et visionné <strong>la vidéo en entier</strong>, il vous reste des questions&nbsp;: écrivez-moi par <strong>SMS</strong> ou par <strong>WhatsApp</strong> au <strong>06&nbsp;10&nbsp;70&nbsp;30&nbsp;90</strong>.</p>
+      <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;">
+        <a href="sms:+33610703090" style="display:inline-block;background:var(--marine);color:#fff;font-size:.9rem;font-weight:700;padding:13px 22px;border-radius:3px;text-decoration:none;">✉️ M'envoyer un SMS</a>
+        <a href="https://wa.me/33610703090" target="_blank" rel="noopener" style="display:inline-block;background:#25D366;color:#fff;font-size:.9rem;font-weight:700;padding:13px 22px;border-radius:3px;text-decoration:none;">💬 M'écrire sur WhatsApp</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+var DEPT_NOMS={"01":"Ain","02":"Aisne","03":"Allier","04":"Alpes-de-Haute-Provence","05":"Hautes-Alpes","06":"Alpes-Maritimes","07":"Ardèche","08":"Ardennes","09":"Ariège","10":"Aube","11":"Aude","12":"Aveyron","13":"Bouches-du-Rhône","14":"Calvados","15":"Cantal","16":"Charente","17":"Charente-Maritime","18":"Cher","19":"Corrèze","2A":"Corse-du-Sud","2B":"Haute-Corse","21":"Côte-d'Or","22":"Côtes-d'Armor","23":"Creuse","24":"Dordogne","25":"Doubs","26":"Drôme","27":"Eure","28":"Eure-et-Loir","29":"Finistère","30":"Gard","31":"Haute-Garonne","32":"Gers","33":"Gironde","34":"Hérault","35":"Ille-et-Vilaine","36":"Indre","37":"Indre-et-Loire","38":"Isère","39":"Jura","40":"Landes","41":"Loir-et-Cher","42":"Loire","43":"Haute-Loire","44":"Loire-Atlantique","45":"Loiret","46":"Lot","47":"Lot-et-Garonne","48":"Lozère","49":"Maine-et-Loire","50":"Manche","51":"Marne","52":"Haute-Marne","53":"Mayenne","54":"Meurthe-et-Moselle","55":"Meuse","56":"Morbihan","57":"Moselle","58":"Nièvre","59":"Nord","60":"Oise","61":"Orne","62":"Pas-de-Calais","63":"Puy-de-Dôme","64":"Pyrénées-Atlantiques","65":"Hautes-Pyrénées","66":"Pyrénées-Orientales","67":"Bas-Rhin","68":"Haut-Rhin","69":"Rhône","70":"Haute-Saône","71":"Saône-et-Loire","72":"Sarthe","73":"Savoie","74":"Haute-Savoie","75":"Paris","76":"Seine-Maritime","77":"Seine-et-Marne","78":"Yvelines","79":"Deux-Sèvres","80":"Somme","81":"Tarn","82":"Tarn-et-Garonne","83":"Var","84":"Vaucluse","85":"Vendée","86":"Vienne","87":"Haute-Vienne","88":"Vosges","89":"Yonne","90":"Territoire de Belfort","91":"Essonne","92":"Hauts-de-Seine","93":"Seine-Saint-Denis","94":"Val-de-Marne","95":"Val-d'Oise","971":"Guadeloupe","972":"Martinique","973":"Guyane","974":"La Réunion","976":"Mayotte","ND":"Autre / à préciser"};
+var VILLE_DEPT={"PARIS":"75","BOULOGNEBILLANCOURT":"92","LEVALLOISPERRET":"92","ISSYLESMOULINEAUX":"92","NEUILLYSURSEINE":"92","COURBEVOIE":"92","NANTERRE":"92","CLICHY":"92","MONTROUGE":"92","CLAMART":"92","MEUDON":"92","PANTIN":"93","SEVRAN":"93","LEPRESAINTGERVAIS":"93","SAINTOUEN":"93","SAINTOUENSURSEINE":"93","SAINTDENIS":"93","MONTREUIL":"93","AUBERVILLIERS":"93","BOBIGNY":"93","NOISYLEGRAND":"93","VILLEJUIF":"94","CRETEIL":"94","VITRYSURSEINE":"94","IVRYSURSEINE":"94","VINCENNES":"94","VERSAILLES":"78","PLAISIR":"78","HOUILLES":"78","VIROFLAY":"78","SAINTGERMAINENLAYE":"78","POISSY":"78","MELUN":"77","MEAUX":"77","CHELLES":"77","EVRY":"91","MASSY":"91","PALAISEAU":"91","ARGENTEUIL":"95","CERGY":"95","PONTOISE":"95","MARSEILLE":"13","AIXENPROVENCE":"13","LYON":"69","VILLEURBANNE":"69","TOULOUSE":"31","NICE":"06","NANTES":"44","MONTPELLIER":"34","STRASBOURG":"67","BORDEAUX":"33","MERIGNAC":"33","LILLE":"59","DOUAI":"59","LENS":"62","RENNES":"35","REIMS":"51","SAINTETIENNE":"42","TOULON":"83","VALENCIENNES":"59","LEHAVRE":"76","ROUEN":"76","GRENOBLE":"38","DIJON":"21","ANGERS":"49","NIMES":"30","CLERMONTFERRAND":"63","NANCY":"54","TOURS":"37","AVIGNON":"84"};
+var DEPT_VILLE={};
+(function(){
+  var g={
+    "Paris":["75","77","78","91","92","93","94","95"],
+    "Lille":["59","62","80","02","60"],
+    "Strasbourg":["67","68","54","55","57","88","08","10","51","52"],
+    "Rouen":["76","27"],
+    "Caen":["14","50","61"],
+    "Rennes":["35","22","29","56"],
+    "Nantes":["44","49","53","72","85"],
+    "Orléans / Tours":["45","28","18","36","37","41"],
+    "Dijon":["21","71","58","89","25","70","39","90"],
+    "Lyon":["69","01","42","38","26","07","73","74"],
+    "Clermont-Ferrand":["63","03","15","43"],
+    "Bordeaux":["33","24","40","47","64","19","23","87","16","17","79","86"],
+    "Toulouse":["31","09","12","32","46","65","81","82"],
+    "Montpellier":["34","30","11","66","48"],
+    "Marseille":["13","84","04","05"],
+    "Nice":["06","83"],
+    "Ajaccio":["2A","2B"],
+    "Guadeloupe":["971"],"Martinique":["972"],"Guyane":["973"],"La Réunion":["974"],"Mayotte":["976"]
+  };
+  for(var v in g){ for(var i=0;i<g[v].length;i++){ DEPT_VILLE[g[v][i]]=v; } }
+})();
+function ovrCleanVille(s){return String(s).toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\bSTE\b/g,'SAINTE').replace(/\bST\b/g,'SAINT').replace(/[^A-Z]/g,'');}
+function ovrExtraireDept(h){
+  if(!h) return 'ND';
+  var t=String(h).toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  var m=t.match(/\((2A|2B|[0-9]{2,5})\)/); if(m){var v=m[1]; if(v==='2A'||v==='2B')return v; if(v.length===5){var d5=v.slice(0,2); return (d5==='97'||d5==='98')?v.slice(0,3):d5;} if(v.length===3){return v.slice(0,2)==='97'?v:v.slice(0,2);} return v.length===1?('0'+v):v;}
+  m=t.match(/\b(2A|2B)\b/); if(m)return m[1];
+  m=t.match(/\b([0-9]{5})\b/); if(m){var p=m[1];var d2=p.slice(0,2);return (d2==='97'||d2==='98')?p.slice(0,3):d2;}
+  m=t.match(/\b([0-9]{2,3})\b/); if(m){var v3=m[1]; if(v3.length===3){return v3.slice(0,2)==='97'?v3:v3.slice(0,2);} return v3;}
+  var k=ovrCleanVille(t); var keys=Object.keys(VILLE_DEPT);
+  for(var i=0;i<keys.length;i++){ if(k.indexOf(keys[i])===0) return VILLE_DEPT[keys[i]]; }
+  for(var i=0;i<keys.length;i++){ if(k.indexOf(keys[i])>=0) return VILLE_DEPT[keys[i]]; }
+  return 'ND';
+}
+function ovrToggleVille(j){
+  var d=document.getElementById('ovr-detail-'+j), car=document.getElementById('ovr-caret-'+j);
+  if(!d) return;
+  var open = d.style.display==='none';
+  d.style.display = open ? 'table-row' : 'none';
+  if(car) car.textContent = open ? '\u25BE' : '\u25B8';
+  if(typeof sendHeight==='function'){ setTimeout(sendHeight,100); }
+}
+var OVR_ETAT=null;
+var OVR_LIB={'Pascal':'Pascal','Delphine':'Delphine','Johana':'Johana','Julien':'Julien / Julia + le présentateur','Daniel':'Daniel / Danielle + Dominique'};
+function ovrEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function ovrChip(txt,pris,anc){
+  var bg = pris ? '#e8f3ea' : '#fdf0e6';
+  var col= pris ? '#2e7d32' : '#c25412';
+  var bd = pris ? '#bcdcc2' : '#f3cba8';
+  var st='display:inline-block;background:'+bg+';color:'+col+';border:1px solid '+bd+';border-radius:999px;padding:3px 10px;margin:2px 4px 2px 0;font-size:.78rem;font-weight:600;white-space:nowrap;';
+  if(anc){ return '<a href="#'+anc+'" data-perso="'+anc+'" style="'+st+'text-decoration:none;cursor:pointer;">'+ovrEsc(txt)+' \u2197</a>'; }
+  return '<span style="'+st+'">'+ovrEsc(txt)+'</span>';
+}
+var OVR_ANC={'Pascal':'perso-pascal','Delphine':'perso-delphine','Johana':'perso-johana','Julien':'perso-julien','Daniel':'perso-daniel'};
+document.addEventListener('click',function(e){
+  var a=e.target.closest?e.target.closest('a[data-perso]'):null; if(!a) return;
+  e.preventDefault();
+  var d=document.getElementById(a.getAttribute('data-perso')); if(!d) return;
+  d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'});
+});
+function ovrRendreEtat(){
+  var tb=document.getElementById('stats-body'); if(!tb||!OVR_ETAT) return;
+  var slots=OVR_ETAT.slots||['Pascal','Delphine','Johana','Julien','Daniel'];
+  var villes=(OVR_ETAT.villes||[]).slice(); if(!villes.length) return;
+  var TOUTES=["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Montpellier", "Strasbourg", "Bordeaux", "Lille", "Rennes", "Reims", "Saint-Étienne", "Toulon", "Le Havre", "Grenoble", "Dijon", "Angers", "Nîmes", "Clermont-Ferrand", "Aix-en-Provence", "Tours", "Rouen", "Nancy", "Caen", "Orléans", "Avignon"];
+  var norm=function(x){return String(x).toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Z]/g,'');};
+  var deja={}; for(var q=0;q<villes.length;q++){ deja[norm(villes[q].ville)]=1; }
+  for(var q=0;q<TOUTES.length;q++){ if(!deja[norm(TOUTES[q])]){ villes.push({ville:TOUTES[q],nb:0,troupes:1,roles:{}}); } }
+  var html='', htmlVides='', nbVides=0;
+  for(var j=0;j<villes.length;j++){
+    var L=villes[j], pris='', force=(L.force||[]);
+    var nbv = L.nb||0;
+    var besoin = 2*(L.troupes||1);
+    for(var k=0;k<slots.length;k++){
+      var s=slots[k], n=(L.roles&&L.roles[s])||0, lib=OVR_LIB[s]||s;
+      if(n<besoin || force.indexOf(s)>=0){ pris+=ovrChip(lib,false,OVR_ANC[s]); }
+    }
+    if(!pris) pris='<span style="color:#2e7d32;font-size:.85rem;font-weight:600;">Les 5 rôles sont pourvus</span>';
+    if(nbv>=5){ pris='<span style="display:inline-block;background:#2e7d32;color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;margin-bottom:6px;">Peut jouer</span><br>'+pris; }
+    var sousTitre = (L.troupes>1) ? '<span style="display:block;font-size:.72rem;font-weight:400;color:var(--gris);">'+L.troupes+' troupes prévues</span>' : '';
+    var cellNb = nbv + '<span style="display:block;font-size:.7rem;font-weight:400;color:var(--gris);white-space:nowrap;">'+(nbv>1?'com\u00e9diens':'com\u00e9dien')+'</span>';
+    var vert = (nbv>=5);
+    var bg = vert ? '#eaf5ec' : (j%2?'var(--blanc)':'var(--blanc-pur)');
+    var bordG = vert ? 'border-left:4px solid #2e7d32;' : '';
+    var ligne='<tr'+(nbv===0?' class="ovr-ville-vide"':'')+' style="background:'+bg+';'+bordG+(nbv===0?'display:none;':'')+'">'
+      +'<td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.92rem;font-weight:600;color:var(--marine);vertical-align:top;">'+ovrEsc(L.ville)+sousTitre+'</td>'
+      +'<td style="padding:11px 14px;border-bottom:1px solid var(--gris-clair);font-size:.95rem;text-align:right;font-weight:700;color:#2e7d32;vertical-align:top;">'+cellNb+'</td>'
+      +'<td style="padding:9px 14px;border-bottom:1px solid var(--gris-clair);vertical-align:top;">'+pris+'</td>'
+    +'</tr>';
+    if(nbv===0){ nbVides++; htmlVides+=ligne; } else { html+=ligne; }
+  }
+  var LIB_VIDES=function(ouvert){ return (ouvert?'\u25be ':'\u25b8 ')+nbVides+' villes \u00e0 ouvrir \u2014 aucun com\u00e9dien inscrit \u00e0 ce jour \u00b7 cliquer pour '+(ouvert?'replier':'d\u00e9plier'); };
+  if(nbVides){ html += '<tr id="ovr-toggle-vides" style="cursor:pointer;"><td colspan="3" style="padding:12px 14px;background:var(--blanc);border-top:2px solid var(--marine);border-bottom:1px solid var(--gris-clair);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);">'+LIB_VIDES(false)+'</td></tr>' + htmlVides; }
+  tb.innerHTML=html;
+  var tg=document.getElementById('ovr-toggle-vides');
+  if(tg){ tg.addEventListener('click',function(){
+    var rows=tb.querySelectorAll('tr.ovr-ville-vide');
+    var ouvert = rows.length && rows[0].style.display!=='none';
+    for(var i=0;i<rows.length;i++){ rows[i].style.display = ouvert ? 'none' : ''; }
+    var c=tg.querySelector('td'); if(c){ c.innerHTML=LIB_VIDES(!ouvert); }
+    if(typeof sendHeight==='function'){ setTimeout(sendHeight,150); }
+  }); }
+  var maj=document.getElementById('stats-maj');
+  if(maj && OVR_ETAT.updatedAt){ var dt=new Date(OVR_ETAT.updatedAt); if(!isNaN(dt.getTime())){ var p=function(n){return n<10?'0'+n:n;}; maj.textContent='Dernière mise à jour : '+p(dt.getDate())+'/'+p(dt.getMonth()+1)+'/'+dt.getFullYear(); } }
+  var sec=document.getElementById('stats-casting'); if(sec) sec.style.display='block';
+  if(typeof sendHeight==='function'){ setTimeout(sendHeight,150); }
+}
+var OVR_DATE_OUVERTURE = new Date(2026,7,11,0,0,0); // 11 aout 2026 : le bloc apparait tout seul
+function chargerEtatCasting(){
+  if (new Date() < OVR_DATE_OUVERTURE) { return; }
+  fetch('https://thierrybismuth.com/ovr-etat-casting.json?v='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(d){OVR_ETAT=d;ovrRendreEtat();})
+    .catch(function(){});
+}
+if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', chargerEtatCasting); } else { chargerEtatCasting(); }
+</script>
+
+<div class="contact-final">
+  <div class="wrap">
+    <p>Ou directement : Thierry Bismuth · <a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a> · <a href="tel:+33610703090">06 10 70 30 90</a></p>
+  </div>
+</div>
+
+
+
+<script>
+function sendHeight() {
+  var h = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
+  window.parent.postMessage({ type: 'setHeight', height: h }, '*');
+  window.parent.postMessage({ iframeHeight: h }, '*');
+  window.parent.postMessage(h, '*');
+}
+window.addEventListener('load', sendHeight);
+window.addEventListener('resize', sendHeight);
+setTimeout(sendHeight, 300);
+setTimeout(sendHeight, 800);
+setTimeout(sendHeight, 2000);
+if (window.MutationObserver) {
+  new MutationObserver(sendHeight).observe(document.body, { childList: true });
+}
+</script>
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a.perso-lnk'); if(!a) return;
+  var d=document.querySelector(a.getAttribute('href')); if(!d) return;
+  d.open=true;
+});
+</script>
+</body>
+</html>
