@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ON VOUS RAPPELLERA — La comédie du recrutement, jouée chez vous</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --blanc:#f7f4ee; --blanc-pur:#ffffff; --marine:#161616; --accent:#f26b1d; --or:#c8913a; --gris:#6b7280; --gris-clair:#e7e2d8; --texte:#1c1c1c; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--blanc);color:var(--texte);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  .wrap{max-width:960px;margin:0 auto;padding:0 6%;}
+
+  .hero{padding:56px 0 50px;text-align:center;border-bottom:1px solid var(--gris-clair);}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.8rem;font-size:.7rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.6rem;opacity:0;animation:fadeUp .6s .1s forwards;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4.4rem);font-weight:700;line-height:1.05;letter-spacing:.02em;color:var(--marine);opacity:0;animation:fadeUp .6s .2s forwards;}
+  .hero h1 em{font-style:italic;color:var(--accent);}
+  .hero .sub{margin:1.8rem auto 0;font-size:1rem;color:var(--gris);max-width:640px;opacity:0;animation:fadeUp .6s .45s forwards;}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:1.8rem;opacity:0;animation:fadeUp .6s .55s forwards;}
+  .badge{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--marine);border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:8px 16px;border-radius:2px;}
+
+  .video-box{margin:2.2rem auto 0;position:relative;width:100%;max-width:760px;aspect-ratio:16/9;background:#000;border:1px solid var(--gris-clair);box-shadow:0 14px 40px rgba(22,22,22,.14);opacity:0;animation:fadeUp .6s .35s forwards;}
+  .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  section{padding:56px 0;border-bottom:1px solid var(--gris-clair);}
+  .sec-tag{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:1.2rem;display:block;}
+  h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.15;margin-bottom:1.4rem;color:var(--marine);}
+  p.lead{color:var(--gris);font-size:.97rem;max-width:680px;margin-bottom:1rem;}
+  p.lead strong{color:var(--texte);font-weight:500;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--gris-clair);margin-top:2rem;}
+  .card{background:var(--blanc-pur);padding:1.8rem;border-top:2px solid transparent;transition:border-color .3s;}
+  .card:hover{border-color:var(--accent);}
+  .card .num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;font-style:italic;color:var(--accent);line-height:1;margin-bottom:.6rem;}
+  .card h3{font-size:.95rem;font-weight:600;margin-bottom:.5rem;color:var(--marine);}
+  .card p{font-size:.86rem;color:var(--gris);line-height:1.7;}
+
+  .quoteband{background:var(--marine);color:#fff;text-align:center;padding:64px 0;border-bottom:none;}
+  .quoteband blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3.4vw,2.5rem);font-weight:600;font-style:italic;line-height:1.3;max-width:760px;margin:0 auto;}
+  .quoteband .who{margin-top:1.2rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);}
+
+  .galerie{display:grid;align-items:start;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:2rem;}
+  .galerie a{display:block;overflow:hidden;border:1px solid var(--gris-clair);background:var(--blanc-pur);}
+  .galerie img{display:block;width:100%;height:auto;transition:transform .35s ease;}
+  .galerie a:hover img{transform:scale(1.04);}
+  @media(max-width:640px){.galerie{grid-template-columns:1fr;}.galerie img{height:auto;}}
+
+  .perso-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:2rem;}
+  .perso{background:var(--blanc-pur);border:1px solid var(--gris-clair);}
+  .perso img{display:block;width:100%;height:auto;}
+  .perso .pbody{padding:1.4rem 1.5rem 1.6rem;}
+  .perso h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--marine);margin-bottom:.3rem;}
+  .perso .ptag{font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;display:block;}
+  .perso p{font-size:.86rem;color:var(--gris);line-height:1.7;}
+
+  .punchlines{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:2rem;}
+  .punch{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.5rem 1.6rem;}
+  .punch p{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;font-style:italic;color:var(--marine);line-height:1.35;}
+
+  .refs{display:flex;flex-wrap:wrap;gap:10px;margin-top:.7rem;}
+  .reftitre{margin-top:1.6rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gris);}
+  .ref{font-size:.78rem;font-weight:500;letter-spacing:.08em;color:var(--marine);border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:9px 18px;border-radius:2px;}
+
+  .formule{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--gris-clair);margin-top:2rem;}
+  .fcell{background:var(--blanc-pur);padding:2rem;}
+  .fcell .fnum{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;font-style:italic;color:var(--accent);line-height:1;margin-bottom:.7rem;}
+  .fcell h3{font-size:1rem;font-weight:600;color:var(--marine);margin-bottom:.6rem;}
+  .fcell p{font-size:.88rem;color:var(--gris);line-height:1.7;}
+  @media(max-width:640px){.formule{grid-template-columns:1fr;}}
+
+  .form-sec{background:var(--blanc-pur);border-bottom:none;}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:720px;margin-top:1.6rem;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);}
+  input,textarea{background:var(--blanc);border:1px solid var(--gris-clair);color:var(--texte);font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:300;padding:12px 14px;border-radius:2px;outline:none;transition:border-color .25s;width:100%;}
+  input:focus,textarea:focus{border-color:var(--accent);}
+  textarea{min-height:110px;resize:vertical;}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:15px 30px;border:none;border-radius:2px;cursor:pointer;margin-top:1.8rem;transition:background .25s;text-decoration:none;}
+  .btn:hover{background:#d95a10;}
+  .note{font-size:.8rem;color:var(--gris);margin-top:1rem;font-style:italic;}
+
+  .contact-final{padding:50px 0 70px;text-align:center;border-bottom:none;}
+  .contact-final p{color:var(--gris);font-size:.9rem;}
+  .contact-final a{color:var(--texte);text-decoration:none;border-bottom:1px solid var(--accent);}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:1.4rem;}
+  .cta-row a{display:inline-flex;align-items:center;gap:8px;background:var(--marine);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:13px 24px;text-decoration:none;border-radius:2px;border-bottom:none;}
+
+  @media(max-width:640px){.fgrid{grid-template-columns:1fr;}.hero{padding:50px 0 44px;}}
+  .etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--gris-clair);margin-top:2rem;}
+  .etape{background:var(--blanc-pur);padding:1.8rem;}
+  .etape .enum{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;font-style:italic;color:var(--accent);line-height:1.1;margin-bottom:.7rem;}
+  .etape h3{font-size:1rem;font-weight:600;color:var(--marine);margin-bottom:.6rem;}
+  .etape p{font-size:.88rem;color:var(--gris);line-height:1.7;}
+  .cas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:.9rem;}
+  .cas-item{background:var(--blanc-pur);border:1px solid var(--gris-clair);border-top:3px solid var(--accent);padding:1.5rem;}
+  .cas-logo{height:70px;display:flex;align-items:center;margin-bottom:1rem;}
+  .cas-logo img{max-height:70px;max-width:190px;width:auto;height:auto;display:block;}
+  .cas-item h3{font-size:.98rem;font-weight:600;color:var(--marine);margin-bottom:.2rem;}
+  .cas-ou{font-size:.8rem;color:var(--or);font-weight:500;letter-spacing:.04em;margin-bottom:.6rem;}
+  .cas-quoi{font-size:.86rem;color:var(--gris);line-height:1.6;}
+  .cas-intro{font-size:1.05rem;color:var(--texte);margin:.5rem 0 .2rem;}
+  .cas-intro strong{color:var(--accent);font-weight:700;}
+  .cas-lieu{font-size:.95rem;color:var(--texte);line-height:1.5;margin-bottom:.5rem;}
+  .cas-lieu strong{color:var(--accent);font-weight:700;}
+  .cas-logo-sombre{background:var(--marine);border-radius:4px;padding:6px 12px;width:max-content;}
+  .cas-logo-sombre img{max-height:58px;}
+  @media(max-width:760px){.etapes,.cas{grid-template-columns:1fr;}}
+</style>
+<link rel="canonical" href="https://onvousrappellera.fr/entreprises.html">
+</head>
+<body>
+<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#777;text-decoration:none;margin-left:18px">Accueil</a><a href="/entreprises.html" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px">Espace entreprises</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px">Casting comédiens</a></div>
+<div id="site-nav"></div>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Spectacle · Formation · Recrutement</div>
+    <h1>ON VOUS<br><em>RAPPELLERA</em></h1>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/rbZ6iufaujU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Teaser ON VOUS RAPPELLERA"></iframe>
+    </div>
+    <p class="sub">La comédie satirique du recrutement, jouée <strong>chez vous</strong> — en convention de franchise, en séminaire ou au siège — pour vos franchisés, vos équipes RH et vos managers. Une heure de rires… suivie d'une heure de vérités.</p>
+    <div class="badges">
+      <span class="badge">Festival OFF d'Avignon 2022</span>
+      <span class="badge">Tournée · 15 villes</span>
+      <span class="badge">Salles pleines</span>
+      <span class="badge">Écrite par un pro du recrutement</span>
+    </div>
+    <a class="btn" href="https://thierrybismuth.com/brochure-ovr.html" target="_blank" rel="noopener" style="font-size:.72rem;padding:12px 22px;">📄 Je consulte la brochure de présentation</a>
+    <a class="btn" href="https://thierrybismuth.com/assets/ovr/flyer-on-vous-rappellera-A5.pdf?v=3" target="_blank" rel="noopener" style="font-size:.72rem;padding:12px 22px;">🖨️ Imprimer le flyer</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Le concept</span>
+    <h2>Une formation dissimulée derrière une comédie</h2>
+    <p class="lead">Écrite par un professionnel qui a dirigé un cabinet de recrutement pendant 15 ans, la pièce met en scène <strong>ODYSSÉE BUREAUTIQUE</strong> : son manager toxique, sa RH aguerrie, ses candidats qui mentent, son psy qui rattrape tout le monde. En 14 scènes, tout le processus de recrutement y passe — la fiche de poste, l'annonce, l'entretien, l'onboarding, le closing.</p>
+    <p class="lead"><strong>Tout est exagéré, mais tout est vrai.</strong> C'est ce qui explique son parcours : créée au Festival OFF d'Avignon en 2022, la pièce a ensuite tourné dans 15 villes de France devant des salles pleines de DRH, de recruteurs et de managers qui riaient d'autant plus fort qu'ils se reconnaissaient à chaque réplique.</p>
+    <p class="reftitre" style="margin-top:1.6rem;">Ils nous ont déjà ouvert leurs portes</p>
+    <p class="lead">La pièce a été jouée au sein d'entreprises et de réseaux, et à l'invitation de fédérations professionnelles :</p>
+    <p class="reftitre">Entreprises et réseaux</p>
+    <div class="refs">
+      <span class="ref">La Poste</span>
+      <span class="ref">Schlumberger</span>
+      <span class="ref">Safran</span>
+      <span class="ref">Orange</span>
+      <span class="ref">Veolia</span>
+      <span class="ref">Saint-Gobain</span>
+      <span class="ref">Peugeot</span>
+      <span class="ref">L'Adresse Immobilier</span>
+      <span class="ref">Babychou Services</span>
+    </div>
+    <p class="reftitre">Fédérations, CCI, ANDRH et salons professionnels</p>
+    <div class="refs">
+      <span class="ref">Fédération Française de la Franchise — Bordeaux</span>
+      <span class="ref">CCI Nord-Isère — Bourgoin-Jallieu</span>
+      <span class="ref">ANDRH Paris</span>
+      <span class="ref">ANDRH Lille</span>
+      <span class="ref">ANDRH Rennes</span>
+      <span class="ref">ANDRH Nantes</span>
+      <span class="ref">ANDRH Saint-Brieuc</span>
+      <span class="ref">ANDRH Reims</span>
+      <span class="ref">ANDRH Metz</span>
+      <span class="ref">ANDRH Épernay</span>
+      <span class="ref">ANDRH Montpellier</span>
+      <span class="ref">ANDRH du Loiret</span>
+      <span class="ref">Salon de l'Entrepreneur — Rennes</span>
+      <span class="ref">Syndicat viticole — Épernay</span>
+    </div>
+    <div class="galerie">
+      <a href="https://thierrybismuth.com/assets/ovr/b2b26v8-galerie-1.jpg" target="_blank"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-galerie-1.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/b2b26v8-galerie-2.jpg" target="_blank"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-galerie-2.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"></a>
+      <a href="https://thierrybismuth.com/assets/ovr/b2b26v8-galerie-3.jpg" target="_blank"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-galerie-3.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">La formule entreprise</span>
+    <h2>1h15 de spectacle, un débrief à chaud, et en option la conférence, le livre offert à chaque participant et le jeu pour mettre en pratique. Chez vous, ou à votre convention.</h2>
+    <div class="formule">
+      <div class="fcell">
+        <div class="fnum">1h15</div>
+        <h3>de rire</h3>
+        <p>De la fiche de poste à l'intégration, ODYSSÉE BUREAUTIQUE vous montre le pire et le meilleur du recrutement. 14 scènes. 14 étapes. 14 enseignements.</p>
+      </div>
+      <div class="fcell">
+        <div class="fnum">+10 min</div>
+        <h3>On tombe les costumes</h3>
+        <p>À l'issue de la représentation, les comédiens quittent leurs personnages et débriefent dix minutes avec la salle : ce qu'on vient de voir, ce que ça dit de vos propres recrutements, les questions du public. Compris dans l'intervention.</p>
+      </div>
+    </div>
+    <div style="background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.8rem 2rem;margin-top:2px;">
+      <h3 style="font-size:1rem;font-weight:600;color:var(--marine);margin-bottom:.6rem;">Et si vous, votre dirigeant ou un membre de votre équipe montiez sur scène ?</h3>
+      <p style="font-size:.88rem;color:var(--gris);line-height:1.7;">Sur simple demande, nous personnalisons la pièce à votre entreprise : vos postes, votre marché, vos codes, votre vocabulaire. Et si vous le souhaitez, <strong>un rôle est prévu pour vous dans la pièce</strong> : celui du présentateur de la scène finale, aux côtés des comédiens. Vous, ou l'un de vos collaborateurs. Une séance de répétition d'une heure avec la troupe, sur place ou en visio, suffit pour endosser le rôle.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cas-ecole">
+  <div class="wrap">
+    <span class="sec-tag">Cas d'école</span>
+    <h2>De 1h à 3h : sourire, apprendre, mettre en pratique</h2>
+    <div class="etapes">
+      <div class="etape">
+        <div class="enum">1h15</div>
+        <h3>La pièce, pour sourire</h3>
+        <p>La comédie complète. En version raccourcie, on la descend à 1h.</p>
+      </div>
+      <div class="etape">
+        <div class="enum">+ 45 min à 1h</div>
+        <h3>La conférence, pour apprendre</h3>
+        <p>Pour comprendre tous les enjeux du recrutement. On tourne alors autour de 2h. Chaque participant peut repartir avec le livre «&nbsp;Recruter est un jeu d'enfant&nbsp;» et tous ses conseils.</p>
+      </div>
+      <div class="etape">
+        <div class="enum">+ 1h</div>
+        <h3>Le jeu, pour mettre en pratique</h3>
+        <p>Après la conférence, le jeu «&nbsp;On vous rappellera — Recruter est un jeu d'enfant&nbsp;», animé par les comédiens, par groupes de 8. À la fin, chaque participant repart avec sa fiche de poste en main, à utiliser pour ses prochains entretiens.</p>
+      </div>
+    </div>
+    <p class="reftitre">Ils l'ont fait</p>
+    <p class="cas-intro">La pièce se joue <strong>dans toutes les conditions</strong>.</p>
+    <div class="cas">
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/laposte.svg" alt="La Poste" loading="lazy"></div>
+        <h3>La Poste</h3>
+        <p class="cas-lieu">Pièce jouée <strong>dans un restaurant</strong></p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/fff.svg" alt="Fédération Française de la Franchise" loading="lazy"></div>
+        <h3>Salon de la Franchise</h3>
+        <p class="cas-lieu">Jouée <strong>sur une estrade</strong></p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo cas-logo-sombre"><img src="https://thierrybismuth.com/assets/logos/salon-agricultures-provence.png" alt="Salon des Agricultures de Provence" loading="lazy"></div>
+        <h3>Salon de l'agriculture — Marseille</h3>
+        <p class="cas-lieu">Jouée <strong>en extérieur</strong></p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/ladresse.png" alt="L'Adresse Immobilier" loading="lazy"></div>
+        <h3>Réseau L'Adresse Immobilier</h3>
+        <p class="cas-lieu">Convention nationale, <strong>en Sicile</strong></p>
+        <p class="cas-quoi">La pièce · la conférence · le livre remis à chaque participant</p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/saint-gobain.png" alt="Saint-Gobain" loading="lazy"></div>
+        <h3>Saint-Gobain</h3>
+        <p class="cas-lieu">La pièce + <strong>un jeu de société</strong></p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/babychou.png" alt="Babychou Services" loading="lazy"></div>
+        <h3>Babychou Services</h3>
+        <p class="cas-lieu">Convention nationale <strong>au théâtre</strong> des Trois Baudets, à Paris</p>
+        <p class="cas-quoi">La pièce · les parties de jeu</p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/univ-evry.png" alt="Université d'Évry" loading="lazy"></div>
+        <h3>Université d'Évry</h3>
+        <p class="cas-lieu"><strong>En amphi</strong>, devant les étudiants</p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/orange.svg" alt="Orange" loading="lazy"></div>
+        <h3>Orange</h3>
+        <p class="cas-lieu"><strong>En réunion régionale</strong></p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/groupe-bernard.png" alt="Groupe Bernard" loading="lazy"></div>
+        <h3>Groupe Bernard Automobile</h3>
+        <p class="cas-lieu"><strong>En concession</strong></p>
+      </div>
+      <div class="cas-item">
+        <div class="cas-logo"><img src="https://thierrybismuth.com/assets/logos/cci-aura.png" alt="CCI Auvergne-Rhône-Alpes" loading="lazy"></div>
+        <h3>CCI Rhône-Alpes</h3>
+        <p class="cas-lieu"><strong>En assemblée générale</strong></p>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:1.8rem;"><strong>Tout est paramétrable</strong> selon l'état d'esprit de votre événement, vos attentes, votre temps et votre budget.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Les personnages</span>
+    <h2>Vous les connaissez déjà. Ils travaillent chez vous.</h2>
+    <div class="perso-grid">
+      <div class="perso">
+        <img src="https://thierrybismuth.com/assets/ovr/b2b26-pascal.jpg" alt="Pascal, le manager" loading="lazy">
+        <div class="pbody">
+          <span class="ptag">Le manager</span>
+          <h3>Pascal</h3>
+          <p>Sûr de lui, bourré d'a priori, il croit encore que recruter, c'est sélectionner — et que tout le monde rêve de bosser dans sa boîte. Derrière la façade de chef de meute : un patron qui a peur et que son RH ne doit jamais laisser seul.</p>
+        </div>
+      </div>
+      <div class="perso">
+        <img src="https://thierrybismuth.com/assets/ovr/b2b26-delphine.jpg" alt="Delphine, la RH" loading="lazy">
+        <div class="pbody">
+          <span class="ptag">La RH</span>
+          <h3>Delphine</h3>
+          <p>Quinze ans de métier et une obsession : « Pourquoi nous ? ». Elle ne lâche rien à son manager sur la fiche de poste, perce les candidats à jour en cinq minutes… et sait qu'une motivation externe vaut mieux qu'une passion simulée.</p>
+        </div>
+      </div>
+      <div class="perso">
+        <img src="https://thierrybismuth.com/assets/ovr/b2b26-julien.jpg" alt="Julien, le candidat" loading="lazy">
+        <div class="pbody">
+          <span class="ptag">Le candidat</span>
+          <h3>Julien</h3>
+          <p>Il veut juste payer son loyer et ses vacances. Son CV ? Tout est exagéré. Sa motivation ? Ailleurs. Les meilleurs candidats font-ils toujours les meilleurs collaborateurs ? C'est la question que pose Julien. Tous les recruteurs ont un Julien en face d'eux plusieurs fois par mois.</p>
+        </div>
+      </div>
+      <div class="perso">
+        <img src="https://thierrybismuth.com/assets/ovr/b2b26-johana.jpg" alt="Johana, la reconversion" loading="lazy">
+        <div class="pbody">
+          <span class="ptag">La reconversion</span>
+          <h3>Johana</h3>
+          <p>Infirmière à bout de souffle, elle fuit son job bien plus qu'elle n'en cherche un nouveau. Son parcours chez ODYSSÉE BUREAUTIQUE déroule les trois phases de toute intégration : l'effet waouh, la désillusion… puis l'adhésion.</p>
+        </div>
+      </div>
+      <div class="perso">
+        <img src="https://thierrybismuth.com/assets/ovr/b2b26v5-dominique.jpg" alt="Dominique, le senior" loading="lazy">
+        <div class="pbody">
+          <span class="ptag">Le senior</span>
+          <h3>Dominique</h3>
+          <p>Trop vieux pour le poste, paraît-il. Il va pourtant retourner un entretien, déborder une recruteuse débutante… et changer la vie de Delphine. La démonstration vivante que rien n'est jamais joué en entretien d'embauche.</p>
+        </div>
+      </div>
+      <div class="perso">
+        <img src="https://thierrybismuth.com/assets/ovr/b2b26v4-daniel.jpg" alt="Daniel, le psy" loading="lazy">
+        <div class="pbody">
+          <span class="ptag">Le regard extérieur</span>
+          <h3>Daniel</h3>
+          <p>Le psy de l'entreprise — roi de la parabole, de la meute de loups au canon sans recul. Il est ce dont toute organisation a besoin : un regard distancié qui entend les confidences et aide chacun à avancer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Les répliques qu'on ne quitte plus</span>
+    <h2>Vos franchisés et/ou vos salariés les citeront encore dans six mois</h2>
+    <div class="punchlines">
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q01.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Le seul truc à peu près vrai dans mon CV, c'est mon numéro de portable. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Julien, le candidat</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q02.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« C'est la peur de perdre qui vous empêche de gagner. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Julien, le candidat</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-julien3.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Vous avez tellement peur de vous tromper dans votre recrutement que vous ne recrutez personne. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Julien, le candidat</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q04.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« — Et ça vous tente ? Pourquoi ? — Je suis en fin de droit. J'ai faim. — Eh ben voilà ! Un moment de franche sincérité ! »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Julien &amp; Delphine</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q05.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Pourquoi quelqu'un qui ferait la même chose ailleurs viendrait chez nous ? POURQUOI NOUS ? C'est ça, la vraie question ! »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Delphine, la RH</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q06.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Les candidats ne croient plus aux belles promesses. C'est comme en amour : on veut des preuves ! »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Delphine, la RH</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q07.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Notre turn-over ressemble à une élection russe. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Delphine, la RH</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v10-q08.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Ne m'appelle pas DRH. C'est mon métier, ce n'est pas moi. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Delphine, la RH</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q09.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« — Donc, on recrute les meilleurs menteurs ? — Disons qu'on recrute ceux qui savent le mieux séduire. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Johana &amp; Pascal</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q10.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« C'est tout un métier de dire bonjour. Votre bonjour n'était PAS vendeur. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Dominique, le senior</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q11.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Dans une équipe, les vieux lions sont aussi utiles que les jeunes loups. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Dominique, le senior</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q12.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« L'entreprise, c'est un théâtre. Ce n'est pas parce que tout n'est pas vrai, que tout est faux. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Dominique, le senior</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q13.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« On n'a jamais gagné une partie de cartes en renversant la table. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Dominique, le senior</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q14.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Ce n'est pas ma date de naissance qui vous intéresse, c'est mon âge, non ? »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Dominique, le senior</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q15.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Candidat, ce n'est pas un métier. Recruteur, ça l'est. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Daniel, le psy</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-daniel2.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Ne pas avoir de recul, c'est très utile pour un canon. C'est moins efficace pour un patron. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Daniel, le psy</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q16.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Il y a une sacrée différence entre un patron et un leader. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Johana</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q17.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Arrêtez de chercher des gens passionnés par votre boîte. Cherchez ce qui les passionne et alimentez-le. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Le pitch final</span></div>
+      <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q18.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Ne m'appelle pas candidat. Partenaire, ça me va. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Le pitch final</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Pour qui</span>
+    <p class="lead" style="margin-top:1.8rem;">Elle s'adresse aux <strong>réseaux de franchise</strong> (convention annuelle, formation des franchisés au recrutement), aux <strong>grandes entreprises</strong> (équipes RH + managers opérationnels ensemble dans la salle), aux <strong>fédérations et associations professionnelles</strong>, et à vos <strong>séminaires</strong> — partout en France.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Tarifs</span>
+    <h2>Simple et transparent</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="num"><s style="color:#9a9a9a;font-weight:400;text-decoration-color:#e1251b;text-decoration-thickness:2px;">4 000 €</s>&nbsp; 2 000 € HT</div>
+        <p style="color:var(--accent);font-size:.85rem;font-weight:500;margin:-.2rem 0 .8rem;">Pour toute représentation commandée avant le 31 décembre 2026, quelle que soit sa date.</p>
+        <h3>L'intervention</h3>
+        <p><strong>1h15 de pièce, puis 10 minutes de débrief</strong> avec les comédiens. Si vous voulez simplement sourire de ces sujets sans trop les approfondir, ou les intégrer à une occasion 100 % festive.</p>
+        <p style="margin-top:1rem"><strong>Déplacement.</strong> Nos troupes résident dans dix villes : Paris, Lille, Rennes, Nantes, Bordeaux, Toulouse, Montpellier, Marseille, Lyon et Reims. Dans l'une de ces agglomérations, aucun frais. Ailleurs, une troupe se déplace pour un forfait de <strong>100 € par comédien, soit 500 €</strong>, transport et hébergement éventuel compris.</p>
+      </div>
+      <div class="card">
+        <div class="num">+ 1 000 € HT</div>
+        <h3>Option 1 · Conférence-débat, 60 minutes</h3>
+        <p>Animée par <strong>Thierry Bismuth</strong>, auteur de la pièce, juste après la représentation, <strong>sur un thème au choix</strong> parmi ceux que soulève la pièce : <strong>le recrutement, le management toxique, le choc des générations, le rapport au travail et la quête de sens, l'entrepreneuriat, l'IA dans le recrutement et dans l'entreprise, l'intégration des nouveaux collaborateurs, la fidélisation, la place des seniors</strong>.</p>
+      </div>
+      <div class="card">
+        <div class="num">15 € HT / personne</div>
+        <h3>Option 2 · Le livre offert à chaque participant</h3>
+        <p>Pour chaque participant : <strong>le livre « Recruter est un jeu d'enfant »</strong> + <strong>un écocup souvenir</strong> + <strong>un magnet</strong> + <strong>une affiche du spectacle</strong>. Le livre réunit le texte de la pièce, ses enseignements et <strong>les 30 conseils essentiels</strong> pour réussir un recrutement quand on est opérationnel. <strong>15 € HT par personne.</strong></p>
+        <img src="https://thierrybismuth.com/images/livre/livre-trembler.jpg" alt="Le livre Recruter est un jeu d'enfant" loading="lazy" style="width:100%;height:200px;object-fit:cover;object-position:center 20%;margin-top:1rem;">
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:6px;">
+          <img src="https://thierrybismuth.com/images/livre/livre-cafe-1.jpg" alt="Le livre en situation" loading="lazy" style="width:100%;height:70px;object-fit:cover;">
+          <img src="https://thierrybismuth.com/images/livre/livre-cafe-2.jpg" alt="Le livre en situation" loading="lazy" style="width:100%;height:70px;object-fit:cover;">
+          <img src="https://thierrybismuth.com/images/livre/livre-coeur.jpg" alt="Le livre en situation" loading="lazy" style="width:100%;height:70px;object-fit:cover;">
+          <img src="https://thierrybismuth.com/images/livre/livre-hasard.jpg" alt="Le livre en situation" loading="lazy" style="width:100%;height:70px;object-fit:cover;">
+          <img src="https://thierrybismuth.com/images/livre/livre-pile.jpg" alt="Le livre en situation" loading="lazy" style="width:100%;height:70px;object-fit:cover;">
+        </div>
+      </div>
+<div class="card">
+        <div class="num">+ 1 000 € HT</div>
+        <h3>Option 3 · Le jeu « Recruter est un jeu d'enfant », 60 minutes</h3>
+        <p>Le jeu <strong>« On vous rappellera — Recruter est un jeu d'enfant »</strong>, animé par les comédiens de la troupe <strong>par groupes de 8</strong>. Chaque participant repart avec <strong>sa fiche de poste clé en main</strong>, à utiliser pour ses prochains entretiens.</p>
+      </div>
+          </div>
+    <p class="note">Les tarifs de la pièce, de la conférence et du jeu ne dépendent pas du nombre de spectateurs.</p>
+  </div>
+</section>
+
+<section class="form-sec">
+  <div class="wrap">
+    <span class="sec-tag">Parlons de votre événement</span>
+    <h2>Faites entrer la troupe</h2>
+    <p class="lead">Dites-nous en deux lignes votre contexte (convention, séminaire, formation RH, événement réseau…) et nous revenons vers vous avec une proposition adaptée.</p>
+    <form action="https://formsubmit.co/bismuththierry@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Demande OVR Entreprises — thierrybismuth.com">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="fgrid">
+        <div class="field"><label for="nom">Nom</label><input id="nom" name="nom" type="text" required></div>
+        <div class="field"><label for="societe">Entreprise / Réseau</label><input id="societe" name="societe" type="text" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+        <div class="field"><label for="tel">Téléphone</label><input id="tel" name="telephone" type="tel"></div>
+        <div class="field full"><label for="contact_ovr">Mon contact chez OVR <span style="font-weight:300;color:var(--gris);">(facultatif)</span></label><span style="font-size:.8rem;color:var(--gris);margin-top:-4px;">Si vous êtes en contact avec un membre de la troupe, indiquez-le ici : on le prévient tout de suite 🙂</span><input id="contact_ovr" name="contact_chez_OVR" type="text"></div>
+        <div class="field full"><label for="msg">Votre projet</label><textarea id="msg" name="message" placeholder="Convention de 200 franchisés en novembre, séminaire RH, formation des managers au recrutement…"></textarea></div>
+      </div>
+      <button class="btn" type="submit">Envoyer ma demande →</button>
+    </form>
+    <p class="note">Réponse sous 24h, avec une proposition adaptée à votre format et à votre lieu.</p>
+    <div style="margin-top:2.4rem;padding:1.8rem 2rem;background:var(--blanc-pur);border:2px solid var(--accent);text-align:center;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;font-style:italic;color:var(--marine);margin-bottom:.5rem;">Votre décision est déjà prise ?</p>
+      <p style="font-size:.9rem;color:var(--gris);margin-bottom:1.4rem;">Choisissez votre date, vos options, et réservez la troupe en deux minutes.</p>
+      <a href="https://thierrybismuth.com/ovr-commande.html" style="display:inline-block;background:var(--accent);color:#fff;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:500;letter-spacing:.04em;padding:16px 34px;text-decoration:none;">C'est décidé, je réserve une date →</a>
+      <p style="font-size:.78rem;color:var(--gris);margin-top:1rem;">Acompte de 1 000 € HT à la réservation, déduit du solde.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="contact-final">
+  <div class="wrap">
+    <p><strong>Thierry Bismuth</strong> — auteur et comédien de ON VOUS RAPPELLERA</p>
+    <p><a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a> · <a href="tel:0610703090">06 10 70 30 90</a></p>
+    <div class="cta-row">
+      <a href="tel:0610703090" target="_top">📞 Appel</a>
+      <a href="sms:0610703090" target="_top">💬 SMS</a>
+      <a href="mailto:bismuththierry@gmail.com" target="_top">✉️ Mail</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
