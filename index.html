@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ON VOUS RAPPELLERA — La comédie du recrutement, dans 20 villes dès décembre</title>
+<meta name="description" content="Une comédie sur le recrutement, en tournée dans les grandes villes de France à partir de décembre 2026. Créée au Festival OFF d'Avignon, jouée 60 fois devant 3 000 spectateurs.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  :root { --blanc:#f7f4ee; --blanc-pur:#ffffff; --marine:#161616; --accent:#d8281f; --or:#c8913a; --gris:#6b7280; --gris-clair:#e7e2d8; --texte:#1c1c1c; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--blanc);color:var(--texte);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  .wrap{max-width:960px;margin:0 auto;padding:0 6%;}
+
+  .hero{padding:52px 0 48px;text-align:center;border-bottom:1px solid var(--gris-clair);}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.8rem;font-size:.7rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;opacity:0;animation:fadeUp .6s .1s forwards;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4.4rem);font-weight:700;line-height:1.05;letter-spacing:.02em;color:var(--marine);opacity:0;animation:fadeUp .6s .2s forwards;}
+  .hero .baseline{margin-top:.7rem;font-size:.82rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);opacity:0;animation:fadeUp .6s .3s forwards;}
+  .hero .sub{margin:1.6rem auto 0;font-size:1rem;color:var(--gris);max-width:640px;opacity:0;animation:fadeUp .6s .45s forwards;}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:1.6rem;opacity:0;animation:fadeUp .6s .55s forwards;}
+  .badge{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--marine);border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:8px 16px;border-radius:2px;}
+
+  .affiche{margin:2.2rem auto 0;max-width:440px;opacity:0;animation:fadeUp .6s .6s forwards;}
+  .affiche img{display:block;width:100%;border:1px solid var(--gris-clair);box-shadow:0 16px 44px rgba(22,22,22,.18);}
+  .affiche .leg{margin-top:.7rem;font-size:.74rem;color:var(--gris);font-style:italic;}
+
+  .video-box{margin:2rem auto 0;position:relative;width:100%;max-width:760px;aspect-ratio:16/9;background:#000;border:1px solid var(--gris-clair);box-shadow:0 14px 40px rgba(22,22,22,.14);}
+  .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  section{padding:54px 0;border-bottom:1px solid var(--gris-clair);}
+  .sec-tag{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:1.1rem;display:block;}
+  h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.15;margin-bottom:1.3rem;color:var(--marine);}
+  p.lead{color:var(--gris);font-size:.97rem;max-width:680px;margin-bottom:1rem;}
+  p.lead strong{color:var(--texte);font-weight:500;}
+
+  .variantes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--gris-clair);margin-top:2rem;}
+  .var{background:var(--blanc-pur);padding:1.8rem;border-top:2px solid transparent;transition:border-color .3s;}
+  .var:hover{border-color:var(--accent);}
+  .var h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--marine);margin-bottom:.5rem;}
+  .var p{font-size:.88rem;color:var(--gris);line-height:1.7;}
+  .var p em{color:var(--texte);font-style:italic;font-weight:400;}
+
+  .villes{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.8rem;}
+  .ville{font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:11px 20px;border-radius:2px;}
+
+  .quoteband{background:var(--marine);color:#fff;text-align:center;padding:60px 0;border-bottom:none;}
+  .quoteband blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3.4vw,2.5rem);font-weight:600;font-style:italic;line-height:1.3;max-width:760px;margin:0 auto;}
+  .quoteband .who{margin-top:1.1rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);}
+
+  .perso-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:2rem;}
+  .conf-grid{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-top:1.6rem;-webkit-overflow-scrolling:touch;}
+  .conf{position:relative;flex:0 0 148px;padding:0;border:1px solid var(--gris-clair);background:#161616;cursor:pointer;overflow:hidden;}
+  .conf img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;opacity:.88;transition:opacity .25s;}
+  .conf:hover img{opacity:1;}
+  .conf .play{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:rgba(216,40,31,.92);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;padding-left:3px;}
+  .conf .cname{position:absolute;left:0;right:0;bottom:0;padding:7px 8px;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;font-size:.76rem;font-weight:500;text-align:left;}
+  .vbox{position:fixed;inset:0;background:rgba(10,10,10,.94);z-index:9999;display:none;align-items:center;justify-content:center;padding:54px 14px 14px;}
+  .vbox.on{display:flex;}
+  .vbox .vinner{position:relative;width:min(92vw,420px);aspect-ratio:9/16;max-height:84vh;background:#000;}
+  .vbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .vclose{position:absolute;top:-46px;right:-4px;background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer;padding:4px 10px;}
+  .vtitre{position:absolute;top:-42px;left:0;color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;}
+  .pimgs{margin:0 0 14px;}
+  .pimgs.multi{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .pimgs.multi .pimg:first-child{grid-column:1/-1;}
+  .pimg{margin:0;border:1px solid var(--gris-clair);background:var(--gris-clair);}
+  .pimg img{display:block;width:100%;height:auto;}
+  .perso{background:var(--blanc-pur);border:1px solid var(--gris-clair);}
+  .perso img{display:block;width:100%;height:220px;object-fit:cover;}
+
+  .vlist{margin-top:1.8rem;border-top:1px solid var(--gris-clair);}
+  .vbloc-t{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--accent);}
+  .vbloc-t:first-child{margin-top:0;}
+  .vd{border-bottom:1px solid var(--gris-clair);background:var(--blanc-pur);}
+  .vd summary{list-style:none;cursor:pointer;padding:15px 18px;font-size:.86rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);display:flex;align-items:center;gap:10px;}
+  .vd summary::-webkit-details-marker{display:none;}
+  .vd summary::after{content:"+";margin-left:auto;font-size:1.2rem;color:var(--accent);}
+  .vd[open] summary::after{content:"\2212";}
+  .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
+  .vbody{padding:0 18px 16px;}
+  .vdate{display:flex;flex-direction:column;gap:2px;border-left:3px solid var(--accent);background:#fdeceb;padding:10px 14px;margin-bottom:8px;}
+  a.vdate{text-decoration:none;cursor:pointer;transition:background .2s;}
+  a.vdate:hover,a.vdate:focus{background:#f9d6d3;}
+  .vdate b{font-size:.74rem;color:var(--accent);font-weight:500;margin-top:4px;}
+  .vdate strong{font-size:1rem;color:var(--marine);font-weight:500;}
+  .vdate span{font-size:.74rem;color:var(--gris);}
+  .vlieu{font-size:.82rem;color:var(--marine);margin:-4px 0 12px 17px;line-height:1.45;}
+  .vlieu a{color:var(--accent);text-decoration:underline;}
+  .vavenir{font-size:.9rem;color:var(--gris);font-style:italic;margin:0 0 8px;}
+  .vcad{font-size:.8rem;color:var(--gris);margin:4px 0 8px;}
+  .vprev{font-size:.78rem;color:var(--accent);text-decoration:underline;}
+  .pcap{margin:0;padding:5px 8px 6px;font-size:.66rem;line-height:1.4;color:var(--gris);background:var(--blanc-pur);font-style:italic;}
+  .perso .pimg img{height:auto;object-fit:initial;}
+  .perso .pbody{padding:1.4rem 1.5rem 1.6rem;}
+  .perso h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--marine);margin-bottom:.3rem;}
+  .perso .ptag{font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;display:block;}
+  .perso p{font-size:.86rem;color:var(--gris);line-height:1.7;}
+
+  .punchlines{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:2rem;}
+  .punch{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.5rem 1.6rem;}
+  .punch p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;font-style:italic;color:var(--marine);line-height:1.35;}
+  .punch .who{margin-top:.7rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);font-style:normal;font-family:'Outfit',sans-serif;font-weight:500;}
+
+  .galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:2rem;}
+  .galerie img{display:block;width:100%;height:230px;object-fit:cover;border:1px solid var(--gris-clair);background:var(--blanc-pur);}
+  @media(max-width:640px){.galerie{grid-template-columns:repeat(2,1fr);}.galerie img{height:150px;}}
+
+  .agenda{background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:2rem;margin-top:2rem;}
+  .agenda h3{font-size:1rem;font-weight:600;color:var(--marine);margin-bottom:.6rem;}
+  .agenda p{font-size:.9rem;color:var(--gris);}
+
+  .contact-final{padding:52px 0 70px;text-align:center;border-bottom:none;}
+  .contact-final h2{margin-bottom:.8rem;}
+  .contact-final p{color:var(--gris);font-size:.92rem;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:1.6rem;}
+  .cta-row a{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:14px 26px;text-decoration:none;border-radius:2px;}
+  .cta-row a.sombre{background:var(--marine);}
+  .liens{margin-top:1.6rem;font-size:.86rem;}
+  .liens a{color:var(--texte);text-decoration:underline;}
+  .autrement{background:var(--blanc-pur);border:1px solid var(--gris-clair);border-left:3px solid var(--or);padding:1.9rem 2rem;margin-top:2rem;}
+  .autrement h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--marine);margin-bottom:1rem;}
+  .autrement ul{list-style:none;display:grid;gap:1rem;}
+  .autrement li{font-size:.9rem;color:var(--gris);line-height:1.7;padding-left:1.1rem;position:relative;}
+  .autrement li::before{content:"";position:absolute;left:0;top:.7rem;width:5px;height:5px;background:var(--accent);}
+  .autrement li b{color:var(--texte);font-weight:500;}
+
+  .form-sec{background:var(--blanc-pur);}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:720px;margin-top:1.6rem;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);}
+  input,select{background:var(--blanc);border:1px solid var(--gris-clair);color:var(--texte);font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:300;padding:12px 14px;border-radius:2px;outline:none;transition:border-color .25s;width:100%;}
+  input:focus,select:focus{border-color:var(--accent);}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:15px 30px;border:none;border-radius:2px;cursor:pointer;margin-top:1.6rem;transition:background .25s;}
+  .btn:hover{background:#b8211a;}
+  .btn[disabled]{opacity:.55;cursor:default;}
+  .note{font-size:.82rem;color:var(--gris);margin-top:1rem;font-style:italic;}
+  .repets{border-top:1px solid var(--gris-clair)}
+.fac{color:var(--gris);font-size:.72rem;font-weight:400;}
+.refus{display:flex;gap:7px;align-items:center;font-size:.7rem;line-height:1.5;font-weight:400;color:var(--gris);margin:6px 0 0;cursor:pointer}
+.refus input{width:12px;height:12px;margin:0;flex-shrink:0}
+.sous{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--marine);margin:2.4rem 0 .5rem}
+.retour{background:var(--blanc-pur)}
+.cafet{padding:34px 0}
+.cafet-box{background:var(--blanc-pur);border-left:3px solid var(--or);padding:22px 24px}
+.cafet-box .sous{margin:.3rem 0 .6rem}
+.cafet-box .lead{margin-bottom:.7rem}
+.early{background:#fdeceb;border-left:3px solid var(--accent);padding:12px 15px;margin:14px 0 0;font-size:.9rem;line-height:1.55;}
+.mention-part{font-size:.7rem;line-height:1.5;color:var(--gris);background:none;border:0;border-top:1px solid var(--gris-clair);padding:12px 0 0;margin:1.6rem 0 0;}
+.optin{display:flex;gap:11px;align-items:flex-start;background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:14px;margin:0 0 12px;font-size:.85rem;line-height:1.55;cursor:pointer;}
+.optin input{width:19px;height:19px;margin:2px 0 0;flex-shrink:0;}
+.tarifs{max-width:720px;margin-top:1.4rem;border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:16px 18px;border-radius:2px}
+.tclause{font-size:.8rem;line-height:1.55;color:var(--texte);margin:0 0 12px}
+.tarif{text-transform:none;letter-spacing:normal;font-weight:400;color:var(--texte);display:flex;gap:10px;align-items:flex-start;font-size:.88rem;line-height:1.45;padding:9px 10px;margin:6px 0;cursor:pointer;border:1px solid transparent;border-radius:2px}
+.tarif input{width:18px;height:18px;padding:0;margin:3px 0 0;flex-shrink:0}
+.tarif.star{font-size:1.1rem;border-color:var(--accent);background:#fdf1ef}
+.tarif.star b{color:var(--accent)}
+.tarif.sans{font-size:.8rem;color:var(--gris)}
+.tsep{border:0;border-top:1px dashed var(--gris-clair);margin:10px 0}
+.codelien{display:inline-block;font-size:.72rem;color:var(--gris);margin-top:10px;text-decoration:underline}
+.codeinput{font-size:.8rem;padding:5px 8px;width:160px;margin-top:6px}
+.msg{margin-top:1.2rem;font-size:.92rem;font-weight:500;display:none;padding:14px 16px;border-radius:2px;}
+  .msg.ok{display:block;background:#eef7ee;border:1px solid #bcd9bc;color:#22622a;}
+  .msg.ko{display:block;background:#fdeceb;border:1px solid #f0bcb8;color:#a3231b;}
+  .early{background:var(--marine);color:#fff;padding:1.7rem 1.8rem;margin-top:1.8rem;border-left:3px solid var(--or);}
+  .early h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;margin-bottom:.5rem;color:#fff;}
+  .early p{font-size:.9rem;color:#e4e0d6;line-height:1.7;}
+  .early p strong{color:var(--or);font-weight:600;}
+  @media(max-width:640px){.fgrid{grid-template-columns:1fr;}}
+</style>
+<link rel="canonical" href="https://onvousrappellera.fr/">
+</head>
+<body>
+<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px">Espace entreprises</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px">Casting comédiens</a></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">La Compagnie MultiPotentieL présente</div>
+    <h1>ON VOUS RAPPELLERA</h1>
+    <div class="baseline">Ils ont mis leur recrutement en pièce</div>
+    <p class="sub">Une comédie. On vient d'abord pour rire. Créée au Festival OFF d'Avignon, jouée 60 fois dans 15 villes, salles pleines. Les premières représentations ont lieu en décembre 2026, puis la tournée s'installe dans 8 villes au premier trimestre 2027 et gagne les 12 autres au second semestre.</p>
+    <div class="badges">
+      <span class="badge">25 comédiens</span>
+      <span class="badge">20 villes</span>
+      <span class="badge">1h de comédie</span>
+      <span class="badge">Dès décembre 2026</span>
+    </div>
+    <div class="affiche">
+      <img src="https://thierrybismuth.com/assets/ovr/affiche-ovr-2027-paris.jpg" alt="Affiche ON VOUS RAPPELLERA — saison 2026-2027, les 25 comédiens">
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Le teaser</span>
+    <h2>Une heure à rire de ce que vous avez déjà vécu</h2>
+    <p class="lead">Un entretien qui tourne mal, un CV un peu trop beau, un manager sûr de lui, une DRH à bout, un candidat qui veut juste payer son loyer. <strong>Vous avez déjà été d'un côté ou de l'autre du bureau — et vous allez vous reconnaître.</strong></p>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/rbZ6iufaujU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Teaser ON VOUS RAPPELLERA"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="retour">
+  <div class="wrap">
+    <span class="sec-tag">Elle revient</span>
+    <h2>Après le Festival d'Avignon, la pièce repart en tournée</h2>
+    <p class="lead"><strong>60 représentations, 15 villes, 3 000 spectateurs.</strong> Créée au Festival OFF d'Avignon en 2022, jouée depuis devant le grand public comme dans les entreprises — La Poste, Orange, Veolia, Schlumberger, Safran. Elle revient en 2027 avec <strong>10 troupes résidentes</strong>, une dans <strong>chacune</strong> des 10 plus grandes villes de France.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">La tournée</span>
+    <h2>Vingt villes, de décembre 2026 à juin 2027</h2>
+    <p class="lead">Les premières dates sont jouées en décembre 2026 dans les villes où la troupe est constituée, puis la tournée s'étend ville par ville au premier trimestre 2027. <strong>Déroulez votre ville pour voir ses dates.</strong> Places à 20&nbsp;€ (tarif partenaire), 15&nbsp;€ pour les demandeurs d'emploi et les étudiants.</p>
+    <div class="vlist">
+      <h3 class="vbloc-t">Nos 10 troupes résidentes</h3>
+      <details class="vd"><summary>Paris<em>2 dates</em></summary><div class="vbody"><div class="vdates" data-ville="Paris"></div><p class="vcad">Un cadeau surprise est remis à l'entrée des deux avant-premières.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
+      <details class="vd"><summary>Bordeaux<em>4 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Bordeaux"></div><a class="vprev" href="#prevenez-moi" data-ville="Bordeaux">Être prévenu pour Bordeaux &rarr;</a></div></details>
+      <details class="vd"><summary>Lille<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Lille"></div><a class="vprev" href="#prevenez-moi" data-ville="Lille">Être prévenu pour Lille &rarr;</a></div></details>
+      <details class="vd"><summary>Lyon<em>2 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Lyon"></div><a class="vprev" href="#prevenez-moi" data-ville="Lyon">Être prévenu pour Lyon &rarr;</a></div></details>
+      <details class="vd"><summary>Toulouse<em>1er trimestre 2027</em></summary><div class="vbody"><p class="vavenir">Première date au 1er trimestre 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Toulouse">Être prévenu pour Toulouse &rarr;</a></div></details>
+      <details class="vd"><summary>Nantes<em>1er trimestre 2027</em></summary><div class="vbody"><p class="vavenir">Première date au 1er trimestre 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Nantes">Être prévenu pour Nantes &rarr;</a></div></details>
+      <details class="vd"><summary>Rennes<em>1er trimestre 2027</em></summary><div class="vbody"><p class="vavenir">Première date au 1er trimestre 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Rennes">Être prévenu pour Rennes &rarr;</a></div></details>
+      <details class="vd"><summary>Montpellier<em>1er trimestre 2027</em></summary><div class="vbody"><p class="vavenir">Première date au 1er trimestre 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Montpellier">Être prévenu pour Montpellier &rarr;</a></div></details>
+      <details class="vd"><summary>Marseille<em>Troupe en constitution</em></summary><div class="vbody"><p class="vavenir">La troupe résidente est en cours de constitution. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Marseille">Être prévenu pour Marseille &rarr;</a></div></details>
+      <details class="vd"><summary>Nice<em>Troupe en constitution</em></summary><div class="vbody"><p class="vavenir">La troupe résidente est en cours de constitution. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Nice">Être prévenu pour Nice &rarr;</a></div></details>
+      <h3 class="vbloc-t">À venir au 2<sup>e</sup> semestre 2027</h3>
+      <details class="vd"><summary>Strasbourg<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Strasbourg">Être prévenu pour Strasbourg &rarr;</a></div></details>
+      <details class="vd"><summary>Grenoble<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Grenoble">Être prévenu pour Grenoble &rarr;</a></div></details>
+      <details class="vd"><summary>Rouen<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Rouen">Être prévenu pour Rouen &rarr;</a></div></details>
+      <details class="vd"><summary>Toulon<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Toulon">Être prévenu pour Toulon &rarr;</a></div></details>
+      <details class="vd"><summary>Saint-Étienne<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Saint-Étienne">Être prévenu pour Saint-Étienne &rarr;</a></div></details>
+      <details class="vd"><summary>Tours<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Tours">Être prévenu pour Tours &rarr;</a></div></details>
+      <details class="vd"><summary>Clermont-Ferrand<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Clermont-Ferrand">Être prévenu pour Clermont-Ferrand &rarr;</a></div></details>
+      <details class="vd"><summary>Nancy<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Nancy">Être prévenu pour Nancy &rarr;</a></div></details>
+      <details class="vd"><summary>Reims<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Reims">Être prévenu pour Reims &rarr;</a></div></details>
+      <details class="vd"><summary>Angers<em>2e semestre 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — 2e semestre 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Angers">Être prévenu pour Angers &rarr;</a></div></details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Vous allez vous reconnaître</span>
+    <h2>Venez voir votre propre histoire, jouée par quelqu'un d'autre</h2>
+    <p class="lead">Six personnages, six situations que vous avez vécues. <strong>Et à chaque fois, quelqu'un sur scène s'en sort mieux que vous ne vous en êtes sorti.</strong></p>
+    <p class="lead"><strong>Découvrez les comédiens à travers les photos de répétition.</strong> Ce sont des images de travail&nbsp;: <strong>les photos de scène arriveront avec la première, le 22 novembre.</strong></p>
+    <div class="perso-grid">
+      <div class="perso">
+        
+        <div class="pimgs"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1ILKwYrTWvFChndE5uoE4pvWtsQKWe1k9&sz=w1000" alt="Répétition, Paris 2026"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure></div>
+        <div class="pbody"><span class="ptag">On vous a déjà dit que vous étiez trop senior pour le poste</span><h3>Dominique</h3><p>Venez voir comment Dominique contourne l'objection — et retourne l'entretien avec.</p></div>
+      </div>
+      <div class="perso">
+        <div class="pimgs"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1WZIakUDQn4ZnaraUaC5V5VKw8q0J18za&sz=w1000" alt="Répétition, Paris 2026"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure></div>
+        <div class="pbody"><span class="ptag">Vous recrutez et vous vous battez contre vos opérationnels</span><h3>Delphine</h3><p>Venez admirer Delphine, la reine de la fiche de poste. Elle ne lâche rien à son manager, et elle a toujours raison.</p></div>
+      </div>
+      <div class="perso">
+        <div class="pimgs"><figure class="pimg"><img loading="lazy" src="https://thierrybismuth.com/assets/ovr/pascal.jpg" alt="Répétition, Paris 2026"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure></div>
+        <div class="pbody"><span class="ptag">Vous êtes manager et vous avez le sentiment que vos RH ne font rien</span><h3>Pascal</h3><p>Vous allez rire. Mais surtout, vous allez enfin les comprendre.</p></div>
+      </div>
+      <div class="perso">
+        <div class="pimgs"><figure class="pimg"><img loading="lazy" src="https://thierrybismuth.com/assets/ovr/johanna.jpg" alt="Johana en répétition"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure></div>
+        <div class="pbody"><span class="ptag">Vous envisagez une reconversion sans savoir comment avancer</span><h3>Johana</h3><p>Infirmière à bout de souffle, elle part sans savoir où elle va. Johana va vous inspirer.</p></div>
+      </div>
+      <div class="perso">
+        <div class="pimgs"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=158STLD4KSjWF670BUzIO6BMr_qzo_8rT&sz=w1000" alt="Répétition, Paris 2026"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure></div>
+        <div class="pbody"><span class="ptag">Vos candidatures ne donnent jamais rien</span><h3>Julien</h3><p>Julien, le candidat idéal, va vous apprendre à passer les barrages. Tout est faux dans son CV, sauf son numéro de portable.</p></div>
+      </div>
+      <div class="perso">
+        <div class="pimgs"><figure class="pimg"><img loading="lazy" src="https://thierrybismuth.com/assets/ovr/le-psy.jpg" alt="Daniel(e), le psy de l'entreprise, en répétition"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure></div>
+        <div class="pbody"><span class="ptag">Vous vous demandez ce que vous faites encore là</span><h3>Daniel(e)</h3><p>Le psy de l'entreprise, roi de la parabole — de la meute de loups au canon sans recul. C'est lui qui recolle tout le monde.</p></div>
+      </div>
+    </div>
+
+    <div class="autrement">
+      <h3>Et si vous n'avez rien à voir avec tout ça ?</h3>
+      <ul>
+        <li><b>Vous n'avez jamais recruté personne et les RH vous passent au-dessus de la tête.</b> Tant mieux : c'est une comédie sur le travail, pas une conférence. Ces six-là, vous les connaissez déjà — il y en a un dans votre bureau, un dans votre famille, et parfois un dans votre miroir.</li>
+        <li><b>Vous cherchez juste une bonne soirée.</b> Une heure, ça démarre vite, ça ne retombe jamais, et on ressort en se racontant les répliques sur le trottoir.</li>
+        <li><b>Vous venez à deux.</b> Celui qui bosse en entreprise rira de ses collègues. L'autre rira de lui. Personne ne s'ennuie.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Les répliques</span>
+    <h2>On les cite encore six mois après</h2>
+    <div class="punchlines">
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1PHCT9sow4JkE8FfekRfHDr7zKVLdJ4sG&sz=w1000" alt="Répétition, Paris 2026"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure><p>« Pourquoi quelqu'un qui ferait la même chose ailleurs viendrait chez nous ? POURQUOI NOUS ? C'est ça, la vraie question ! »</p><div class="who">Delphine, la RH</div></div>
+      <div class="punch"><p>« Notre turn-over ressemble à une élection russe. »</p><div class="who">Delphine, la RH</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1pzUqIvYcVNV-oFPRLKzL9sw21jy3N1Hd&sz=w1000" alt="Répétition, Paris 2026"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure><p>« C'est la peur de perdre qui vous empêche de gagner. »</p><div class="who">Julien, le candidat</div></div>
+      <div class="punch"><p>« — Donc, on recrute les meilleurs menteurs ? — Disons qu'on recrute ceux qui savent le mieux séduire. »</p><div class="who">Johana &amp; Pascal</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1xhqcbc6mGTd6mOPkOzunXX6eDR9UshDw&sz=w1000" alt="Répétition, Paris 2026"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure><p>« C'est tout un métier de dire bonjour. Votre bonjour n'était PAS vendeur. »</p><div class="who">Dominique, le senior</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1G0lfSIa_DlE0P4KIUbhpCs8FHa7bUQKX&sz=w1000" alt="Répétition, Paris 2026"><figcaption class="pcap">Photo de répétition &middot; les premières photos de scène arrivent avec les premières représentations 😀</figcaption></figure><p>« L'entreprise, c'est un théâtre. Ce n'est pas parce que tout n'est pas vrai, que tout est faux. »</p><div class="who">Dominique, le senior</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="confs">
+  <div class="wrap">
+    <span class="sec-tag">Les confessions</span>
+    <h2>Ils vous parlent avant de monter sur scène</h2>
+    <p class="lead">Les confessionnaux montés&nbsp;: chaque personnage parle d'un autre, face caméra. Tournés en répétition, avant la première du 22 novembre. <strong>C'est court, c'est sincère, et ça dit déjà tout de la pièce.</strong> Certains rôles sont portés par plusieurs comédiens selon les dates&nbsp;: deux confessions d'un même personnage, ce sont deux comédiens différents.</p>
+    <div class="conf-grid"><button class="conf" data-v="17ApDq8HAWQlxufbdatWDvILtni922UL2" type="button"><img loading="lazy" src="https://drive.google.com/thumbnail?id=17ApDq8HAWQlxufbdatWDvILtni922UL2&sz=w400" alt="Confessionnal de Johana"><span class="play">&#9654;</span><span class="cname">Johana</span></button><button class="conf" data-v="1Mwf3R3t7VS8WzVkVYHyrlj3NejgQ07DH" type="button"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1Mwf3R3t7VS8WzVkVYHyrlj3NejgQ07DH&sz=w400" alt="Confessionnal de Delphine"><span class="play">&#9654;</span><span class="cname">Delphine</span></button><button class="conf" data-v="1uvF2jNgxSyfNjiLUlI4xxiZ2miyN00-N" type="button"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1uvF2jNgxSyfNjiLUlI4xxiZ2miyN00-N&sz=w400" alt="Confessionnal de Delphine"><span class="play">&#9654;</span><span class="cname">Delphine</span></button><button class="conf" data-v="12Zwv6rts_oam3SPO_Rsi44Od4_Fo782L" type="button"><img loading="lazy" src="https://drive.google.com/thumbnail?id=12Zwv6rts_oam3SPO_Rsi44Od4_Fo782L&sz=w400" alt="Confessionnal de Daniel(e)"><span class="play">&#9654;</span><span class="cname">Daniel(e)</span></button></div>
+  </div>
+</section>
+
+<section class="form-sec" id="prevenez-moi">
+  <div class="wrap">
+    <span class="sec-tag">Réservations</span>
+    <h2>Réservez vos billets ou soyez prévenu de la date à venir</h2>
+    <p class="lead"><strong>Une date est déjà fixée dans votre ville&nbsp;?</strong> Choisissez-la et réservez vos places. <strong>Pas encore de date&nbsp;?</strong> Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que le théâtre et la date sont fixés, avant l'ouverture publique des réservations.</p>
+
+    <div class="fgrid">
+      <div class="field full"><label for="f-ville">Votre ville</label>
+        <select id="f-ville" required>
+          <option value="">— Choisissez votre ville —</option>
+          <option>Paris</option><option>Lyon</option><option>Marseille</option><option>Toulouse</option><option>Lille</option><option>Bordeaux</option><option>Nantes</option><option>Rennes</option><option>Montpellier</option>
+          <option>Nice</option><option>Strasbourg</option><option>Grenoble</option><option>Rouen</option><option>Toulon</option><option>Saint-Étienne</option><option>Tours</option><option>Clermont-Ferrand</option><option>Nancy</option><option>Reims</option><option>Angers</option>
+          <option value="Autre ville">Une autre ville</option>
+        </select>
+      </div>
+      <div class="field full" id="f-date-wrap" style="display:none"><label for="f-date">Date et horaire</label>
+        <select id="f-date"></select>
+      </div>
+      <div class="field"><label for="f-prenom">Prénom</label><input id="f-prenom" type="text" autocomplete="given-name" required></div>
+      <div class="field"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="f-tel">Portable</label><input id="f-tel" type="tel" autocomplete="tel"></div>
+    </div>
+    <div id="f-resa" style="display:none">
+      <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
+      <div class="tarifs">
+        <p class="tclause"><strong>Je soutiens la troupe et la tournée, et je booste ma recherche d'emploi ou ma recherche de candidats.</strong><br>Nos partenaires financent la pièce&nbsp;: entreprises qui recrutent, portails d'emploi, organismes publics de l'emploi, et autres acteurs de la recherche d'emploi et de candidats. Avec ces tarifs, j'accepte qu'ils reçoivent mes coordonnées pour me proposer des offres d'emploi, des candidats ou des services liés au recrutement. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a>.</p>
+        <label class="tarif star"><input type="radio" name="tarif" value="partenaire" checked><span><b>★ Place partenaire — 20&nbsp;€</b></span></label>
+        <label class="tarif"><input type="radio" name="tarif" value="reduit"><span><b>Tarif réduit — 15&nbsp;€</b> · demandeurs d'emploi et étudiants, justificatif à présenter à l'entrée</span></label>
+        <div id="f-red-wrap" class="fgrid" style="display:none;margin-top:.6rem">
+          <div class="field"><label for="f-statut">Je suis</label><select id="f-statut"><option value="Demandeur d'emploi">Demandeur d'emploi</option><option value="Étudiant">Étudiant</option></select></div>
+          <div class="field" id="f-ft-wrap"><label for="f-ft">Numéro France Travail</label><input id="f-ft" type="text"></div>
+        </div>
+        <hr class="tsep">
+        <label class="tarif sans"><input type="radio" name="tarif" value="sans"><span><b>Place sans partage — 22&nbsp;€</b> · mes coordonnées restent chez On vous rappellera.</span></label>
+      </div>
+      <a href="#" id="f-code-lien" class="codelien">Vous avez un code&nbsp;?</a>
+      <div id="f-code-wrap" style="display:none"><input id="f-code" class="codeinput" type="text" placeholder="Votre code" autocomplete="off"></div>
+    </div>
+    <div id="f-alerte">
+      <label class="refus"><input type="checkbox" id="f-part">
+        <span>Je soutiens la troupe et la tournée, et je booste ma recherche d'emploi ou ma recherche de candidats&nbsp;: j'accepte que les partenaires de la pièce (entreprises qui recrutent, portails d'emploi, organismes publics de l'emploi, et autres acteurs de la recherche d'emploi et de candidats) reçoivent mes coordonnées. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a>.</span></label>
+    </div>
+    <button class="btn" id="f-btn" type="button">Prévenez-moi &rarr;</button>
+    <div class="msg" id="f-msg"></div>
+  </div>
+</section>
+
+<section class="cafet">
+  <div class="wrap">
+    <div class="cafet-box">
+      <span class="sec-tag">Après la représentation</span>
+      <h3 class="sous">Cafétéria, souvenirs et bavardages avec les personnages</h3>
+      <p class="lead">Quinze minutes d'explication de texte suivent la pièce, pour comprendre ce qui vient de se jouer et le mettre en pratique dans vos recrutements ou votre recherche d'emploi.</p>
+      <p class="lead">Ensuite, <strong>Pascal, Delphine, Johana, Julien, Dominique et Daniel(e) viennent vous voir.</strong> Ils vous servent un verre, vous proposent un souvenir, ou discutent avec vous de leur envie de venir jouer dans votre entreprise.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-final">
+  <div class="wrap">
+    <h2>Vous voulez la faire jouer chez vous ?</h2>
+    <p>Séminaire, convention, comité d'entreprise : la pièce se joue aussi dans vos murs.</p>
+    <div class="cta-row">
+      <a class="sombre" href="/entreprises.html">Voir la formule entreprises et conventions</a>
+    </div>
+    <p class="liens">Une question ? <a href="tel:0610703090">06 10 70 30 90</a></p>
+  </div>
+</section>
+
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+
+  var vbox=document.getElementById('vbox'), vslot=document.getElementById('vslot'), vtitre=document.getElementById('vtitre');
+  function fermerVideo(){ vbox.classList.remove('on'); vslot.innerHTML=''; document.body.style.overflow=''; }
+  document.querySelectorAll('.conf-grid .conf').forEach(function(b){
+    b.addEventListener('click',function(){
+      var n=b.querySelector('.cname');
+      vtitre.textContent = n ? n.textContent : '';
+      vslot.innerHTML='<iframe src="https://drive.google.com/file/d/'+b.dataset.v+'/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+      vbox.classList.add('on'); document.body.style.overflow='hidden';
+    });
+  });
+  document.getElementById('vclose').addEventListener('click',fermerVideo);
+  vbox.addEventListener('click',function(e){ if(e.target===vbox) fermerVideo(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
+  var DATES={
+    "Paris":[{d:"22 novembre 2026",t:"Avant-première",l:"PVE",c:"PAR-1122"},{d:"26 novembre 2026",t:"Avant-première",l:"PVE",c:"PAR-1126"}],
+    "Lille":[{d:"14 décembre 2026 · 19h",t:"Séance de 19h",l:"SPL",c:"LIL-1214-19"}],
+    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO",c:"LYO-1216-21"}],
+    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1217-2030"}]
+  };
+  // Billetterie : false = pré-réservation (aucun paiement). true = paiement en ligne Stripe. ?billetterie=1 force l'ouverture pour les tests.
+  var BILLETTERIE_OUVERTE=false || new URLSearchParams(location.search).get('billetterie')==='1';
+  var LIEUX={
+    "PVE":{n:"Théâtre Le Passage vers les Étoiles",a:"17 cité Joly, 75011 Paris"},
+    "CRO":{n:"Le Croiseur",a:"4 rue Croix-Barret, 69007 Lyon"},
+    "MR":{n:"Théâtre de la Marge Rousse",a:"62 rue Borie, 33300 Bordeaux"},
+    "SPL":{n:"Le Spotlight",a:"100 rue Léon Gambetta, 59800 Lille"}
+  };
+  function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
+  var AUCUNE='Aucune de ces dates — prévenez-moi du prochain créneau';
+  function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+  document.querySelectorAll('.vdates').forEach(function(box){
+    var L=DATES[box.dataset.ville]||[];
+    box.innerHTML=L.map(function(o){ return '<a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Choisir cette date &rarr;</b></a>'+lieuHTML(o.l); }).join('');
+  });
+  function majDates(v,choix){
+    var w=document.getElementById('f-date-wrap'), s=document.getElementById('f-date'), L=DATES[v];
+    if(!L){ w.style.display='none'; s.innerHTML=''; modeResa(); return; }
+    s.innerHTML='<option value="">— Choisissez une date —</option>'+L.map(function(o){ return '<option value="'+esc(o.d)+'">'+esc(o.d)+' ('+esc(o.t)+')</option>'; }).join('')+'<option value="__autre">'+AUCUNE+'</option>';
+    w.style.display=''; s.value=choix||'';
+    modeResa();
+  }
+  function enResa(){ var s=document.getElementById('f-date'); return document.getElementById('f-date-wrap').style.display!=='none' && s.value && s.value!=='__autre'; }
+  function modeResa(){ var r=enResa();
+    document.getElementById('f-resa').style.display=r?'':'none';
+    document.getElementById('f-alerte').style.display=r?'none':'';
+    document.getElementById('f-btn').innerHTML=r?'Réserver mes places &rarr;':'Prévenez-moi &rarr;'; }
+  function tarifChoisi(){ var x=document.querySelector('input[name=tarif]:checked'); return x?x.value:'partenaire'; }
+  function majReduit(){ var red=tarifChoisi()==='reduit';
+    document.getElementById('f-red-wrap').style.display=red?'':'none';
+    document.getElementById('f-ft-wrap').style.display=(red && document.getElementById('f-statut').value==="Demandeur d'emploi")?'':'none'; }
+  document.querySelectorAll('input[name=tarif]').forEach(function(r){ r.addEventListener('change',majReduit); });
+  document.getElementById('f-statut').addEventListener('change',majReduit);
+  document.getElementById('f-date').addEventListener('change',modeResa);
+  document.getElementById('f-code-lien').addEventListener('click',function(e){ e.preventDefault(); document.getElementById('f-code-wrap').style.display=''; this.style.display='none'; document.getElementById('f-code').focus(); });
+  document.getElementById('f-ville').addEventListener('change',function(){ majDates(this.value,''); });
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('.vdate, .vprev'); if(!a) return;
+    var s=document.getElementById('f-ville'); s.value=a.dataset.ville; majDates(a.dataset.ville,a.dataset.date||'');
+  });
+  var btn=document.getElementById('f-btn'), msg=document.getElementById('f-msg');
+  (function(){ var q=new URLSearchParams(location.search);
+    if(q.get('merci')){ msg.className='msg ok'; msg.innerHTML='<b>Paiement reçu, merci !</b> Vos billets arrivent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.'; document.getElementById('prevenez-moi').scrollIntoView(); }
+    if(q.get('annule')){ msg.className='msg ko'; msg.innerHTML='Le paiement a été abandonné, rien n\'a été débité. Vous pouvez recommencer ci-dessous.'; document.getElementById('prevenez-moi').scrollIntoView(); } })();
+  var g=function(i){return document.getElementById(i);};
+  function show(cls,txt){ msg.className='msg '+cls; msg.innerHTML=txt; }
+  btn.addEventListener('click', function(){
+    var p={prenom:g('f-prenom').value.trim(), nom:g('f-nom').value.trim(),
+           email:g('f-email').value.trim(), telephone:g('f-tel').value.trim(),
+           ville:g('f-ville').value, date:(g('f-date').value==='__autre'?'':g('f-date').value),
+           entreprise:'', fonction:'', cadre:'', places:'',
+           info:true, partenaire:g('f-part').checked};
+    var PRIX={partenaire:20, reduit:15, sans:22}, LIB={partenaire:'Place partenaire', reduit:'Tarif réduit', sans:'Place sans partage'};
+    if(enResa()){ var tf=tarifChoisi();
+      p.places=String(Math.max(1,parseInt(g('f-places').value,10)||1));
+      p.tarif=LIB[tf]; p.prix=PRIX[tf]; p.partenaire=(tf!=='sans');
+      p.statut=(tf==='reduit')?g('f-statut').value:''; p.france_travail=(tf==='reduit' && p.statut==="Demandeur d'emploi")?g('f-ft').value.trim():'';
+      p.code=g('f-code').value.trim();
+      if(tf==='reduit' && p.statut==="Demandeur d'emploi" && !p.france_travail){ show('ko','Merci d\'indiquer votre numéro France Travail pour le tarif réduit.'); return; }
+    }
+    if(!p.ville){ show('ko','Merci de choisir votre ville.'); return; }
+    if(DATES[p.ville] && !g('f-date').value){ show('ko','Merci de choisir une date, ou d\'indiquer qu\'aucune ne vous convient.'); return; }
+    if(!p.prenom||!p.nom){ show('ko','Merci d\'indiquer votre prénom et votre nom.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
+    if(BILLETTERIE_OUVERTE && enResa()){
+      var S=(DATES[p.ville]||[]).filter(function(o){return o.d===p.date;})[0];
+      if(!S||!S.c){ show('ko','Cette séance n\'est pas encore ouverte à la vente. Appelez-nous au 06 10 70 30 90.'); return; }
+      if(!p.telephone){ show('ko','Merci d\'indiquer votre portable.'); return; }
+      btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
+      var tfp=tarifChoisi();
+      fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},
+        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:(tfp!=='sans'),code:p.code,source:'grand-public'})})
+        .then(function(r){return r.json();})
+        .then(function(d){ if(d&&d.ok&&d.invite){ show('ok','<b>'+esc(d.message)+'</b>'); return; } if(d&&d.ok&&d.url){ location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
+        .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
+      return;
+    }
+    btn.disabled=true; show('ok','Envoi en cours…');
+    fetch('https://thierryb.app.n8n.cloud/webhook/ovr-prevenez-moi',
+      {method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(p)})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d && d.ok){ show('ok', p.date ? 'C\'est noté pour <b>'+p.ville+' — '+p.date+'</b>, nous sommes ravis de vous compter parmi nos spectateurs ! Nous vous enverrons le lien pour prendre vos places dès l\'ouverture de la billetterie, probablement avant mi-octobre. Un email de confirmation vient de vous être envoyé.' : 'C\'est noté ! Vous serez prévenu pour <b>'+p.ville+'</b> dès que la date est fixée, avant tout le monde. Un email de confirmation vient de vous être envoyé.');
+          ['f-prenom','f-nom','f-email','f-tel'].forEach(function(x){g(x).value='';});
+          g('f-ville').value=''; majDates('',''); g('f-part').checked=false; g('f-code').value=''; g('f-ft').value='';
+        } else { show('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; }
+      })
+      .catch(function(){ show('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
+  });
+});
+</script>
+<div class="vbox" id="vbox" role="dialog" aria-modal="true">
+  <div class="vinner">
+    <span class="vtitre" id="vtitre"></span>
+    <button class="vclose" id="vclose" type="button" aria-label="Fermer la vidéo">&times;</button>
+    <div id="vslot"></div>
+  </div>
+</div>
+</body>
+</html>
