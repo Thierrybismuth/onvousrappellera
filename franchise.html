@@ -187,7 +187,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     g('villes').innerHTML=VILLES.map(function(v,i){
       var L=DATES[v]||[];
       var dates=L.length? L.map(function(o,j){ var lieu=(LIEUX[o.l]||{}).n||'';
-          var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet : cinq enseignes sont déjà inscrites ce soir-là.':'');
+          var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet ce soir-là.':'');
           return '<label'+(e?' class="pris"':'')+'><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'><span>'+esc(o.d)+'<small>'+esc(o.t)+(lieu?' — '+esc(lieu):'')+'</small>'+(note?'<span class="pris-note">'+note+'</span>':'')+'</span></label>'; }).join('')
         : '<p class="avenir">Date à venir. Cochez la ville&nbsp;: nous vous prévenons dès qu\'elle est fixée.</p>';
       return '<div class="ville" id="v'+i+'"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'</label><div class="dates">'+dates+'</div></div>';
@@ -197,6 +197,9 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   var OCC={};
   function cle(v,d){ return v+'|'+d; }
   function etat(v,d){ var o=OCC[cle(v,d)], s=(g('f-nb')||{}).value; if(!o) return ''; if(s&&s!=='Autre'&&o.s.indexOf(s)>-1) return 'pris'; if(o.n>=5) return 'complet'; return ''; }
+  var DISPO={};
+  function salleLibre(v,d){ var od=(DATES[v]||[]).filter(function(o){return o.d===d;})[0]; return !(od&&od.c&&(od.c in DISPO)&&DISPO[od.c]<9); }
+  var etat0=etat; etat=function(v,d){ var e=etat0(v,d); if(e) return e; return salleLibre(v,d)?'':'complet'; };
   function chargerOcc(){
     return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'read',range:TAB+'!H2:K1000'})})
     .then(function(r){return r.json();}).then(function(j){ var O={};
@@ -215,6 +218,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   }
   rendre();
   chargerOcc().then(rerendre);
+  fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})}).then(function(r){return r.json();}).then(function(d){ if(d&&d.dispo){ DISPO=d.dispo; rerendre(); } }).catch(function(){});
   g('f-nb').addEventListener('change',rerendre);
   // Relecture des dates à jour sur la page grand public (une seule source).
   fetch('/?v='+Date.now()).then(function(r){return r.text();}).then(function(h){
