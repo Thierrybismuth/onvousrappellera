@@ -44,6 +44,9 @@ ol.soiree li b{font-weight:600}
 .ville.on .dates{display:block}
 .ville .dates label{display:flex;gap:8px;align-items:flex-start;font-size:.92rem;padding:5px 0;cursor:pointer}
 .ville .dates small{display:block;color:var(--gris);font-size:.8rem}
+.secteur{max-width:440px;margin-bottom:1.2rem}
+.ville .dates label.pris{cursor:not-allowed;color:var(--gris)}
+.pris-note{display:block;color:var(--accent);font-size:.8rem;margin-top:2px}
 .ville .avenir{font-size:.88rem;color:var(--gris);font-style:italic}
 input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;margin-top:2px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:1.6rem}
@@ -142,13 +145,13 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   <div class="wrap">
     <h2>Choisissez vos villes</h2>
     <p class="slogan2">On s'occupe du reste.</p>
+    <div class="field secteur"><label for="f-nb">Votre secteur d'activité *</label><select id="f-nb"><option value="">— Choisissez d'abord votre secteur —</option><option>Alimentation-restauration</option><option>Automobile</option><option>Beauté et santé</option><option>CHR</option><option>Culture-Cadeaux-loisirs</option><option>Divertissements</option><option>Équipement de la personne</option><option>Équipement du ménage</option><option>GSA et grands magasins</option><option>Services</option><option>Autre</option></select></div>
     <div id="villes"></div>
     <div class="fgrid">
       <div class="field full"><label for="f-ens">Enseigne *</label><input id="f-ens" autocomplete="organization"></div>
       <div class="field"><label for="f-prenom">Prénom *</label><input id="f-prenom" autocomplete="given-name"></div>
       <div class="field"><label for="f-nom">Nom *</label><input id="f-nom" autocomplete="family-name"></div>
       <div class="field"><label for="f-fonction">Fonction</label><input id="f-fonction" autocomplete="organization-title"></div>
-      <div class="field"><label for="f-nb">Secteur d'activité *</label><input id="f-nb" placeholder="Ex. coiffure, immobilier, restauration…"></div>
       <div class="field"><label for="f-email">Email *</label><input id="f-email" type="email" autocomplete="email"></div>
       <div class="field"><label for="f-tel">Portable *</label><input id="f-tel" type="tel" autocomplete="tel"></div>
       <div class="field full"><label for="f-msg">Un mot sur votre projet de développement</label><textarea id="f-msg" rows="3"></textarea></div>
@@ -184,21 +187,41 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     g('villes').innerHTML=VILLES.map(function(v,i){
       var L=DATES[v]||[];
       var dates=L.length? L.map(function(o,j){ var lieu=(LIEUX[o.l]||{}).n||'';
-          return '<label><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"><span>'+esc(o.d)+'<small>'+esc(o.t)+(lieu?' — '+esc(lieu):'')+'</small></span></label>'; }).join('')
+          var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet : cinq enseignes sont déjà inscrites ce soir-là.':'');
+          return '<label'+(e?' class="pris"':'')+'><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'><span>'+esc(o.d)+'<small>'+esc(o.t)+(lieu?' — '+esc(lieu):'')+'</small>'+(note?'<span class="pris-note">'+note+'</span>':'')+'</span></label>'; }).join('')
         : '<p class="avenir">Date à venir. Cochez la ville&nbsp;: nous vous prévenons dès qu\'elle est fixée.</p>';
       return '<div class="ville" id="v'+i+'"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'</label><div class="dates">'+dates+'</div></div>';
     }).join('');
     document.querySelectorAll('.cv').forEach(function(c){ c.addEventListener('change',function(){ g('v'+c.dataset.i).classList.toggle('on',c.checked); }); });
   }
+  var OCC={};
+  function cle(v,d){ return v+'|'+d; }
+  function etat(v,d){ var o=OCC[cle(v,d)], s=(g('f-nb')||{}).value; if(!o) return ''; if(s&&s!=='Autre'&&o.s.indexOf(s)>-1) return 'pris'; if(o.n>=5) return 'complet'; return ''; }
+  function chargerOcc(){
+    return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'read',range:TAB+'!H2:K1000'})})
+    .then(function(r){return r.json();}).then(function(j){ var O={};
+      (j.values||[]).forEach(function(r){ var st=(r[3]||'').toLowerCase(); if(/annul|stop/.test(st)) return; var sec=(r[1]||'').trim();
+        String(r[0]||'').split(' | ').forEach(function(p){ var k=p.indexOf(' : '); if(k<0) return; var v=p.slice(0,k).trim();
+          p.slice(k+3).split(' / ').forEach(function(d){ d=d.trim(); if(!d||/^date /.test(d)) return; var o=O[cle(v,d)]||(O[cle(v,d)]={n:0,s:[]}); o.n++; if(sec) o.s.push(sec); }); }); });
+      OCC=O; }).catch(function(){});
+  }
+  function rerendre(){
+    var cv=[].map.call(document.querySelectorAll('.cv:checked'),function(c){return c.value;});
+    var cd=[].map.call(document.querySelectorAll('.cd:checked'),function(c){return cle(c.dataset.v,c.value);});
+    rendre();
+    document.querySelectorAll('.cv').forEach(function(c){ if(cv.indexOf(c.value)>-1){ c.checked=true; g('v'+c.dataset.i).classList.add('on'); } });
+    document.querySelectorAll('.cd').forEach(function(c){ if(!c.disabled && cd.indexOf(cle(c.dataset.v,c.value))>-1) c.checked=true; });
+    majTotal();
+  }
   rendre();
+  chargerOcc().then(rerendre);
+  g('f-nb').addEventListener('change',rerendre);
   // Relecture des dates à jour sur la page grand public (une seule source).
   fetch('/?v='+Date.now()).then(function(r){return r.text();}).then(function(h){
     var m=h.match(/var DATES=(\{[\s\S]*?\n  \});/), n=h.match(/var LIEUX=(\{[\s\S]*?\n  \});/);
     if(m){ var D=(new Function('return '+m[1]))(); if(D&&typeof D==='object'){ DATES=D; } }
     if(n){ var Lx=(new Function('return '+n[1]))(); if(Lx) LIEUX=Lx; }
-    var coches=[].map.call(document.querySelectorAll('.cv:checked'),function(c){return c.value;});
-    rendre();
-    document.querySelectorAll('.cv').forEach(function(c){ if(coches.indexOf(c.value)>-1){ c.checked=true; g('v'+c.dataset.i).classList.add('on'); } });
+    rerendre();
   }).catch(function(){});
 
   function nbSoirees(){ var n=0,av=0; document.querySelectorAll('.cv:checked').forEach(function(c){ var d=[].filter.call(document.querySelectorAll('.cd:checked'),function(x){return x.dataset.v===c.value;}).length; if(d) n+=d; else av++; }); return {n:n,av:av}; }
@@ -224,11 +247,13 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     var S=nbSoirees(); p.montant=S.n*800;
     var btn=g('f-btn'); btn.disabled=true; show('ok','Envoi en cours…');
     var villes=choix.join(' | ');
-    fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'append',range:TAB+'!A:N',
-      values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),p.ens,p.prenom,p.nom,p.fonction,p.email,"'"+p.tel,villes,p.nb,p.msg,'Nouvelle demande','',p.montant,'Oui']]})})
+    var voulues=[].map.call(document.querySelectorAll('.cd:checked'),function(c){return [c.dataset.v,c.value];});
+    chargerOcc().then(function(){ var conf=voulues.filter(function(x){return etat(x[0],x[1]);}); if(conf.length) throw {conf:conf};
+    return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'append',range:TAB+'!A:N',
+      values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),p.ens,p.prenom,p.nom,p.fonction,p.email,"'"+p.tel,villes,p.nb,p.msg,'Nouvelle demande','',p.montant,'Oui']]})}); })
     .then(function(r){ return r.text().then(function(t){ if(!r.ok||!t) throw 0; var j=JSON.parse(t); if(!j.updates) throw 0; return j; }); })
     .then(function(){
-      show('ok','<b>Demande enregistrée.</b> Thierry Bismuth vous rappelle pour vérifier qu\'aucune enseigne concurrente n\'est inscrite sur vos soirées, puis caler les détails. Un email de confirmation vient de vous être envoyé.');
+      show('ok','<b>Demande enregistrée.</b> Thierry Bismuth vous rappelle pour caler les détails. Un email de confirmation vient de vous être envoyé.');
       var li=choix.map(function(c){return '<li>'+esc(c)+'</li>';}).join('');
       fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:'bismuththierry@gmail.com',
         subject:'Soirée franchise — demande de '+p.ens,
@@ -240,7 +265,8 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       document.querySelectorAll('input[type=checkbox]').forEach(function(c){c.checked=false;}); document.querySelectorAll('.ville').forEach(function(v){v.classList.remove('on');}); majTotal();
       btn.disabled=false;
     })
-    .catch(function(){ show('ko','Votre demande n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez Thierry au 06 10 70 30 90.'); btn.disabled=false; });
+    .catch(function(e){ if(e&&e.conf){ rerendre(); show('ko','Une autre enseigne vient de s\'inscrire&nbsp;: '+e.conf.map(function(x){return esc(x[0]+' — '+x[1]);}).join(', ')+' n\'est plus disponible pour votre secteur. Choisissez une autre soirée dans cette ville, ou une autre ville. Rien n\'a été enregistré.'); btn.disabled=false; return; }
+      show('ko','Votre demande n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez Thierry au 06 10 70 30 90.'); btn.disabled=false; });
   });
 })();
 </script>
