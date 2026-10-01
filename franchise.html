@@ -228,7 +228,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),p.ens,p.prenom,p.nom,p.fonction,p.email,"'"+p.tel,villes,p.nb,p.msg,'Nouvelle demande','',p.montant,'Oui']]})})
     .then(function(r){ return r.text().then(function(t){ if(!r.ok||!t) throw 0; var j=JSON.parse(t); if(!j.updates) throw 0; return j; }); })
     .then(function(){
-      show('ok','<b>Demande enregistrée.</b> Thierry Bismuth vous rappelle pour vérifier qu'aucune enseigne concurrente n'est inscrite sur vos soirées, puis caler les détails. Un email de confirmation vient de vous être envoyé.');
+      show('ok','<b>Demande enregistrée.</b> Thierry Bismuth vous rappelle pour vérifier qu\'aucune enseigne concurrente n\'est inscrite sur vos soirées, puis caler les détails. Un email de confirmation vient de vous être envoyé.');
       var li=choix.map(function(c){return '<li>'+esc(c)+'</li>';}).join('');
       fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:'bismuththierry@gmail.com',
         subject:'Soirée franchise — demande de '+p.ens,
