@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ON VOUS RAPPELLERA — Rencontrez des entrepreneurs au théâtre</title>
-<meta name="description" content="Franchiseurs : nous invitons en votre nom 5 à 10 entrepreneurs qualifiés à une représentation d'On vous rappellera, dans les villes où vous voulez vous développer.">
+<meta name="description" content="Franchiseurs : nous invitons en votre nom 8 entrepreneurs qualifiés à une représentation d'On vous rappellera, dans les villes où vous voulez vous développer.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -55,6 +55,8 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
 @media(max-width:620px){.fgrid{grid-template-columns:1fr}}
 .btn{display:inline-block;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:1rem;padding:15px 30px;border:0;border-radius:2px;cursor:pointer;margin-top:1.4rem}
 .btn[disabled]{opacity:.55;cursor:default}
+.total{margin-top:1.4rem;font-weight:500}
+.avance{display:flex;gap:10px;align-items:flex-start;margin-top:1rem;font-size:.92rem;cursor:pointer;max-width:680px}
 .msg{margin-top:1rem;padding:0;font-size:.95rem}
 .msg.ok{padding:14px 16px;background:#eaf6ec;border-left:3px solid #2e7d32}
 .msg.ko{padding:14px 16px;background:#fdeceb;border-left:3px solid var(--accent)}
@@ -94,8 +96,8 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   <div class="wrap">
     <h2>Votre soirée</h2>
     <ol class="soiree">
-      <li>Vous choisissez vos villes.</li>
-      <li>Nous invitons <b>5 à 10 entrepreneurs</b> en votre nom.</li>
+      <li>Vous choisissez vos villes. <b>5 enseignes maximum</b> par soirée, jamais deux concurrentes.</li>
+      <li>Nous invitons <b>8 entrepreneurs</b> en votre nom.</li>
       <li><b>1 h avant la pièce</b>&nbsp;: votre réunion d'information, à la cafétéria du théâtre.</li>
       <li>La pièce, ensemble, dans un <b>espace réservé</b>.</li>
       <li><b>Après le spectacle</b>&nbsp;: vous les retrouvez pour parler de votre enseigne.</li>
@@ -121,7 +123,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       <li>Ils ont déclaré vouloir créer leur entreprise.</li>
       <li>Ils savent ce qu'est la franchise et ce qu'elle implique économiquement.</li>
       <li>Leur projet est à court terme, dans la ville.</li>
-      <li>Ils ont choisi votre enseigne parmi celles présentes ce soir-là.</li>
+      <li>Ils ont choisi votre enseigne parmi les cinq de la soirée.</li>
     </ul>
   </div>
 </section>
@@ -130,7 +132,9 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   <div class="wrap">
     <h2>Le coût</h2>
     <p class="prix">100&nbsp;€&nbsp;HT <small>par entrepreneur invité</small></p>
+    <p class="inclus">Soit <b>800&nbsp;€&nbsp;HT par soirée</b> pour 8 entrepreneurs invités.</p>
     <p class="inclus">Inclus&nbsp;: le sourcing, le spectacle, l'espace réservé, les boissons.</p>
+    <p class="inclus">Payable d'avance&nbsp;: c'est ce qui finance le sourcing, la salle de théâtre et les comédiens.</p>
   </div>
 </section>
 
@@ -144,11 +148,13 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       <div class="field"><label for="f-prenom">Prénom *</label><input id="f-prenom" autocomplete="given-name"></div>
       <div class="field"><label for="f-nom">Nom *</label><input id="f-nom" autocomplete="family-name"></div>
       <div class="field"><label for="f-fonction">Fonction</label><input id="f-fonction" autocomplete="organization-title"></div>
-      <div class="field"><label for="f-nb">Entrepreneurs par soirée</label><select id="f-nb"><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option value="À définir">À définir ensemble</option></select></div>
+      <div class="field"><label for="f-nb">Secteur d'activité *</label><input id="f-nb" placeholder="Ex. coiffure, immobilier, restauration…"></div>
       <div class="field"><label for="f-email">Email *</label><input id="f-email" type="email" autocomplete="email"></div>
       <div class="field"><label for="f-tel">Portable *</label><input id="f-tel" type="tel" autocomplete="tel"></div>
       <div class="field full"><label for="f-msg">Un mot sur votre projet de développement</label><textarea id="f-msg" rows="3"></textarea></div>
     </div>
+    <p class="total" id="f-total"></p>
+    <label class="avance"><input type="checkbox" id="f-avance"><span>J'ai bien noté que la prestation est payable d'avance (elle finance le sourcing, la salle de théâtre et les comédiens).</span></label>
     <button class="btn" id="f-btn" type="button">Envoyer ma demande</button>
     <div class="msg" id="f-res" role="status"></div>
   </div>
@@ -195,6 +201,10 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     document.querySelectorAll('.cv').forEach(function(c){ if(coches.indexOf(c.value)>-1){ c.checked=true; g('v'+c.dataset.i).classList.add('on'); } });
   }).catch(function(){});
 
+  function nbSoirees(){ var n=0,av=0; document.querySelectorAll('.cv:checked').forEach(function(c){ var d=[].filter.call(document.querySelectorAll('.cd:checked'),function(x){return x.dataset.v===c.value;}).length; if(d) n+=d; else av++; }); return {n:n,av:av}; }
+  function majTotal(){ var s=nbSoirees(), t=g('f-total'); if(!s.n&&!s.av){t.textContent='';return;}
+    t.innerHTML=(s.n?s.n+' soirée'+(s.n>1?'s':'')+' × 800&nbsp;€&nbsp;HT = <b>'+(s.n*800).toLocaleString('fr-FR')+'&nbsp;€&nbsp;HT</b>':'')+(s.av?(s.n?'<br>':'')+s.av+' ville'+(s.av>1?'s':'')+' sans date choisie&nbsp;: montant calculé quand la date sera fixée.':''); }
+  document.addEventListener('change',function(e){ if(e.target.matches('.cv,.cd')) majTotal(); });
   function show(k,t){ var m=g('f-res'); m.className='msg '+k; m.innerHTML=t; }
   g('f-btn').addEventListener('click',function(){
     var choix=[];
@@ -208,23 +218,26 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     if(!p.ens){ show('ko','Indiquez le nom de votre enseigne.'); return; }
     if(!p.prenom||!p.nom){ show('ko','Indiquez votre prénom et votre nom.'); return; }
     if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
+    if(!p.nb){ show('ko','Indiquez votre secteur d\'activité.'); return; }
     if(p.tel.replace(/\D/g,'').length<9){ show('ko','Indiquez votre portable.'); return; }
+    if(!g('f-avance').checked){ show('ko','Cochez la case sur le paiement d\'avance.'); return; }
+    var S=nbSoirees(); p.montant=S.n*800;
     var btn=g('f-btn'); btn.disabled=true; show('ok','Envoi en cours…');
     var villes=choix.join(' | ');
-    fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'append',range:TAB+'!A:L',
-      values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),p.ens,p.prenom,p.nom,p.fonction,p.email,"'"+p.tel,villes,p.nb,p.msg,'Nouvelle demande','']]})})
+    fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'append',range:TAB+'!A:N',
+      values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),p.ens,p.prenom,p.nom,p.fonction,p.email,"'"+p.tel,villes,p.nb,p.msg,'Nouvelle demande','',p.montant,'Oui']]})})
     .then(function(r){ return r.text().then(function(t){ if(!r.ok||!t) throw 0; var j=JSON.parse(t); if(!j.updates) throw 0; return j; }); })
     .then(function(){
-      show('ok','<b>Demande enregistrée.</b> Thierry Bismuth vous rappelle pour caler vos soirées. Un email de confirmation vient de vous être envoyé.');
+      show('ok','<b>Demande enregistrée.</b> Thierry Bismuth vous rappelle pour vérifier qu'aucune enseigne concurrente n'est inscrite sur vos soirées, puis caler les détails. Un email de confirmation vient de vous être envoyé.');
       var li=choix.map(function(c){return '<li>'+esc(c)+'</li>';}).join('');
       fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:'bismuththierry@gmail.com',
         subject:'Soirée franchise — demande de '+p.ens,
-        body:'<p><b>'+esc(p.ens)+'</b> — '+esc(p.prenom)+' '+esc(p.nom)+(p.fonction?' ('+esc(p.fonction)+')':'')+'<br>'+esc(p.email)+' — '+esc(p.tel)+'</p><p>Entrepreneurs par soirée : '+esc(p.nb)+'</p><ul>'+li+'</ul>'+(p.msg?'<p>Message : '+esc(p.msg)+'</p>':'')+'<p>Enregistré dans l\'onglet « Soirées franchise » du tableau de chasse.</p>'})}).catch(function(){});
+        body:'<p><b>'+esc(p.ens)+'</b> — '+esc(p.prenom)+' '+esc(p.nom)+(p.fonction?' ('+esc(p.fonction)+')':'')+'<br>'+esc(p.email)+' — '+esc(p.tel)+'</p><p>Secteur : '+esc(p.nb)+' — montant estimé : '+p.montant+' € HT (paiement d\'avance accepté)</p><ul>'+li+'</ul>'+(p.msg?'<p>Message : '+esc(p.msg)+'</p>':'')+'<p>Enregistré dans l\'onglet « Soirées franchise » du tableau de chasse.</p>'})}).catch(function(){});
       fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:p.email,
         subject:'On vous rappellera — votre demande de soirée franchise',
-        body:'<p>Bonjour '+esc(p.prenom)+',</p><p>Merci pour votre demande au nom de '+esc(p.ens)+'. Voici ce que vous avez choisi :</p><ul>'+li+'</ul><p>Je vous rappelle pour caler les détails.</p><p>Thierry Bismuth<br>bismuththierry@gmail.com — 06 10 70 30 90</p><p style="font-size:12px;color:#777">Ce message est envoyé automatiquement. En cas d\'erreur, appelez-moi directement au 06 10 70 30 90.</p>'})}).catch(function(){});
+        body:'<p>Bonjour '+esc(p.prenom)+',</p><p>Merci pour votre demande au nom de '+esc(p.ens)+'. Voici ce que vous avez choisi :</p><ul>'+li+'</ul><p>Montant estimé : '+p.montant+' € HT pour les dates choisies, payable d\'avance.</p><p>Je vous rappelle pour vérifier qu\'aucune enseigne concurrente n\'est déjà inscrite sur vos soirées, puis caler les détails.</p><p>Thierry Bismuth<br>bismuththierry@gmail.com — 06 10 70 30 90</p><p style="font-size:12px;color:#777">Ce message est envoyé automatiquement. En cas d\'erreur, appelez-moi directement au 06 10 70 30 90.</p>'})}).catch(function(){});
       ['f-ens','f-prenom','f-nom','f-fonction','f-email','f-tel','f-msg'].forEach(function(x){g(x).value='';});
-      document.querySelectorAll('input[type=checkbox]').forEach(function(c){c.checked=false;}); document.querySelectorAll('.ville').forEach(function(v){v.classList.remove('on');});
+      document.querySelectorAll('input[type=checkbox]').forEach(function(c){c.checked=false;}); document.querySelectorAll('.ville').forEach(function(v){v.classList.remove('on');}); majTotal();
       btn.disabled=false;
     })
     .catch(function(){ show('ko','Votre demande n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez Thierry au 06 10 70 30 90.'); btn.disabled=false; });
