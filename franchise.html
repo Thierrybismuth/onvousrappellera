@@ -30,6 +30,24 @@ ol.soiree li b{font-weight:600}
 .trio{display:grid;gap:.4rem;margin-top:.4rem}
 .trio p{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.4rem,3.2vw,2rem);line-height:1.2}
 .trio p span{color:var(--gris);font-weight:600}
+.trio2{display:grid;gap:14px}
+@media(min-width:760px){.trio2{grid-template-columns:repeat(3,1fr)}}
+.trio2 .t{border-top:4px solid var(--accent);background:var(--doux);padding:22px 20px 24px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.trio2.vu .t{opacity:1;transform:none}
+.trio2.vu .t:nth-child(2){transition-delay:.18s}.trio2.vu .t:nth-child(3){transition-delay:.36s}
+.t-ic{position:relative;width:56px;height:56px;color:#9aa0a8;margin-bottom:12px}
+.t-ic svg{width:100%;height:100%}
+.t-ic.barre::after{content:"";position:absolute;left:-4px;top:88%;width:0;height:3px;background:var(--accent);transform:rotate(-35deg);transform-origin:left center;transition:width .5s ease .5s}
+.trio2.vu .t-ic.barre::after{width:72px}
+.t-a{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.7rem,3.6vw,2.2rem);line-height:1.05;color:var(--marine)}
+.t-b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.3rem,2.8vw,1.6rem);color:var(--gris);line-height:1.15;margin-top:2px}
+.inclus-t{margin-top:1.6rem;font-weight:600;font-size:1.05rem}
+ul.inclus2{list-style:none;display:grid;gap:12px;margin-top:.8rem;max-width:700px}
+ul.inclus2 li{display:flex;gap:16px;align-items:center;background:var(--doux);padding:14px 16px;border-left:3px solid var(--or)}
+.i-ic{flex:0 0 46px;width:46px;height:46px;color:var(--accent)}
+.i-ic svg{width:100%;height:100%}
+ul.inclus2 b{display:block;font-weight:600;font-size:1.02rem}
+@media(prefers-reduced-motion:reduce){.trio2 .t{opacity:1;transform:none}.t-ic.barre::after{width:72px}}
 .photos{display:grid;gap:14px;margin-top:1.6rem}
 .photos img{display:block;width:100%;height:auto}
 @media(min-width:760px){.photos{grid-template-columns:1fr 1fr;align-items:start}}
@@ -111,11 +129,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
 
 <section>
   <div class="wrap">
-    <div class="trio">
-      <p>Plus efficace <span>qu'un mailing.</span></p>
-      <p>Plus original <span>qu'un appel.</span></p>
-      <p>Plus agréable <span>qu'un salon de la franchise.</span></p>
-    </div>
+    <div class="trio2"><div class="t"><div class="t-ic barre"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="12" width="36" height="24" rx="2"/><path d="M6 14l18 13 18-13"/></svg></div><p class="t-a">Plus efficace</p><p class="t-b">qu'un mailing.</p></div><div class="t"><div class="t-ic barre"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6h7l3 9-4.5 3a22 22 0 0 0 10.5 10.5L33 24l9 3v7a3 3 0 0 1-3 3A32 32 0 0 1 11 9a3 3 0 0 1 3-3z"/></svg></div><p class="t-a">Plus original</p><p class="t-b">qu'un appel.</p></div><div class="t"><div class="t-ic barre"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 40V16l18-8 18 8v24"/><rect x="12" y="24" width="8" height="16"/><rect x="28" y="24" width="8" height="16"/><path d="M6 40h36"/></svg></div><p class="t-a">Plus agréable</p><p class="t-b">qu'un salon de la franchise.</p></div></div>
   </div>
 </section>
 
@@ -136,7 +150,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     <h2>Le coût</h2>
     <p class="prix">100&nbsp;€&nbsp;HT <small>par entrepreneur invité</small></p>
     <p class="inclus">Soit <b>800&nbsp;€&nbsp;HT par soirée</b> pour 8 entrepreneurs invités.</p>
-    <p class="inclus">Inclus&nbsp;: le sourcing, le spectacle, l'espace réservé, les boissons.</p>
+    <p class="inclus-t">Tout est inclus</p><ul class="inclus2"><li><span class="i-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="11"/><path d="M28 28l12 12"/><circle cx="20" cy="17" r="3.5"/><path d="M14 26c1.5-3 3.5-4 6-4s4.5 1 6 4"/></svg></span><span><b>Le sourcing</b>de vos entrepreneurs, sur toutes les bases de données.</span></li><li><span class="i-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14h36v6a4 4 0 0 0 0 8v6H6v-6a4 4 0 0 0 0-8z"/><path d="M24 17.5l1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6z"/></svg></span><span><b>Le spectacle</b>en carré or.</span></li><li><span class="i-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 8h12l-1 10a5 5 0 0 1-10 0z"/><path d="M16 23v13M11 36h10"/><path d="M28 14h10v16a5 5 0 0 1-10 0z"/><path d="M38 18h3a3 3 0 0 1 0 6h-3"/></svg></span><span><b>L'espace réservé et les boissons</b>avant et après le spectacle, à la cafétéria.</span></li></ul>
     <p class="inclus">Payable d'avance&nbsp;: c'est ce qui finance le sourcing, la salle de théâtre et les comédiens.</p>
   </div>
 </section>
@@ -194,6 +208,9 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     }).join('');
     document.querySelectorAll('.cv').forEach(function(c){ c.addEventListener('change',function(){ g('v'+c.dataset.i).classList.toggle('on',c.checked); }); });
   }
+  (function(){ var t=document.querySelector('.trio2'); if(!t) return;
+    if(!('IntersectionObserver' in window)){ t.classList.add('vu'); return; }
+    var io=new IntersectionObserver(function(e){ if(e[0].isIntersecting){ t.classList.add('vu'); io.disconnect(); } },{threshold:.35}); io.observe(t); })();
   var OCC={};
   function cle(v,d){ return v+'|'+d; }
   function etat(v,d){ var o=OCC[cle(v,d)], s=(g('f-nb')||{}).value; if(!o) return ''; if(s&&s!=='Autre'&&o.s.indexOf(s)>-1) return 'pris'; if(o.n>=5) return 'complet'; return ''; }
