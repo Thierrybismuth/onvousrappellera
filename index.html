@@ -87,6 +87,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   a.vdate{text-decoration:none;cursor:pointer;transition:background .2s;}
   a.vdate:hover,a.vdate:focus{background:#f9d6d3;}
   .vdate b{font-size:.74rem;color:var(--accent);font-weight:500;margin-top:4px;}
+  .vdate.vplein{background:#f1efea;border-left-color:#9a9a9a;}
+  .vdate.vplein b{color:#6b7280;font-weight:600;}
   .vdate strong{font-size:1rem;color:var(--marine);font-weight:500;}
   .vdate span{font-size:.74rem;color:var(--gris);}
   .vlieu{font-size:.82rem;color:var(--marine);margin:-4px 0 12px 17px;line-height:1.45;}
@@ -430,14 +432,24 @@ document.addEventListener('DOMContentLoaded',function(){
   function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
   var AUCUNE='Aucune de ces dates — prévenez-moi du prochain créneau';
   function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
-  document.querySelectorAll('.vdates').forEach(function(box){
-    var L=DATES[box.dataset.ville]||[];
-    box.innerHTML=L.map(function(o){ return '<a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Choisir cette date &rarr;</b></a>'+lieuHTML(o.l); }).join('');
-  });
+  // Places restantes par séance (calculées par le service de billetterie, à l'ouverture de la page)
+  var DISPO={};
+  function reste(o){ return (o.c && (o.c in DISPO)) ? DISPO[o.c] : null; }
+  function rendreDates(){
+    document.querySelectorAll('.vdates').forEach(function(box){
+      var L=DATES[box.dataset.ville]||[];
+      box.innerHTML=L.map(function(o){ var r=reste(o);
+        if(r!==null && r<=0) return '<div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l);
+        return '<a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=10)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l); }).join('');
+    });
+  }
+  rendreDates();
+  fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})})
+    .then(function(r){return r.json();}).then(function(d){ if(d&&d.dispo){ DISPO=d.dispo; rendreDates(); var v=document.getElementById('f-ville'); if(v&&v.value){ var sd=document.getElementById('f-date').value; majDates(v.value, sd); } } }).catch(function(){});
   function majDates(v,choix){
     var w=document.getElementById('f-date-wrap'), s=document.getElementById('f-date'), L=DATES[v];
     if(!L){ w.style.display='none'; s.innerHTML=''; modeResa(); return; }
-    s.innerHTML='<option value="">— Choisissez une date —</option>'+L.map(function(o){ return '<option value="'+esc(o.d)+'">'+esc(o.d)+' ('+esc(o.t)+')</option>'; }).join('')+'<option value="__autre">'+AUCUNE+'</option>';
+    s.innerHTML='<option value="">— Choisissez une date —</option>'+L.map(function(o){ var r=reste(o), plein=(r!==null&&r<=0); return '<option value="'+esc(o.d)+'"'+(plein?' disabled':'')+'>'+esc(o.d)+' ('+esc(o.t)+')'+(plein?' — complet':'')+'</option>'; }).join('')+'<option value="__autre">'+AUCUNE+'</option>';
     w.style.display=''; s.value=choix||'';
     modeResa();
   }
