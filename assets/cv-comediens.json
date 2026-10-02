@@ -1,18 +1,4 @@
 {
- "maj": "2026-10-02T11:35:01.347Z",
- "comediens": [
-  {
-   "prenom": "Test",
-   "nom": "Claude",
-   "ville": "Toulouse",
-   "parcours": [
-    "Ligne un",
-    "Ligne deux",
-    "Ligne trois"
-   ],
-   "videos": [
-    "https://drive.google.com/file/d/18M_NCwQmpowFN_lvOdUpXT4R4aK8JMGg/view"
-   ]
-  }
- ]
+ "maj": "2026-10-02T11:36:44.837Z",
+ "comediens": []
 }
