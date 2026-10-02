@@ -1,4 +1,16 @@
 {
- "maj": "2026-10-02T11:36:44.837Z",
- "comediens": []
+ "maj": "2026-10-02T15:25:51.532Z",
+ "comediens": [
+  {
+   "prenom": "Kevin",
+   "nom": "Lissajoux",
+   "ville": "Bordeaux",
+   "parcours": [
+    "J'ai été la doublure de Kit Harington sur un film avec Mark Wahlberg",
+    "J'ai donné la réplique à Didier Bourdon dans la série TF1 Le Daron",
+    "J'ai joué un soldat Napoléonien de 1815, un poilu de 1916 et un soldat américain de 1944"
+   ],
+   "videos": []
+  }
+ ]
 }
