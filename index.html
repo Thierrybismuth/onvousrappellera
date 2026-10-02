@@ -80,6 +80,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vd[open] summary::after{content:"\2212";}
   .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
   .vbody{padding:0 18px 16px;}
+  .vcv{display:grid;gap:10px;margin:4px 0 14px;}
+  .vcv-c{border-left:3px solid var(--accent);background:#faf8f4;padding:10px 13px;}
+  .vcv-n{font-weight:600;font-size:.95rem;color:var(--marine);margin:0 0 4px;}
+  .vcv-c ul{margin:0 0 6px;padding-left:1.1em;font-size:.86rem;line-height:1.45;}
+  .vcv-v{display:flex;flex-wrap:wrap;gap:8px;font-size:.8rem;}
+  .vcv-v a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
   .vtroupe{margin:2px 0 14px;}
   .vtroupe img{display:block;width:100%;max-width:640px;height:auto;}
   .vtroupe figcaption{font-size:.72rem;color:var(--gris);margin-top:6px;letter-spacing:.04em;}
@@ -528,5 +534,28 @@ document.addEventListener('DOMContentLoaded',function(){
     <div id="vslot"></div>
   </div>
 </div>
+<script>
+/* Mini-CV des comédiens : lus à l'ouverture de la page dans /assets/cv-comediens.json (alimenté par le formulaire « Mon CV » de l'espace troupes) */
+(function(){
+ function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+ fetch('/assets/cv-comediens.json?'+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
+  if(!d||!d.comediens||!d.comediens.length) return;
+  var par={}; d.comediens.forEach(function(c){(par[c.ville]=par[c.ville]||[]).push(c);});
+  document.querySelectorAll('details.vd').forEach(function(dt){
+   var sm=dt.querySelector('summary'); if(!sm) return;
+   var v=(sm.firstChild&&sm.firstChild.textContent||'').trim(), L=par[v]; if(!L) return;
+   var b=dt.querySelector('.vbody'); if(!b) return;
+   var h='<div class="vcv">'+L.map(function(c){
+     var p=(c.parcours||[]).filter(Boolean), vi=(c.videos||[]).filter(Boolean);
+     return '<div class="vcv-c"><p class="vcv-n">'+e(c.prenom)+' '+e(c.nom)+'</p>'
+      +(p.length?'<ul>'+p.map(function(x){return '<li>'+e(x)+'</li>';}).join('')+'</ul>':'')
+      +(vi.length?'<div class="vcv-v">'+vi.map(function(u,i){return '<a href="'+e(u)+'" target="_blank" rel="noopener">&#9654; Vidéo '+(i+1)+'</a>';}).join('')+'</div>':'')
+      +'</div>';}).join('')+'</div>';
+   var f=b.querySelector('figure.vtroupe');
+   if(f) f.insertAdjacentHTML('afterend',h); else b.insertAdjacentHTML('afterbegin',h);
+  });
+ }).catch(function(){});
+})();
+</script>
 </body>
 </html>
