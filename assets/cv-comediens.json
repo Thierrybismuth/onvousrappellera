@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-04T20:23:47.426Z",
+ "maj": "2026-10-04T20:24:01.988Z",
  "comediens": [
   {
    "prenom": "Kevin",
@@ -206,19 +206,6 @@
     "https://onvousrappellera.fr/assets/comediens/nolwenn-canal.jpg?v=1791139298820"
    ],
    "personnage": "Johana",
-   "parcours": [],
-   "videos": []
-  },
-  {
-   "prenom": "Test",
-   "nom": "Claudeessai",
-   "ville": "Reims",
-   "troupe": "",
-   "portrait": "https://drive.google.com/file/d/182_g3zanbH6QCLK8du5lYrHWRraqBTe9/view",
-   "photos": [
-    "https://drive.google.com/file/d/182_g3zanbH6QCLK8du5lYrHWRraqBTe9/view"
-   ],
-   "personnage": "",
    "parcours": [],
    "videos": []
   },
