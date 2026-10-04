@@ -1,6 +1,16 @@
 {
- "maj": "2026-10-04T18:23:11.246Z",
+ "maj": "2026-10-04T18:41:38.820Z",
  "comediens": [
+  {
+   "prenom": "Kevin",
+   "nom": "Lissajoux",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/kevin-lissajoux.jpg?v=1791139298820",
+   "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
   {
    "prenom": "Alicia",
    "nom": "Bader",
@@ -8,6 +18,66 @@
    "troupe": "Esprit d'équipe",
    "portrait": "https://onvousrappellera.fr/assets/comediens/alicia-bader.jpg",
    "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Anne",
+   "nom": "Dupuy",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/anne-dupuy.jpg?v=1791139298820",
+   "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Arthur",
+   "nom": "Pichon",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/arthur-pichon.jpg?v=1791139298820",
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Bruno",
+   "nom": "Rodet",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/bruno-rodet.jpg?v=1791139298820",
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Clarence",
+   "nom": "Pernot",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/clarence-pernot.jpg?v=1791139298820",
+   "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Fanny",
+   "nom": "Cony",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/fanny-cony.jpg?v=1791139298820",
+   "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Fritz",
+   "nom": "Sönnichsen",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/fritz-sonnichsen.jpg?v=1791139298820",
+   "personnage": "Daniel + Dominique",
    "parcours": [],
    "videos": []
   },
@@ -32,6 +102,16 @@
    "videos": []
   },
   {
+   "prenom": "Lucile",
+   "nom": "Ehrler",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/lucile-ehrler.jpg?v=1791139298820",
+   "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Nadège",
    "nom": "Garnier",
    "ville": "Paris",
@@ -48,6 +128,26 @@
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-charade.jpg",
    "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Nathalie",
+   "nom": "Codani",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-codani.jpg?v=1791139298820",
+   "personnage": "Danielle + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Nolwenn",
+   "nom": "Canal",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/nolwenn-canal.jpg?v=1791139298820",
+   "personnage": "Johana",
    "parcours": [],
    "videos": []
   },
