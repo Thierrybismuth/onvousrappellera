@@ -84,6 +84,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   #ovr-zoom{position:fixed;inset:0;z-index:9999;background:rgba(255,255,255,.97);display:none;align-items:center;justify-content:center;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 44px) 12px calc(env(safe-area-inset-bottom,0px) + 16px);cursor:zoom-out;}
   #ovr-zoom.on{display:flex;}
   .vgrp .vcv{flex-wrap:wrap;overflow:visible;}
+  .vmedia{display:block;}
+  .vmedia::after{content:"";display:table;clear:both;}
+  .vmedia .vtroupe{float:left;width:50%;max-width:320px;margin:0 10px 10px 0;}
+  .vmedia .vcv{display:block;}
+  .vmedia .vcv-c{display:inline-block;vertical-align:top;margin:0 8px 10px 0;}
   #ovr-zoom img{max-width:100%;max-height:calc(100% - 40px);width:auto;height:auto;object-fit:contain;box-shadow:0 4px 24px rgba(0,0,0,.15);}
   #ovr-zoom p{margin:10px 0 0;font-size:.9rem;color:var(--marine);text-align:center;}
   #ovr-zoom button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 8px);right:12px;border:0;background:none;font-size:1.8rem;line-height:1;color:var(--marine);cursor:pointer;}
@@ -93,12 +98,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vmedia .vtroupe{flex:0 0 50%;max-width:320px;margin:0;}
   .vmedia .vtroupe figcaption{display:none;}
   .vmedia .vcv{flex:1;flex-wrap:wrap;overflow:visible;margin:0;gap:8px;}
-  .vmedia .vcv-c{width:62px;}
-  .vmedia .vcv-n{font-size:.64rem;}
-  .vmedia .vcv-r{font-size:.62rem;}
-  .vgrp .vcv-c{width:62px;}
-  .vgrp .vcv-n{font-size:.64rem;}
-  .vgrp .vcv-r{font-size:.62rem;}
+  .vmedia .vcv-c{width:124px;}
+  .vmedia .vcv-n{font-size:.78rem;}
+  .vmedia .vcv-r{font-size:.72rem;}
+  .vgrp .vcv-c{width:124px;}
+  .vgrp .vcv-n{font-size:.78rem;}
+  .vgrp .vcv-r{font-size:.72rem;}
   .vcv{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:12px;overflow-x:auto;margin:4px 0 18px;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
   .vcv-c{flex:0 0 auto;width:104px;text-align:center;}
   .vcv-p{display:block;width:100%;height:auto;margin:0 0 6px;}
