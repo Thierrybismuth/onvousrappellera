@@ -553,7 +553,9 @@ document.addEventListener('DOMContentLoaded',function(){
  function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
  /* Paris : chaque troupe commence par son nom, puis sa photo (moitié de largeur) avec les comédiens à côté */
  document.querySelectorAll('figure.vtroupe').forEach(function(f){ if(f.parentNode.classList.contains('vmedia')) return;
-   var md=document.createElement('div'); md.className='vmedia'; f.parentNode.insertBefore(md,f); md.appendChild(f); });
+   var md=document.createElement('div'); md.className='vmedia'; f.parentNode.insertBefore(md,f); md.appendChild(f);
+   /* villes : la date et le théâtre d'abord, la photo de troupe et les comédiens ensuite */
+   if(md.parentNode.classList.contains('vbody')){ var an=md.parentNode.querySelector(':scope > .vdates, :scope > .vavenir'); if(an) an.after(md); } });
  document.querySelectorAll('.vgrp').forEach(function(g){ if(g.querySelector('.vgrp-t')) return;
    g.insertAdjacentHTML('afterbegin','<p class="vgrp-t">Troupe '+e(g.dataset.troupe)+'</p>'); });
  fetch('/assets/cv-comediens.json?'+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
@@ -573,7 +575,7 @@ document.addEventListener('DOMContentLoaded',function(){
       +(vi.length?'<div class="vcv-v">'+vi.map(function(u,i){return '<a href="'+e(u)+'" target="_blank" rel="noopener">&#9654; Vidéo '+(i+1)+'</a>';}).join('')+'</div>':'')
       +'</div>';}).join('')+'</div>';
    var f=b.querySelector('figure.vtroupe');
-   if(grp){ var md=b.querySelector('.vmedia'); (md||b).insertAdjacentHTML('beforeend',h); } else if(f){ var m2=f.closest('.vmedia'); if(m2) m2.insertAdjacentHTML('beforeend',h); else f.insertAdjacentHTML('afterend',h); } else b.insertAdjacentHTML('afterbegin',h);
+   if(grp){ var md=b.querySelector('.vmedia'); (md||b).insertAdjacentHTML('beforeend',h); } else if(f){ var m2=f.closest('.vmedia'); if(m2) m2.insertAdjacentHTML('beforeend',h); else f.insertAdjacentHTML('afterend',h); } else { var an2=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an2) an2.insertAdjacentHTML('afterend',h); else b.insertAdjacentHTML('afterbegin',h); }
   });
  }).catch(function(){});
 })();
