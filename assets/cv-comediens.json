@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-04T18:41:38.820Z",
+ "maj": "2026-10-04T19:06:15.553Z",
  "comediens": [
   {
    "prenom": "Kevin",
@@ -72,6 +72,16 @@
    "videos": []
   },
   {
+   "prenom": "Frederique",
+   "nom": "Gautier",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/frederique-gautier.jpg?v=1791140775553",
+   "personnage": "Danielle + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Fritz",
    "nom": "Sönnichsen",
    "ville": "Paris",
@@ -126,7 +136,7 @@
    "nom": "Charade",
    "ville": "Paris",
    "troupe": "Engagement",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-charade.jpg",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-charade.jpg?v=1791140775553",
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
