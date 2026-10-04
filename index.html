@@ -80,6 +80,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vd[open] summary::after{content:"\2212";}
   .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
   .vbody{padding:0 18px 16px;}
+  .vtr{margin:0 0 18px;padding-top:14px;border-top:1px solid var(--gris-clair);}
+  .vtr:first-child{border-top:0;padding-top:0;}
+  .vtr-t{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);font-weight:600;margin:0 0 8px;}
+  .vmini{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 6px;}
+  .vmini figure{margin:0;}
+  .vmini img{display:block;height:96px;width:auto;max-width:100%;}
+  .vmini figcaption{font-size:.66rem;color:var(--gris);margin-top:3px;line-height:1.25;}
   .vcv{display:grid;gap:10px;margin:4px 0 14px;}
   .vcv-c{border-left:3px solid var(--accent);background:#faf8f4;padding:10px 13px;}
   .vcv-p{display:block;width:100%;max-width:220px;height:auto;margin:0 0 8px;}
@@ -240,9 +247,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <p class="lead">Les premières dates sont jouées en décembre 2026. Dès janvier 2027, chaque troupe résidente joue une fois par semaine dans sa ville. À partir d'avril 2027, la tournée s'étend à 10 autres villes&nbsp;: Strasbourg, Grenoble, Rouen, Toulon, Saint-Étienne, Tours, Clermont-Ferrand, Nancy, Nice et Angers. <strong>Déroulez votre ville pour voir ses dates.</strong> Places à 20&nbsp;€ (tarif partenaire), 15&nbsp;€ pour les demandeurs d'emploi et les étudiants.</p>
     <div class="vlist">
       <h3 class="vbloc-t">Nos 10 troupes résidentes</h3>
-      <details class="vd" data-cvville="Paris" data-troupe="Honnêteté"><summary>Paris · troupe Honnêteté<em>22 novembre</em></summary><div class="vbody"><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div><p class="vcad">Un cadeau surprise est remis à l'entrée de l'avant-première.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
-      <details class="vd" data-cvville="Paris" data-troupe="Engagement"><summary>Paris · troupe Engagement<em>26 novembre</em></summary><div class="vbody"><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><p class="vcad">Un cadeau surprise est remis à l'entrée de l'avant-première.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
-      <details class="vd" data-cvville="Paris" data-troupe="Esprit d'équipe"><summary>Paris · troupe Esprit d'équipe<em>Dès janvier 2027</em></summary><div class="vbody"><p class="vavenir">Une représentation chaque semaine dès janvier 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
+      <details class="vd" data-cvville="Paris" data-multi="1"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody"><div class="vtr" data-troupe="Honnêteté"><p class="vtr-t">Troupe Honnêteté</p><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div></div><!--/vtr--><div class="vtr" data-troupe="Engagement"><p class="vtr-t">Troupe Engagement</p><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vtr--><div class="vtr" data-troupe="Esprit d'équipe"><p class="vtr-t">Troupe Esprit d'équipe</p><p class="vavenir">Une représentation chaque semaine dès janvier 2027 — le jour et le théâtre sont en cours de calage.</p></div><!--/vtr--><p class="vcad">Un cadeau surprise est remis à l'entrée des avant-premières des 22 et 26 novembre.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
       <details class="vd"><summary>Bordeaux<em>4 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Bordeaux"></div><a class="vprev" href="#prevenez-moi" data-ville="Bordeaux">Être prévenu pour Bordeaux &rarr;</a></div></details>
       <details class="vd"><summary>Lille<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Lille"></div><a class="vprev" href="#prevenez-moi" data-ville="Lille">Être prévenu pour Lille &rarr;</a></div></details>
       <details class="vd"><summary>Lyon<em>2 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Lyon"></div><a class="vprev" href="#prevenez-moi" data-ville="Lyon">Être prévenu pour Lyon &rarr;</a></div></details>
@@ -537,7 +542,9 @@ document.addEventListener('DOMContentLoaded',function(){
   var par={}; d.comediens.forEach(function(c){(par[c.ville]=par[c.ville]||[]).push(c);});
   document.querySelectorAll('details.vd').forEach(function(dt){
    var sm=dt.querySelector('summary'); if(!sm) return;
-   var v=dt.dataset.cvville||(sm.firstChild&&sm.firstChild.textContent||'').trim(), L=par[v]; if(!L) return; if(dt.dataset.troupe){ L=L.filter(function(c){return c.troupe===dt.dataset.troupe;}); if(!L.length) return; }
+   var v=dt.dataset.cvville||(sm.firstChild&&sm.firstChild.textContent||'').trim(), L=par[v]; if(!L) return; if(dt.dataset.multi){ dt.querySelectorAll('.vtr').forEach(function(sec){ var M=L.filter(function(c){return c.troupe===sec.dataset.troupe&&c.portrait;}); if(!M.length) return;
+     sec.insertAdjacentHTML('beforeend','<div class="vmini">'+M.map(function(c){ var ph=c.portrait, id=(ph.match(/\/d\/([A-Za-z0-9_-]{15,})/)||ph.match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; if(id) ph='https://drive.google.com/thumbnail?id='+id+'&sz=w400';
+       return '<figure><img src="'+e(ph)+'" alt="'+e(c.prenom)+' '+e(c.nom)+'" loading="lazy"><figcaption>'+e(c.prenom)+'<br>'+e(c.nom)+'</figcaption></figure>';}).join('')+'</div>'); }); return; } if(dt.dataset.troupe){ L=L.filter(function(c){return c.troupe===dt.dataset.troupe;}); if(!L.length) return; }
    var b=dt.querySelector('.vbody'); if(!b) return;
    var h='<div class="vcv">'+L.map(function(c){
      var p=(c.parcours||[]).filter(Boolean), vi=(c.videos||[]).filter(Boolean);
