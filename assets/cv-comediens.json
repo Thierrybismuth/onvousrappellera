@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-04T18:03:32.510Z",
+ "maj": "2026-10-04T18:06:43.901Z",
  "comediens": [
   {
    "prenom": "Alicia",
@@ -16,6 +16,15 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/isabelle-ricard.jpg",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Jérôme",
+   "nom": "Laboute",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/jerome-laboute.jpg",
    "parcours": [],
    "videos": []
   },
