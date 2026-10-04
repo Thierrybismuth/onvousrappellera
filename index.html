@@ -80,6 +80,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vd[open] summary::after{content:"\2212";}
   .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
   .vbody{padding:0 18px 16px;}
+  .vgrp{margin-top:16px;padding-top:12px;border-top:1px solid var(--gris-clair);}
+  .vgrp-t{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);font-weight:600;margin:0 0 8px;}
+  .vmedia{display:flex;gap:10px;align-items:flex-start;}
+  .vmedia .vtroupe{flex:0 0 50%;max-width:320px;margin:0;}
+  .vmedia .vtroupe figcaption{display:none;}
+  .vmedia .vcv{flex:1;flex-wrap:wrap;overflow:visible;margin:0;gap:8px;}
+  .vgrp .vcv-c{width:68px;}
+  .vgrp .vcv-n{font-size:.64rem;}
+  .vgrp .vcv-r{font-size:.62rem;}
   .vcv{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:12px;overflow-x:auto;margin:4px 0 18px;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
   .vcv-c{flex:0 0 auto;width:104px;text-align:center;}
   .vcv-p{display:block;width:100%;height:auto;margin:0 0 6px;}
@@ -214,9 +223,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <span class="badge">1h15 de comédie</span>
       <span class="badge">Dès décembre 2026</span>
     </div>
-    <div class="affiche">
-      <img src="https://thierrybismuth.com/assets/ovr/affiche-ovr-2027.jpg?v=3" alt="Affiche ON VOUS RAPPELLERA — saison 2026-2027, les 25 comédiens">
-    </div>
+    <div class="video-v"><video controls playsinline preload="metadata" poster="/assets/video/ovr-teaser-2026.jpg" title="Teaser ON VOUS RAPPELLERA"><source src="/assets/video/ovr-teaser-2026.mp4" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="/assets/video/ovr-teaser-2026.mp4">ouvrir la vidéo</a>.</video></div>
   </div>
 </header>
 
@@ -225,7 +232,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <span class="sec-tag">Le teaser</span>
     <h2>1h15 à rire de ce que vous avez déjà vécu</h2>
     <p class="lead">Un entretien qui tourne mal, un CV un peu trop beau, un manager sûr de lui, une DRH à bout, un candidat qui veut juste payer son loyer. <strong>Vous avez déjà été d'un côté ou de l'autre du bureau — et vous allez vous reconnaître.</strong></p>
-    <div class="video-v"><video controls playsinline preload="metadata" poster="/assets/video/ovr-teaser-2026.jpg" title="Teaser ON VOUS RAPPELLERA"><source src="/assets/video/ovr-teaser-2026.mp4" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="/assets/video/ovr-teaser-2026.mp4">ouvrir la vidéo</a>.</video></div>
+    
   </div>
 </section>
 
@@ -535,6 +542,10 @@ document.addEventListener('DOMContentLoaded',function(){
 /* Mini-CV des comédiens : lus à l'ouverture de la page dans /assets/cv-comediens.json (alimenté par le formulaire « Mon CV » de l'espace troupes) */
 (function(){
  function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+ /* Paris : chaque troupe commence par son nom, puis sa photo (moitié de largeur) avec les comédiens à côté */
+ document.querySelectorAll('.vgrp').forEach(function(g){ if(g.querySelector('.vgrp-t')) return; var f=g.querySelector('figure.vtroupe');
+   if(f){ var md=document.createElement('div'); md.className='vmedia'; f.parentNode.insertBefore(md,f); md.appendChild(f); }
+   g.insertAdjacentHTML('afterbegin','<p class="vgrp-t">Troupe '+e(g.dataset.troupe)+'</p>'); });
  fetch('/assets/cv-comediens.json?'+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
   if(!d||!d.comediens||!d.comediens.length) return;
   var par={}; d.comediens.forEach(function(c){(par[c.ville]=par[c.ville]||[]).push(c);});
@@ -552,7 +563,7 @@ document.addEventListener('DOMContentLoaded',function(){
       +(vi.length?'<div class="vcv-v">'+vi.map(function(u,i){return '<a href="'+e(u)+'" target="_blank" rel="noopener">&#9654; Vidéo '+(i+1)+'</a>';}).join('')+'</div>':'')
       +'</div>';}).join('')+'</div>';
    var f=b.querySelector('figure.vtroupe');
-   if(f) f.insertAdjacentHTML('afterend',h); else if(grp) b.insertAdjacentHTML('afterbegin','<p class="vgrp-t">La troupe '+e(dt.dataset.troupe)+'</p>'+h); else b.insertAdjacentHTML('afterbegin',h);
+   if(grp){ var md=b.querySelector('.vmedia'); (md||b).insertAdjacentHTML('beforeend',h); } else if(f) f.insertAdjacentHTML('afterend',h); else b.insertAdjacentHTML('afterbegin',h);
   });
  }).catch(function(){});
 })();
