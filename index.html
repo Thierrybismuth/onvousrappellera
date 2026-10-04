@@ -86,6 +86,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vmedia .vtroupe{flex:0 0 50%;max-width:320px;margin:0;}
   .vmedia .vtroupe figcaption{display:none;}
   .vmedia .vcv{flex:1;flex-wrap:wrap;overflow:visible;margin:0;gap:8px;}
+  .vmedia .vcv-c{width:68px;}
+  .vmedia .vcv-n{font-size:.64rem;}
+  .vmedia .vcv-r{font-size:.62rem;}
   .vgrp .vcv-c{width:68px;}
   .vgrp .vcv-n{font-size:.64rem;}
   .vgrp .vcv-r{font-size:.62rem;}
@@ -536,8 +539,9 @@ document.addEventListener('DOMContentLoaded',function(){
 (function(){
  function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
  /* Paris : chaque troupe commence par son nom, puis sa photo (moitié de largeur) avec les comédiens à côté */
- document.querySelectorAll('.vgrp').forEach(function(g){ if(g.querySelector('.vgrp-t')) return; var f=g.querySelector('figure.vtroupe');
-   if(f){ var md=document.createElement('div'); md.className='vmedia'; f.parentNode.insertBefore(md,f); md.appendChild(f); }
+ document.querySelectorAll('figure.vtroupe').forEach(function(f){ if(f.parentNode.classList.contains('vmedia')) return;
+   var md=document.createElement('div'); md.className='vmedia'; f.parentNode.insertBefore(md,f); md.appendChild(f); });
+ document.querySelectorAll('.vgrp').forEach(function(g){ if(g.querySelector('.vgrp-t')) return;
    g.insertAdjacentHTML('afterbegin','<p class="vgrp-t">Troupe '+e(g.dataset.troupe)+'</p>'); });
  fetch('/assets/cv-comediens.json?'+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
   if(!d||!d.comediens||!d.comediens.length) return;
@@ -556,7 +560,7 @@ document.addEventListener('DOMContentLoaded',function(){
       +(vi.length?'<div class="vcv-v">'+vi.map(function(u,i){return '<a href="'+e(u)+'" target="_blank" rel="noopener">&#9654; Vidéo '+(i+1)+'</a>';}).join('')+'</div>':'')
       +'</div>';}).join('')+'</div>';
    var f=b.querySelector('figure.vtroupe');
-   if(grp){ var md=b.querySelector('.vmedia'); (md||b).insertAdjacentHTML('beforeend',h); } else if(f) f.insertAdjacentHTML('afterend',h); else b.insertAdjacentHTML('afterbegin',h);
+   if(grp){ var md=b.querySelector('.vmedia'); (md||b).insertAdjacentHTML('beforeend',h); } else if(f){ var m2=f.closest('.vmedia'); if(m2) m2.insertAdjacentHTML('beforeend',h); else f.insertAdjacentHTML('afterend',h); } else b.insertAdjacentHTML('afterbegin',h);
   });
  }).catch(function(){});
 })();
