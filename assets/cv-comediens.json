@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-04T20:05:06.310Z",
+ "maj": "2026-10-04T20:10:47.933Z",
  "comediens": [
   {
    "prenom": "Kevin",
@@ -7,6 +7,9 @@
    "ville": "Bordeaux",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/kevin-lissajoux.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/kevin-lissajoux.jpg?v=1791139298820"
+   ],
    "personnage": "Julien",
    "parcours": [],
    "videos": []
@@ -17,6 +20,9 @@
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
    "portrait": "https://onvousrappellera.fr/assets/comediens/alicia-bader.jpg",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/alicia-bader.jpg"
+   ],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -27,6 +33,9 @@
    "ville": "Paris",
    "troupe": "Honnêteté",
    "portrait": "https://onvousrappellera.fr/assets/comediens/anne-dupuy.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/anne-dupuy.jpg?v=1791139298820"
+   ],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -37,6 +46,9 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/arthur-pichon.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/arthur-pichon.jpg?v=1791139298820"
+   ],
    "personnage": "Pascal",
    "parcours": [],
    "videos": []
@@ -47,6 +59,9 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/bruno-rodet.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/bruno-rodet.jpg?v=1791139298820"
+   ],
    "personnage": "Pascal",
    "parcours": [],
    "videos": []
@@ -57,6 +72,9 @@
    "ville": "Paris",
    "troupe": "Honnêteté",
    "portrait": "https://onvousrappellera.fr/assets/comediens/clarence-pernot.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/clarence-pernot.jpg?v=1791139298820"
+   ],
    "personnage": "Julien",
    "parcours": [],
    "videos": []
@@ -67,6 +85,9 @@
    "ville": "Paris",
    "troupe": "Honnêteté",
    "portrait": "https://onvousrappellera.fr/assets/comediens/fanny-cony.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/fanny-cony.jpg?v=1791139298820"
+   ],
    "personnage": "Johana",
    "parcours": [],
    "videos": []
@@ -77,6 +98,9 @@
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
    "portrait": "https://onvousrappellera.fr/assets/comediens/frederique-gautier.jpg?v=1791140775553",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/frederique-gautier.jpg?v=1791140775553"
+   ],
    "personnage": "Danielle + Dominique",
    "parcours": [],
    "videos": []
@@ -87,6 +111,9 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/fritz-sonnichsen.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/fritz-sonnichsen.jpg?v=1791139298820"
+   ],
    "personnage": "Daniel + Dominique",
    "parcours": [],
    "videos": []
@@ -97,6 +124,9 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/isabelle-ricard.jpg",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/isabelle-ricard.jpg"
+   ],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -107,6 +137,9 @@
    "ville": "Paris",
    "troupe": "Honnêteté",
    "portrait": "https://onvousrappellera.fr/assets/comediens/jerome-laboute.jpg",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/jerome-laboute.jpg"
+   ],
    "personnage": "Pascal",
    "parcours": [],
    "videos": []
@@ -117,6 +150,9 @@
    "ville": "Paris",
    "troupe": "Honnêteté",
    "portrait": "https://onvousrappellera.fr/assets/comediens/lucile-ehrler.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/lucile-ehrler.jpg?v=1791139298820"
+   ],
    "personnage": "Johana",
    "parcours": [],
    "videos": []
@@ -127,6 +163,9 @@
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nadege-garnier.jpg",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/nadege-garnier.jpg"
+   ],
    "personnage": "Danielle + Dominique",
    "parcours": [],
    "videos": []
@@ -137,6 +176,9 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-charade.jpg?v=1791140775553",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/nathalie-charade.jpg?v=1791140775553"
+   ],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -147,6 +189,9 @@
    "ville": "Paris",
    "troupe": "Honnêteté",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-codani.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/nathalie-codani.jpg?v=1791139298820"
+   ],
    "personnage": "Danielle + Dominique",
    "parcours": [],
    "videos": []
@@ -157,7 +202,24 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nolwenn-canal.jpg?v=1791139298820",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/nolwenn-canal.jpg?v=1791139298820"
+   ],
    "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Test",
+   "nom": "Claudeessai",
+   "ville": "Reims",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1K1ivssCVoDInPjig4vNBcfv-s62jFRzU/view",
+   "photos": [
+    "https://drive.google.com/file/d/1K1ivssCVoDInPjig4vNBcfv-s62jFRzU/view",
+    "https://drive.google.com/file/d/1FHoTL6OTPZ-axXwwefItwWKsRwXb6Wvs/view"
+   ],
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -167,6 +229,9 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/marion-bourdier-prevost.jpg",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/marion-bourdier-prevost.jpg"
+   ],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -177,6 +242,9 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/ocellina-coude.jpg",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/ocellina-coude.jpg"
+   ],
    "personnage": "Johana + Julia",
    "parcours": [],
    "videos": []
@@ -187,6 +255,9 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/sarah-pascual.jpg",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/sarah-pascual.jpg"
+   ],
    "personnage": "Pascale + Dominique",
    "parcours": [],
    "videos": []
