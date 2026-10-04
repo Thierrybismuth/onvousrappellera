@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-04T18:06:43.901Z",
+ "maj": "2026-10-04T18:22:45.960Z",
  "comediens": [
   {
    "prenom": "Alicia",
@@ -7,6 +7,7 @@
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
    "portrait": "https://onvousrappellera.fr/assets/comediens/alicia-bader.jpg",
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -16,6 +17,7 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/isabelle-ricard.jpg",
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -25,6 +27,7 @@
    "ville": "Paris",
    "troupe": "Honnêteté",
    "portrait": "https://onvousrappellera.fr/assets/comediens/jerome-laboute.jpg",
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -34,6 +37,7 @@
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nadege-garnier.jpg",
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -43,6 +47,7 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-charade.jpg",
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -52,6 +57,7 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/marion-bourdier-prevost.jpg",
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -61,6 +67,7 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/ocellina-coude.jpg",
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -70,6 +77,7 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/sarah-pascual.jpg",
+   "personnage": "",
    "parcours": [],
    "videos": []
   }
