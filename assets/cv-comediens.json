@@ -1,4 +1,68 @@
 {
- "maj": "2026-10-04T18:03:18.027Z",
- "comediens": []
+ "maj": "2026-10-04T18:03:32.510Z",
+ "comediens": [
+  {
+   "prenom": "Alicia",
+   "nom": "Bader",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/alicia-bader.jpg",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Isabelle",
+   "nom": "Ricard",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/isabelle-ricard.jpg",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Nadège",
+   "nom": "Garnier",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/nadege-garnier.jpg",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Nathalie",
+   "nom": "Charade",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-charade.jpg",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Marion",
+   "nom": "Bourdier Prevost",
+   "ville": "Toulouse",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/marion-bourdier-prevost.jpg",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Ocellina",
+   "nom": "Coudé",
+   "ville": "Toulouse",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/ocellina-coude.jpg",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Sarah",
+   "nom": "Pascual",
+   "ville": "Toulouse",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/sarah-pascual.jpg",
+   "parcours": [],
+   "videos": []
+  }
+ ]
 }
