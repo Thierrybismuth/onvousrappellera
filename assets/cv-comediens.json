@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-04T18:22:45.960Z",
+ "maj": "2026-10-04T18:23:11.246Z",
  "comediens": [
   {
    "prenom": "Alicia",
@@ -7,7 +7,7 @@
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
    "portrait": "https://onvousrappellera.fr/assets/comediens/alicia-bader.jpg",
-   "personnage": "",
+   "personnage": "Delphine",
    "parcours": [],
    "videos": []
   },
@@ -17,7 +17,7 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/isabelle-ricard.jpg",
-   "personnage": "",
+   "personnage": "Delphine",
    "parcours": [],
    "videos": []
   },
@@ -27,7 +27,7 @@
    "ville": "Paris",
    "troupe": "Honnêteté",
    "portrait": "https://onvousrappellera.fr/assets/comediens/jerome-laboute.jpg",
-   "personnage": "",
+   "personnage": "Pascal",
    "parcours": [],
    "videos": []
   },
@@ -37,7 +37,7 @@
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nadege-garnier.jpg",
-   "personnage": "",
+   "personnage": "Danielle + Dominique",
    "parcours": [],
    "videos": []
   },
@@ -47,7 +47,7 @@
    "ville": "Paris",
    "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-charade.jpg",
-   "personnage": "",
+   "personnage": "Delphine",
    "parcours": [],
    "videos": []
   },
@@ -57,7 +57,7 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/marion-bourdier-prevost.jpg",
-   "personnage": "",
+   "personnage": "Delphine",
    "parcours": [],
    "videos": []
   },
@@ -67,7 +67,7 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/ocellina-coude.jpg",
-   "personnage": "",
+   "personnage": "Johana + Julia",
    "parcours": [],
    "videos": []
   },
@@ -77,7 +77,7 @@
    "ville": "Toulouse",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/sarah-pascual.jpg",
-   "personnage": "",
+   "personnage": "Pascale + Dominique",
    "parcours": [],
    "videos": []
   }
