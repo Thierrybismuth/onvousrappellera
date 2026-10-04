@@ -80,6 +80,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vd[open] summary::after{content:"\2212";}
   .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
   .vbody{padding:0 18px 16px;}
+  .vtroupe img,.vcv-p{cursor:zoom-in;}
+  #ovr-zoom{position:fixed;inset:0;z-index:9999;background:rgba(255,255,255,.97);display:none;align-items:center;justify-content:center;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 44px) 12px calc(env(safe-area-inset-bottom,0px) + 16px);cursor:zoom-out;}
+  #ovr-zoom.on{display:flex;}
+  #ovr-zoom img{max-width:100%;max-height:calc(100% - 40px);width:auto;height:auto;object-fit:contain;box-shadow:0 4px 24px rgba(0,0,0,.15);}
+  #ovr-zoom p{margin:10px 0 0;font-size:.9rem;color:var(--marine);text-align:center;}
+  #ovr-zoom button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 8px);right:12px;border:0;background:none;font-size:1.8rem;line-height:1;color:var(--marine);cursor:pointer;}
   .vgrp{margin-top:16px;padding-top:12px;border-top:1px solid var(--gris-clair);}
   .vgrp-t{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);font-weight:600;margin:0 0 8px;}
   .vmedia{display:flex;gap:10px;align-items:flex-start;}
@@ -563,6 +569,24 @@ document.addEventListener('DOMContentLoaded',function(){
    if(grp){ var md=b.querySelector('.vmedia'); (md||b).insertAdjacentHTML('beforeend',h); } else if(f){ var m2=f.closest('.vmedia'); if(m2) m2.insertAdjacentHTML('beforeend',h); else f.insertAdjacentHTML('afterend',h); } else b.insertAdjacentHTML('afterbegin',h);
   });
  }).catch(function(){});
+})();
+</script>
+<div id="ovr-zoom" role="dialog" aria-label="Photo agrandie"><button type="button" aria-label="Fermer">&times;</button><img alt=""><p></p></div>
+<script>
+/* Agrandissement au clic des photos de troupe et de comédiens */
+(function(){
+ var z=document.getElementById('ovr-zoom'), zi=z.querySelector('img'), zp=z.querySelector('p');
+ function fermer(){ z.classList.remove('on'); zi.removeAttribute('src'); document.body.style.overflow=''; }
+ document.addEventListener('click',function(ev){
+  var im=ev.target.closest&&ev.target.closest('.vtroupe img, img.vcv-p'); if(!im) return;
+  ev.preventDefault(); var src=im.currentSrc||im.src; src=src.replace(/([?&]sz=w)\d+/,'$11600');
+  zi.src=src; zi.alt=im.alt||'';
+  var c=im.closest('.vcv-c'), f=im.closest('figure');
+  zp.textContent=c?(c.querySelector('.vcv-n')||{}).textContent||im.alt:(f&&f.querySelector('figcaption')?f.querySelector('figcaption').textContent:im.alt);
+  z.classList.add('on'); document.body.style.overflow='hidden';
+ });
+ z.addEventListener('click',fermer);
+ document.addEventListener('keydown',function(ev){ if(ev.key==='Escape') fermer(); });
 })();
 </script>
 </body>
