@@ -80,22 +80,19 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vd[open] summary::after{content:"\2212";}
   .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
   .vbody{padding:0 18px 16px;}
-  .vtr{margin:0 0 18px;padding-top:14px;border-top:1px solid var(--gris-clair);}
-  .vtr:first-child{border-top:0;padding-top:0;}
-  .vtr-t{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);font-weight:600;margin:0 0 8px;}
-  .vmini{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 6px;}
-  .vmini figure{margin:0;}
-  .vmini img{display:block;height:96px;width:auto;max-width:100%;}
-  .vmini figcaption{font-size:.66rem;color:var(--gris);margin-top:3px;line-height:1.25;}
-  .vcv{display:grid;gap:10px;margin:4px 0 14px;}
-  .vcv-c{border-left:3px solid var(--accent);background:#faf8f4;padding:10px 13px;}
-  .vcv-p{display:block;width:100%;max-width:220px;height:auto;margin:0 0 8px;}
-  .vcv-n{font-weight:600;font-size:.95rem;color:var(--marine);margin:0 0 4px;}
-  .vcv-c ul{margin:0 0 6px;padding-left:1.1em;font-size:.86rem;line-height:1.45;}
+  .vcv{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:12px;overflow-x:auto;margin:4px 0 18px;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
+  .vcv-c{flex:0 0 auto;width:104px;text-align:center;}
+  .vcv-p{display:block;width:100%;height:auto;margin:0 0 6px;}
+  .vcv-n{font-weight:600;font-size:.8rem;line-height:1.25;color:var(--marine);margin:0 0 2px;}
+  .vcv-r{font-size:.74rem;line-height:1.25;color:var(--accent);margin:0 0 4px;}
+  .vtrp{font-size:.82rem;color:var(--marine);margin:-2px 0 14px;}
+  .vgrp{margin-top:14px;}
+  .vgrp-t{font-size:.72rem;color:var(--gris);letter-spacing:.04em;margin:0 0 6px;}
+  .vcv-c ul{margin:0 0 6px;padding-left:1em;font-size:.72rem;line-height:1.35;text-align:left;}
   .vcv-v{display:flex;flex-wrap:wrap;gap:8px;font-size:.8rem;}
   .vcv-v a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
   .vtroupe{margin:2px 0 14px;}
-  .vtroupe img{display:block;width:100%;max-width:640px;height:auto;}
+  .vtroupe img{display:block;width:100%;max-width:900px;height:auto;}
   .vtroupe figcaption{font-size:.72rem;color:var(--gris);margin-top:6px;letter-spacing:.04em;}
   .vdate{display:flex;flex-direction:column;gap:2px;border-left:3px solid var(--accent);background:#fdeceb;padding:10px 14px;margin-bottom:8px;}
   a.vdate{text-decoration:none;cursor:pointer;transition:background .2s;}
@@ -247,7 +244,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <p class="lead">Les premières dates sont jouées en décembre 2026. Dès janvier 2027, chaque troupe résidente joue une fois par semaine dans sa ville. À partir d'avril 2027, la tournée s'étend à 10 autres villes&nbsp;: Strasbourg, Grenoble, Rouen, Toulon, Saint-Étienne, Tours, Clermont-Ferrand, Nancy, Nice et Angers. <strong>Déroulez votre ville pour voir ses dates.</strong> Places à 20&nbsp;€ (tarif partenaire), 15&nbsp;€ pour les demandeurs d'emploi et les étudiants.</p>
     <div class="vlist">
       <h3 class="vbloc-t">Nos 10 troupes résidentes</h3>
-      <details class="vd" data-cvville="Paris" data-multi="1"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody"><div class="vtr" data-troupe="Honnêteté"><p class="vtr-t">Troupe Honnêteté</p><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div></div><!--/vtr--><div class="vtr" data-troupe="Engagement"><p class="vtr-t">Troupe Engagement</p><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vtr--><div class="vtr" data-troupe="Esprit d'équipe"><p class="vtr-t">Troupe Esprit d'équipe</p><p class="vavenir">Une représentation chaque semaine dès janvier 2027 — le jour et le théâtre sont en cours de calage.</p></div><!--/vtr--><p class="vcad">Un cadeau surprise est remis à l'entrée des avant-premières des 22 et 26 novembre.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
+      <details class="vd" data-cvville="Paris"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody"><div class="vdates" data-ville="Paris"></div><p class="vcad">Un cadeau surprise est remis à l'entrée des avant-premières.</p><div class="vgrp" data-cvville="Paris" data-troupe="Honnêteté"></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Engagement"><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Esprit d'équipe"></div><!--/vgrp--><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
       <details class="vd"><summary>Bordeaux<em>4 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Bordeaux"></div><a class="vprev" href="#prevenez-moi" data-ville="Bordeaux">Être prévenu pour Bordeaux &rarr;</a></div></details>
       <details class="vd"><summary>Lille<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Lille"></div><a class="vprev" href="#prevenez-moi" data-ville="Lille">Être prévenu pour Lille &rarr;</a></div></details>
       <details class="vd"><summary>Lyon<em>2 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Lyon"></div><a class="vprev" href="#prevenez-moi" data-ville="Lyon">Être prévenu pour Lyon &rarr;</a></div></details>
@@ -420,7 +417,7 @@ document.addEventListener('DOMContentLoaded',function(){
   vbox.addEventListener('click',function(e){ if(e.target===vbox) fermerVideo(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
   var DATES={
-    "Paris":[{d:"22 novembre 2026 · 19h",t:"Avant-première · 19h",l:"PVE",c:"PAR-1122"},{d:"26 novembre 2026 · 21h",t:"Avant-première · 21h",l:"PVE",c:"PAR-1126"}],
+    "Paris":[{d:"22 novembre 2026 · 19h",t:"Avant-première · 19h",l:"PVE",c:"PAR-1122",tr:"Honnêteté"},{d:"26 novembre 2026 · 21h",t:"Avant-première · 21h",l:"PVE",c:"PAR-1126",tr:"Engagement"}],
     "Lille":[{d:"14 décembre 2026 · 19h",t:"Séance de 19h",l:"SPL",c:"LIL-1214-19"}],
     "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO",c:"LYO-1216-21"}],
     "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1217-2030"}]
@@ -434,6 +431,7 @@ document.addEventListener('DOMContentLoaded',function(){
     "SPL":{n:"Le Spotlight",a:"100 rue Léon Gambetta, 59800 Lille"}
   };
   function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
+  function troupeHTML(tr){ return tr?'<p class="vtrp">🎭 Troupe <strong>'+esc(tr)+'</strong></p>':''; }
   var AUCUNE='Aucune de ces dates — prévenez-moi du prochain créneau';
   function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
   // Places restantes par séance (calculées par le service de billetterie, à l'ouverture de la page)
@@ -443,8 +441,8 @@ document.addEventListener('DOMContentLoaded',function(){
     document.querySelectorAll('.vdates').forEach(function(box){
       var L=DATES[box.dataset.ville]||[]; if(box.dataset.codes){ var K=box.dataset.codes.split(','); L=L.filter(function(o){return K.indexOf(o.c)>=0;}); }
       box.innerHTML=L.map(function(o){ var r=reste(o);
-        if(r!==null && r<=0) return '<div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l);
-        return '<a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=10)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l); }).join('');
+        if(r!==null && r<=0) return '<div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr);
+        return '<a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=10)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr); }).join('');
     });
   }
   rendreDates();
@@ -540,21 +538,21 @@ document.addEventListener('DOMContentLoaded',function(){
  fetch('/assets/cv-comediens.json?'+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
   if(!d||!d.comediens||!d.comediens.length) return;
   var par={}; d.comediens.forEach(function(c){(par[c.ville]=par[c.ville]||[]).push(c);});
-  document.querySelectorAll('details.vd').forEach(function(dt){
-   var sm=dt.querySelector('summary'); if(!sm) return;
-   var v=dt.dataset.cvville||(sm.firstChild&&sm.firstChild.textContent||'').trim(), L=par[v]; if(!L) return; if(dt.dataset.multi){ dt.querySelectorAll('.vtr').forEach(function(sec){ var M=L.filter(function(c){return c.troupe===sec.dataset.troupe&&c.portrait;}); if(!M.length) return;
-     sec.insertAdjacentHTML('beforeend','<div class="vmini">'+M.map(function(c){ var ph=c.portrait, id=(ph.match(/\/d\/([A-Za-z0-9_-]{15,})/)||ph.match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; if(id) ph='https://drive.google.com/thumbnail?id='+id+'&sz=w400';
-       return '<figure><img src="'+e(ph)+'" alt="'+e(c.prenom)+' '+e(c.nom)+'" loading="lazy"><figcaption>'+e(c.prenom)+'<br>'+e(c.nom)+'</figcaption></figure>';}).join('')+'</div>'); }); return; } if(dt.dataset.troupe){ L=L.filter(function(c){return c.troupe===dt.dataset.troupe;}); if(!L.length) return; }
-   var b=dt.querySelector('.vbody'); if(!b) return;
+  document.querySelectorAll('details.vd, .vgrp').forEach(function(dt){
+   var grp=dt.classList.contains('vgrp'); if(!grp && dt.querySelector('.vgrp')) return;
+   var sm=grp?null:dt.querySelector('summary'); if(!grp && !sm) return;
+   var v=dt.dataset.cvville||(sm&&sm.firstChild&&sm.firstChild.textContent||'').trim(), L=par[v]; if(!L) return; if(dt.dataset.troupe){ L=L.filter(function(c){return c.troupe===dt.dataset.troupe;}); if(!L.length) return; }
+   var b=grp?dt:dt.querySelector('.vbody'); if(!b) return;
    var h='<div class="vcv">'+L.map(function(c){
      var p=(c.parcours||[]).filter(Boolean), vi=(c.videos||[]).filter(Boolean);
      var ph=c.portrait||'', id=(ph.match(/\/d\/([A-Za-z0-9_-]{15,})/)||ph.match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; if(id) ph='https://drive.google.com/thumbnail?id='+id+'&sz=w600';
      return '<div class="vcv-c">'+(ph?'<img class="vcv-p" src="'+e(ph)+'" alt="'+e(c.prenom)+' '+e(c.nom)+'" loading="lazy">':'')+'<p class="vcv-n">'+e(c.prenom)+' '+e(c.nom)+'</p>'
+      +(c.personnage?'<p class="vcv-r">'+e(c.personnage)+'</p>':'')
       +(p.length?'<ul>'+p.map(function(x){return '<li>'+e(x)+'</li>';}).join('')+'</ul>':'')
       +(vi.length?'<div class="vcv-v">'+vi.map(function(u,i){return '<a href="'+e(u)+'" target="_blank" rel="noopener">&#9654; Vidéo '+(i+1)+'</a>';}).join('')+'</div>':'')
       +'</div>';}).join('')+'</div>';
    var f=b.querySelector('figure.vtroupe');
-   if(f) f.insertAdjacentHTML('afterend',h); else b.insertAdjacentHTML('afterbegin',h);
+   if(f) f.insertAdjacentHTML('afterend',h); else if(grp) b.insertAdjacentHTML('afterbegin','<p class="vgrp-t">La troupe '+e(dt.dataset.troupe)+'</p>'+h); else b.insertAdjacentHTML('afterbegin',h);
   });
  }).catch(function(){});
 })();
