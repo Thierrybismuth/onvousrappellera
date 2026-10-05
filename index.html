@@ -149,6 +149,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vbody.vtz .vcarte .vtbtn{display:none;}
   .vgrp.vtz:has(.vcarte) .vtsolo{display:none;}
   .vdates + .vtsolo{margin:-2px 0 14px;}
+  .vtmini{display:inline-block;vertical-align:middle;width:110px;height:auto;margin:10px 12px 0 0;cursor:pointer;border:1px solid var(--gris-clair);}
+  .vtmini + .vtbtn{vertical-align:middle;}
+  .vbody.vtz .vcarte .vtmini,.vtopen .vtmini{display:none;}
   .vtz:not(.vtopen) .vmedia,.vtz:not(.vtopen) .vcv,.vtz:not(.vtopen) .vtroupe{display:none!important;}
   .vtz:not(:has(.vmedia,.vcv,.vtroupe)) .vtbtn{display:none;}
   .vlieu{font-size:.82rem;color:var(--marine);margin:-4px 0 12px 17px;line-height:1.45;}
@@ -468,6 +471,7 @@ document.addEventListener('DOMContentLoaded',function(){
         if(r!==null && r<=0) return '<div class="vcarte vplein"><div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>';
         return '<div class="vcarte"><a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=10)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>'; }).join('');
     });
+    if(window.ovrMinis) window.ovrMinis();
   }
   rendreDates();
   fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})})
@@ -628,6 +632,28 @@ document.addEventListener('DOMContentLoaded',function(){
     var b=e.target.closest('.vtbtn'); if(!b) return; e.preventDefault();
     var z=b.closest('.vtz'); if(!z) return; var o=z.classList.toggle('vtopen');
     z.querySelectorAll('.vtbtn').forEach(function(x){ x.textContent=o?'Masquer la troupe':'Découvrir la troupe'; });
+  });
+})();
+</script>
+<script>
+/* Vignette de la photo de troupe à côté de chaque bouton « Découvrir la troupe » : clic = même effet que le bouton */
+(function(){
+  window.ovrMinis=function(){
+    document.querySelectorAll('.vtz').forEach(function(z){
+      var src=z.querySelector('figure.vtroupe img'); if(!src) return;
+      var o=z.classList.contains('vtopen');
+      z.querySelectorAll('.vtbtn').forEach(function(b){
+        b.textContent=o?'Masquer la troupe':'Découvrir la troupe';
+        var p=b.previousElementSibling; if(p&&p.classList.contains('vtmini')) return;
+        var m=document.createElement('img'); m.className='vtmini'; m.src=src.getAttribute('src'); m.alt=src.alt; m.loading='lazy';
+        b.parentNode.insertBefore(m,b);
+      });
+    });
+  };
+  window.ovrMinis();
+  document.addEventListener('click',function(e){
+    var m=e.target.closest&&e.target.closest('.vtmini'); if(!m) return; e.preventDefault();
+    var b=m.nextElementSibling; if(b&&b.classList.contains('vtbtn')) b.click();
   });
 })();
 </script>
