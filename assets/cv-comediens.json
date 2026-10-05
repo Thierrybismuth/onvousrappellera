@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-05T05:01:39.089Z",
+ "maj": "2026-10-05T13:14:00.063Z",
  "comediens": [
   {
    "prenom": "Kevin",
@@ -11,6 +11,19 @@
     "https://onvousrappellera.fr/assets/comediens/kevin-lissajoux-1lf2xwu4xa5j.jpg?v=1791176499089"
    ],
    "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Elisabeth",
+   "nom": "Bon",
+   "ville": "Montpellier",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1QnEAH8EEQ0YJtMjqa-KkJVe-Yo6Pi9Ll/view",
+   "photos": [
+    "https://drive.google.com/file/d/1QnEAH8EEQ0YJtMjqa-KkJVe-Yo6Pi9Ll/view"
+   ],
+   "personnage": "Danielle + Dominique",
    "parcours": [],
    "videos": []
   },
