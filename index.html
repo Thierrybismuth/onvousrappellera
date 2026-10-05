@@ -78,6 +78,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vd summary::-webkit-details-marker{display:none;}
   .vd summary::after{content:"+";margin-left:auto;font-size:1.2rem;color:var(--accent);}
   .vd[open] summary::after{content:"\2212";}
+  .vd.vd-off summary{cursor:default;}
+  .vd.vd-off summary::after{content:none;}
   .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
   .vbody{padding:0 18px 16px;}
   .vtroupe img,.vcv-p{cursor:zoom-in;}
@@ -692,6 +694,25 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 <script>
 document.addEventListener('click',function(e){var b=e.target.closest('.rnav');if(!b)return;var t=b.parentNode.querySelector('.punchlines');var c=t.querySelector('.punch');var w=c?c.getBoundingClientRect().width+14:300;t.scrollBy({left:b.classList.contains('rprev')?-w:w,behavior:'smooth'});});
+</script>
+<script>
+/* Villes sans date : non dépliables, et rangées sous les villes datées de leur bloc (après l'affichage des dates) */
+document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
+  var L=document.querySelector('.vlist'); if(!L) return;
+  function datee(d){ return [].some.call(d.querySelectorAll('.vdates'),function(x){ return x.children.length>0; }); }
+  document.querySelectorAll('.vlist details.vd').forEach(function(d){
+    if(datee(d)) return;
+    d.classList.add('vd-off'); d.removeAttribute('open');
+    var sm=d.querySelector('summary'); if(sm){ sm.setAttribute('tabindex','-1'); sm.addEventListener('click',function(e){ e.preventDefault(); }); }
+  });
+  var seg=[], blocs=[seg];
+  [].slice.call(L.children).forEach(function(c){ if(c.tagName==='H3'){ seg=[]; blocs.push(seg); seg.h=c; } else if(c.matches('details.vd')) seg.push(c); });
+  blocs.forEach(function(B){ if(!B.length) return;
+    var ordre=B.filter(function(d){return !d.classList.contains('vd-off');}).concat(B.filter(function(d){return d.classList.contains('vd-off');}));
+    var ref=document.createComment('t'); B[0].parentNode.insertBefore(ref,B[0]); ordre.forEach(function(d){ ref.parentNode.insertBefore(d,ref); }); ref.remove();
+  });
+
+},0); });
 </script>
 </body>
 </html>
