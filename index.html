@@ -142,7 +142,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vtbtn{display:inline-block;margin-top:10px;font:inherit;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--marine);background:var(--blanc-pur);border:1px solid var(--marine);padding:7px 14px;cursor:pointer;border-radius:2px;}
   .vtbtn:hover{background:var(--marine);color:var(--blanc-pur);}
   .vtsolo{margin:0 0 12px;}
-  .vtz:has(.vcarte) .vtsolo{display:none;}
+  .vbody.vtz .vcarte .vtbtn{display:none;}
+  .vgrp.vtz:has(.vcarte) .vtsolo{display:none;}
+  .vdates + .vtsolo{margin:-2px 0 14px;}
   .vtz:not(.vtopen) .vmedia,.vtz:not(.vtopen) .vcv,.vtz:not(.vtopen) .vtroupe{display:none!important;}
   .vtz:not(:has(.vmedia,.vcv,.vtroupe)) .vtbtn{display:none;}
   .vlieu{font-size:.82rem;color:var(--marine);margin:-4px 0 12px 17px;line-height:1.45;}
@@ -629,10 +631,10 @@ document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('.vgrp').forEach(function(g){ g.classList.add('vtz'); });
   document.querySelectorAll('.vbody').forEach(function(b){ if(!b.querySelector('.vgrp')) b.classList.add('vtz'); });
   document.querySelectorAll('.vtz').forEach(function(z){
-    if(z.querySelector('.vcarte')) return;
+    if(z.querySelector('.vtsolo')) return;
     var p=document.createElement('p'); p.className='vtsolo'; p.innerHTML='<button type="button" class="vtbtn">Découvrir la troupe</button>';
-    var av=z.querySelector('.vavenir'), t=z.querySelector('.vgrp-t');
-    if(av) av.after(p); else if(t) t.after(p); else z.prepend(p);
+    var dl=z.querySelector('.vdates'), av=z.querySelector('.vavenir'), t=z.querySelector('.vgrp-t');
+    if(dl) dl.after(p); else if(av) av.after(p); else if(t) t.after(p); else z.prepend(p);
   });
   document.addEventListener('click',function(e){
     var b=e.target.closest('.vtbtn'); if(!b) return; e.preventDefault();
