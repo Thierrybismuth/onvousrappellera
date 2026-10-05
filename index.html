@@ -335,8 +335,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <details class="vd"><summary>Bordeaux<em>4 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Bordeaux"></div><a class="vprev" href="#prevenez-moi" data-ville="Bordeaux">Être prévenu pour Bordeaux &rarr;</a></div></details>
       <details class="vd"><summary>Lille<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Lille"></div><a class="vprev" href="#prevenez-moi" data-ville="Lille">Être prévenu pour Lille &rarr;</a></div></details>
       <details class="vd"><summary>Lyon<em>2 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Lyon"></div><figure class="vtroupe"><img src="assets/troupes/troupe-lyon.jpg?v=1791176499089" alt="La troupe de Lyon" loading="lazy"><figcaption>La troupe de Lyon</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Lyon">Être prévenu pour Lyon &rarr;</a></div></details>
+      <details class="vd"><summary>Nantes<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Nantes"></div><a class="vprev" href="#prevenez-moi" data-ville="Nantes">Être prévenu pour Nantes &rarr;</a></div></details>
       <details class="vd"><summary>Toulouse<em>Dès janvier 2027</em></summary><div class="vbody"><p class="vavenir">Une représentation chaque semaine dès janvier 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><figure class="vtroupe"><img src="assets/troupes/troupe-toulouse.jpg" alt="La troupe de Toulouse" loading="lazy"><figcaption>La troupe de Toulouse</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Toulouse">Être prévenu pour Toulouse &rarr;</a></div></details>
-      <details class="vd"><summary>Nantes<em>Dès janvier 2027</em></summary><div class="vbody"><p class="vavenir">Une représentation chaque semaine dès janvier 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Nantes">Être prévenu pour Nantes &rarr;</a></div></details>
       <details class="vd"><summary>Rennes<em>Dès janvier 2027</em></summary><div class="vbody"><p class="vavenir">Une représentation chaque semaine dès janvier 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Rennes">Être prévenu pour Rennes &rarr;</a></div></details>
       <details class="vd"><summary>Montpellier<em>Dès janvier 2027</em></summary><div class="vbody"><p class="vavenir">Une représentation chaque semaine dès janvier 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Montpellier">Être prévenu pour Montpellier &rarr;</a></div></details>
       <details class="vd"><summary>Marseille<em>Dès janvier 2027</em></summary><div class="vbody"><p class="vavenir">Une représentation chaque semaine dès janvier 2027 — le jour et le théâtre sont en cours de calage. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu avant l'ouverture des réservations.</p><a class="vprev" href="#prevenez-moi" data-ville="Marseille">Être prévenu pour Marseille &rarr;</a></div></details>
@@ -453,6 +453,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
   var DATES={
     "Paris":[{d:"22 novembre 2026 · 19h",t:"Avant-première · 19h",l:"PVE",c:"PAR-1122",tr:"Honnêteté"},{d:"26 novembre 2026 · 21h",t:"Avant-première · 21h",l:"PVE",c:"PAR-1126",tr:"Engagement"}],
+    "Nantes":[{d:"8 décembre 2026 · 21h",t:"Séance de 21h",l:"SPH",c:"NAN-1208-21"}],
     "Lille":[{d:"14 décembre 2026 · 19h",t:"Séance de 19h",l:"SPL",c:"LIL-1214-19"}],
     "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO",c:"LYO-1216-21"}],
     "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1217-2030"}]
@@ -463,7 +464,8 @@ document.addEventListener('DOMContentLoaded',function(){
     "PVE":{n:"Théâtre Le Passage vers les Étoiles",a:"17 cité Joly, 75011 Paris"},
     "CRO":{n:"Le Croiseur",a:"4 rue Croix-Barret, 69007 Lyon"},
     "MR":{n:"Théâtre de la Marge Rousse",a:"62 rue Borie, 33300 Bordeaux"},
-    "SPL":{n:"Le Spotlight",a:"100 rue Léon Gambetta, 59800 Lille"}
+    "SPL":{n:"Le Spotlight",a:"100 rue Léon Gambetta, 59800 Lille"},
+    "SPH":{n:"Théâtre du Sphinx",a:"9 rue Monteil, 44000 Nantes"}
   };
   function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
   function troupeHTML(tr){ return tr?'<p class="vtrp">🎭 Troupe <strong>'+esc(tr)+'</strong></p>':''; }
