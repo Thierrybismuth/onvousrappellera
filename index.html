@@ -502,7 +502,7 @@ document.addEventListener('DOMContentLoaded',function(){
       box.innerHTML=L.map(function(o){ var r=reste(o);
         var BT='<button type="button" class="vtbtn">Découvrir la troupe</button>';
         if(r!==null && r<=0) return '<div class="vcarte vplein"><div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>';
-        return '<div class="vcarte"><a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=10)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>'; }).join('');
+        return '<div class="vcarte"><a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=20)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>'; }).join('');
     });
     if(window.ovrMinis) window.ovrMinis();
   }
