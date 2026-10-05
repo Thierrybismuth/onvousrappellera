@@ -218,6 +218,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .optin input{width:19px;height:19px;margin:2px 0 0;flex-shrink:0;}
 .tarifs{max-width:720px;margin-top:1.4rem;border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:16px 18px;border-radius:2px}
 .refus .petit{font-size:.68rem;line-height:1.45;text-transform:none;letter-spacing:0;font-weight:400;color:var(--gris);}
+.bulle{position:relative;max-width:560px;margin:0 auto 2.4rem;background:#fdeceb;border:2px solid var(--accent);border-radius:24px;padding:18px 26px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:clamp(1.45rem,4.4vw,2rem);font-weight:700;line-height:1.2;color:var(--marine);}
+.bulle::after{content:"";position:absolute;left:50%;bottom:-15px;margin-left:-14px;border-left:14px solid transparent;border-right:14px solid transparent;border-top:15px solid var(--accent);}
 .tclause{font-size:.8rem;line-height:1.55;color:var(--texte);margin:0 0 12px}
 .tarif{text-transform:none;letter-spacing:normal;font-weight:400;color:var(--texte);display:flex;gap:10px;align-items:flex-start;font-size:.88rem;line-height:1.45;padding:9px 10px;margin:6px 0;cursor:pointer;border:1px solid transparent;border-radius:2px}
 .tarif input{width:18px;height:18px;padding:0;margin:3px 0 0;flex-shrink:0}
@@ -291,6 +293,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 <section>
   <div class="wrap">
+    <p class="bulle">On peut rire de tout. Même de sa recherche d'emploi.</p>
     <div class="vlist">
       <h3 class="vbloc-t">Nos 10 troupes résidentes</h3>
       <details class="vd" data-cvville="Paris"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody"><div class="vgrp" data-cvville="Paris" data-troupe="Honnêteté"><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Engagement"><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg?v=1791139298820" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Esprit d'équipe"></div><!--/vgrp--><p class="vcad">Un cadeau surprise est remis à l'entrée des avant-premières.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
@@ -337,6 +340,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 <section class="form-sec" id="prevenez-moi">
   <div class="wrap">
+    <p class="bulle">La seule sortie théâtre qu'on peut passer en frais</p>
     <span class="sec-tag">Réservations</span>
     <h2>Réservez vos billets ou soyez prévenu de la date à venir</h2>
     <p class="lead"><strong>Une date est déjà fixée dans votre ville&nbsp;?</strong> Choisissez-la et réservez vos places. <strong>Pas encore de date&nbsp;?</strong> Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que le théâtre et la date sont fixés, avant l'ouverture publique des réservations.</p>
@@ -385,6 +389,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 <section class="cafet">
   <div class="wrap">
+    <p class="bulle">Et si votre soirée pizza théâtre vous apprenait (aussi) le recrutement&nbsp;?</p>
     <div class="cafet-box">
       <span class="sec-tag">Après la représentation</span>
       <h3 class="sous">Cafétéria, souvenirs et bavardages avec les personnages</h3>
