@@ -163,7 +163,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .perso .ptag{font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;display:block;}
   .perso p{font-size:.86rem;color:var(--gris);line-height:1.7;}
 
-  .punchlines{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:2rem;}
+  .punchlines{display:flex;align-items:flex-start;gap:14px;margin-top:2rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:10px;scrollbar-width:thin;}
+.punchlines .punch{flex:0 0 82%;max-width:340px;scroll-snap-align:start;}
+.punchlines .pimg{display:flex;justify-content:center;background:#111;}
+.punchlines .pimg img{width:auto;max-width:100%;max-height:300px;}
+.rslide{position:relative;}
+.rnav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:1px solid var(--marine);background:#fff;color:var(--marine);font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15);}
+.rprev{left:-6px;} .rnext{right:-6px;}
   .punch{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.5rem 1.6rem;}
   .punch p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;font-style:italic;color:var(--marine);line-height:1.35;}
   .punch .who{margin-top:.7rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);font-style:normal;font-family:'Outfit',sans-serif;font-weight:500;}
@@ -300,7 +306,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 <section>
   <div class="wrap">
-    <p class="bulle">On peut rire de tout. Même de sa recherche d'emploi.</p>
+    <div class="bulles2"><p class="bulle">On peut rire de tout. Même de sa recherche d'emploi.</p><p class="bulle bulle-d">Et si votre soirée pizza théâtre vous apprenait (aussi) le recrutement&nbsp;?</p></div>
     <div class="vlist">
       <h3 class="vbloc-t">Nos 10 troupes résidentes</h3>
       <details class="vd" data-cvville="Paris"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody"><div class="vgrp" data-cvville="Paris" data-troupe="Honnêteté"><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-honnetete.jpg?v=1791182819848" alt="La troupe Honnêteté, à Paris" loading="lazy"><figcaption>La troupe Honnêteté</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Engagement"><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg?v=1791139298820" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Esprit d'équipe"></div><!--/vgrp--><p class="vcad">Un cadeau surprise est remis à l'entrée des avant-premières.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
@@ -331,7 +337,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 <section>
   <div class="wrap">
     <span class="sec-tag">Les répliques</span>
-    <div class="punchlines">
+    <div class="rslide"><button type="button" class="rnav rprev" aria-label="Réplique précédente">&#8249;</button><div class="punchlines">
       <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-delphine-anne.jpg" alt="Delphine, sur scène"></figure><p>« Et comment vous m'avez eue&nbsp;? Le standard a pour directive de ne pas nous passer les candidats en direct. »</p><div class="who">Delphine, la RH</div></div>
       <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-daniel-fritz.jpg" alt="Daniel, le psy, sur scène"></figure><p>« Lorsque le jeune loup veut se faire adopter par la meute… »</p><div class="who">Daniel(e), le psy</div></div>
       <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-pascal-arthur-scene.jpg" alt="Pascal, sur scène"></figure><p>« J'ai fait une étude… Les mecs, c'est bordélique… Alors que les femmes… »</p><div class="who">Pascal, le manager</div></div>
@@ -341,7 +347,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <div class="punch"><figure class="pimg"><img loading="lazy" src="https://thierrybismuth.com/assets/ovr/johanna.jpg" alt="Johana, sur scène"></figure><p>« — Donc, on recrute les meilleurs menteurs ? — Disons qu'on recrute ceux qui savent le mieux séduire. »</p><div class="who">Johana &amp; Pascal</div></div>
       <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1xhqcbc6mGTd6mOPkOzunXX6eDR9UshDw&sz=w1000" alt="On Vous Rappellera, Paris 2026"></figure><p>« C'est tout un métier de dire bonjour. Votre bonjour n'était PAS vendeur. »</p><div class="who">Dominique, le senior</div></div>
       <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1G0lfSIa_DlE0P4KIUbhpCs8FHa7bUQKX&sz=w1000" alt="On Vous Rappellera, Paris 2026"></figure><p>« L'entreprise, c'est un théâtre. Ce n'est pas parce que tout n'est pas vrai, que tout est faux. »</p><div class="who">Dominique, le senior</div></div>
-    </div>
+    </div><button type="button" class="rnav rnext" aria-label="Réplique suivante">&#8250;</button></div>
   </div>
 </section>
 
@@ -396,7 +402,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 <section class="cafet">
   <div class="wrap">
-    <p class="bulle">Et si votre soirée pizza théâtre vous apprenait (aussi) le recrutement&nbsp;?</p>
     <div class="cafet-box">
       <span class="sec-tag">Après la représentation</span>
       <h3 class="sous">Cafétéria, souvenirs et bavardages avec les personnages</h3>
@@ -625,6 +630,9 @@ document.addEventListener('DOMContentLoaded',function(){
     z.querySelectorAll('.vtbtn').forEach(function(x){ x.textContent=o?'Masquer la troupe':'Découvrir la troupe'; });
   });
 })();
+</script>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest('.rnav');if(!b)return;var t=b.parentNode.querySelector('.punchlines');var c=t.querySelector('.punch');var w=c?c.getBoundingClientRect().width+14:300;t.scrollBy({left:b.classList.contains('rprev')?-w:w,behavior:'smooth'});});
 </script>
 </body>
 </html>
