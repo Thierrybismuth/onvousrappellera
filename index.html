@@ -317,21 +317,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   </div>
 </section>
 
-<section class="vap" id="avant-premieres">
-  <div class="wrap">
-    <span class="sec-tag">Avant-premières</span>
-    <h2>Paris · 22 et 26 novembre 2026</h2>
-    <p class="lead">Deux troupes parisiennes, deux soirées, au Théâtre Le Passage vers les Étoiles.</p>
-    <div class="vbody vap-g" data-cvville="Paris"><div class="vgrp" data-cvville="Paris" data-troupe="Honnêteté"><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-honnetete.jpg?v=1791182819848" alt="La troupe Honnêteté, à Paris" loading="lazy"><figcaption>La troupe Honnêteté</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Engagement"><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg?v=1791139298820" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vgrp--><p class="vcad">Un cadeau surprise est remis à l'entrée des avant-premières.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Réserver pour Paris &rarr;</a></div>
-  </div>
-</section>
-
 <section>
   <div class="wrap">
     <div class="bulles2"><p class="bulle">On peut rire de tout. Même de sa recherche d'emploi.</p><p class="bulle bulle-d">Et si votre soirée pizza théâtre vous apprenait (aussi) le recrutement&nbsp;?</p></div>
     <div class="vlist">
       <h3 class="vbloc-t">Nos 10 troupes résidentes</h3>
-      <details class="vd" data-cvville="-"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody" id="vparis"><div class="vgrp" data-cvville="Paris" data-troupe="Esprit d'équipe"></div><!--/vgrp--><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
+      <details class="vd" data-cvville="-"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody" id="vparis"><div class="vgrp" data-cvville="Paris" data-troupe="Honnêteté"><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-honnetete.jpg?v=1791182819848" alt="La troupe Honnêteté, à Paris" loading="lazy"><figcaption>La troupe Honnêteté</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Engagement"><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg?v=1791139298820" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Esprit d'équipe"></div><!--/vgrp--><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
       <details class="vd"><summary>Bordeaux<em>4 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Bordeaux"></div><a class="vprev" href="#prevenez-moi" data-ville="Bordeaux">Être prévenu pour Bordeaux &rarr;</a></div></details>
       <details class="vd"><summary>Lille<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Lille"></div><a class="vprev" href="#prevenez-moi" data-ville="Lille">Être prévenu pour Lille &rarr;</a></div></details>
       <details class="vd"><summary>Lyon<em>2 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Lyon"></div><figure class="vtroupe"><img src="assets/troupes/troupe-lyon.jpg?v=1791176499089" alt="La troupe de Lyon" loading="lazy"><figcaption>La troupe de Lyon</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Lyon">Être prévenu pour Lyon &rarr;</a></div></details>
@@ -452,7 +443,7 @@ document.addEventListener('DOMContentLoaded',function(){
   vbox.addEventListener('click',function(e){ if(e.target===vbox) fermerVideo(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
   var DATES={
-    "Paris":[{d:"22 novembre 2026 · 19h",t:"Avant-première · 19h",l:"PVE",c:"PAR-1122",tr:"Honnêteté"},{d:"26 novembre 2026 · 21h",t:"Avant-première · 21h",l:"PVE",c:"PAR-1126",tr:"Engagement"}],
+    "Paris":[{d:"22 novembre 2026 · 19h",t:"Séance de 19h",l:"PVE",c:"PAR-1122",tr:"Honnêteté"},{d:"26 novembre 2026 · 21h",t:"Séance de 21h",l:"PVE",c:"PAR-1126",tr:"Engagement"}],
     "Nantes":[{d:"8 décembre 2026 · 21h",t:"Séance de 21h",l:"SPH",c:"NAN-1208-21"}],
     "Lille":[{d:"14 décembre 2026 · 19h",t:"Séance de 19h",l:"SPL",c:"LIL-1214-19"}],
     "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO",c:"LYO-1216-21"}],
@@ -572,11 +563,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 <script>
 /* Mini-CV des comédiens : lus à l'ouverture de la page dans /assets/cv-comediens.json (alimenté par le formulaire « Mon CV » de l'espace troupes) */
-(function(){
- /* Bloc Paris de la liste : copie des deux troupes de l'encadré avant-premières, avant la troupe Esprit d'équipe */
- var vp=document.getElementById('vparis'), ed=vp&&vp.querySelector('.vgrp');
- if(vp&&ed) document.querySelectorAll('#avant-premieres .vgrp').forEach(function(g){ vp.insertBefore(g.cloneNode(true),ed); });
-})();
+
 (function(){
  function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
  /* Paris : chaque troupe commence par son nom, puis sa photo (moitié de largeur) avec les comédiens à côté */
@@ -666,7 +653,7 @@ document.addEventListener('DOMContentLoaded',function(){
       });
     });
   };
-  document.querySelectorAll('#avant-premieres .vgrp').forEach(function(g){ g.classList.add('vtopen'); });
+  
   window.ovrMinis();
   document.addEventListener('click',function(e){
     var m=e.target.closest&&e.target.closest('.vtmini'); if(!m) return; e.preventDefault();
