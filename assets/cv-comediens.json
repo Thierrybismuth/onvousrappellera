@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-05T13:14:00.063Z",
+ "maj": "2026-10-05T14:33:58.923Z",
  "comediens": [
   {
    "prenom": "Kevin",
@@ -11,6 +11,79 @@
     "https://onvousrappellera.fr/assets/comediens/kevin-lissajoux-1lf2xwu4xa5j.jpg?v=1791176499089"
    ],
    "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Caroline",
+   "nom": "Larose",
+   "ville": "Lyon",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/caroline-larose-1xjadlaveyrq.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/caroline-larose-1xjadlaveyrq.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/caroline-larose-1kszu12liteo.jpg?v=1791210838923"
+   ],
+   "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Charlotte",
+   "nom": "Peltier",
+   "ville": "Lyon",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/charlotte-peltier-1mte3k1n6ujc.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/charlotte-peltier-1mte3k1n6ujc.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/charlotte-peltier-1bv2ee382wdj.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/charlotte-peltier-1hghjci5ek1s.jpg?v=1791210838923"
+   ],
+   "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Eric",
+   "nom": "Tchu",
+   "ville": "Lyon",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/eric-tchu-1zlwkzfsdodk.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/eric-tchu-1zlwkzfsdodk.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/eric-tchu-18kora0el7nh.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/eric-tchu-1gwypsa7ue6k.jpg?v=1791210838923"
+   ],
+   "personnage": "Daniel + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Maxime",
+   "nom": "Pie",
+   "ville": "Lyon",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/maxime-pie-16vtlyqj4o8q.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/maxime-pie-16vtlyqj4o8q.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/maxime-pie-1s8bq2fmgh3k.jpg?v=1791210838923"
+   ],
+   "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Vanessa",
+   "nom": "Selynn",
+   "ville": "Lyon",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/vanessa-selynn-1eauatcv8ouf.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/vanessa-selynn-1eauatcv8ouf.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/vanessa-selynn-1te4ilcoqfp1.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/vanessa-selynn-1zjzz5hwegat.jpg?v=1791210838923"
+   ],
+   "personnage": "Pascale",
    "parcours": [],
    "videos": []
   },
@@ -80,6 +153,20 @@
    "videos": []
   },
   {
+   "prenom": "Caroline",
+   "nom": "De Laquintane",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1wye3vrrkluh.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1wye3vrrkluh.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1ojgfym7jbjh.jpg?v=1791210838923"
+   ],
+   "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Clarence",
    "nom": "Pernot",
    "ville": "Paris",
@@ -89,6 +176,32 @@
     "https://onvousrappellera.fr/assets/comediens/clarence-pernot-1ik3zzhg0abv.jpg?v=1791176499089"
    ],
    "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Clémentine",
+   "nom": "Teixeira",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/clementine-teixeira-1k68frty2hl2.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/clementine-teixeira-1k68frty2hl2.jpg?v=1791210838923"
+   ],
+   "personnage": "Pascale",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "DANIEL",
+   "nom": "Vandeberg",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1igimy10z9hv.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1igimy10z9hv.jpg?v=1791210838923"
+   ],
+   "personnage": "Pascal",
    "parcours": [],
    "videos": []
   },
