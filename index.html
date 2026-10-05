@@ -149,6 +149,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vbody.vtz .vcarte .vtbtn{display:none;}
   .vgrp.vtz:has(.vcarte) .vtsolo{display:none;}
   .vdates + .vtsolo{margin:-2px 0 14px;}
+  .vap{padding-top:28px;}
+  .vap-g{display:grid;gap:18px;padding:0!important;margin-top:14px;}
+  @media(min-width:820px){.vap-g{grid-template-columns:1fr 1fr;}}
+  #avant-premieres .vgrp{border:2px solid var(--accent);background:var(--blanc-pur);padding:16px;margin:0;}
+  #avant-premieres .vgrp:not(:has(.vdates)){display:none;}
+  #avant-premieres .vgrp-t{font-size:1rem;letter-spacing:.08em;color:var(--marine);font-weight:700;margin:0 0 10px;}
+  #avant-premieres .vcarte .vdate strong{font-size:1.45rem;font-weight:600;}
+  #avant-premieres .vcarte .vdate span{font-size:.85rem;}
+  #avant-premieres .vtbtn,#avant-premieres .vtmini,#avant-premieres .vtsolo{display:none!important;}
+  #avant-premieres .vcad,#avant-premieres .vprev{grid-column:1/-1;font-size:.95rem;}
   .vtmini{display:inline-block;vertical-align:middle;width:110px;height:auto;margin:10px 12px 0 0;cursor:pointer;border:1px solid var(--gris-clair);}
   .vtmini + .vtbtn{vertical-align:middle;}
   .vbody.vtz .vcarte .vtmini,.vtopen .vtmini{display:none;}
@@ -296,6 +306,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <div class="video-v"><video controls playsinline preload="metadata" poster="/assets/video/ovr-teaser-2026.jpg" title="Teaser ON VOUS RAPPELLERA"><source src="/assets/video/ovr-teaser-2026.mp4" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="/assets/video/ovr-teaser-2026.mp4">ouvrir la vidéo</a>.</video></div>
   </div>
 </header>
+<section class="vap" id="avant-premieres">
+  <div class="wrap">
+    <span class="sec-tag">Avant-premières</span>
+    <h2>Paris · 22 et 26 novembre 2026</h2>
+    <p class="lead">Deux troupes parisiennes, deux soirées, au Théâtre Le Passage vers les Étoiles.</p>
+    <div class="vbody vap-g" data-cvville="Paris"><div class="vgrp" data-cvville="Paris" data-troupe="Honnêteté"><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-honnetete.jpg?v=1791182819848" alt="La troupe Honnêteté, à Paris" loading="lazy"><figcaption>La troupe Honnêteté</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Engagement"><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg?v=1791139298820" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Esprit d'équipe"></div><!--/vgrp--><p class="vcad">Un cadeau surprise est remis à l'entrée des avant-premières.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Réserver pour Paris &rarr;</a></div>
+  </div>
+</section>
+
 
 
 
@@ -312,7 +331,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <div class="bulles2"><p class="bulle">On peut rire de tout. Même de sa recherche d'emploi.</p><p class="bulle bulle-d">Et si votre soirée pizza théâtre vous apprenait (aussi) le recrutement&nbsp;?</p></div>
     <div class="vlist">
       <h3 class="vbloc-t">Nos 10 troupes résidentes</h3>
-      <details class="vd" data-cvville="Paris"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody"><div class="vgrp" data-cvville="Paris" data-troupe="Honnêteté"><div class="vdates" data-ville="Paris" data-codes="PAR-1122"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-honnetete.jpg?v=1791182819848" alt="La troupe Honnêteté, à Paris" loading="lazy"><figcaption>La troupe Honnêteté</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Engagement"><div class="vdates" data-ville="Paris" data-codes="PAR-1126"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg?v=1791139298820" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Esprit d'équipe"></div><!--/vgrp--><p class="vcad">Un cadeau surprise est remis à l'entrée des avant-premières.</p><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
+      <details class="vd" data-cvville="-"><summary>Paris<em>22 et 26 novembre</em></summary><div class="vbody"><p class="vavenir">Les deux avant-premières sont présentées <a href="#avant-premieres">en haut de la page</a>.</p></div></details>
       <details class="vd"><summary>Bordeaux<em>4 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Bordeaux"></div><a class="vprev" href="#prevenez-moi" data-ville="Bordeaux">Être prévenu pour Bordeaux &rarr;</a></div></details>
       <details class="vd"><summary>Lille<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Lille"></div><a class="vprev" href="#prevenez-moi" data-ville="Lille">Être prévenu pour Lille &rarr;</a></div></details>
       <details class="vd"><summary>Lyon<em>2 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Lyon"></div><figure class="vtroupe"><img src="assets/troupes/troupe-lyon.jpg?v=1791176499089" alt="La troupe de Lyon" loading="lazy"><figcaption>La troupe de Lyon</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Lyon">Être prévenu pour Lyon &rarr;</a></div></details>
@@ -650,6 +669,7 @@ document.addEventListener('DOMContentLoaded',function(){
       });
     });
   };
+  document.querySelectorAll('#avant-premieres .vgrp').forEach(function(g){ g.classList.add('vtopen'); });
   window.ovrMinis();
   document.addEventListener('click',function(e){
     var m=e.target.closest&&e.target.closest('.vtmini'); if(!m) return; e.preventDefault();
