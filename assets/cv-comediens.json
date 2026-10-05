@@ -2,19 +2,6 @@
  "maj": "2026-10-05T14:33:58.923Z",
  "comediens": [
   {
-   "prenom": "Kevin",
-   "nom": "Lissajoux",
-   "ville": "Bordeaux",
-   "troupe": "",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/kevin-lissajoux-1lf2xwu4xa5j.jpg?v=1791176499089",
-   "photos": [
-    "https://onvousrappellera.fr/assets/comediens/kevin-lissajoux-1lf2xwu4xa5j.jpg?v=1791176499089"
-   ],
-   "personnage": "Julien",
-   "parcours": [],
-   "videos": []
-  },
-  {
    "prenom": "Caroline",
    "nom": "Larose",
    "ville": "Lyon",
