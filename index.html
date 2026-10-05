@@ -218,9 +218,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .optin input{width:19px;height:19px;margin:2px 0 0;flex-shrink:0;}
 .tarifs{max-width:720px;margin-top:1.4rem;border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:16px 18px;border-radius:2px}
 .refus .petit{font-size:.68rem;line-height:1.45;text-transform:none;letter-spacing:0;font-weight:400;color:var(--gris);}
-.bulle{position:relative;max-width:560px;margin:0 auto 2.4rem;background:#fdeceb;border:2px solid var(--accent);border-radius:24px;padding:18px 26px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:clamp(1.45rem,4.4vw,2rem);font-weight:700;line-height:1.2;color:var(--marine);}
-.bulle::after{content:"";position:absolute;left:50%;bottom:-15px;margin-left:-14px;border-left:14px solid transparent;border-right:14px solid transparent;border-top:15px solid var(--accent);}
-.bulle-sous{text-align:center;margin:-1rem auto 2.4rem;font-size:1.05rem;font-weight:600;color:var(--accent);}
+.bulle{position:relative;display:block;width:fit-content;max-width:440px;margin:0 auto 2.2rem;background:#ffe45c;border:2px solid #161616;border-radius:46px;padding:14px 24px;text-align:center;font-family:'Outfit',sans-serif;font-size:clamp(.98rem,3.2vw,1.15rem);font-weight:600;line-height:1.3;color:#161616;}
+.bulle b{display:block;font-weight:800;}
+.bulle::before{content:"";position:absolute;left:34px;bottom:-16px;border-left:12px solid transparent;border-right:12px solid transparent;border-top:16px solid #161616;transform:skewX(-25deg);}
+.bulle::after{content:"";position:absolute;left:36px;bottom:-12px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:13px solid #ffe45c;transform:skewX(-25deg);}
+.bulles2{display:flex;flex-wrap:nowrap;gap:12px;justify-content:center;align-items:flex-start;margin:0 auto 2.2rem;}
+.bulles2 .bulle{margin:0;flex:1 1 0;max-width:320px;}
+@media(max-width:520px){.bulles2 .bulle{font-size:.86rem;padding:12px 12px;border-radius:30px;}}
+.bulles2 .bulle-d::before{left:auto;right:34px;transform:skewX(25deg);}
+.bulles2 .bulle-d::after{left:auto;right:36px;transform:skewX(25deg);}
 .tclause{font-size:.8rem;line-height:1.55;color:var(--texte);margin:0 0 12px}
 .tarif{text-transform:none;letter-spacing:normal;font-weight:400;color:var(--texte);display:flex;gap:10px;align-items:flex-start;font-size:.88rem;line-height:1.45;padding:9px 10px;margin:6px 0;cursor:pointer;border:1px solid transparent;border-radius:2px}
 .tarif input{width:18px;height:18px;padding:0;margin:3px 0 0;flex-shrink:0}
@@ -341,8 +347,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 <section class="form-sec" id="prevenez-moi">
   <div class="wrap">
-    <p class="bulle">La seule sortie théâtre qu'on peut passer en frais</p>
-    <p class="bulle-sous">Tarif spécial pour les demandeurs d'emploi</p>
+    <div class="bulles2"><p class="bulle"><b>Recruteur&nbsp;?</b> La seule sortie théâtre qu'on peut passer en frais</p><p class="bulle bulle-d"><b>Demandeur d'emploi&nbsp;?</b> Un tarif spécial vous est réservé</p></div>
     <span class="sec-tag">Réservations</span>
     <h2>Réservez vos billets ou soyez prévenu de la date à venir</h2>
     <p class="lead"><strong>Une date est déjà fixée dans votre ville&nbsp;?</strong> Choisissez-la et réservez vos places. <strong>Pas encore de date&nbsp;?</strong> Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que le théâtre et la date sont fixés, avant l'ouverture publique des réservations.</p>
