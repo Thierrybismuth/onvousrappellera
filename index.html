@@ -132,6 +132,19 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vdate.vplein b{color:#6b7280;font-weight:600;}
   .vdate strong{font-size:1rem;color:var(--marine);font-weight:500;}
   .vdate span{font-size:.74rem;color:var(--gris);}
+  /* Encadré unique date + lieu + troupe */
+  .vcarte{background:#fdeceb;border-left:3px solid var(--accent);padding:12px 14px;margin-bottom:12px;}
+  .vcarte.vplein{background:#f1efea;border-left-color:#9a9a9a;}
+  .vcarte .vdate{background:none!important;border:0;padding:0;margin:0;}
+  .vcarte .vlieu{margin:8px 0 0;color:var(--marine);}
+  .vcarte .vlieu a{color:var(--marine);}
+  .vcarte .vtrp{margin:6px 0 0;font-size:.82rem;color:var(--marine);}
+  .vtbtn{display:inline-block;margin-top:10px;font:inherit;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--marine);background:var(--blanc-pur);border:1px solid var(--marine);padding:7px 14px;cursor:pointer;border-radius:2px;}
+  .vtbtn:hover{background:var(--marine);color:var(--blanc-pur);}
+  .vtsolo{margin:0 0 12px;}
+  .vtz:has(.vcarte) .vtsolo{display:none;}
+  .vtz:not(.vtopen) .vmedia,.vtz:not(.vtopen) .vcv,.vtz:not(.vtopen) .vtroupe{display:none!important;}
+  .vtz:not(:has(.vmedia,.vcv,.vtroupe)) .vtbtn{display:none;}
   .vlieu{font-size:.82rem;color:var(--marine);margin:-4px 0 12px 17px;line-height:1.45;}
   .vlieu a{color:var(--accent);text-decoration:underline;}
   .vavenir{font-size:.9rem;color:var(--gris);font-style:italic;margin:0 0 8px;}
@@ -461,8 +474,9 @@ document.addEventListener('DOMContentLoaded',function(){
     document.querySelectorAll('.vdates').forEach(function(box){
       var L=DATES[box.dataset.ville]||[]; if(box.dataset.codes){ var K=box.dataset.codes.split(','); L=L.filter(function(o){return K.indexOf(o.c)>=0;}); }
       box.innerHTML=L.map(function(o){ var r=reste(o);
-        if(r!==null && r<=0) return '<div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr);
-        return '<a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=10)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr); }).join('');
+        var BT='<button type="button" class="vtbtn">Découvrir la troupe</button>';
+        if(r!==null && r<=0) return '<div class="vcarte vplein"><div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>';
+        return '<div class="vcarte"><a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=10)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>'; }).join('');
     });
   }
   rendreDates();
@@ -608,6 +622,23 @@ document.addEventListener('DOMContentLoaded',function(){
  });
  z.addEventListener('click',fermer);
  document.addEventListener('keydown',function(ev){ if(ev.key==='Escape') fermer(); });
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.vgrp').forEach(function(g){ g.classList.add('vtz'); });
+  document.querySelectorAll('.vbody').forEach(function(b){ if(!b.querySelector('.vgrp')) b.classList.add('vtz'); });
+  document.querySelectorAll('.vtz').forEach(function(z){
+    if(z.querySelector('.vcarte')) return;
+    var p=document.createElement('p'); p.className='vtsolo'; p.innerHTML='<button type="button" class="vtbtn">Découvrir la troupe</button>';
+    var av=z.querySelector('.vavenir'), t=z.querySelector('.vgrp-t');
+    if(av) av.after(p); else if(t) t.after(p); else z.prepend(p);
+  });
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.vtbtn'); if(!b) return; e.preventDefault();
+    var z=b.closest('.vtz'); if(!z) return; var o=z.classList.toggle('vtopen');
+    z.querySelectorAll('.vtbtn').forEach(function(x){ x.textContent=o?'Masquer la troupe':'Découvrir la troupe'; });
+  });
 })();
 </script>
 </body>
