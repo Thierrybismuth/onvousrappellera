@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ON VOUS RAPPELLERA — Recevoir les actualités de la pièce</title>
+<meta name="description" content="Recevez les actualités de la comédie ON VOUS RAPPELLERA et la date de la prochaine représentation dans votre ville.">
+<meta property="og:title" content="ON VOUS RAPPELLERA — les actualités de la pièce">
+<meta property="og:description" content="Votre email, votre ville : vous saurez quand la pièce se joue près de chez vous.">
+<meta property="og:image" content="https://onvousrappellera.fr/assets/video/ovr-teaser-2026.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--marine:#161616;--accent:#d8281f;--or:#c8913a;--gris:#6b7280;--gris-clair:#e7e2d8;--texte:#1c1c1c;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#fff;color:var(--texte);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6;}
+  .wrap{max-width:560px;margin:0 auto;padding:44px 16px 60px;}
+  .tag{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:.8rem;}
+  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.1rem,7vw,3rem);font-weight:700;line-height:1.05;color:var(--marine);}
+  .base{margin-top:.5rem;font-size:.78rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);}
+  p.lead{margin-top:1.4rem;color:var(--gris);font-size:1rem;}
+  p.lead strong{color:var(--texte);font-weight:500;}
+  .poster{display:block;width:100%;height:auto;margin-top:1.6rem;border:1px solid var(--gris-clair);}
+  form{margin-top:1.8rem;display:flex;flex-direction:column;gap:16px;}
+  label{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--marine);display:block;margin-bottom:6px;}
+  input,select{width:100%;background:#fff;border:1px solid #cfc9bd;color:var(--texte);font-family:'Outfit',sans-serif;font-size:1rem;font-weight:300;padding:13px 14px;border-radius:2px;}
+  input:focus,select:focus{outline:none;border-color:var(--accent);}
+  .btn{background:var(--accent);color:#fff;font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:16px 28px;border:none;border-radius:2px;cursor:pointer;}
+  .btn:disabled{opacity:.6;cursor:default;}
+  .piege{position:absolute;left:-9999px;width:1px;height:1px;}
+  .msg{display:none;padding:14px 16px;border-radius:2px;font-size:.95rem;font-weight:500;}
+  .msg.ok{display:block;background:#eef7ee;border:1px solid #bcd9bc;color:#22622a;}
+  .msg.ko{display:block;background:#fdeceb;border:1px solid #f0bcb8;color:#a3231b;}
+  .petit{font-size:.78rem;color:var(--gris);}
+  .retour{margin-top:2rem;font-size:.9rem;}
+  .retour a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#777;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px">Entreprises</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px">Casting</a><a href="/franchise.html" style="color:#777;text-decoration:none;margin-left:18px">Franchiseurs</a></div>
+<main class="wrap">
+  <span class="tag">Les actualités de la pièce</span>
+  <h1>ON VOUS RAPPELLERA</h1>
+  <div class="base">La comédie du recrutement</div>
+  <p class="lead">Laissez votre email et votre ville&nbsp;: vous recevrez les actualités de la pièce, et <strong>la date de la prochaine représentation dans votre ville</strong> dès qu'elle est fixée.</p>
+  <form id="nl" novalidate>
+    <div><label for="ville">Votre ville</label>
+      <select id="ville" required>
+        <option value="">— Choisissez votre ville —</option>
+        <option>Paris</option><option>Lyon</option><option>Marseille</option><option>Toulouse</option><option>Lille</option><option>Bordeaux</option><option>Nantes</option><option>Rennes</option><option>Montpellier</option>
+        <option>Nice</option><option>Strasbourg</option><option>Grenoble</option><option>Rouen</option><option>Toulon</option><option>Saint-Étienne</option><option>Tours</option><option>Clermont-Ferrand</option><option>Nancy</option><option>Reims</option><option>Angers</option>
+        <option value="Autre ville">Une autre ville</option>
+      </select></div>
+    <div id="autre-wrap" style="display:none"><label for="autre">Laquelle&nbsp;?</label><input id="autre" type="text" autocomplete="address-level2"></div>
+    <div><label for="email">Votre email</label><input id="email" type="email" autocomplete="email" required></div>
+    <input class="piege" id="site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn" id="btn" type="submit">Je veux être tenu au courant &rarr;</button>
+    <div class="msg" id="msg"></div>
+    <p class="petit">Désinscription en un clic en bas de chaque message.</p>
+  </form>
+  <p class="retour"><a href="/">Voir les dates déjà fixées &rarr;</a></p>
+</main>
+<script>
+(function(){
+  var g=function(i){return document.getElementById(i);};
+  var btn=g('btn'), msg=g('msg');
+  function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function show(c,t){msg.className='msg '+c; msg.innerHTML=t;}
+  var q=new URLSearchParams(location.search), src=q.get('src')||'', v=q.get('ville');
+  if(v){ var s=g('ville'); for(var i=0;i<s.options.length;i++){ if(s.options[i].value===v){ s.value=v; } } }
+  g('ville').addEventListener('change',function(){ g('autre-wrap').style.display=this.value==='Autre ville'?'':'none'; });
+  g('nl').addEventListener('submit',function(e){
+    e.preventDefault();
+    var ville=g('ville').value, email=g('email').value.trim(), autre=g('autre').value.trim();
+    if(!ville){ show('ko','Merci de choisir votre ville.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
+    btn.disabled=true; show('ok','Envoi en cours…');
+    fetch('https://thierryb.app.n8n.cloud/webhook/ovr-newsletter',{method:'POST',headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({email:email, ville:ville, autre_ville:autre, site_web:g('site').value, source:'page newsletter'+(src?' ('+src+')':'')})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d&&d.ok){ show('ok','C\'est noté ! Vous recevrez les actualités de la pièce, et la date à <b>'+esc(ville==='Autre ville'?(autre||'votre ville'):ville)+'</b> dès qu\'elle est fixée. Un email de confirmation vient de vous être envoyé.'); g('nl').querySelectorAll('div:not(.msg),button,.petit').forEach(function(x){x.style.display='none';}); }
+        else { show('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; }
+      })
+      .catch(function(){ show('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
+  });
+})();
+</script>
+</body>
+</html>

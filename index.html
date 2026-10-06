@@ -412,13 +412,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
           <option value="Autre ville">Une autre ville</option>
         </select>
       </div>
+      <div class="field full" id="f-autre-wrap" style="display:none"><label for="f-autre">Laquelle&nbsp;?</label><input id="f-autre" type="text" autocomplete="address-level2"></div>
+      <input id="f-site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
       <div class="field full" id="f-date-wrap" style="display:none"><label for="f-date">Date et horaire</label>
         <select id="f-date"></select>
       </div>
-      <div class="field"><label for="f-prenom">Prénom</label><input id="f-prenom" type="text" autocomplete="given-name" required></div>
-      <div class="field"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
-      <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="f-tel">Portable</label><input id="f-tel" type="tel" autocomplete="tel"></div>
+      <div class="field resa-only"><label for="f-prenom">Prénom</label><input id="f-prenom" type="text" autocomplete="given-name" required></div>
+      <div class="field resa-only"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
+      <div class="field full" id="f-email-wrap"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
+      <div class="field resa-only"><label for="f-tel">Portable</label><input id="f-tel" type="tel" autocomplete="tel"></div>
     </div>
     <div id="f-resa" style="display:none">
       <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
@@ -436,7 +438,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <a href="#" id="f-code-lien" class="codelien">Vous avez un code&nbsp;?</a>
       <div id="f-code-wrap" style="display:none"><input id="f-code" class="codeinput" type="text" placeholder="Votre code" autocomplete="off"></div>
     </div>
-    <div id="f-alerte">
+    <div id="f-alerte" style="display:none">
       <label class="refus"><input type="checkbox" id="f-part">
         <span class="petit">Je soutiens la troupe et la tournée, et je booste ma recherche d'emploi ou ma recherche de candidats&nbsp;: j'accepte que les partenaires de la pièce reçoivent mes coordonnées. Désinscription par mail à <a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a>.</span></label>
     </div>
@@ -519,7 +521,8 @@ document.addEventListener('DOMContentLoaded',function(){
   function enResa(){ var s=document.getElementById('f-date'); return document.getElementById('f-date-wrap').style.display!=='none' && s.value && s.value!=='__autre'; }
   function modeResa(){ var r=enResa();
     document.getElementById('f-resa').style.display=r?'':'none';
-    document.getElementById('f-alerte').style.display=r?'none':'';
+    document.querySelectorAll('.resa-only').forEach(function(x){ x.style.display=r?'':'none'; });
+    document.getElementById('f-email-wrap').className=r?'field':'field full';
     document.getElementById('f-btn').innerHTML=r?'Réserver mes places &rarr;':'Prévenez-moi &rarr;'; }
   function tarifChoisi(){ var x=document.querySelector('input[name=tarif]:checked'); return x?x.value:'partenaire'; }
   function majReduit(){ var red=tarifChoisi()==='reduit';
@@ -529,7 +532,8 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('f-statut').addEventListener('change',majReduit);
   document.getElementById('f-date').addEventListener('change',modeResa);
   document.getElementById('f-code-lien').addEventListener('click',function(e){ e.preventDefault(); document.getElementById('f-code-wrap').style.display=''; this.style.display='none'; document.getElementById('f-code').focus(); });
-  document.getElementById('f-ville').addEventListener('change',function(){ majDates(this.value,''); });
+  document.getElementById('f-ville').addEventListener('change',function(){ majDates(this.value,''); document.getElementById('f-autre-wrap').style.display=(this.value==='Autre ville')?'':'none'; });
+  modeResa();
   document.addEventListener('click',function(e){
     var a=e.target.closest('.vdate, .vprev'); if(!a) return;
     var s=document.getElementById('f-ville'); s.value=a.dataset.ville; majDates(a.dataset.ville,a.dataset.date||'');
@@ -556,7 +560,7 @@ document.addEventListener('DOMContentLoaded',function(){
     }
     if(!p.ville){ show('ko','Merci de choisir votre ville.'); return; }
     if(DATES[p.ville] && !g('f-date').value){ show('ko','Merci de choisir une date, ou d\'indiquer qu\'aucune ne vous convient.'); return; }
-    if(!p.prenom||!p.nom){ show('ko','Merci d\'indiquer votre prénom et votre nom.'); return; }
+    if(enResa() && (!p.prenom||!p.nom)){ show('ko','Merci d\'indiquer votre prénom et votre nom.'); return; }
     if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
     if(BILLETTERIE_OUVERTE && enResa()){
       var S=(DATES[p.ville]||[]).filter(function(o){return o.d===p.date;})[0];
@@ -572,12 +576,13 @@ document.addEventListener('DOMContentLoaded',function(){
       return;
     }
     btn.disabled=true; show('ok','Envoi en cours…');
-    fetch('https://thierryb.app.n8n.cloud/webhook/ovr-prevenez-moi',
-      {method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(p)})
+    var src=new URLSearchParams(location.search).get('src');
+    fetch('https://thierryb.app.n8n.cloud/webhook/ovr-newsletter',
+      {method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({email:p.email, ville:p.ville, autre_ville:g('f-autre').value.trim(), site_web:g('f-site').value, source:'site — prévenez-moi'+(src?' ('+src+')':'')})})
       .then(function(r){ return r.json(); })
       .then(function(d){
-        if(d && d.ok){ show('ok', p.date ? 'C\'est noté pour <b>'+p.ville+' — '+p.date+'</b>, nous sommes ravis de vous compter parmi nos spectateurs ! Nous vous enverrons le lien pour prendre vos places dès l\'ouverture de la billetterie, probablement avant mi-octobre. Un email de confirmation vient de vous être envoyé.' : 'C\'est noté ! Vous serez prévenu pour <b>'+p.ville+'</b> dès que la date est fixée, avant tout le monde. Un email de confirmation vient de vous être envoyé.');
-          ['f-prenom','f-nom','f-email','f-tel'].forEach(function(x){g(x).value='';});
+        if(d && d.ok){ show('ok', 'C\'est noté ! Vous recevrez les actualités de la pièce, et la date à <b>'+esc(p.ville==='Autre ville'?(g('f-autre').value.trim()||'votre ville'):p.ville)+'</b> dès qu\'elle est fixée. Un email de confirmation vient de vous être envoyé.');
+          ['f-prenom','f-nom','f-email','f-tel','f-autre'].forEach(function(x){g(x).value='';}); g('f-autre-wrap').style.display='none';
           g('f-ville').value=''; majDates('',''); g('f-part').checked=false; g('f-code').value=''; g('f-ft').value='';
         } else { show('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; }
       })
