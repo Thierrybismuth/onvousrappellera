@@ -313,7 +313,51 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 <style>.video-v{margin:2rem auto 0;width:100%;max-width:400px;background:#fff}.video-v video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}</style>
 </head>
 <body>
-<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px">Entreprises</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px">Casting</a><a href="/franchise.html" style="color:#777;text-decoration:none;margin-left:18px">Franchiseurs</a></div>
+<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px">Entreprises</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px">Casting</a><a href="/franchise.html" style="color:#777;text-decoration:none;margin-left:18px">Franchiseurs</a><button type="button" id="nlx-btn" aria-expanded="false" aria-controls="nlx-box">Recevoir les actus de la pièce</button></div>
+<div id="nlx-box" hidden>
+  <p class="nlx-t">Les actualités de la pièce, et la date dans votre ville dès qu'elle est fixée.</p>
+  <select id="nlx-ville" aria-label="Votre ville"><option value="">— Votre ville —</option><option>Paris</option><option>Lyon</option><option>Marseille</option><option>Toulouse</option><option>Lille</option><option>Bordeaux</option><option>Nantes</option><option>Rennes</option><option>Montpellier</option><option>Nice</option><option>Strasbourg</option><option>Grenoble</option><option>Rouen</option><option>Toulon</option><option>Saint-Étienne</option><option>Tours</option><option>Clermont-Ferrand</option><option>Nancy</option><option>Reims</option><option>Angers</option><option value="Autre ville">Une autre ville</option></select>
+  <input id="nlx-autre" type="text" placeholder="Laquelle ?" aria-label="Votre ville" style="display:none">
+  <input id="nlx-email" type="email" placeholder="Votre email" autocomplete="email" aria-label="Votre email">
+  <input id="nlx-site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+  <button type="button" id="nlx-go">Je m'inscris &rarr;</button>
+  <div id="nlx-msg"></div>
+</div>
+<style>
+#ovr-topmenu{position:relative}
+#nlx-btn{margin-left:18px;background:#d8281f;color:#fff;border:0;border-radius:2px;padding:6px 12px;font:600 12px/1.3 -apple-system,Segoe UI,Roboto,sans-serif;cursor:pointer}
+#nlx-box{position:absolute;right:16px;top:44px;z-index:50;width:320px;max-width:calc(100% - 32px);background:#fff;border:1px solid #e7e2d8;box-shadow:0 12px 32px rgba(22,22,22,.18);padding:16px;display:flex;flex-direction:column;gap:10px;font-family:'Outfit',sans-serif}
+#nlx-box[hidden]{display:none}
+#nlx-box .nlx-t{font-size:.9rem;line-height:1.45;color:#1c1c1c}
+#nlx-box select,#nlx-box input{width:100%;border:1px solid #cfc9bd;padding:10px 12px;font:300 .95rem 'Outfit',sans-serif;background:#fff;border-radius:2px}
+#nlx-go{background:#d8281f;color:#fff;border:0;padding:12px;font:600 .8rem 'Outfit',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px}
+#nlx-go:disabled{opacity:.6}
+#nlx-msg{font-size:.88rem;font-weight:500}
+#nlx-msg.ok{color:#22622a}#nlx-msg.ko{color:#a3231b}
+@media(max-width:640px){#ovr-topmenu{text-align:center;line-height:2.2}#nlx-btn{display:block;margin:6px auto 0}#nlx-box{left:16px;right:16px;width:auto;max-width:none;top:auto}}
+</style>
+<script>
+(function(){
+  var g=function(i){return document.getElementById(i);}, box=g('nlx-box'), b=g('nlx-btn'), go=g('nlx-go'), m=g('nlx-msg');
+  function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function say(c,t){m.className=c;m.innerHTML=t;}
+  b.addEventListener('click',function(){ box.hidden=!box.hidden; b.setAttribute('aria-expanded',String(!box.hidden)); if(!box.hidden) g('nlx-ville').focus(); });
+  g('nlx-ville').addEventListener('change',function(){ g('nlx-autre').style.display=this.value==='Autre ville'?'':'none'; });
+  go.addEventListener('click',function(){
+    var v=g('nlx-ville').value, e=g('nlx-email').value.trim(), a=g('nlx-autre').value.trim(), src=new URLSearchParams(location.search).get('src');
+    if(!v){ say('ko','Merci de choisir votre ville.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(e)){ say('ko','Votre adresse email semble incorrecte.'); return; }
+    go.disabled=true; say('ok','Envoi en cours…');
+    fetch('https://thierryb.app.n8n.cloud/webhook/ovr-newsletter',{method:'POST',headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({email:e, ville:v, autre_ville:a, site_web:g('nlx-site').value, source:'accueil — bouton newsletter'+(src?' ('+src+')':'')})})
+      .then(function(r){return r.json();})
+      .then(function(d){ if(d&&d.ok){ ['nlx-ville','nlx-autre','nlx-email','nlx-go'].forEach(function(i){g(i).style.display='none';}); box.querySelector('.nlx-t').style.display='none';
+          say('ok','C\'est noté ! Vous recevrez les actualités de la pièce, et la date à <b>'+esc(v==='Autre ville'?(a||'votre ville'):v)+'</b> dès qu\'elle est fixée. Un email de confirmation vient de vous être envoyé.'); }
+        else { say('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); go.disabled=false; } })
+      .catch(function(){ say('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); go.disabled=false; });
+  });
+})();
+</script>
 
 <header class="hero">
   <div class="wrap">
