@@ -54,8 +54,9 @@
   .perso .ptag{font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;display:block;}
   .perso p{font-size:.86rem;color:var(--gris);line-height:1.7;}
 
-  .punchlines{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:240px;gap:14px;margin-top:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;-webkit-overflow-scrolling:touch;align-items:start;}
+  .punchlines{display:grid;grid-auto-flow:column;grid-template-rows:auto;grid-auto-columns:240px;gap:14px;margin-top:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;-webkit-overflow-scrolling:touch;align-items:start;}
   .punchlines .punch{scroll-snap-align:start;}
+  @media (min-width:768px){.punchlines{grid-template-rows:repeat(2,auto)}}
   .punch-nav{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:1.4rem;font-size:.8rem;color:var(--gris);}
   .punch-nav button{border:1px solid #ccc;background:#fff;width:38px;height:38px;border-radius:50%;font-size:1.1rem;cursor:pointer;color:#161616;}
   .punch{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.5rem 1.6rem;}
