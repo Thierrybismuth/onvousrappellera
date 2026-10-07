@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
   var DATES={
     "Paris":[{d:"22 novembre 2026 · 19h",t:"Séance de 19h",l:"PVE",c:"PAR-1122",tr:"Engagement"},{d:"26 novembre 2026 · 21h",t:"Séance de 21h",l:"PVE",c:"PAR-1126",tr:"Honnêteté"}],
-    "Toulouse":[{d:"3 décembre 2026",t:"Lieu et horaire à confirmer",l:"",c:"TLS-1203"}],
+    "Toulouse":[{d:"3 décembre 2026 · 20h",t:"Séance de 20h (accueil dès 19h)",l:"EUR",c:"TLS-1203"}],
     "Nantes":[{d:"8 décembre 2026 · 21h",t:"Séance de 21h",l:"SPH",c:"NAN-1208-21"},{d:"5 janvier 2027 · 21h",t:"Séance de 21h",l:"SPH",c:"NAN-0105-21"}],
     "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO",c:"LYO-1216-21"}],
     "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1217-2030"}]
@@ -563,7 +563,8 @@ document.addEventListener('DOMContentLoaded',function(){
     "CRO":{n:"Le Croiseur",a:"4 rue Croix-Barret, 69007 Lyon"},
     "MR":{n:"Théâtre Artisse",a:"62 rue Borie, 33300 Bordeaux"},
     "SPL":{n:"Le Spotlight",a:"100 rue Léon Gambetta, 59800 Lille"},
-    "SPH":{n:"Théâtre du Sphinx",a:"9 rue Monteil, 44000 Nantes"}
+    "SPH":{n:"Théâtre du Sphinx",a:"9 rue Monteil, 44000 Nantes"},
+    "EUR":{n:"Campus Eurécia",a:"Castanet-Tolosan (31)"}
   };
   function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
   function troupeHTML(tr){ return tr?'<p class="vtrp">🎭 Troupe <strong>'+esc(tr)+'</strong></p>':''; }
