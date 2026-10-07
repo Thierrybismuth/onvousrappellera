@@ -208,6 +208,24 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   #f-info details.vd{display:none;border:0;background:none;}
   #f-info details.vd.vd-on{display:block;}
   #f-info .vbody{padding:0;}
+  /* Formulaire : dates à gauche d'abord, photos compactes à droite (07/10) */
+  #f-info .vtz:has(> .vmedia, > .vcv){display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);grid-template-areas:none!important;column-gap:18px;row-gap:4px;align-items:start;padding:12px!important;}
+  #f-info .vtz:has(> .vmedia, > .vcv) > *{grid-column:1!important;grid-area:auto!important;}
+  #f-info .vtz:has(> .vmedia, > .vcv) > .vmedia,#f-info .vtz:has(> .vmedia, > .vcv) > .vcv{grid-column:2!important;grid-row:1 / span 8!important;}
+  #f-info .vtz .vmedia{display:flex!important;flex-wrap:wrap;gap:6px;align-items:flex-start;align-content:flex-start;margin:0;}
+  #f-info .vtz .vtroupe,#f-info .vbody.vtz .vmedia .vtroupe{flex:0 0 auto!important;width:auto!important;max-width:100%!important;margin:0!important;grid-area:auto!important;}
+  #f-info .vtz .vtroupe img{height:110px!important;width:auto!important;max-width:100%!important;max-height:none!important;cursor:zoom-in;}
+  #f-info .vtz .vtroupe figcaption{display:none;}
+  #f-info .vtz .vcv{display:flex!important;flex-wrap:wrap;gap:6px!important;flex:1 1 100%;margin:0!important;grid-area:auto!important;}
+  #f-info .vtz .vcv-c,#f-info .vtz .vmedia .vcv-c{width:58px!important;margin:0!important;}
+  #f-info .vtz .vcv-ph .vcv-p{height:66px!important;width:auto!important;max-width:100%!important;object-fit:contain;}
+  #f-info .vtz .vcv-ph .vcv-p:not(:first-child){display:none!important;}
+  #f-info .vtz .vcv-n{font-size:.6rem;line-height:1.2;margin:2px 0 0;}
+  #f-info .vtz .vcv-r{font-size:.56rem;line-height:1.2;margin:0;}
+  #f-info .vtz .vcv ul,#f-info .vtz .vcv-v{display:none;}
+  @media(max-width:640px){#f-info .vtz:has(> .vmedia, > .vcv){grid-template-columns:1fr;}
+    #f-info .vtz:has(> .vmedia, > .vcv) > .vmedia,#f-info .vtz:has(> .vmedia, > .vcv) > .vcv{grid-column:1!important;grid-row:auto!important;}
+    #f-info .vtz .vtroupe img{height:90px!important;}}
   .pcap{margin:0;padding:5px 8px 6px;font-size:.66rem;line-height:1.4;color:var(--gris);background:var(--blanc-pur);font-style:italic;}
   .perso .pimg img{height:auto;object-fit:initial;}
   .perso .pbody{padding:1.4rem 1.5rem 1.6rem;}
