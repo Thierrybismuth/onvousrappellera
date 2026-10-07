@@ -54,7 +54,10 @@
   .perso .ptag{font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;display:block;}
   .perso p{font-size:.86rem;color:var(--gris);line-height:1.7;}
 
-  .punchlines{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:2rem;}
+  .punchlines{display:flex;gap:14px;margin-top:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;-webkit-overflow-scrolling:touch;align-items:flex-start;}
+  .punchlines .punch{flex:0 0 260px;scroll-snap-align:start;}
+  .punch-nav{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:1.4rem;font-size:.8rem;color:var(--gris);}
+  .punch-nav button{border:1px solid #ccc;background:#fff;width:38px;height:38px;border-radius:50%;font-size:1.1rem;cursor:pointer;color:#161616;}
   .punch{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.5rem 1.6rem;}
   .punch p{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;font-style:italic;color:var(--marine);line-height:1.35;}
 
@@ -316,7 +319,8 @@
   <div class="wrap">
     <span class="sec-tag">Les répliques qu'on ne quitte plus</span>
     <h2>Derrière chaque phrase anodine, matière à enseignement ou réflexion pour vos équipes, franchisés et managers</h2>
-    <div class="punchlines">
+    <div class="punch-nav"><span>Faites défiler →</span><button type="button" aria-label="Précédent" onclick="document.getElementById('punchs').scrollBy({left:-280,behavior:'smooth'})">‹</button><button type="button" aria-label="Suivant" onclick="document.getElementById('punchs').scrollBy({left:280,behavior:'smooth'})">›</button></div>
+    <div class="punchlines" id="punchs">
       <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q01.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Le seul truc à peu près vrai dans mon CV, c'est mon numéro de portable. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Julien, le candidat</span></div>
       <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-q02.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« C'est la peur de perdre qui vous empêche de gagner. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Julien, le candidat</span></div>
       <div class="punch"><img src="https://thierrybismuth.com/assets/ovr/b2b26v8-julien3.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy" style="width:100%;height:auto;margin-bottom:1rem;"><p>« Vous avez tellement peur de vous tromper dans votre recrutement que vous ne recrutez personne. »</p><span style="display:block;margin-top:.7rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Julien, le candidat</span></div>
