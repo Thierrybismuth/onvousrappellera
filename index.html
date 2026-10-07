@@ -618,6 +618,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var btn=document.getElementById('f-btn'), msg=document.getElementById('f-msg');
   (function(){ var q=new URLSearchParams(location.search);
     if(q.get('merci')){ msg.className='msg ok'; msg.innerHTML='<b>Paiement reçu, merci !</b> Vos billets arrivent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.'; document.getElementById('prevenez-moi').scrollIntoView(); }
+    if(q.get('ville')){ var vv=q.get('ville'), sv=document.getElementById('f-ville'); if(sv){ sv.value=vv; majDates(vv,''); } }
     if(q.get('annule')){ msg.className='msg ko'; msg.innerHTML='Le paiement a été abandonné, rien n\'a été débité. Vous pouvez recommencer ci-dessous.'; document.getElementById('prevenez-moi').scrollIntoView(); } })();
   var g=function(i){return document.getElementById(i);};
   function show(cls,txt){ msg.className='msg '+cls; msg.innerHTML=txt; }
