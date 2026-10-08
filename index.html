@@ -198,6 +198,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   @media(max-width:759px){.vtz .vmedia{display:block;}.vtz .vmedia .vtroupe,.vbody.vtz .vmedia .vtroupe{width:100%;margin:12px 0 10px;}.vtz .vcv-c,.vtz .vmedia .vcv-c{width:100%!important;}}
   .vtz:not(:has(.vmedia,.vcv,.vtroupe)) .vtbtn{display:none;}
   .vlieu{font-size:.82rem;color:var(--marine);margin:-4px 0 12px 17px;line-height:1.45;}
+  /* Plusieurs séances au même lieu : une seule carte, horaires en petits boutons (08/10) */
+  .vmulti .vmh{margin:0 0 8px;font-size:.95rem;font-weight:700;color:var(--marine);}
+  .vjour{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:7px 0;border-top:1px dashed rgba(0,0,0,.15);}
+  .vjour:first-of-type{border-top:0;}
+  .vj{flex:0 0 auto;min-width:10.5em;white-space:nowrap;line-height:1.2;font-size:.95rem;color:var(--marine);font-weight:600;}
+  .vhs{display:flex;flex-wrap:wrap;gap:6px;}
+  .vcarte a.vdate.vh,.vcarte span.vdate.vh{display:inline-flex;flex-direction:column;align-items:center;background:var(--accent)!important;color:#fff;font-weight:700;font-size:1rem;padding:7px 14px;border-radius:3px;text-decoration:none;line-height:1.15;}
+  .vcarte a.vdate.vh:hover{filter:brightness(.9);}
+  .vcarte span.vdate.vh{background:#9a9a9a!important;cursor:default;}
+  .vdate.vh small{font-size:.66rem;font-weight:500;}
+  .vmulti .vlieu{margin-top:10px;}
   .vlieu a{color:var(--accent);text-decoration:underline;}
   .vavenir{font-size:.9rem;color:var(--gris);font-style:italic;margin:0 0 8px;}
   .vcad{font-size:.8rem;color:var(--gris);margin:4px 0 8px;}
@@ -607,6 +618,9 @@ document.addEventListener('DOMContentLoaded',function(){
   function rendreDates(){
     document.querySelectorAll('.vdates').forEach(function(box){
       var L=DATES[box.dataset.ville]||[]; if(box.dataset.codes){ var K=box.dataset.codes.split(','); L=L.filter(function(o){return K.indexOf(o.c)>=0;}); }
+      // Même lieu (et même troupe) sur plusieurs séances : une seule carte compacte
+      var G=[],IX={}; L.forEach(function(o){ var k=(o.l||'')+'|'+(o.tr||''); if(!(k in IX)){ IX[k]=G.length; G.push([]); } G[IX[k]].push(o); });
+      if(G.some(function(g){return g.length>1;})){ box.innerHTML=G.map(function(g){ return g.length>1?carteMulti(g,box.dataset.ville):carteSeule(g[0],box.dataset.ville); }).join(''); return; }
       box.innerHTML=L.map(function(o){ var r=reste(o);
         var BT='<button type="button" class="vtbtn">Découvrir la troupe</button>';
         if(r!==null && r<=0) return '<div class="vcarte vplein"><div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>';
@@ -614,6 +628,21 @@ document.addEventListener('DOMContentLoaded',function(){
     });
     if(window.ovrMinis) window.ovrMinis();
   }
+  var MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'], JOURS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+  function decoupe(o){ var p=o.d.split(' · '), m=p[0].match(/^(\d+)\s+(\S+)\s+(\d{4})$/), jour=p[0], an='';
+    if(m){ var i=MOIS.indexOf(m[2]); an=m[3]; if(i>=0){ jour=JOURS[new Date(+m[3],i,+m[1]).getDay()]+' '+m[1]+' '+m[2]; } }
+    return {jour:jour, an:an, h:p[1]||o.t}; }
+  function carteSeule(o,ville){ var r=reste(o);
+    if(r!==null && r<=0) return '<div class="vcarte vplein"><div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>Complet</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr)+'</div>';
+    return '<div class="vcarte"><a class="vdate" href="#prevenez-moi" data-ville="'+esc(ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=20)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr)+'</div>'; }
+  function carteMulti(g,ville){ var J=[],JX={}, ans={};
+    g.forEach(function(o){ var x=decoupe(o); ans[x.an]=1; if(!(x.jour+x.an in JX)){ JX[x.jour+x.an]=J.length; J.push({jour:x.jour,an:x.an,s:[]}); } J[JX[x.jour+x.an]].s.push({o:o,h:x.h}); });
+    var plusAn=Object.keys(ans).length>1;
+    return '<div class="vcarte vmulti"><p class="vmh">Choisissez votre séance</p>'+J.map(function(j){
+      return '<div class="vjour"><span class="vj">'+esc(j.jour+(plusAn?' '+j.an:''))+'</span><div class="vhs">'+j.s.map(function(x){ var r=reste(x.o);
+        if(r!==null && r<=0) return '<span class="vdate vh vplein">'+esc(x.h)+'<small>complet</small></span>';
+        return '<a class="vdate vh" href="#prevenez-moi" data-ville="'+esc(ville)+'" data-date="'+esc(x.o.d)+'">'+esc(x.h)+((r!==null&&r<=20)?'<small>plus que '+r+'</small>':'')+'</a>'; }).join('')+'</div></div>'; }).join('')
+      +lieuHTML(g[0].l)+troupeHTML(g[0].tr)+'</div>'; }
   rendreDates();
   fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})})
     .then(function(r){return r.json();}).then(function(d){ if(d&&d.dispo){ DISPO=d.dispo; rendreDates(); var v=document.getElementById('f-ville'); if(v&&v.value){ var sd=document.getElementById('f-date').value; majDates(v.value, sd); } } }).catch(function(){});
