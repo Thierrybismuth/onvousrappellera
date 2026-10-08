@@ -1,6 +1,19 @@
 {
- "maj": "2026-10-08T18:14:33.321Z",
+ "maj": "2026-10-08T19:03:57.829Z",
  "comediens": [
+  {
+   "prenom": "Pauline",
+   "nom": "De Leusse",
+   "ville": "Lille + Paris",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/pauline-de-leusse-1grmxuljp8kx.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/pauline-de-leusse-1grmxuljp8kx.jpg?v=1791486237829"
+   ],
+   "personnage": "Johana + Julia",
+   "parcours": [],
+   "videos": []
+  },
   {
    "prenom": "Caroline",
    "nom": "Larose",
@@ -126,6 +139,19 @@
     "https://onvousrappellera.fr/assets/comediens/arthur-pichon-1ih5f6plasmx.jpg?v=1791176499089"
    ],
    "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Béatrice",
+   "nom": "Laout",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/beatrice-laout-1zj3j1acbhou.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/beatrice-laout-1zj3j1acbhou.jpg?v=1791486237829"
+   ],
+   "personnage": "Danielle + Dominique",
    "parcours": [],
    "videos": []
   },
@@ -261,6 +287,32 @@
     "https://onvousrappellera.fr/assets/comediens/lucile-ehrler-1msecyznae3t.jpg?v=1791176499089"
    ],
    "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Marine",
+   "nom": "Luc",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/marine-luc-1qcwnww1xnjo.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/marine-luc-1qcwnww1xnjo.jpg?v=1791486237829"
+   ],
+   "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Mélanie",
+   "nom": "Cauvé",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/melanie-cauve-19go0vdxfq8q.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/melanie-cauve-19go0vdxfq8q.jpg?v=1791486237829"
+   ],
+   "personnage": "Delphine",
    "parcours": [],
    "videos": []
   },
