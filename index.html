@@ -336,7 +336,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .assur,.combo{max-width:1100px}
 .perso-bio{max-width:1000px}
 </style>
-<style>.video-v{margin:2rem auto 0;width:100%;max-width:400px;background:#fff}.video-v video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}</style>
+<style>.vslider{position:relative;margin:2rem auto 0;width:100%;max-width:400px}.vs-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}.vs-track::-webkit-scrollbar{display:none}.vs-slide{flex:0 0 100%;scroll-snap-align:center}.vs-slide video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}.vs-nav{position:absolute;top:calc(50% - 32px);width:44px;height:44px;border-radius:50%;border:0;background:#d51e29;color:#fff;font-size:30px;line-height:40px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:2}.vs-prev{left:-56px}.vs-next{right:-56px}@media(max-width:520px){.vs-prev{left:6px}.vs-next{right:6px}}.vs-dots{display:flex;justify-content:center;gap:10px;margin-top:14px}.vs-dots button{width:11px;height:11px;border-radius:50%;border:0;padding:0;background:#ccc;cursor:pointer}.vs-dots button.on{background:#d51e29}.vslider.seule .vs-nav,.vslider.seule .vs-dots{display:none}.video-v{margin:2rem auto 0;width:100%;max-width:400px;background:#fff}.video-v video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}</style>
 </head>
 <body>
 <div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px">Entreprises</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px">Casting</a><a href="/franchise.html" style="color:#777;text-decoration:none;margin-left:18px">Franchiseurs</a><button type="button" id="nlx-btn" aria-expanded="false" aria-controls="nlx-box">Recevoir les actus de la pièce</button></div>
@@ -404,7 +404,38 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <span class="badge">1h15 de comédie</span>
       <span class="badge">Dès décembre 2026</span>
     </div>
-    <div class="video-v"><video controls playsinline preload="metadata" poster="/assets/video/ovr-teaser-2026.jpg" title="Teaser ON VOUS RAPPELLERA"><source src="/assets/video/ovr-teaser-2026.mp4" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="/assets/video/ovr-teaser-2026.mp4">ouvrir la vidéo</a>.</video></div>
+    <div class="vslider" id="vslider" aria-roledescription="carrousel" aria-label="Vidéos de la pièce">
+      <button class="vs-nav vs-prev" type="button" aria-label="Vidéo précédente">&#8249;</button>
+      <div class="vs-track" id="vs-track"></div>
+      <button class="vs-nav vs-next" type="button" aria-label="Vidéo suivante">&#8250;</button>
+      <div class="vs-dots" id="vs-dots"></div>
+    </div>
+    <script>
+    /* Vidéos du carrousel — pour en ajouter une : une ligne de plus, dans l'ordre d'affichage */
+    var VIDEOS=[
+      {src:"/assets/video/ovr-teaser-2026-v2.mp4", poster:"/assets/video/ovr-teaser-2026-v2.jpg", titre:"Teaser ON VOUS RAPPELLERA"}
+    ];
+    (function(){
+      var tr=document.getElementById('vs-track'), dots=document.getElementById('vs-dots'), box=document.getElementById('vslider');
+      VIDEOS.forEach(function(v,k){
+        var d=document.createElement('div'); d.className='vs-slide';
+        d.innerHTML='<video controls playsinline preload="'+(k?'none':'metadata')+'" poster="'+v.poster+'" title="'+v.titre+'"><source src="'+v.src+'" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="'+v.src+'">ouvrir la vidéo</a>.</video>';
+        tr.appendChild(d);
+        var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Vidéo '+(k+1));
+        b.addEventListener('click',function(){aller(k);}); dots.appendChild(b);
+      });
+      if(VIDEOS.length<2) box.classList.add('seule');
+      var cur=0;
+      function maj(){ [].forEach.call(dots.children,function(b,k){b.classList.toggle('on',k===cur);}); }
+      function aller(k){ k=(k+VIDEOS.length)%VIDEOS.length; tr.scrollTo({left:k*tr.clientWidth,behavior:'smooth'}); }
+      box.querySelector('.vs-prev').addEventListener('click',function(){aller(cur-1);});
+      box.querySelector('.vs-next').addEventListener('click',function(){aller(cur+1);});
+      var t; tr.addEventListener('scroll',function(){ clearTimeout(t); t=setTimeout(function(){
+        var k=Math.round(tr.scrollLeft/tr.clientWidth); if(k!==cur){
+          tr.querySelectorAll('video').forEach(function(v,i){ if(i!==k) v.pause(); }); cur=k; maj(); } },80); });
+      maj();
+    })();
+    </script>
   </div>
 </header>
 
