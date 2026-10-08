@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-08T18:13:05.041Z",
+ "maj": "2026-10-08T18:14:33.321Z",
  "comediens": [
   {
    "prenom": "Caroline",
@@ -202,8 +202,9 @@
    "nom": "Gautier",
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/frederique-gautier-1zyknqtl9tfb.jpg?v=1791176499089",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/frederique-gautier-1tbdqolkxite.jpg?v=1791483273321",
    "photos": [
+    "https://onvousrappellera.fr/assets/comediens/frederique-gautier-1tbdqolkxite.jpg?v=1791483273321",
     "https://onvousrappellera.fr/assets/comediens/frederique-gautier-1zyknqtl9tfb.jpg?v=1791176499089"
    ],
    "personnage": "Danielle + Dominique",
