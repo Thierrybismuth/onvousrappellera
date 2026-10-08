@@ -739,6 +739,11 @@ document.addEventListener('DOMContentLoaded',function(){
    var f=b.querySelector('figure.vtroupe');
    if(grp){ var md=b.querySelector('.vmedia'); (md||b).insertAdjacentHTML('beforeend',h); } else if(f){ var m2=f.closest('.vmedia'); if(m2) m2.insertAdjacentHTML('beforeend',h); else f.insertAdjacentHTML('afterend',h); } else { var an2=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an2) an2.insertAdjacentHTML('afterend',h); else b.insertAdjacentHTML('afterbegin',h); }
   });
+  /* Photos homogènes (08/10) : si la 1re photo d'un comédien est en paysage et qu'il en a une en portrait, la portrait passe devant (aucun recadrage) */
+  document.querySelectorAll('.vcv-ph').forEach(function(ph){ var L=[].slice.call(ph.querySelectorAll('img.vcv-p')); if(L.length<2) return;
+   var n=0; function ok(){ if(++n<L.length) return; var a=L[0]; if(!(a.naturalWidth>a.naturalHeight)) return;
+    var p=L.filter(function(i){return i.naturalHeight>i.naturalWidth;})[0]; if(p) ph.insertBefore(p,a); }
+   L.forEach(function(i){ i.loading='eager'; if(i.complete) ok(); else { i.addEventListener('load',ok); i.addEventListener('error',ok); } }); });
  }).catch(function(){});
 })();
 </script>
