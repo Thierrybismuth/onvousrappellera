@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-08T11:49:28.279Z",
+ "maj": "2026-10-08T18:13:05.041Z",
  "comediens": [
   {
    "prenom": "Caroline",
@@ -187,11 +187,11 @@
    "nom": "Cony",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://drive.google.com/file/d/1h2r0O7xC8r82twtFAB3QUfgRg8p_UXCa/view",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/fanny-cony-1wuflckeyhec.jpg?v=1791483185041",
    "photos": [
-    "https://drive.google.com/file/d/1h2r0O7xC8r82twtFAB3QUfgRg8p_UXCa/view",
-    "https://drive.google.com/file/d/1X1tHlvtcwWdRuyfhI5PyNQfyqpgXfpJ-/view",
-    "https://drive.google.com/file/d/1a85jf3O1JergGZGgQknmQQ3J_hB6wEe5/view"
+    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1wuflckeyhec.jpg?v=1791483185041",
+    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1te1unpqjgks.jpg?v=1791483185041",
+    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1sbrrxciyov3.jpg?v=1791483185041"
    ],
    "personnage": "Johana",
    "parcours": [],
@@ -314,6 +314,19 @@
     "https://onvousrappellera.fr/assets/comediens/nolwenn-canal-1qiy3sh04sla.jpg?v=1791176499089"
    ],
    "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Thomas",
+   "nom": "Delaporte",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/thomas-delaporte-1wylfm6lio3l.jpg?v=1791483185041",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/thomas-delaporte-1wylfm6lio3l.jpg?v=1791483185041"
+   ],
+   "personnage": "Julien",
    "parcours": [],
    "videos": []
   },
