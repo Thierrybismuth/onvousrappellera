@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-06T10:48:30.506Z",
+ "maj": "2026-10-08T11:45:32.544Z",
  "comediens": [
   {
    "prenom": "Caroline",
@@ -26,7 +26,7 @@
     "https://onvousrappellera.fr/assets/comediens/charlotte-orsini-1bv2ee382wdj.jpg?v=1791210838923",
     "https://onvousrappellera.fr/assets/comediens/charlotte-orsini-1hghjci5ek1s.jpg?v=1791210838923"
    ],
-   "personnage": "Johana",
+   "personnage": "Johana + Julia",
    "parcours": [],
    "videos": []
   },
@@ -170,9 +170,11 @@
    "nom": "Cony",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/fanny-cony-16at3rkf0zs4.jpg?v=1791176499089",
+   "portrait": "https://drive.google.com/file/d/1h2r0O7xC8r82twtFAB3QUfgRg8p_UXCa/view",
    "photos": [
-    "https://onvousrappellera.fr/assets/comediens/fanny-cony-16at3rkf0zs4.jpg?v=1791176499089"
+    "https://drive.google.com/file/d/1h2r0O7xC8r82twtFAB3QUfgRg8p_UXCa/view",
+    "https://drive.google.com/file/d/1X1tHlvtcwWdRuyfhI5PyNQfyqpgXfpJ-/view",
+    "https://drive.google.com/file/d/1a85jf3O1JergGZGgQknmQQ3J_hB6wEe5/view"
    ],
    "personnage": "Johana",
    "parcours": [],
