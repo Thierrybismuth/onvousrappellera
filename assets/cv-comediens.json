@@ -1,13 +1,14 @@
 {
- "maj": "2026-10-08T11:45:32.544Z",
+ "maj": "2026-10-08T11:47:34.958Z",
  "comediens": [
   {
    "prenom": "Caroline",
    "nom": "Larose",
    "ville": "Lyon",
    "troupe": "",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/caroline-larose-1xjadlaveyrq.jpg?v=1791210838923",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/caroline-larose-1qfxe55h6hp2.jpg?v=1791460054958",
    "photos": [
+    "https://onvousrappellera.fr/assets/comediens/caroline-larose-1qfxe55h6hp2.jpg?v=1791460054958",
     "https://onvousrappellera.fr/assets/comediens/caroline-larose-1xjadlaveyrq.jpg?v=1791210838923",
     "https://onvousrappellera.fr/assets/comediens/caroline-larose-1kszu12liteo.jpg?v=1791210838923"
    ],
@@ -74,12 +75,28 @@
    "videos": []
   },
   {
+   "prenom": "sonia",
+   "nom": "Garrido",
+   "ville": "Montpellier",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/sonia-garrido-1mrzv1ycyroy.jpg?v=1791460054958",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/sonia-garrido-1mrzv1ycyroy.jpg?v=1791460054958",
+    "https://onvousrappellera.fr/assets/comediens/sonia-garrido-1ch3go7gby4o.jpg?v=1791460054958",
+    "https://onvousrappellera.fr/assets/comediens/sonia-garrido-1hnkrdooplux.jpg?v=1791460054958"
+   ],
+   "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Alicia",
    "nom": "Bader",
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/alicia-bader-1zpwzsiowtru.jpg?v=1791176499089",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/alicia-bader-1yjya68l5dxt.jpg?v=1791460054958",
    "photos": [
+    "https://onvousrappellera.fr/assets/comediens/alicia-bader-1yjya68l5dxt.jpg?v=1791460054958",
     "https://onvousrappellera.fr/assets/comediens/alicia-bader-1zpwzsiowtru.jpg?v=1791176499089"
    ],
    "personnage": "Delphine",
