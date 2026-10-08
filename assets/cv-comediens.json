@@ -1,19 +1,6 @@
 {
- "maj": "2026-10-08T19:03:57.829Z",
+ "maj": "2026-10-08T19:06:30.701Z",
  "comediens": [
-  {
-   "prenom": "Pauline",
-   "nom": "De Leusse",
-   "ville": "Lille + Paris",
-   "troupe": "",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/pauline-de-leusse-1grmxuljp8kx.jpg?v=1791486237829",
-   "photos": [
-    "https://onvousrappellera.fr/assets/comediens/pauline-de-leusse-1grmxuljp8kx.jpg?v=1791486237829"
-   ],
-   "personnage": "Johana + Julia",
-   "parcours": [],
-   "videos": []
-  },
   {
    "prenom": "Caroline",
    "nom": "Larose",
@@ -209,6 +196,21 @@
    "videos": []
   },
   {
+   "prenom": "Daniel",
+   "nom": "Vandeberg",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1or3odqbtoyd.jpg?v=1791486237829",
+    "https://drive.google.com/file/d/1dIQC42oC-jeDY8CbFZKriVtVMasY-qkc/view"
+   ],
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Fanny",
    "nom": "Cony",
    "ville": "Paris",
@@ -367,6 +369,19 @@
     "https://onvousrappellera.fr/assets/comediens/nolwenn-canal-1qiy3sh04sla.jpg?v=1791176499089"
    ],
    "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Pauline",
+   "nom": "De Leusse",
+   "ville": "Paris",
+   "troupe": "Engagement",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/pauline-de-leusse-1grmxuljp8kx.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/pauline-de-leusse-1grmxuljp8kx.jpg?v=1791486237829"
+   ],
+   "personnage": "Julia",
    "parcours": [],
    "videos": []
   },
