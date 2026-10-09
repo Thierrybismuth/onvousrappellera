@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-09T12:40:40.349Z",
+ "maj": "2026-10-09T15:21:07.002Z",
  "comediens": [
   {
    "prenom": "Caroline",
@@ -86,6 +86,19 @@
     "https://onvousrappellera.fr/assets/comediens/sonia-garrido-1hnkrdooplux.jpg?v=1791460054958"
    ],
    "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Christian",
+   "nom": "Bahezre",
+   "ville": "Nantes",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1MCb-9H5ulDjWuFXZfoZ5E1_rb0Nysw01/view",
+   "photos": [
+    "https://drive.google.com/file/d/1MCb-9H5ulDjWuFXZfoZ5E1_rb0Nysw01/view"
+   ],
+   "personnage": "Pascal + Dominique",
    "parcours": [],
    "videos": []
   },
