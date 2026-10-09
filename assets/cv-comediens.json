@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-08T19:06:30.701Z",
+ "maj": "2026-10-09T12:35:08.729Z",
  "comediens": [
   {
    "prenom": "Caroline",
@@ -196,21 +196,6 @@
    "videos": []
   },
   {
-   "prenom": "Daniel",
-   "nom": "Vandeberg",
-   "ville": "Paris",
-   "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
-   "photos": [
-    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
-    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1or3odqbtoyd.jpg?v=1791486237829",
-    "https://drive.google.com/file/d/1dIQC42oC-jeDY8CbFZKriVtVMasY-qkc/view"
-   ],
-   "personnage": "Pascal",
-   "parcours": [],
-   "videos": []
-  },
-  {
    "prenom": "Fanny",
    "nom": "Cony",
    "ville": "Paris",
@@ -271,8 +256,9 @@
    "nom": "Laboute",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/jerome-laboute-1hf4e3xtj3mw.jpg?v=1791176499089",
+   "portrait": "https://drive.google.com/file/d/1dMHMYr7VNDDWW9E9Qf5rkMWwMfo6Fv0d/view",
    "photos": [
+    "https://drive.google.com/file/d/1dMHMYr7VNDDWW9E9Qf5rkMWwMfo6Fv0d/view",
     "https://onvousrappellera.fr/assets/comediens/jerome-laboute-1hf4e3xtj3mw.jpg?v=1791176499089"
    ],
    "personnage": "Pascal",
