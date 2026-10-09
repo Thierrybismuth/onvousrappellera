@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brochure — On Vous Rappellera</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#f7f4ee;font-family:'Outfit',sans-serif;color:#1c1c1c;}
+  .bar{position:sticky;top:0;background:#161616;color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.9rem;z-index:2;}
+  .bar a{color:#fff;text-decoration:underline;}
+  #pages{max-width:900px;margin:0 auto;padding:12px;}
+  #pages canvas{display:block;width:100%;height:auto;margin:0 0 12px;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.12);}
+  #etat{text-align:center;padding:40px 16px;color:#6b7280;}
+</style>
+</head>
+<body>
+<div class="bar"><a href="entreprises.html">← Retour</a><a href="assets/ovr/brochure-on-vous-rappellera.pdf?v=17" download="Brochure-On-Vous-Rappellera.pdf">Télécharger le PDF</a></div>
+<div id="etat">Chargement de la brochure…</div>
+<div id="pages"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(async function(){
+  var etat=document.getElementById('etat'), zone=document.getElementById('pages');
+  var url='assets/ovr/brochure-on-vous-rappellera.pdf?v=17';
+  try{
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    var pdf=await pdfjsLib.getDocument(url).promise;
+    etat.style.display='none';
+    var ratio=Math.min(window.devicePixelRatio||1,2);
+    for(var i=1;i<=pdf.numPages;i++){
+      var page=await pdf.getPage(i);
+      var base=page.getViewport({scale:1});
+      var scale=Math.min(900,zone.clientWidth||900)/base.width*ratio;
+      var vp=page.getViewport({scale:scale});
+      var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+      zone.appendChild(c);
+      await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+    }
+  }catch(e){
+    etat.innerHTML='La brochure ne s\'affiche pas sur cet appareil. <a href="'+url+'">Ouvrez-la ici</a>.';
+  }
+})();
+</script>
+</body>
+</html>

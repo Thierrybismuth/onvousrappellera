@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réserver une date — ON VOUS RAPPELLERA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --blanc:#f7f4ee; --blanc-pur:#ffffff; --marine:#161616; --accent:#f26b1d; --or:#c8913a; --gris:#6b7280; --gris-clair:#e7e2d8; --texte:#1c1c1c; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--blanc);color:var(--texte);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 6%;}
+  .hero{padding:48px 0 34px;text-align:center;border-bottom:1px solid var(--gris-clair);}
+  .hero-eyebrow{display:inline-block;font-size:.7rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
+  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.08;color:var(--marine);}
+  h1 em{font-style:italic;color:var(--accent);}
+  .sub{margin:1.2rem auto 0;font-size:.95rem;color:var(--gris);max-width:520px;}
+  section{padding:36px 0;}
+  .bloc-titre{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:1.1rem;display:block;}
+  label{display:block;font-size:.8rem;font-weight:500;color:var(--marine);margin-bottom:.35rem;}
+  input,select,textarea{width:100%;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:300;color:var(--texte);background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:12px 14px;margin-bottom:1rem;border-radius:2px;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);}
+  textarea{min-height:96px;resize:vertical;}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;}
+  @media(max-width:560px){.duo{grid-template-columns:1fr;}}
+  .aide{font-size:.78rem;color:var(--gris);margin:-.6rem 0 1.2rem;}
+  .ligne{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:14px 16px;margin-bottom:10px;}
+  .ligne.base{border-color:var(--marine);}
+  .ligne .nom{font-size:.95rem;color:var(--marine);}
+  .ligne .desc{font-size:.78rem;color:var(--gris);}
+  .ligne .prix{font-size:.95rem;font-weight:500;color:var(--marine);white-space:nowrap;}
+  .opt-lbl{display:flex;gap:12px;align-items:flex-start;cursor:pointer;flex:1;}
+  .opt-lbl input{width:auto;margin:4px 0 0;flex:none;}
+  .opt-lbl span{display:block;}
+  .total-box{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.4rem 1.6rem;margin-top:1.4rem;}
+  .total-box .lab{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);}
+  .total-box .val{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;font-style:italic;color:var(--accent);line-height:1.2;}
+  .total-box .det{font-size:.78rem;color:var(--gris);margin-top:.4rem;}
+  .acompte{background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:1.4rem 1.6rem;margin-top:1rem;}
+  .acompte h3{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;color:var(--marine);margin-bottom:.5rem;}
+  .acompte p{font-size:.85rem;color:var(--gris);}
+  .btn{display:block;width:100%;background:var(--accent);color:#fff;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:500;letter-spacing:.03em;padding:17px 24px;border:0;border-radius:2px;cursor:pointer;margin-top:1.6rem;}
+  .btn:disabled{opacity:.55;cursor:wait;}
+  .note{font-size:.78rem;color:var(--gris);text-align:center;margin-top:.9rem;}
+  .err{color:#b3261e;font-size:.82rem;margin-top:.6rem;}
+  .facture{background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:2rem;}
+  .facture h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--marine);margin-bottom:.3rem;}
+  .facture table{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.88rem;}
+  .facture td{padding:9px 0;border-bottom:1px solid var(--gris-clair);}
+  .facture td:last-child{text-align:right;white-space:nowrap;}
+  .facture .tot td{font-weight:600;color:var(--marine);border-bottom:0;font-size:1rem;}
+  .rib{background:var(--blanc);padding:1.1rem 1.3rem;margin-top:1.2rem;font-size:.88rem;line-height:2;}
+  .rib .k{color:var(--gris);display:inline-block;min-width:110px;}
+  .resa{border-left:3px solid var(--accent);background:var(--blanc);padding:1.1rem 1.3rem;margin-top:1.2rem;font-size:.9rem;color:var(--marine);}
+  footer{border-top:1px solid var(--gris-clair);padding:30px 0 50px;text-align:center;font-size:.85rem;color:var(--gris);}
+  footer a{color:var(--accent);text-decoration:none;}
+  .hide{display:none;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<div class="hero">
+  <span class="hero-eyebrow">Réservation</span>
+  <h1>C'est décidé,<br><em>je réserve une date</em></h1>
+  <p class="sub">Choisissez votre ville, vos dates et vos options. Vous recevez immédiatement votre facture d'acompte : dès réception du règlement, la date et la troupe sont bloquées à votre nom.</p>
+</div>
+
+<div id="form-zone">
+
+<section>
+  <span class="bloc-titre">Vos coordonnées</span>
+  <div class="duo">
+    <div><label for="prenom">Prénom</label><input type="text" id="prenom"></div>
+    <div><label for="nom">Nom</label><input type="text" id="nom"></div>
+  </div>
+  <label for="societe">Entreprise ou cabinet</label><input type="text" id="societe">
+  <label for="fonction">Votre fonction</label><input type="text" id="fonction">
+  <label for="email">Email professionnel</label><input type="email" id="email" placeholder="nom@entreprise.fr">
+  <label for="tel">Téléphone</label><input type="tel" id="tel" placeholder="06 00 00 00 00">
+</section>
+
+<section style="border-top:1px solid var(--gris-clair);">
+  <span class="bloc-titre">Votre représentation</span>
+  <label for="agglo">Dans quelle agglomération ?</label>
+  <select id="agglo">
+    <option value="">Choisissez…</option>
+    <option value="0">Paris</option><option value="0">Lille</option><option value="0">Rennes</option>
+    <option value="0">Nantes</option><option value="0">Bordeaux</option><option value="0">Toulouse</option>
+    <option value="0">Montpellier</option><option value="0">Marseille</option><option value="0">Lyon</option>
+    <option value="0">Reims</option>
+    <option value="500">Une autre ville en France</option>
+  </select>
+  <label for="ville">Ville exacte</label><input type="text" id="ville">
+  <label for="dates">Date ou dates envisagées</label><input type="text" id="dates" placeholder="12 décembre, ou 12 / 15 / 18 décembre">
+  <label for="horaires">Créneaux horaires possibles</label><input type="text" id="horaires" placeholder="En soirée, à partir de 19h">
+  <label for="spec">Nombre de spectateurs attendus</label>
+  <select id="spec">
+    <option value="">Choisissez…</option>
+    <option value="50">Moins de 50</option><option value="100">De 50 à 100</option>
+    <option value="150">De 100 à 150</option><option value="200">De 150 à 200</option>
+    <option value="250">De 200 à 250</option><option value="300">De 250 à 300</option>
+    <option value="350">De 300 à 350</option><option value="400">De 350 à 400</option>
+    <option value="400">Plus de 400</option>
+  </select>
+  <p class="aide">Le tarif de la pièce ne dépend pas du nombre de spectateurs.</p>
+</section>
+
+<section style="border-top:1px solid var(--gris-clair);">
+  <span class="bloc-titre">Votre commande</span>
+
+  <div class="ligne base">
+    <div><div class="nom">La pièce</div><div class="desc">1h15 de spectacle, 10 minutes de débrief, toute une troupe</div></div>
+    <div class="prix" id="prix-piece"><s style="color:#9a9a9a;font-weight:400;text-decoration-color:#e1251b;">4 000 €</s> 2 000 €</div>
+  </div>
+  <p class="aide" id="cond-piece" style="margin:-.3rem 0 1rem;color:var(--accent);">Pour toute représentation commandée avant le 31 décembre 2026, quelle que soit sa date.</p>
+
+  <div class="ligne">
+    <label class="opt-lbl"><input type="checkbox" id="o-formation">
+      <span><span class="nom">Option 1 · Conférence-débat, 60 minutes</span><span class="desc">Animée par Thierry Bismuth, sur un thème au choix</span></span></label>
+    <div class="prix">1 000 €</div>
+  </div>
+
+  <div class="ligne">
+    <label class="opt-lbl"><input type="checkbox" id="o-atelier">
+      <span><span class="nom">Option 2 · Atelier de mise en pratique, 60 minutes</span><span class="desc">En petits groupes, co-animés par les comédiens de la troupe</span></span></label>
+    <div class="prix">1 000 €</div>
+  </div>
+
+  <div class="ligne">
+    <label class="opt-lbl"><input type="checkbox" id="o-livres">
+      <span><span class="nom">Option 3 · Un pack souvenir par spectateur</span><span class="desc">Le livre « Recruter est un jeu d'enfant » + un écocup souvenir + un magnet + une affiche du spectacle</span></span></label>
+    <div class="prix">15 € / pers.</div>
+  </div>
+
+  <div class="ligne">
+    <label class="opt-lbl"><input type="checkbox" id="o-salle">
+      <span><span class="nom">Trouvez-moi la salle</span><span class="desc">Recherche et réservation par nos soins</span></span></label>
+    <div class="prix">prix coûtant</div>
+  </div>
+
+  <div class="ligne">
+    <label class="opt-lbl"><input type="checkbox" id="o-presentateur">
+      <span><span class="nom">Quelqu'un de notre structure joue dans la scène finale</span><span class="desc">Le rôle du présentateur, pour amorcer votre prise de parole</span></span></label>
+    <div class="prix">offert</div>
+  </div>
+  <p class="aide">Une séance de répétition d'une heure, sur place ou en visio, suffit pour endosser le rôle. Sans cette option, nos comédiens jouent tous les rôles.</p>
+
+  <div class="total-box">
+    <div class="lab">Total estimé</div>
+    <div class="val" id="total">2 000 € HT</div>
+    <div class="det" id="detail">Hors recherche de salle, refacturée à prix coûtant.</div>
+  </div>
+
+  <div class="acompte">
+    <h3>Acompte de 1 000 € HT — 1 200 € TTC</h3>
+    <p>Il réserve votre date et bloque la troupe. Il est déduit du solde, réglé après la représentation. Votre facture d'acompte s'affiche dès l'envoi de ce formulaire, et vous est envoyée par email.</p>
+  </div>
+
+  <label for="message" style="margin-top:1.6rem;">Une précision, une contrainte, une question ?</label>
+  <textarea id="message"></textarea>
+
+  <button class="btn" id="envoyer">Je réserve ma date →</button>
+  <div class="err hide" id="erreur"></div>
+  <p class="note">Thierry Bismuth vous rappelle sous 24h pour caler les détails.</p>
+</section>
+
+</div>
+
+<div id="merci-zone" class="hide">
+  <section>
+    <div class="facture">
+      <h2>Merci, votre demande est enregistrée</h2>
+      <p style="font-size:.9rem;color:var(--gris);">Voici votre facture d'acompte. Elle vous a également été envoyée par email.</p>
+      <p style="font-size:.85rem;color:var(--gris);margin-top:1.2rem;">
+        <strong style="color:var(--marine);font-weight:600;" id="f-num">—</strong> · émise le <span id="f-date">—</span><br>
+        SAS ODYSKILLS — 15 rue de Phalsbourg, 75017 Paris — RCS Paris 902 770 627
+      </p>
+      <table>
+        <tr><td id="f-objet">Acompte sur représentation</td><td>1 000,00 €</td></tr>
+        <tr><td>TVA 20 %</td><td>200,00 €</td></tr>
+        <tr class="tot"><td>Total à régler</td><td>1 200,00 € TTC</td></tr>
+      </table>
+      <div class="rib">
+        <span class="k">Bénéficiaire</span> SAS ODYSKILLS<br>
+        <span class="k">IBAN</span> FR76 2823 3000 0195 4531 9866 004<br>
+        <span class="k">BIC</span> REVOFRP2 — Revolut Bank UAB
+      </div>
+      <div class="resa">Dès réception de votre règlement, <strong>la date et la troupe sont réservées</strong> à votre nom. Le solde sera facturé après la représentation.</div>
+      <p style="font-size:.85rem;color:var(--gris);margin-top:1.4rem;">Une question d'ici là ? <a href="tel:0610703090" style="color:var(--accent);text-decoration:none;">06 10 70 30 90</a></p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Thierry Bismuth — auteur et metteur en scène de <em>On vous rappellera</em><br>
+  <a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a> · 06 10 70 30 90<br>
+  <a href="https://onvousrappellera.fr/entreprises.html">Revenir à la présentation</a>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var SHEET='1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg';
+  var GW='https://thierryb.app.n8n.cloud/webhook/sheets-gateway';
+  var MAIL='https://thierryb.app.n8n.cloud/webhook/envoi-email-brevo';
+  var f=function(n){return n.toLocaleString('fr-FR');};
+  var g=function(id){return document.getElementById(id);};
+
+  var LANCEMENT=Date.now()<Date.parse('2027-01-01T00:00:00+01:00');
+  var PIECE=LANCEMENT?2000:4000;
+  if(!LANCEMENT){ g('prix-piece').textContent='4 000 €'; g('cond-piece').style.display='none'; }
+  function nbSpec(){ return parseInt(g('spec').value||0,10); }
+  function calc(){
+    var t=PIECE, d=[LANCEMENT?'Pièce 2 000 € (au lieu de 4 000 €)':'Pièce 4 000 €'];
+    if(g('o-formation').checked){ t+=1000; d.push('Conférence-débat 1 000 €'); }
+    if(g('o-atelier').checked){ t+=1000; d.push('Atelier 1 000 €'); }
+    var n=nbSpec();
+    if(g('o-livres').checked && n>0){ t+=15*n; d.push('Packs souvenir '+f(15*n)+' € (base '+n+' pers.)'); }
+    var dep=parseInt(g('agglo').value||0,10);
+    if(dep){ t+=dep; d.push('Déplacement 500 €'); }
+    g('total').textContent=f(t)+' € HT';
+    g('detail').textContent=d.join(' · ')+(g('o-salle').checked?' · salle à prix coûtant':'');
+    return t;
+  }
+  ['spec','agglo','o-formation','o-atelier','o-livres','o-salle','o-presentateur'].forEach(function(id){
+    g(id).addEventListener('change',calc);
+  });
+  calc();
+
+  function post(url,payload){
+    return fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(r){return r.json();});
+  }
+
+  function numeroSuivant(rows){
+    var max=0;
+    (rows||[]).forEach(function(r){
+      var m=String(r[0]||'').match(/^2026-(\d+)$/);
+      if(m){ var v=parseInt(m[1],10); if(v>max) max=v; }
+    });
+    return '2026-'+String(max+1).padStart(3,'0');
+  }
+
+  function corpsMail(num,dateStr,recap,total){
+    return '<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222;max-width:620px;">'
+      +'<p>Bonjour,</p>'
+      +'<p>Merci pour votre réservation de <strong>On vous rappellera</strong>. Voici votre facture d\'acompte.</p>'
+      +'<p><strong>Facture '+num+'</strong> — émise le '+dateStr+'<br>SAS ODYSKILLS — 15 rue de Phalsbourg, 75017 Paris — RCS Paris 902 770 627</p>'
+      +'<p style="background:#f7f4ee;padding:14px 18px;border-left:3px solid #f26b1d;">'
+      +'Acompte sur représentation : <strong>1 000,00 € HT</strong><br>TVA 20 % : 200,00 €<br><strong>Total à régler : 1 200,00 € TTC</strong></p>'
+      +'<p><strong>Coordonnées bancaires</strong><br>Bénéficiaire : SAS ODYSKILLS<br>IBAN : FR76 2823 3000 0195 4531 9866 004<br>BIC : REVOFRP2 — Revolut Bank UAB</p>'
+      +'<p style="background:#f7f4ee;padding:14px 18px;border-left:3px solid #f26b1d;"><strong>Dès réception de votre règlement, la date et la troupe sont réservées à votre nom.</strong> Le solde sera facturé après la représentation.</p>'
+      +'<p><strong>Votre commande</strong><br>'+recap.replace(/\n/g,'<br>')+'<br>Total estimé : '+f(total)+' € HT (hors salle éventuelle, refacturée à prix coûtant)</p>'
+      +'<p>Je vous rappelle sous 24h pour caler les détails.</p>'
+      +'<p>Thierry Bismuth<br>Auteur et metteur en scène de <em>On vous rappellera</em><br>bismuththierry@gmail.com — 06 10 70 30 90</p>'
+      +'<p style="font-size:12px;color:#888;">Message envoyé automatiquement à la suite de votre réservation en ligne. En cas d\'erreur, contactez Thierry directement au 06 10 70 30 90.</p></div>';
+  }
+
+  g('envoyer').addEventListener('click',function(){
+    var e=g('erreur');
+    var manque=[];
+    [['prenom','votre prénom'],['nom','votre nom'],['societe','votre entreprise'],['email','votre email'],['tel','votre téléphone'],['ville','la ville'],['dates','vos dates']].forEach(function(c){
+      if(!g(c[0]).value.trim()) manque.push(c[1]);
+    });
+    if(!g('agglo').value) manque.push("l'agglomération");
+    if(!g('spec').value) manque.push('le nombre de spectateurs');
+    if(manque.length){ e.textContent='Merci de renseigner : '+manque.join(', ')+'.'; e.classList.remove('hide'); return; }
+    e.classList.add('hide');
+
+    var btn=g('envoyer'); btn.disabled=true; btn.textContent='Enregistrement en cours…';
+
+    var total=calc();
+    var opts=[];
+    if(g('o-formation').checked) opts.push('Conférence-débat 60 min');
+    if(g('o-atelier').checked) opts.push('Atelier de mise en pratique 60 min');
+    if(g('o-livres').checked) opts.push('Packs souvenir ('+nbSpec()+' pers.)');
+    if(g('o-salle').checked) opts.push('Recherche de salle');
+    if(g('o-presentateur').checked) opts.push('Présentateur joué par le client');
+    var recap='Ville : '+g('ville').value+'\nDates : '+g('dates').value+'\nHoraires : '+(g('horaires').value||'à préciser')
+      +'\nSpectateurs : '+g('spec').options[g('spec').selectedIndex].text
+      +'\nOptions : '+(opts.length?opts.join(', '):'aucune')
+      +'\nTarif de la pièce : '+(LANCEMENT?'2 000 € HT au lieu de 4 000 € (commande passée avant le 31/12/2026)':'4 000 € HT');
+    var d=new Date();
+    var dateStr=('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear();
+    var ech=new Date(d.getTime()+15*86400000);
+    var echStr=('0'+ech.getDate()).slice(-2)+'/'+('0'+(ech.getMonth()+1)).slice(-2)+'/'+ech.getFullYear();
+
+    post(GW,{action:'read',spreadsheetId:SHEET,range:'Facturation!A1:A200'})
+    .then(function(r){
+      var num=numeroSuivant(r.values);
+      var objet='Acompte — représentation On vous rappellera, '+g('ville').value+' ('+g('dates').value+')';
+      var ligne=[num,dateStr,echStr,g('societe').value,objet,'1000','1','1000','200','1200',
+        'En attente de paiement','','Virement',
+        'Réservation en ligne. '+recap.replace(/\n/g,' · ')+' · Total estimé '+total+' € HT. Message : '+(g('message').value||'—'),
+        g('prenom').value,g('nom').value,g('email').value,g('tel').value];
+      return post(GW,{action:'append',spreadsheetId:SHEET,range:'Facturation!A:R',values:[ligne]})
+        .then(function(){ return {num:num,objet:objet}; });
+    })
+    .then(function(o){
+      var html=corpsMail(o.num,dateStr,recap,total);
+      var pourThierry='<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;">'
+        +'<p><strong>Nouvelle réservation OVR — facture '+o.num+'</strong></p>'
+        +'<p>'+g('prenom').value+' '+g('nom').value+' — '+g('fonction').value+'<br>'+g('societe').value
+        +'<br>'+g('email').value+' — '+g('tel').value+'</p><p>'+recap.replace(/\n/g,'<br>')
+        +'<br>Total estimé : '+f(total)+' € HT</p><p>Message : '+(g('message').value||'—')+'</p>'
+        +'<p>Acompte 1 200 € TTC en attente de règlement.</p></div>';
+      return Promise.all([
+        post(MAIL,{to:g('email').value,to_name:g('prenom').value+' '+g('nom').value,
+          subject:'Votre réservation On vous rappellera — facture d\'acompte '+o.num,html:html}),
+        post(MAIL,{to:'bismuththierry@gmail.com',to_name:'Thierry',
+          subject:'Réservation OVR — '+g('societe').value+' — '+g('ville').value,html:pourThierry})
+      ]).then(function(){ return o; });
+    })
+    .then(function(o){
+      g('f-num').textContent='Facture '+o.num;
+      g('f-date').textContent=dateStr;
+      g('f-objet').textContent=o.objet;
+      g('form-zone').classList.add('hide');
+      g('merci-zone').classList.remove('hide');
+      window.scrollTo(0,0);
+    })
+    .catch(function(){
+      btn.disabled=false; btn.textContent='Je réserve ma date →';
+      e.textContent="L'enregistrement n'a pas abouti. Merci d'appeler Thierry au 06 10 70 30 90, votre demande sera prise immédiatement.";
+      e.classList.remove('hide');
+    });
+  });
+})();
+</script>
+</body>
+</html>
