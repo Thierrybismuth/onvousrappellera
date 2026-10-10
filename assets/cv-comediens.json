@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-10T14:42:50.830Z",
+ "maj": "2026-10-10T14:44:00.612Z",
  "comediens": [
   {
    "prenom": "Caroline",
@@ -112,6 +112,19 @@
     "https://drive.google.com/file/d/1twxPQhUsLgOfGXqe2HTp8yaZwjRWG_s2/view"
    ],
    "personnage": "",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Sandrine",
+   "nom": "Laverdure",
+   "ville": "Nantes",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1e7SPthyV7mO54O9np9Kyg3kv3vzzrInu/view",
+   "photos": [
+    "https://drive.google.com/file/d/1e7SPthyV7mO54O9np9Kyg3kv3vzzrInu/view"
+   ],
+   "personnage": "Delphine + Danielle",
    "parcours": [],
    "videos": []
   },
