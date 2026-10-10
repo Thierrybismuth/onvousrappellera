@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-10T14:44:00.612Z",
+ "maj": "2026-10-10T15:20:28.558Z",
  "comediens": [
   {
    "prenom": "Caroline",
@@ -99,6 +99,19 @@
     "https://drive.google.com/file/d/1MCb-9H5ulDjWuFXZfoZ5E1_rb0Nysw01/view"
    ],
    "personnage": "Pascal + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Fanny",
+   "nom": "Coleno",
+   "ville": "Nantes",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1gVtT51R2nGlkoucMQM1MvBd1xtp-Kkjh/view",
+   "photos": [
+    "https://drive.google.com/file/d/1gVtT51R2nGlkoucMQM1MvBd1xtp-Kkjh/view"
+   ],
+   "personnage": "Johana",
    "parcours": [],
    "videos": []
   },
