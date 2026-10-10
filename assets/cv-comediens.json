@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-09T15:21:07.002Z",
+ "maj": "2026-10-10T14:42:50.830Z",
  "comediens": [
   {
    "prenom": "Caroline",
@@ -99,6 +99,19 @@
     "https://drive.google.com/file/d/1MCb-9H5ulDjWuFXZfoZ5E1_rb0Nysw01/view"
    ],
    "personnage": "Pascal + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Nicolas",
+   "nom": "Miraillie",
+   "ville": "Nantes",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1twxPQhUsLgOfGXqe2HTp8yaZwjRWG_s2/view",
+   "photos": [
+    "https://drive.google.com/file/d/1twxPQhUsLgOfGXqe2HTp8yaZwjRWG_s2/view"
+   ],
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -309,7 +322,7 @@
    "prenom": "Mélanie",
    "nom": "Cauvé",
    "ville": "Paris",
-   "troupe": "Honnêteté",
+   "troupe": "Engagement",
    "portrait": "https://onvousrappellera.fr/assets/comediens/melanie-cauve-19go0vdxfq8q.jpg?v=1791486237829",
    "photos": [
     "https://onvousrappellera.fr/assets/comediens/melanie-cauve-19go0vdxfq8q.jpg?v=1791486237829"
