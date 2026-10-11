@@ -1,6 +1,19 @@
 {
- "maj": "2026-10-10T15:20:28.558Z",
+ "maj": "2026-10-11T09:59:19.745Z",
  "comediens": [
+  {
+   "prenom": "Victor",
+   "nom": "Chevrel",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1AIre3LMlICWoWnmxpyvtx9fru44pZE45/view",
+   "photos": [
+    "https://drive.google.com/file/d/1AIre3LMlICWoWnmxpyvtx9fru44pZE45/view"
+   ],
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
   {
    "prenom": "Caroline",
    "nom": "Larose",
