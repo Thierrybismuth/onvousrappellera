@@ -1,13 +1,67 @@
 {
- "maj": "2026-10-11T09:59:19.745Z",
+ "maj": "2026-10-12T06:00:09.565Z",
  "comediens": [
+  {
+   "prenom": "Kenzo",
+   "nom": "Mavaut",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/kenzo-mavaut-17ambgzrhvfr.jpg?v=1791784809565",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/kenzo-mavaut-17ambgzrhvfr.jpg?v=1791784809565"
+   ],
+   "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Lisa",
+   "nom": "Bergerot",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/lisa-bergerot-1jg4ov5a91tb.jpg?v=1791784809565",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/lisa-bergerot-1jg4ov5a91tb.jpg?v=1791784809565"
+   ],
+   "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Pauline",
+   "nom": "Montfort",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/pauline-montfort-1wdnjr8xvsex.jpg?v=1791784809565",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/pauline-montfort-1wdnjr8xvsex.jpg?v=1791784809565"
+   ],
+   "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Sandrine",
+   "nom": "Coucaud",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/sandrine-coucaud-1doionta126i.jpg?v=1791784809565",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/sandrine-coucaud-1doionta126i.jpg?v=1791784809565",
+    "https://onvousrappellera.fr/assets/comediens/sandrine-coucaud-1k7ktww95bat.jpg?v=1791784809565"
+   ],
+   "personnage": "Danielle + Dominique",
+   "parcours": [],
+   "videos": []
+  },
   {
    "prenom": "Victor",
    "nom": "Chevrel",
    "ville": "Bordeaux",
    "troupe": "",
-   "portrait": "https://drive.google.com/file/d/1AIre3LMlICWoWnmxpyvtx9fru44pZE45/view",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/victor-chevrel-1bddrt7vjmq3.jpg?v=1791784809565",
    "photos": [
+    "https://onvousrappellera.fr/assets/comediens/victor-chevrel-1bddrt7vjmq3.jpg?v=1791784809565",
     "https://drive.google.com/file/d/1AIre3LMlICWoWnmxpyvtx9fru44pZE45/view"
    ],
    "personnage": "Pascal",
@@ -257,6 +311,21 @@
     "https://onvousrappellera.fr/assets/comediens/clementine-teixeira-1k68frty2hl2.jpg?v=1791210838923"
    ],
    "personnage": "Pascale",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Daniel",
+   "nom": "Vandeberg",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1or3odqbtoyd.jpg?v=1791486237829",
+    "https://drive.google.com/file/d/1dIQC42oC-jeDY8CbFZKriVtVMasY-qkc/view"
+   ],
+   "personnage": "Pascal",
    "parcours": [],
    "videos": []
   },
