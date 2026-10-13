@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soirée franchise — Votre place offerte</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--rouge:#c8322a;--jaune:#f5c842;--gris:#f2f0ec;--muted:#6b6b6b;--ink:#1a1a1a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);line-height:1.6;}
+img{display:block;max-width:100%;height:auto;}
+.simu{background:var(--jaune);color:var(--ink);text-align:center;font-size:.8rem;font-weight:600;letter-spacing:.06em;padding:8px 16px;}
+.photos{display:flex;gap:2px;}
+.photos img{width:0;}
+.wrap{max-width:640px;margin:0 auto;padding:40px 20px 60px;}
+.kicker{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--rouge);margin-bottom:12px;}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,6vw,44px);line-height:1.1;margin-bottom:14px;}
+.quand{font-size:.95rem;color:var(--muted);margin-bottom:6px;}
+.offert{display:inline-block;background:var(--gris);border-left:3px solid var(--rouge);padding:8px 14px;font-weight:600;margin:18px 0 30px;}
+form{display:flex;flex-direction:column;gap:22px;}
+.bloc{background:var(--gris);padding:20px;border-radius:2px;}
+.bloc-titre{font-weight:600;margin-bottom:12px;}
+.bloc-titre small{font-weight:400;color:var(--muted);}
+label.ck{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;cursor:pointer;padding:6px 0;}
+label.ck input{margin-top:5px;width:18px;height:18px;flex-shrink:0;accent-color:var(--rouge);}
+label.ck strong{display:block;}
+label.ck span.d{color:var(--muted);font-size:.88rem;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.champ label{display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.champ input{width:100%;border:1px solid #ddd;border-radius:2px;padding:12px;font-family:inherit;font-size:15px;}
+.champ input:focus{outline:none;border-color:var(--rouge);}
+button{background:var(--rouge);color:#fff;border:none;border-radius:2px;padding:16px;font-family:inherit;font-size:.9rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;}
+.err{display:none;color:var(--rouge);font-size:.9rem;}
+.ok{display:none;background:var(--gris);border-left:3px solid var(--rouge);padding:20px;}
+.pied{font-size:.8rem;color:var(--muted);text-align:center;margin-top:30px;}
+@media(max-width:600px){.grid{grid-template-columns:1fr;}.photos{flex-direction:column;}.photos img{width:100%!important;}}
+</style>
+</head>
+<body>
+<div class="simu">Simulation — aperçu du formulaire des spectateurs, aucune donnée n'est envoyée</div>
+
+<div class="photos">
+  <img src="assets/franchise/ovr26-q02.jpg" style="flex:1.333" alt="ON VOUS RAPPELLERA sur scène">
+  <img src="assets/franchise/ovr26-q12.jpg" style="flex:1.778" alt="ON VOUS RAPPELLERA sur scène">
+</div>
+
+<div class="wrap">
+  <div class="kicker">Soirée entrepreneuriat en franchise</div>
+  <h1>ON VOUS RAPPELLERA</h1>
+  <p class="quand">Ville · date · heure · théâtre</p>
+  <div class="offert">Votre place est offerte.</div>
+
+  <form id="f">
+    <div class="bloc">
+      <label class="ck"><input type="checkbox" id="c1"> <span>J'ai bien compris que la soirée est sponsorisée par 5 enseignes de franchise, qui viendront nous présenter leurs opportunités locales.</span></label>
+    </div>
+
+    <div class="bloc">
+      <div class="bloc-titre">À titre personnel, je suis particulièrement intéressé(e) d'entendre les enseignes suivantes <small>(plusieurs choix possibles)</small> :</div>
+      <label class="ck"><input type="checkbox" name="enseignes" value="Anacours"> <span><strong>Anacours</strong><span class="d">Leader de la franchise en soutien scolaire en France</span></span></label>
+      <label class="ck"><input type="checkbox" name="enseignes" value="Smart Duck"> <span><strong>Smart Duck</strong><span class="d">Acteur à succès du marché de l'esthétique</span></span></label>
+      <label class="ck"><input type="checkbox" name="enseignes" value="Les Artisans Verts"> <span><strong>Les Artisans Verts</strong><span class="d">Positionné sur le marché des économies d'énergie, pour les particuliers et les professionnels</span></span></label>
+      <label class="ck"><input type="checkbox" name="enseignes" value="APV"> <span><strong>APV</strong><span class="d">Réseau entrepreneurial dédié au marché de l'assurance emprunteur</span></span></label>
+      <label class="ck"><input type="checkbox" name="enseignes" value="Keller Williams"> <span><strong>Keller Williams</strong><span class="d">Leader mondial de l'immobilier, présent dans 68 pays</span></span></label>
+    </div>
+
+    <div class="bloc">
+      <label class="ck"><input type="checkbox" id="c2"> <span>J'ai bien compris que mes coordonnées seront remises aux enseignes, qui pourront me contacter après l'événement.</span></label>
+      <label class="ck"><input type="checkbox" name="bar"> <span>Je prévois, après la présentation, un temps d'échange au bar avec les enseignes qui m'intéressent. <strong style="display:inline">Verre offert.</strong></span></label>
+    </div>
+
+    <div class="grid">
+      <div class="champ"><label for="p">Prénom</label><input id="p" required></div>
+      <div class="champ"><label for="n">Nom</label><input id="n" required></div>
+      <div class="champ"><label for="e">E-mail</label><input id="e" type="email" required></div>
+      <div class="champ"><label for="t">Portable</label><input id="t" type="tel" required></div>
+    </div>
+
+    <p class="err" id="err">Merci de cocher les deux cases « J'ai bien compris ».</p>
+    <button type="submit">Réserver ma place gratuite</button>
+  </form>
+  <div class="ok" id="ok"><strong>Simulation terminée.</strong><br>Sur la vraie page, le spectateur recevrait ici la confirmation de sa place.</div>
+
+  <p class="pied">Thierry Bismuth — auteur et metteur en scène · 06 10 70 30 90</p>
+</div>
+
+<script>
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!document.getElementById('c1').checked||!document.getElementById('c2').checked){document.getElementById('err').style.display='block';return;}
+  this.style.display='none';document.getElementById('ok').style.display='block';
+});
+</script>
+</body>
+</html>
