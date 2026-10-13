@@ -44,7 +44,7 @@ label.ck small{display:block;color:var(--muted);font-size:.85rem;}
 </style>
 </head>
 <body>
-<div class="simu">Simulation — aperçu du formulaire des spectateurs, aucune donnée n'est envoyée</div>
+<div class="simu" id="simu" style="display:none">Démonstration — exemples d'enseignes, aucune donnée n'est envoyée</div>
 
 <div class="photos">
   <img src="assets/franchise/ovr26-q02.jpg" style="flex:1.333" alt="ON VOUS RAPPELLERA sur scène">
@@ -69,12 +69,13 @@ label.ck small{display:block;color:var(--muted);font-size:.85rem;}
     </div>
 
     <div class="bloc">
-      <div class="bloc-titre">À titre personnel, je suis particulièrement intéressé(e) d'entendre les enseignes suivantes <small>(plusieurs choix possibles)</small> :</div>
-      <label class="ck"><input type="checkbox" name="enseignes" value="Anacours"> <span><strong>Anacours</strong><span class="d">Leader de la franchise en soutien scolaire en France</span></span></label>
-      <label class="ck"><input type="checkbox" name="enseignes" value="Smart Duck"> <span><strong>Smart Duck</strong><span class="d">Acteur à succès du marché de l'esthétique</span></span></label>
-      <label class="ck"><input type="checkbox" name="enseignes" value="Les Artisans Verts"> <span><strong>Les Artisans Verts</strong><span class="d">Positionné sur le marché des économies d'énergie, pour les particuliers et les professionnels</span></span></label>
-      <label class="ck"><input type="checkbox" name="enseignes" value="APV"> <span><strong>APV</strong><span class="d">Réseau entrepreneurial dédié au marché de l'assurance emprunteur</span></span></label>
-      <label class="ck"><input type="checkbox" name="enseignes" value="Keller Williams"> <span><strong>Keller Williams</strong><span class="d">Leader mondial de l'immobilier, présent dans 68 pays</span></span></label>
+      <div class="bloc-titre">L'enseigne qui m'invite <small>(celle qui m'intéresse le plus)</small> :</div>
+      <div id="ens1"><p class="avenir">Choisissez d'abord votre soirée.</p></div>
+    </div>
+
+    <div class="bloc" id="blocAutres" style="display:none">
+      <div class="bloc-titre">Je souhaite aussi rencontrer <small>(plusieurs choix possibles)</small> :</div>
+      <div id="ens2"></div>
     </div>
 
     <div class="bloc">
@@ -89,27 +90,45 @@ label.ck small{display:block;color:var(--muted);font-size:.85rem;}
       <div class="champ"><label for="t">Portable</label><input id="t" type="tel" required></div>
     </div>
 
-    <p class="err" id="err">Merci de choisir votre ville et votre date, et de cocher les deux cases « J'ai bien compris ».</p>
-    <button type="submit">Réserver ma place gratuite</button>
+    <p class="err" id="err">Merci de choisir votre ville, votre date et l'enseigne qui vous invite, et de cocher les deux cases « J'ai bien compris ».</p>
+    <button type="submit" id="go">Réserver ma place gratuite</button>
   </form>
-  <div class="ok" id="ok"><strong>Simulation terminée.</strong><br>Sur la vraie page, le spectateur recevrait ici la confirmation de sa place.</div>
+  <div class="ok" id="ok"></div>
 
   <p class="pied">Thierry Bismuth — auteur et metteur en scène · 06 10 70 30 90</p>
 </div>
 
 <script>
 (function(){
+  var API='https://thierryb.app.n8n.cloud/webhook/billetterie-paiement';
+  var DEMO=/[?&]demo=1/.test(location.search);
+  var EX=[{nom:'Anacours',secteur:'Leader de la franchise en soutien scolaire en France'},{nom:'Smart Duck',secteur:"Acteur à succès du marché de l'esthétique"},{nom:'Les Artisans Verts',secteur:"Positionné sur le marché des économies d'énergie, pour les particuliers et les professionnels"},{nom:'APV',secteur:"Réseau entrepreneurial dédié au marché de l'assurance emprunteur"},{nom:'Keller Williams',secteur:'Leader mondial de l\'immobilier, présent dans 68 pays'}];
+  if(DEMO) document.getElementById('simu').style.display='block';
   var VILLES=['Paris','Bordeaux','Lyon','Toulouse','Nantes','Rennes','Montpellier','Marseille','Lille'];
-  var DATES={}, LIEUX={};
-  var sel=document.getElementById('ville'), box=document.getElementById('dates');
+  var DATES={}, LIEUX={}, ENS={}, DISPO={};
+  var sel=document.getElementById('ville'), box=document.getElementById('dates'), e1=document.getElementById('ens1'), e2=document.getElementById('ens2'), b2=document.getElementById('blocAutres');
   function esc(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
   VILLES.forEach(function(v){ var o=document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o); });
+  function seance(){ var r=document.querySelector('input[name=date]:checked'); return r?r.value:''; }
+  function enseignes(){
+    var c=seance(); b2.style.display='none'; e2.innerHTML='';
+    if(!c){ e1.innerHTML='<p class="avenir">Choisissez d\'abord votre soirée.</p>'; return; }
+    if(!DEMO && DISPO[c]===0){ e1.innerHTML='<p class="avenir">Cette soirée est complète.</p>'; return; }
+    var L=DEMO?EX.map(function(x){return {nom:x.nom,secteur:x.secteur,plein:false};}):(ENS[c]||[]);
+    if(!L.length){ e1.innerHTML='<p class="avenir">Les enseignes de cette soirée sont en cours de confirmation. Revenez dans quelques jours, ou appelez le 06 10 70 30 90.</p>'; return; }
+    e1.innerHTML=L.map(function(x){ return '<label class="ck"><input type="radio" name="ens" value="'+esc(x.nom)+'"'+(x.plein?' disabled':'')+'> <span><strong>'+esc(x.nom)+'</strong><span class="d">'+(x.plein?"Quota d'invitations atteint — choisissez une autre enseigne, vous pourrez quand même la rencontrer le soir même.":esc(x.secteur||''))+'</span></span></label>'; }).join('');
+    e2.innerHTML=L.map(function(x){ return '<label class="ck"><input type="checkbox" name="autres" value="'+esc(x.nom)+'"> <span><strong>'+esc(x.nom)+'</strong></span></label>'; }).join('');
+    b2.style.display='block';
+    e1.querySelectorAll('input[name=ens]').forEach(function(r){ r.addEventListener('change',function(){ e2.querySelectorAll('input').forEach(function(k){ var same=k.value===r.value; k.closest('label').style.display=same?'none':''; if(same) k.checked=false; }); }); });
+  }
   function dates(){
-    var v=sel.value; if(!v){ box.innerHTML=''; return; }
+    var v=sel.value; if(!v){ box.innerHTML=''; enseignes(); return; }
     var L=DATES[v]||[];
     box.innerHTML=L.length? L.map(function(o){ var lieu=(LIEUX[o.l]||{}).n||'';
-        return '<label class="ck"><input type="radio" name="date" value="'+esc(o.d)+'"> <span>'+esc(o.d)+'<small>'+esc(o.t||'')+(lieu?' — '+esc(lieu):'')+'</small></span></label>'; }).join('')
-      : '<p class="avenir">Date à venir dans cette ville. Inscrivez-vous : nous vous prévenons dès qu\'elle est fixée.</p>';
+        return '<label class="ck"><input type="radio" name="date" value="'+esc(o.c)+'"> <span>'+esc(o.d)+'<small>'+esc(o.t||'')+(lieu?' — '+esc(lieu):'')+'</small></span></label>'; }).join('')
+      : '<p class="avenir">Date à venir dans cette ville.</p>';
+    box.querySelectorAll('input').forEach(function(r){ r.addEventListener('change',enseignes); });
+    enseignes();
   }
   sel.addEventListener('change',dates);
   fetch('/?v='+Date.now()).then(function(r){return r.text();}).then(function(h){
@@ -118,13 +137,23 @@ label.ck small{display:block;color:var(--muted);font-size:.85rem;}
     if(n){ var X=(new Function('return '+n[1]))(); if(X) LIEUX=X; }
     dates();
   }).catch(function(){});
-  window.__dateOk=function(){ var v=sel.value; if(!v) return false; if((DATES[v]||[]).length) return !!document.querySelector('input[name=date]:checked'); return true; };
+  if(!DEMO) fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'dispo'})}).then(function(r){return r.json();}).then(function(j){ ENS=j.enseignes||{}; DISPO=j.dispo||{}; enseignes(); }).catch(function(){});
+  var f=document.getElementById('f'), err=document.getElementById('err'), ok=document.getElementById('ok'), go=document.getElementById('go');
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); err.style.display='none';
+    var ens=document.querySelector('input[name=ens]:checked');
+    if(!seance()||!ens||!document.getElementById('c1').checked||!document.getElementById('c2').checked){ err.textContent="Merci de choisir votre ville, votre date et l'enseigne qui vous invite, et de cocher les deux cases « J'ai bien compris »."; err.style.display='block'; return; }
+    if(DEMO){ f.style.display='none'; ok.innerHTML='<strong>Démonstration terminée.</strong><br>Sur la vraie page, le candidat recevrait ici la confirmation de sa place.'; ok.style.display='block'; return; }
+    var autres=[].map.call(document.querySelectorAll('input[name=autres]:checked'),function(k){return k.value;});
+    go.disabled=true; go.textContent='Envoi en cours…';
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'invite-enseigne',seance:seance(),enseigne:ens.value,autres:autres,bar:!!document.querySelector('input[name=bar]').checked,
+      prenom:document.getElementById('p').value,nom:document.getElementById('n').value,email:document.getElementById('e').value,portable:document.getElementById('t').value})})
+    .then(function(r){return r.json();}).then(function(j){
+      if(j.ok){ f.style.display='none'; ok.innerHTML='<strong>C\'est confirmé.</strong><br>'+esc(j.message||''); ok.style.display='block'; }
+      else { err.textContent=j.message||'Une erreur est survenue. Appelez le 06 10 70 30 90.'; err.style.display='block'; go.disabled=false; go.textContent='Réserver ma place gratuite'; }
+    }).catch(function(){ err.textContent='Connexion impossible. Réessayez ou appelez le 06 10 70 30 90.'; err.style.display='block'; go.disabled=false; go.textContent='Réserver ma place gratuite'; });
+  });
 })();
-document.getElementById('f').addEventListener('submit',function(e){
-  e.preventDefault();
-  if(!window.__dateOk()||!document.getElementById('c1').checked||!document.getElementById('c2').checked){document.getElementById('err').style.display='block';return;}
-  this.style.display='none';document.getElementById('ok').style.display='block';
-});
 </script>
 </body>
 </html>
