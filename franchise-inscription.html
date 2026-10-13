@@ -33,6 +33,11 @@ label.ck span.d{color:var(--muted);font-size:.88rem;}
 .champ input:focus{outline:none;border-color:var(--rouge);}
 button{background:var(--rouge);color:#fff;border:none;border-radius:2px;padding:16px;font-family:inherit;font-size:.9rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;}
 .err{display:none;color:var(--rouge);font-size:.9rem;}
+.champ select{width:100%;border:1px solid #ddd;border-radius:2px;padding:12px;font-family:inherit;font-size:15px;background:#fff;color:var(--ink);}
+.champ select:focus{outline:none;border-color:var(--rouge);}
+.dates-liste{margin-top:12px;}
+.dates-liste .avenir{color:var(--muted);font-size:.92rem;}
+label.ck small{display:block;color:var(--muted);font-size:.85rem;}
 .ok{display:none;background:var(--gris);border-left:3px solid var(--rouge);padding:20px;}
 .pied{font-size:.8rem;color:var(--muted);text-align:center;margin-top:30px;}
 @media(max-width:600px){.grid{grid-template-columns:1fr;}.photos{flex-direction:column;}.photos img{width:100%!important;}}
@@ -49,10 +54,16 @@ button{background:var(--rouge);color:#fff;border:none;border-radius:2px;padding:
 <div class="wrap">
   <div class="kicker">Soirée entrepreneuriat en franchise</div>
   <h1>ON VOUS RAPPELLERA</h1>
-  <p class="quand">Ville · date · heure · théâtre</p>
   <div class="offert">Votre place est offerte.</div>
 
   <form id="f">
+    <div class="bloc">
+      <div class="bloc-titre">Je choisis ma soirée</div>
+      <div class="champ"><label for="ville">Ville</label>
+        <select id="ville" required><option value="">— Choisissez votre ville —</option></select></div>
+      <div id="dates" class="dates-liste"></div>
+    </div>
+
     <div class="bloc">
       <label class="ck"><input type="checkbox" id="c1"> <span>J'ai bien compris que la soirée est sponsorisée par 5 enseignes de franchise, qui viendront nous présenter leurs opportunités locales.</span></label>
     </div>
@@ -78,7 +89,7 @@ button{background:var(--rouge);color:#fff;border:none;border-radius:2px;padding:
       <div class="champ"><label for="t">Portable</label><input id="t" type="tel" required></div>
     </div>
 
-    <p class="err" id="err">Merci de cocher les deux cases « J'ai bien compris ».</p>
+    <p class="err" id="err">Merci de choisir votre ville et votre date, et de cocher les deux cases « J'ai bien compris ».</p>
     <button type="submit">Réserver ma place gratuite</button>
   </form>
   <div class="ok" id="ok"><strong>Simulation terminée.</strong><br>Sur la vraie page, le spectateur recevrait ici la confirmation de sa place.</div>
@@ -87,9 +98,31 @@ button{background:var(--rouge);color:#fff;border:none;border-radius:2px;padding:
 </div>
 
 <script>
+(function(){
+  var VILLES=['Paris','Bordeaux','Lyon','Toulouse','Nantes','Rennes','Montpellier','Marseille','Lille'];
+  var DATES={}, LIEUX={};
+  var sel=document.getElementById('ville'), box=document.getElementById('dates');
+  function esc(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+  VILLES.forEach(function(v){ var o=document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o); });
+  function dates(){
+    var v=sel.value; if(!v){ box.innerHTML=''; return; }
+    var L=DATES[v]||[];
+    box.innerHTML=L.length? L.map(function(o){ var lieu=(LIEUX[o.l]||{}).n||'';
+        return '<label class="ck"><input type="radio" name="date" value="'+esc(o.d)+'"> <span>'+esc(o.d)+'<small>'+esc(o.t||'')+(lieu?' — '+esc(lieu):'')+'</small></span></label>'; }).join('')
+      : '<p class="avenir">Date à venir dans cette ville. Inscrivez-vous : nous vous prévenons dès qu\'elle est fixée.</p>';
+  }
+  sel.addEventListener('change',dates);
+  fetch('/?v='+Date.now()).then(function(r){return r.text();}).then(function(h){
+    var m=h.match(/var DATES=(\{[\s\S]*?\n  \});/), n=h.match(/var LIEUX=(\{[\s\S]*?\n  \});/);
+    if(m){ var D=(new Function('return '+m[1]))(); if(D&&typeof D==='object') DATES=D; }
+    if(n){ var X=(new Function('return '+n[1]))(); if(X) LIEUX=X; }
+    dates();
+  }).catch(function(){});
+  window.__dateOk=function(){ var v=sel.value; if(!v) return false; if((DATES[v]||[]).length) return !!document.querySelector('input[name=date]:checked'); return true; };
+})();
 document.getElementById('f').addEventListener('submit',function(e){
   e.preventDefault();
-  if(!document.getElementById('c1').checked||!document.getElementById('c2').checked){document.getElementById('err').style.display='block';return;}
+  if(!window.__dateOk()||!document.getElementById('c1').checked||!document.getElementById('c2').checked){document.getElementById('err').style.display='block';return;}
   this.style.display='none';document.getElementById('ok').style.display='block';
 });
 </script>
