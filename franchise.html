@@ -66,6 +66,7 @@ ul.inclus2 b{display:block;font-weight:600;font-size:1.02rem}
 .aide{font-size:.85rem;color:var(--gris);line-height:1.4}
 .ville .dates label.pris{cursor:not-allowed;color:var(--gris)}
 .pris-note{display:block;color:var(--accent);font-size:.8rem;margin-top:2px}
+.ville .v-dates{margin-left:auto;font-size:.85rem;font-weight:400;color:var(--gris);text-align:right}
 .ville .avenir{font-size:.88rem;color:var(--gris);font-style:italic}
 input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;margin-top:2px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:1.6rem}
@@ -207,7 +208,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
           var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet ce soir-là.':'');
           return '<label'+(e?' class="pris"':'')+'><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'><span>'+esc(o.d)+'<small>'+esc(o.t)+(lieu?' — '+esc(lieu):'')+'</small>'+(note?'<span class="pris-note">'+note+'</span>':'')+'</span></label>'; }).join('')
         : '<p class="avenir">Date à venir. Cochez la ville&nbsp;: nous vous prévenons dès qu\'elle est fixée.</p>';
-      return '<div class="ville" id="v'+i+'"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'</label><div class="dates">'+dates+'</div></div>';
+      return '<div class="ville" id="v'+i+'"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'<span class="v-dates">'+(L.length? L.map(function(o){return o.d.split(' · ')[0];}).filter(function(x,k,A){return A.indexOf(x)===k;}).map(esc).join(' · ') : 'Date à venir')+'</span></label><div class="dates">'+dates+'</div></div>';
     }).join('');
     document.querySelectorAll('.cv').forEach(function(c){ c.addEventListener('change',function(){ g('v'+c.dataset.i).classList.toggle('on',c.checked); }); });
   }
