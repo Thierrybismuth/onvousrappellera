@@ -63,6 +63,7 @@ ul.avantages li::before{content:"";position:absolute;left:0;top:.68rem;width:5px
 .info:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .bulle{display:block;margin-top:6px;padding:8px 12px;background:#fff;border:1px solid var(--trait);font-size:.92rem;color:var(--gris)}
 .form-sec{background:var(--doux)}
+.field.autres{margin:14px 0 22px}
 .slogan2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:1.3rem;color:var(--accent);margin:-.6rem 0 1.4rem}
 .ville{background:#fff;border:1px solid var(--trait);margin-bottom:8px}
 .ville>label{display:flex;gap:10px;align-items:center;padding:13px 14px;font-weight:500;cursor:pointer}
@@ -195,6 +196,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     <p class="slogan2">On s'occupe du reste.</p>
     <div class="field secteur"><label for="f-nb">Votre secteur d'activité *</label><select id="f-nb"><option value="">— Choisissez d'abord votre secteur —</option><option>Automobile, moto, bateau</option><option>Beauté et santé</option><option>Bricolage et jardinage</option><option>Commerce alimentaire</option><option>Divertissements</option><option>Grande distribution</option><option>Horlogerie, bijouterie</option><option>Hôtellerie-restauration (CHR)</option><option>Immobilier</option><option>Jouets et cadeaux</option><option>Maison et décoration</option><option>Mode, chaussures et enfant</option><option>Produits culturels</option><option>Services aux entreprises</option><option>Services aux particuliers</option><option>Sport et loisirs</option><option>Autre</option></select><small class="aide">Il sert à bloquer vos dates à vos concurrents&nbsp;: une seule enseigne par secteur et par soirée.</small></div>
     <div id="villes"></div>
+    <div class="field autres"><label for="f-autres">Je suis davantage intéressé par les villes suivantes</label><input id="f-autres" placeholder="Par exemple : Nice, Strasbourg"><small class="aide">Si vous êtes 5 à être intéressés par la même ville… on l'ajoute&nbsp;😀</small></div>
     <div class="fgrid">
       <div class="field full"><label for="f-ens">Enseigne *</label><input id="f-ens" autocomplete="organization"></div>
       <div class="field"><label for="f-prenom">Prénom *</label><input id="f-prenom" autocomplete="given-name"></div>
@@ -305,8 +307,9 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       choix.push(c.value+' : '+(d.length?d.join(' / '):((DATES[c.value]||[]).length?'date à préciser':'date à venir')));
     });
     var p={ens:g('f-ens').value.trim(),prenom:g('f-prenom').value.trim(),nom:g('f-nom').value.trim(),fonction:g('f-fonction').value.trim(),
-           email:g('f-email').value.trim(),tel:g('f-tel').value.trim(),nb:g('f-nb').value,msg:g('f-msg').value.trim()};
-    if(!choix.length){ show('ko','Cochez au moins une ville.'); return; }
+           email:g('f-email').value.trim(),tel:g('f-tel').value.trim(),nb:g('f-nb').value,msg:g('f-msg').value.trim(),autres:g('f-autres').value.trim()};
+    if(p.autres) p.msg=(p.msg?p.msg+'\n':'')+'Autres villes souhaitées : '+p.autres;
+    if(!choix.length&&!g('f-autres').value.trim()){ show('ko','Cochez au moins une ville, ou indiquez les villes qui vous intéressent.'); return; }
     if(!p.ens){ show('ko','Indiquez le nom de votre enseigne.'); return; }
     if(!p.prenom||!p.nom){ show('ko','Indiquez votre prénom et votre nom.'); return; }
     if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
@@ -330,7 +333,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:p.email,
         subject:'On vous rappellera — votre demande de soirée franchise',
         body:'<p>Bonjour '+esc(p.prenom)+',</p><p>Merci pour votre demande au nom de '+esc(p.ens)+'. Voici ce que vous avez choisi :</p><ul>'+li+'</ul><p>Montant estimé : '+p.montant+' € HT pour les dates choisies, payable d\'avance.</p><p>Je vous rappelle pour vérifier qu\'aucune enseigne concurrente n\'est déjà inscrite sur vos soirées, puis caler les détails.</p><p>Thierry Bismuth<br>bismuththierry@gmail.com — 06 10 70 30 90</p><p style="font-size:12px;color:#777">Ce message est envoyé automatiquement. En cas d\'erreur, appelez-moi directement au 06 10 70 30 90.</p>'})}).catch(function(){});
-      ['f-ens','f-prenom','f-nom','f-fonction','f-email','f-tel','f-msg'].forEach(function(x){g(x).value='';});
+      ['f-ens','f-prenom','f-nom','f-fonction','f-email','f-tel','f-msg','f-autres'].forEach(function(x){g(x).value='';});
       document.querySelectorAll('input[type=checkbox]').forEach(function(c){c.checked=false;}); document.querySelectorAll('.ville').forEach(function(v){v.classList.remove('on');}); majTotal();
       btn.disabled=false;
     })
