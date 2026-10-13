@@ -79,6 +79,7 @@ ul.avantages li::before{content:"";position:absolute;left:0;top:.68rem;width:5px
 .ville .v-dates .v-sub{font-size:.78rem;white-space:normal}
 .ville.pris>label{cursor:not-allowed;color:var(--gris)}
 .ville .pris-note{padding:0 14px 12px 40px;font-size:.82rem;color:var(--accent)}
+.ville .seance-note{padding:0 14px 12px 40px;font-size:.82rem;color:var(--gris);font-style:italic}
 .ville .avenir{font-size:.88rem;color:var(--gris);font-style:italic}
 input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;margin-top:2px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:1.6rem}
@@ -240,9 +241,12 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       var L=DATES[v]||[];
       if(L.length){
         html+='<input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'" hidden>';
+        var jours={}; L.forEach(function(o){ var j=o.d.split(' · ')[0]; jours[j]=(jours[j]||0)+1; });
+        var vus={};
         L.forEach(function(o){ var lieu=(LIEUX[o.l]||{}).n||'', parts=o.d.split(' · ');
+          vus[parts[0]]=(vus[parts[0]]||0)+1; var dernier=jours[parts[0]]>1&&vus[parts[0]]===jours[parts[0]];
           var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet ce soir-là.':'');
-          html+='<div class="ville'+(e?' pris':'')+'"><label><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'>'+esc(v)+'<span class="v-dates"><span>'+esc(parts[0])+'</span>'+((parts[1]||lieu)?'<span class="v-sub">'+esc([parts[1],lieu].filter(Boolean).join(' — '))+'</span>':'')+'</span></label>'+(note?'<p class="pris-note">'+note+'</p>':'')+'</div>';
+          html+='<div class="ville'+(e?' pris':'')+'"><label><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'>'+esc(v)+'<span class="v-dates"><span>'+esc(parts[0])+'</span>'+((parts[1]||lieu)?'<span class="v-sub">'+esc([parts[1],lieu].filter(Boolean).join(' — '))+'</span>':'')+'</span></label>'+(note?'<p class="pris-note">'+note+'</p>':'')+(dernier?'<p class="seance-note">'+jours[parts[0]]+' séances le même soir&nbsp;: cochez celle qui vous convient.</p>':'')+'</div>';
         });
       } else {
         html+='<div class="ville"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'<span class="v-dates"><span>Date à venir</span></span></label></div>';
