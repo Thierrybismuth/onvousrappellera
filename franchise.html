@@ -76,6 +76,9 @@ ul.avantages li::before{content:"";position:absolute;left:0;top:.68rem;width:5px
 .pris-note{display:block;color:var(--accent);font-size:.8rem;margin-top:2px}
 .ville .v-dates{margin-left:auto;font-size:.85rem;font-weight:400;color:var(--gris);text-align:right}
 .ville .v-dates span{display:block;white-space:nowrap}
+.ville .v-dates .v-sub{font-size:.78rem;white-space:normal}
+.ville.pris>label{cursor:not-allowed;color:var(--gris)}
+.ville .pris-note{padding:0 14px 12px 40px;font-size:.82rem;color:var(--accent)}
 .ville .avenir{font-size:.88rem;color:var(--gris);font-style:italic}
 input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;margin-top:2px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:1.6rem}
@@ -230,16 +233,23 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   var g=function(i){return document.getElementById(i);};
   function esc(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
 
+  function syncCv(){ document.querySelectorAll('input.cv[hidden]').forEach(function(cv){ cv.checked=[].some.call(document.querySelectorAll('.cd:checked'),function(x){return x.dataset.v===cv.value;}); }); }
   function rendre(){
-    g('villes').innerHTML=VILLES.map(function(v,i){
+    var html='';
+    VILLES.forEach(function(v,i){
       var L=DATES[v]||[];
-      var dates=L.length? L.map(function(o,j){ var lieu=(LIEUX[o.l]||{}).n||'';
+      if(L.length){
+        html+='<input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'" hidden>';
+        L.forEach(function(o){ var lieu=(LIEUX[o.l]||{}).n||'', parts=o.d.split(' · ');
           var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet ce soir-là.':'');
-          return '<label'+(e?' class="pris"':'')+'><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'><span>'+esc(o.d)+'<small>'+esc(o.t)+(lieu?' — '+esc(lieu):'')+'</small>'+(note?'<span class="pris-note">'+note+'</span>':'')+'</span></label>'; }).join('')
-        : '<p class="avenir">Date à venir. Cochez la ville&nbsp;: nous vous prévenons dès qu\'elle est fixée.</p>';
-      return '<div class="ville" id="v'+i+'"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'<span class="v-dates">'+(L.length? L.map(function(o){return o.d.split(' · ')[0];}).filter(function(x,k,A){return A.indexOf(x)===k;}).map(function(x){return '<span>'+esc(x)+'</span>';}).join('') : 'Date à venir')+'</span></label><div class="dates">'+dates+'</div></div>';
-    }).join('');
-    document.querySelectorAll('.cv').forEach(function(c){ c.addEventListener('change',function(){ g('v'+c.dataset.i).classList.toggle('on',c.checked); }); });
+          html+='<div class="ville'+(e?' pris':'')+'"><label><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'>'+esc(v)+'<span class="v-dates"><span>'+esc(parts[0])+'</span>'+((parts[1]||lieu)?'<span class="v-sub">'+esc([parts[1],lieu].filter(Boolean).join(' — '))+'</span>':'')+'</span></label>'+(note?'<p class="pris-note">'+note+'</p>':'')+'</div>';
+        });
+      } else {
+        html+='<div class="ville"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'<span class="v-dates"><span>Date à venir</span></span></label></div>';
+      }
+    });
+    g('villes').innerHTML=html;
+    document.querySelectorAll('.cd').forEach(function(c){ c.addEventListener('change',syncCv); });
   }
   (function(){ var t=document.querySelector('.trio2'); if(!t) return;
     if(!('IntersectionObserver' in window)){ t.classList.add('vu'); return; }
@@ -262,8 +272,9 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     var cv=[].map.call(document.querySelectorAll('.cv:checked'),function(c){return c.value;});
     var cd=[].map.call(document.querySelectorAll('.cd:checked'),function(c){return cle(c.dataset.v,c.value);});
     rendre();
-    document.querySelectorAll('.cv').forEach(function(c){ if(cv.indexOf(c.value)>-1){ c.checked=true; g('v'+c.dataset.i).classList.add('on'); } });
+    document.querySelectorAll('.cv:not([hidden])').forEach(function(c){ if(cv.indexOf(c.value)>-1) c.checked=true; });
     document.querySelectorAll('.cd').forEach(function(c){ if(!c.disabled && cd.indexOf(cle(c.dataset.v,c.value))>-1) c.checked=true; });
+    syncCv();
     majTotal();
   }
   rendre();
