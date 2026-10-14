@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-14T14:10:28.517Z",
+ "maj": "2026-10-14T14:28:35.963Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -583,6 +583,74 @@
     "https://onvousrappellera.fr/assets/comediens/thomas-delaporte-1wylfm6lio3l.jpg?v=1791483185041"
    ],
    "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Coralie",
+   "nom": "Perney",
+   "ville": "Rennes + Nantes",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/coralie-perney-14w1zsjl0jlf.jpg?v=1791988115963",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/coralie-perney-14w1zsjl0jlf.jpg?v=1791988115963"
+   ],
+   "personnage": "Delphine + Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Guillaume",
+   "nom": "Biégnon",
+   "ville": "Rennes",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/guillaume-biegnon-1p6437wt4moc.jpg?v=1791988115963",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/guillaume-biegnon-1p6437wt4moc.jpg?v=1791988115963",
+    "https://onvousrappellera.fr/assets/comediens/guillaume-biegnon-1zhdl9towobl.jpg?v=1791988115963"
+   ],
+   "personnage": "Julien + Daniel",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Kevin",
+   "nom": "Sergent",
+   "ville": "Rennes",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/kevin-sergent-1mmqaqd4esyw.jpg?v=1791988115963",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/kevin-sergent-1mmqaqd4esyw.jpg?v=1791988115963"
+   ],
+   "personnage": "Julien + Daniel",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Thomas",
+   "nom": "Le Meur",
+   "ville": "Rennes",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/thomas-le-meur-1a5cpa1ayufx.jpg?v=1791988115963",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/thomas-le-meur-1a5cpa1ayufx.jpg?v=1791988115963",
+    "https://onvousrappellera.fr/assets/comediens/thomas-le-meur-1szorl40yrrb.jpg?v=1791988115963"
+   ],
+   "personnage": "",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Xavier",
+   "nom": "Lescot",
+   "ville": "Rennes",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/xavier-lescot-1bkov6mme9rd.jpg?v=1791988115963",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/xavier-lescot-1bkov6mme9rd.jpg?v=1791988115963",
+    "https://onvousrappellera.fr/assets/comediens/xavier-lescot-11fdxvh8ntez.jpg?v=1791988115963"
+   ],
+   "personnage": "Pascal",
    "parcours": [],
    "videos": []
   },
