@@ -1,6 +1,32 @@
 {
- "maj": "2026-10-12T06:00:09.565Z",
+ "maj": "2026-10-14T14:10:28.517Z",
  "comediens": [
+  {
+   "prenom": "Brigitte",
+   "nom": "Du Bois Saint Sévrin",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/brigitte-du-bois-saint-sevrin-1v2gpokthle1.jpg?v=1791987028517",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/brigitte-du-bois-saint-sevrin-1v2gpokthle1.jpg?v=1791987028517"
+   ],
+   "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Flavio",
+   "nom": "Coudon",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/flavio-coudon-1zq9jnacgqct.jpg?v=1791987028517",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/flavio-coudon-1zq9jnacgqct.jpg?v=1791987028517"
+   ],
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
   {
    "prenom": "Kenzo",
    "nom": "Mavaut",
@@ -129,15 +155,56 @@
    "videos": []
   },
   {
+   "prenom": "Aliénor",
+   "nom": "De Lambilly",
+   "ville": "Montpellier",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/alienor-de-lambilly-1gmsqraqsuon.jpg?v=1791987028517",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/alienor-de-lambilly-1gmsqraqsuon.jpg?v=1791987028517"
+   ],
+   "personnage": "Julia",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Bertrand",
+   "nom": "Laumonier",
+   "ville": "Montpellier",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/bertrand-laumonier-16n6talosn61.jpg?v=1791987028517",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/bertrand-laumonier-16n6talosn61.jpg?v=1791987028517"
+   ],
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Elisabeth",
    "nom": "Bon",
    "ville": "Montpellier",
    "troupe": "",
-   "portrait": "https://drive.google.com/file/d/1QnEAH8EEQ0YJtMjqa-KkJVe-Yo6Pi9Ll/view",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/elisabeth-bon-1hwxepzs7eon.jpg?v=1791987028517",
    "photos": [
+    "https://onvousrappellera.fr/assets/comediens/elisabeth-bon-1hwxepzs7eon.jpg?v=1791987028517",
+    "https://onvousrappellera.fr/assets/comediens/elisabeth-bon-1xcze5vdjcoz.jpg?v=1791987028517",
     "https://drive.google.com/file/d/1QnEAH8EEQ0YJtMjqa-KkJVe-Yo6Pi9Ll/view"
    ],
    "personnage": "Danielle + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Melody",
+   "nom": "Dufour",
+   "ville": "Montpellier",
+   "troupe": "",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/melody-dufour-1aqc5yffqqks.jpg?v=1791987028517",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/melody-dufour-1aqc5yffqqks.jpg?v=1791987028517"
+   ],
+   "personnage": "Johana",
    "parcours": [],
    "videos": []
   },
