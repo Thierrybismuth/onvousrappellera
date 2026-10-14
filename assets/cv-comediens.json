@@ -87,8 +87,7 @@
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/victor-chevrel-1bddrt7vjmq3.jpg?v=1791784809565",
    "photos": [
-    "https://onvousrappellera.fr/assets/comediens/victor-chevrel-1bddrt7vjmq3.jpg?v=1791784809565",
-    "https://drive.google.com/file/d/1AIre3LMlICWoWnmxpyvtx9fru44pZE45/view"
+    "https://onvousrappellera.fr/assets/comediens/victor-chevrel-1bddrt7vjmq3.jpg?v=1791784809565"
    ],
    "personnage": "Pascal",
    "parcours": [],
@@ -589,7 +588,7 @@
   {
    "prenom": "Coralie",
    "nom": "Perney",
-   "ville": "Rennes + Nantes",
+   "ville": "Rennes",
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/coralie-perney-14w1zsjl0jlf.jpg?v=1791988115963",
    "photos": [

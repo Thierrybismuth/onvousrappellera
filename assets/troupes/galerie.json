@@ -1,0 +1,60 @@
+{
+ "Paris|Engagement": [
+  {
+   "src": "assets/troupes/galerie/paris-engagement-1rh1iokx7bqz.jpg",
+   "legende": "Bruno Rodet et Nathalie Charade",
+   "drive": "1rh1ioKX7BQzHBhKb2lyZSs7rL5WO60DV"
+  },
+  {
+   "src": "assets/troupes/galerie/paris-engagement-1k6siov8f1pz.jpg",
+   "legende": "Thomas Delaporte et Nathalie Charade",
+   "drive": "1K6siOV8f1Pz7LQVjxvAy2PAh1amOUkR8"
+  },
+  {
+   "src": "assets/troupes/galerie/paris-engagement-1sd77gziafwo.jpg",
+   "legende": "Arthur Pichon",
+   "drive": "1Sd77gzIaFwoOwt3HMDrNEuoFwGJPGEyH"
+  },
+  {
+   "src": "assets/troupes/galerie/paris-engagement-1ilkwyrtwvfc.jpg",
+   "legende": "Fritz Sönnichsen",
+   "drive": "1ILKwYrTWvFChndE5uoE4pvWtsQKWe1k9"
+  }
+ ],
+ "Paris|Honnêteté": [
+  {
+   "src": "assets/troupes/galerie/paris-honnetete-1kayjvlleani.jpg",
+   "legende": "Jérôme Laboute et Anne Dupuy",
+   "drive": "1kayJvLLeANixctR3vgCRxiaqsUJIInjD"
+  },
+  {
+   "src": "assets/troupes/galerie/paris-honnetete-151xfboevnck.jpg",
+   "legende": "Fanny Cony et Nathalie Codani",
+   "drive": "151XfBOevNCK9aiNdqVFdCs3AH9aevvkt"
+  },
+  {
+   "src": "assets/troupes/galerie/paris-honnetete-12idnrwywce8.jpg",
+   "legende": "Fanny Cony",
+   "drive": "12IDNRwyWCE8j047o6WIT6sOLxmpBqomU"
+  }
+ ],
+ "Paris|Esprit d'équipe": [
+  {
+   "src": "assets/troupes/galerie/paris-esprit-d-equipe-1_bll1rj1tom.jpg",
+   "legende": "Adèle Bloch-Mazier et Daniel Vandeberg",
+   "drive": "1_bLL1RJ1TomPh9pqRNANvgq0bYsbxbQU"
+  },
+  {
+   "src": "assets/troupes/galerie/paris-esprit-d-equipe-1idocrkfjtda.jpg",
+   "legende": "Adèle Bloch-Mazier et Daniel Vandeberg",
+   "drive": "1IDocRkfJtdAKwIWfXk93nkUhBfITH6EF"
+  }
+ ],
+ "Lyon": [
+  {
+   "src": "assets/troupes/galerie/lyon-177ie_bqxhrk.jpg",
+   "legende": "Caroline Larose et Vanessa Selynn",
+   "drive": "177iE_bQXHrKwRm6W7ECNOq1GB853VXwC"
+  }
+ ]
+}
