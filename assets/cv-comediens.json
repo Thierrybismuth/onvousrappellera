@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-14T14:28:35.963Z",
+ "maj": "2026-10-15T12:04:54.620Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -87,7 +87,8 @@
    "troupe": "",
    "portrait": "https://onvousrappellera.fr/assets/comediens/victor-chevrel-1bddrt7vjmq3.jpg?v=1791784809565",
    "photos": [
-    "https://onvousrappellera.fr/assets/comediens/victor-chevrel-1bddrt7vjmq3.jpg?v=1791784809565"
+    "https://onvousrappellera.fr/assets/comediens/victor-chevrel-1bddrt7vjmq3.jpg?v=1791784809565",
+    "https://drive.google.com/file/d/1AIre3LMlICWoWnmxpyvtx9fru44pZE45/view"
    ],
    "personnage": "Pascal",
    "parcours": [],
@@ -377,21 +378,6 @@
     "https://onvousrappellera.fr/assets/comediens/clementine-teixeira-1k68frty2hl2.jpg?v=1791210838923"
    ],
    "personnage": "Pascale",
-   "parcours": [],
-   "videos": []
-  },
-  {
-   "prenom": "Daniel",
-   "nom": "Vandeberg",
-   "ville": "Paris",
-   "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
-   "photos": [
-    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
-    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1or3odqbtoyd.jpg?v=1791486237829",
-    "https://drive.google.com/file/d/1dIQC42oC-jeDY8CbFZKriVtVMasY-qkc/view"
-   ],
-   "personnage": "Pascal",
    "parcours": [],
    "videos": []
   },
