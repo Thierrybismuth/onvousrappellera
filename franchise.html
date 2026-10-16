@@ -107,6 +107,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
 </style>
 <style>.video-v{margin:2rem auto 0;width:100%;max-width:400px;background:#fff}.video-v video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}.video-f{margin:1.5rem auto 0;width:100%;max-width:480px}.video-f video{display:block;width:100%;height:auto;aspect-ratio:4/5;background:#000;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}
 </style>
+<style>.vgal{display:flex;gap:16px;align-items:flex-start;margin:2rem auto 0;width:100%}.vg-main{flex:0 0 400px;max-width:400px}.vg-main video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}.vg-grid{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.vg-th{position:relative;aspect-ratio:1/1;padding:0;border:1px solid #ddd;background:#fff center/cover no-repeat;cursor:pointer;box-shadow:0 6px 18px rgba(22,22,22,.12)}.vg-th:after{content:"";position:absolute;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#d51e29 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 6l10 6-10 6z'/%3E%3C/svg%3E") center/26px no-repeat;box-shadow:0 4px 12px rgba(0,0,0,.25)}.vg-th span{position:absolute;left:0;right:0;bottom:0;padding:6px 8px;background:rgba(255,255,255,.92);color:#161616;font-size:13px;font-weight:600;text-align:left}.vg-box{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}.vg-box.on{display:flex}.vg-box video{max-height:90vh;max-width:100%;height:auto;background:#000}.vg-x{position:absolute;top:12px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#d51e29;color:#fff;font-size:28px;line-height:40px;cursor:pointer}@media(max-width:760px){.vgal{flex-direction:column;align-items:center}.vg-main{flex:none;width:100%}.vg-grid{width:100%;grid-template-columns:repeat(2,1fr)}}.vgal.seule{justify-content:center}</style>
 </head>
 <body>
 <div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#777;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Conventions d'entreprises</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px">Casting</a><a href="/franchise.html" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px;white-space:nowrap">Développement d'enseigne</a></div>
@@ -116,7 +117,35 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     <h1>Et si vous invitiez des entrepreneurs à vous rencontrer au théâtre&nbsp;?</h1>
     <p class="slogan">Choisissez votre ville. On s'occupe du reste.</p>
     <!-- VIDEO-THIERRY : emplacement prévu pour la vidéo d'explication de Thierry -->
-    <div class="video-v"><video controls playsinline preload="metadata" poster="/assets/video/ovr-teaser-2026.jpg" title="Teaser ON VOUS RAPPELLERA"><source src="/assets/video/ovr-teaser-2026.mp4" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="/assets/video/ovr-teaser-2026.mp4">ouvrir la vidéo</a>.</video></div>
+    <div class="vgal" id="vgal" aria-label="Vidéos de la pièce">
+      <div class="vg-main" id="vg-main"></div>
+      <div class="vg-grid" id="vg-grid"></div>
+    </div>
+    <div class="vg-box" id="vg-box" role="dialog" aria-modal="true" aria-label="Lecture de la vidéo"><button class="vg-x" type="button" aria-label="Fermer">&times;</button><video controls playsinline preload="none"></video></div>
+    <script>
+    /* Galerie vidéo — la 1re s'affiche en grand, les suivantes en vignettes. Pour en ajouter une : une ligne de plus, dans l'ordre d'affichage */
+    var VIDEOS=[
+      {src:"/assets/video/ovr-teaser-2026-v3.mp4", poster:"/assets/video/ovr-teaser-2026-v3.jpg", titre:"Teaser ON VOUS RAPPELLERA"},
+      {src:"/assets/video/ovr-franchiseurs.mp4", poster:"/assets/video/ovr-franchiseurs.jpg", titre:"La soirée franchiseurs"}
+    ];
+    (function(){
+      var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
+      var v0=VIDEOS[0];
+      main.innerHTML='<video controls playsinline preload="metadata" poster="'+v0.poster+'" title="'+v0.titre+'"><source src="'+v0.src+'" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="'+v0.src+'">ouvrir la vidéo</a>.</video>';
+      VIDEOS.slice(1).forEach(function(v){
+        var b=document.createElement('button'); b.type='button'; b.className='vg-th';
+        b.style.backgroundImage='url('+v.poster+')'; b.setAttribute('aria-label','Voir la vidéo : '+v.titre);
+        b.innerHTML='<span>'+v.titre+'</span>';
+        b.addEventListener('click',function(){ main.querySelector('video').pause(); lv.poster=v.poster; lv.src=v.src; box.classList.add('on'); var pr=lv.play(); if(pr&&pr.catch) pr.catch(function(){}); });
+        grid.appendChild(b);
+      });
+      if(VIDEOS.length<2){ grid.style.display='none'; document.getElementById('vgal').classList.add('seule'); }
+      function fermer(){ lv.pause(); lv.removeAttribute('src'); lv.load(); box.classList.remove('on'); }
+      box.querySelector('.vg-x').addEventListener('click',fermer);
+      box.addEventListener('click',function(e){ if(e.target===box) fermer(); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&box.classList.contains('on')) fermer(); });
+    })();
+    </script>
   </div>
 </header>
 
@@ -128,7 +157,6 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       <li>Ses problèmes du quotidien&nbsp;: le business, le recrutement, le management.</li>
       <li>On s'en moque ensemble. Ensuite, on en parle sérieusement.</li>
     </ul>
-    <div class="video-f"><video controls playsinline preload="metadata" poster="/assets/video/ovr-franchiseurs.jpg" title="On vous rappellera — pour les franchiseurs"><source src="/assets/video/ovr-franchiseurs.mp4" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="/assets/video/ovr-franchiseurs.mp4">ouvrir la vidéo</a>.</video></div>
   </div>
 </section>
 
