@@ -159,8 +159,14 @@
     <script>
     /* Galerie vidéo — la 1re s'affiche en grand, les suivantes en vignettes. Pour en ajouter une : une ligne de plus, dans l'ordre d'affichage */
     var VIDEOS=[
-      {src:"/assets/video/ovr-teaser-2026-v3.mp4", poster:"/assets/video/ovr-teaser-2026-v3.jpg", titre:"Teaser ON VOUS RAPPELLERA"}
+      {src:"/assets/video/ovr-teaser-2026-v3.mp4", poster:"/assets/video/ovr-teaser-2026-v3.jpg", titre:"Teaser ON VOUS RAPPELLERA"},
+      {src:"/assets/video/promo/v07-sur-scene.mp4", poster:"/assets/video/promo/v07-sur-scene.jpg", titre:"Montez sur scène", des:"2026-11-04T08:30:00+01:00"},
+      {src:"/assets/video/promo/v08-formation-cachee.mp4", poster:"/assets/video/promo/v08-formation-cachee.jpg", titre:"Une formation cachée", des:"2026-10-29T08:30:00+01:00"},
+      {src:"/assets/video/promo/v10-convention.mp4", poster:"/assets/video/promo/v10-convention.jpg", titre:"Votre convention", des:"2026-10-23T08:30:00+02:00"},
+      {src:"/assets/video/promo/v02-palmares.mp4", poster:"/assets/video/promo/v02-palmares.jpg", titre:"Le palmarès", des:"2026-10-17T08:30:00+02:00"}
     ];
+    /* Vidéos du matin : chacune n'apparaît qu'à partir de sa date de sortie (des), la plus récente en premier */
+    VIDEOS=VIDEOS.filter(function(v){ return !v.des || Date.now()>=Date.parse(v.des); });
     (function(){
       var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
       var v0=VIDEOS[0];

@@ -424,12 +424,18 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     /* Galerie vidéo — la 1re s'affiche en grand, les suivantes en vignettes. Pour en ajouter une : une ligne de plus, dans l'ordre d'affichage */
     var VIDEOS=[
       {src:"/assets/video/ovr-teaser-2026-v3.mp4", poster:"/assets/video/ovr-teaser-2026-v3.jpg", titre:"Teaser ON VOUS RAPPELLERA"},
+      {src:"/assets/video/promo/v16-offrez-la-a-un-recruteur.mp4", poster:"/assets/video/promo/v16-offrez-la-a-un-recruteur.jpg", titre:"Offrez-la à un recruteur", des:"2026-11-06T08:30:00+01:00"},
+      {src:"/assets/video/promo/v15-delphine.mp4", poster:"/assets/video/promo/v15-delphine.jpg", titre:"Delphine", des:"2026-10-31T08:30:00+01:00"},
+      {src:"/assets/video/promo/v13-trouver-un-job.mp4", poster:"/assets/video/promo/v13-trouver-un-job.jpg", titre:"Trouver un job", des:"2026-10-25T08:30:00+01:00"},
+      {src:"/assets/video/promo/v14-pascal.mp4", poster:"/assets/video/promo/v14-pascal.jpg", titre:"Pascal", des:"2026-10-19T08:30:00+02:00"},
       {src:"/assets/insta/paris-repetitions/reel.mp4", poster:"/assets/insta/paris-repetitions/reel.jpg", titre:"Répétitions — Paris"},
       {src:"/assets/insta/lyon-repetitions/reel.mp4", poster:"/assets/insta/lyon-repetitions/reel.jpg", titre:"Répétitions — Lyon"},
       {src:"/assets/insta/bordeaux-repetitions/reel.mp4", poster:"/assets/insta/bordeaux-repetitions/reel.jpg", titre:"Répétitions — Bordeaux"},
       {src:"/assets/insta/nantes-repetitions/reel.mp4", poster:"/assets/insta/nantes-repetitions/reel.jpg", titre:"Répétitions — Nantes"},
       {src:"/assets/insta/toulouse-repetitions/reel.mp4", poster:"/assets/insta/toulouse-repetitions/reel.jpg", titre:"Répétitions — Toulouse"}
     ];
+    /* Vidéos du matin : chacune n'apparaît qu'à partir de sa date de sortie (des), la plus récente en premier */
+    VIDEOS=VIDEOS.filter(function(v){ return !v.des || Date.now()>=Date.parse(v.des); });
     (function(){
       var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
       var v0=VIDEOS[0];
