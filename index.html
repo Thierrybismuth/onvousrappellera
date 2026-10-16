@@ -427,12 +427,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       {src:"/assets/video/promo/v16-offrez-la-a-un-recruteur.mp4", poster:"/assets/video/promo/v16-offrez-la-a-un-recruteur.jpg", titre:"Offrez-la à un recruteur", des:"2026-11-06T08:30:00+01:00"},
       {src:"/assets/video/promo/v15-delphine.mp4", poster:"/assets/video/promo/v15-delphine.jpg", titre:"Delphine", des:"2026-10-31T08:30:00+01:00"},
       {src:"/assets/video/promo/v13-trouver-un-job.mp4", poster:"/assets/video/promo/v13-trouver-un-job.jpg", titre:"Trouver un job", des:"2026-10-25T08:30:00+01:00"},
-      {src:"/assets/video/promo/v14-pascal.mp4", poster:"/assets/video/promo/v14-pascal.jpg", titre:"Pascal", des:"2026-10-19T08:30:00+02:00"},
-      {src:"/assets/insta/paris-repetitions/reel.mp4", poster:"/assets/insta/paris-repetitions/reel.jpg", titre:"Répétitions — Paris"},
-      {src:"/assets/insta/lyon-repetitions/reel.mp4", poster:"/assets/insta/lyon-repetitions/reel.jpg", titre:"Répétitions — Lyon"},
-      {src:"/assets/insta/bordeaux-repetitions/reel.mp4", poster:"/assets/insta/bordeaux-repetitions/reel.jpg", titre:"Répétitions — Bordeaux"},
-      {src:"/assets/insta/nantes-repetitions/reel.mp4", poster:"/assets/insta/nantes-repetitions/reel.jpg", titre:"Répétitions — Nantes"},
-      {src:"/assets/insta/toulouse-repetitions/reel.mp4", poster:"/assets/insta/toulouse-repetitions/reel.jpg", titre:"Répétitions — Toulouse"}
+      {src:"/assets/video/promo/v14-pascal.mp4", poster:"/assets/video/promo/v14-pascal.jpg", titre:"Pascal", des:"2026-10-19T08:30:00+02:00"}
     ];
     /* Vidéos du matin : chacune n'apparaît qu'à partir de sa date de sortie (des), la plus récente en premier */
     VIDEOS=VIDEOS.filter(function(v){ return !v.des || Date.now()>=Date.parse(v.des); });
@@ -798,10 +793,15 @@ document.addEventListener('DOMContentLoaded',function(){
 .vgal-t{font-size:.6rem;line-height:1.2;color:var(--marine);text-align:center;margin:2px 0 0;min-height:2.4em;overflow:hidden;}
 .vgal-t b{font-weight:600;display:block;}
 .vgal-t i{font-style:normal;color:var(--accent);}
+.vgal-vid{position:relative;display:block;flex:none;padding:0;margin:0;border:0;cursor:pointer;background:#000 center/cover no-repeat;}
+.vgal-vid:after{content:"";position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#d51e29 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 6l10 6-10 6z'/%3E%3C/svg%3E") center/18px no-repeat;box-shadow:0 3px 10px rgba(0,0,0,.3);}
 </style>
 <script>
 (function(){
  var GAP=4, GAPI=2, CACHE={};
+ /* Vidéos de répétition : une par ville, dans la galerie de la troupe (Paris : une seule fois, dans la 1re troupe) */
+ var REP={"Paris":1,"Lyon":1,"Bordeaux":1,"Nantes":1,"Toulouse":1}, REPV={};
+ function repv(v){ if(!REP[v]||REPV[v]) return null; REPV[v]=1; var k=v.toLowerCase(); return {src:'/assets/insta/'+k+'-repetitions/reel.jpg',mp4:'/assets/insta/'+k+'-repetitions/reel.mp4',titre:'Répétitions — '+v}; }
  function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
  function vign(u){ var id=(String(u).match(/\/d\/([A-Za-z0-9_-]{15,})/)||String(u).match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; return id?'https://drive.google.com/thumbnail?id='+id+'&sz=w600':u; }
  function charge(u){ if(CACHE[u]) return CACHE[u]; CACHE[u]=new Promise(function(ok){ var i=new Image(); i.onload=function(){ ok(i.naturalWidth&&i.naturalHeight?i.naturalWidth/i.naturalHeight:0); }; i.onerror=function(){ ok(0); }; i.src=u; }); return CACHE[u]; }
@@ -816,22 +816,24 @@ document.addEventListener('DOMContentLoaded',function(){
    var L=cv.filter(function(c){ return c.ville===v && (!tr || c.troupe===tr); });
    var T=[].slice.call(b.querySelectorAll('figure.vtroupe img')).map(function(i){return {src:i.getAttribute('src'),alt:i.alt};});
    var X=(gal[tr?v+'|'+tr:v]||[]).filter(function(x){return x&&x.src;});
-   if(!L.length && !T.length && !X.length) return;
+   var RV=repv(v);
+   if(!L.length && !T.length && !X.length && !RV) return;
    var md=b.querySelector('.vmedia');
    if(!md){ md=document.createElement('div'); md.className='vmedia'; var an=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an) an.after(md); else b.prepend(md); }
    var g=document.createElement('div'); g.className='vgal'; md.appendChild(g); b.classList.add('vgal-on');
    g._d={T:T,L:L.map(function(c){ var P=((c.photos&&c.photos.length)?c.photos:(c.portrait?[c.portrait]:[])).slice(0,3).map(vign); return {nom:c.prenom+' '+c.nom,role:c.personnage||'',P:P}; }).filter(function(c){return c.P.length;}),X:X};
-   prepare(g);
+   g._d.V=RV?[RV]:[]; prepare(g);
   });
  });
  function prepare(g){
-  var d=g._d, U=[]; d.T.forEach(function(t){U.push(t.src);}); d.L.forEach(function(c){U=U.concat(c.P);}); d.X.forEach(function(x){U.push(x.src);});
+  var d=g._d, U=[]; d.T.forEach(function(t){U.push(t.src);}); d.L.forEach(function(c){U=U.concat(c.P);}); d.X.forEach(function(x){U.push(x.src);}); d.V.forEach(function(x){U.push(x.src);});
   Promise.all(U.map(charge)).then(function(A){
    var k=0, ar={}; U.forEach(function(u){ ar[u]=A[k++]; });
    d.T=d.T.filter(function(t){return ar[t.src]>0;}).map(function(t){t.a=ar[t.src];return t;});
    d.L.forEach(function(c){ c.P=c.P.filter(function(u){return ar[u]>0;}); c.A=c.P.map(function(u){return ar[u];}); });
    d.L=d.L.filter(function(c){return c.P.length;});
    d.X=d.X.filter(function(x){return ar[x.src]>0;}).map(function(x){x.a=ar[x.src];return x;});
+   d.V=d.V.filter(function(x){return ar[x.src]>0;}).map(function(x){x.a=ar[x.src];return x;});
    g._ok=true; dessine(g);
    if(window.ResizeObserver){ new ResizeObserver(function(){ dessine(g); }).observe(g); } else window.addEventListener('resize',function(){ dessine(g); });
   });
@@ -841,6 +843,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var Ht=Math.max(80,Math.min(118,W/4.2)), cible=2*W/Ht;
   /* cellules obligatoires : photo(s) de troupe, puis un portrait par comédien */
   var C=[]; d.T.forEach(function(t){ C.push({im:[{u:t.src,a:t.a}],alt:t.alt,t:''}); });
+  d.V.forEach(function(x){ C.push({im:[{u:x.src,a:x.a,mp4:x.mp4}],alt:x.titre,t:'<b>Répétitions</b>'}); });
   var CC=d.L.map(function(c){ return {im:[{u:c.P[0],a:c.A[0]}],alt:c.nom+(c.role?' — '+c.role:''),t:'<b>'+e(c.nom)+'</b>'+(c.role?'<i>'+e(c.role)+'</i>':''),c:c}; });
   C=C.concat(CC);
   var som=function(){ return C.reduce(function(s,x){ return s+x.im.reduce(function(a,i){return a+i.a;},0); },0); };
@@ -852,18 +855,24 @@ document.addEventListener('DOMContentLoaded',function(){
   var w=C.map(function(x){ return x.im.reduce(function(a,i){return a+i.a;},0); }), tot=w.reduce(function(a,b){return a+b;},0), cut=C.length, best=1e9, acc=0;
   if(C.length>1){ for(var i=0;i<C.length-1;i++){ acc+=w[i]; var df=Math.abs(tot-2*acc); if(df<best){best=df;cut=i+1;} } }
   var lignes=[C.slice(0,cut),C.slice(cut)].filter(function(l){return l.length;});
-  var tous=[]; C.forEach(function(x){ x.im.forEach(function(i){ tous.push(i.u); }); });
+  var tous=[]; C.forEach(function(x){ x.im.forEach(function(i){ if(!i.mp4) tous.push(i.u); }); });
   var ph=e(JSON.stringify(tous)), html='';
   lignes.forEach(function(l){
    var sa=0, gaps=GAP*(l.length-1); l.forEach(function(x){ sa+=x.im.reduce(function(a,i){return a+i.a;},0); gaps+=GAPI*(x.im.length-1); });
    var h=(W-gaps-1)/sa, court=false; if(h>Ht*2.6){ h=Ht*2.6; court=true; }
    html+='<div class="vgal-r'+(court?' court':'')+'">'+l.map(function(x){
-     var cw=0; var ims=x.im.map(function(i){ var iw=Math.floor(h*i.a); cw+=iw; return '<img class="vcv-p" src="'+e(i.u)+'" style="width:'+iw+'px;height:'+Math.round(h)+'px" data-i="'+tous.indexOf(i.u)+'" data-ph="'+ph+'" alt="'+e(x.alt)+'" loading="lazy">'; }).join('');
+     var cw=0; var ims=x.im.map(function(i){ var iw=Math.floor(h*i.a); cw+=iw; if(i.mp4) return '<button type="button" class="vgal-vid" data-mp4="'+e(i.mp4)+'" data-poster="'+e(i.u)+'" aria-label="Voir la vidéo : '+e(x.alt)+'" style="width:'+iw+'px;height:'+Math.round(h)+'px;background-image:url(\''+e(i.u)+'\')"></button>'; return '<img class="vcv-p" src="'+e(i.u)+'" style="width:'+iw+'px;height:'+Math.round(h)+'px" data-i="'+tous.indexOf(i.u)+'" data-ph="'+ph+'" alt="'+e(x.alt)+'" loading="lazy">'; }).join('');
      cw+=GAPI*(x.im.length-1);
      return '<div class="vgal-c" style="width:'+cw+'px"><div class="vgal-i">'+ims+'</div><p class="vgal-t">'+x.t+'</p></div>'; }).join('')+'</div>';
   });
   g.innerHTML=html;
  }
+ document.addEventListener('click',function(ev){
+  var b=ev.target.closest&&ev.target.closest('.vgal-vid'); if(!b) return; ev.preventDefault();
+  var box=document.getElementById('vg-box'), lv=box&&box.querySelector('video'); if(!lv) return;
+  var m=document.querySelector('#vg-main video'); if(m) m.pause();
+  lv.poster=b.getAttribute('data-poster'); lv.src=b.getAttribute('data-mp4'); box.classList.add('on'); var pr=lv.play(); if(pr&&pr.catch) pr.catch(function(){});
+ });
 })();
 </script>
 <div id="ovr-zoom" role="dialog" aria-label="Photo agrandie"><button type="button" aria-label="Fermer">&times;</button><img alt=""><p></p></div>
