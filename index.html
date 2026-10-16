@@ -801,6 +801,12 @@ document.addEventListener('DOMContentLoaded',function(){
  var GAP=4, GAPI=2, CACHE={};
  /* Vidéos de répétition : une par ville, dans la galerie de chaque troupe (Paris : la même vidéo montre les 3 troupes, elle figure dans chacune) */
  var REP={"Paris":1,"Lyon":1,"Bordeaux":1,"Nantes":1,"Toulouse":1}, REPV={};
+ /* Montages consacrés à une troupe (dossier Vidéos de promotion de Thierry) : clé « Ville|Troupe » pour Paris, « Ville » ailleurs */
+ var TV={
+  "Paris|Honnêteté":[{src:'/assets/video/troupes/honnetete-johana-delphine.jpg',mp4:'/assets/video/troupes/honnetete-johana-delphine.mp4',titre:"Johana s'incruste au bureau de Delphine",cap:'Johana et Delphine'},{src:'/assets/video/troupes/honnetete-psy-julien.jpg',mp4:'/assets/video/troupes/honnetete-psy-julien.mp4',titre:'La psy attend Julien',cap:'La psy et Julien'}],
+  "Paris|Esprit d'équipe":[{src:'/assets/video/troupes/esprit-equipe-shooting.jpg',mp4:'/assets/video/troupes/esprit-equipe-shooting.mp4',titre:'Jour de shooting',cap:'Shooting'}],
+  "Toulouse":[{src:'/assets/video/troupes/toulouse-repetition.jpg',mp4:'/assets/video/troupes/toulouse-repetition.mp4',titre:'La troupe de Toulouse',cap:'En répétition'}]
+ };
  function repv(v){ if(!REP[v]) return null; var k=v.toLowerCase(); return {src:'/assets/insta/'+k+'-repetitions/reel.jpg',mp4:'/assets/insta/'+k+'-repetitions/reel.mp4',titre:'Répétitions — '+v}; }
  function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
  function vign(u){ var id=(String(u).match(/\/d\/([A-Za-z0-9_-]{15,})/)||String(u).match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; return id?'https://drive.google.com/thumbnail?id='+id+'&sz=w600':u; }
@@ -822,7 +828,7 @@ document.addEventListener('DOMContentLoaded',function(){
    if(!md){ md=document.createElement('div'); md.className='vmedia'; var an=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an) an.after(md); else b.prepend(md); }
    var g=document.createElement('div'); g.className='vgal'; md.appendChild(g); b.classList.add('vgal-on');
    g._d={T:T,L:L.map(function(c){ var P=((c.photos&&c.photos.length)?c.photos:(c.portrait?[c.portrait]:[])).slice(0,3).map(vign); return {nom:c.prenom+' '+c.nom,role:c.personnage||'',P:P}; }).filter(function(c){return c.P.length;}),X:X};
-   g._d.V=RV?[RV]:[]; prepare(g);
+   g._d.V=(TV[tr?v+'|'+tr:v]||[]).concat(RV?[RV]:[]); prepare(g);
   });
  });
  function prepare(g){
@@ -843,7 +849,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var Ht=Math.max(80,Math.min(118,W/4.2)), cible=2*W/Ht;
   /* cellules obligatoires : photo(s) de troupe, puis un portrait par comédien */
   var C=[]; d.T.forEach(function(t){ C.push({im:[{u:t.src,a:t.a}],alt:t.alt,t:''}); });
-  d.V.forEach(function(x){ C.push({im:[{u:x.src,a:x.a,mp4:x.mp4}],alt:x.titre,t:'<b>Répétitions</b>'}); });
+  d.V.forEach(function(x){ C.push({im:[{u:x.src,a:x.a,mp4:x.mp4}],alt:x.titre,t:'<b>'+e(x.cap||'Répétitions')+'</b>'}); });
   var CC=d.L.map(function(c){ return {im:[{u:c.P[0],a:c.A[0]}],alt:c.nom+(c.role?' — '+c.role:''),t:'<b>'+e(c.nom)+'</b>'+(c.role?'<i>'+e(c.role)+'</i>':''),c:c}; });
   C=C.concat(CC);
   var som=function(){ return C.reduce(function(s,x){ return s+x.im.reduce(function(a,i){return a+i.a;},0); },0); };
