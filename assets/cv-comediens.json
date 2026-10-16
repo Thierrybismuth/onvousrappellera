@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-15T12:04:54.620Z",
+ "maj": "2026-10-16T13:09:58.204Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -373,9 +373,11 @@
    "nom": "Teixeira",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/clementine-teixeira-1k68frty2hl2.jpg?v=1791210838923",
+   "portrait": "https://drive.google.com/file/d/1ZJsSdPkvigI9YZvGDheDZafl5ge2uMaT/view",
    "photos": [
-    "https://onvousrappellera.fr/assets/comediens/clementine-teixeira-1k68frty2hl2.jpg?v=1791210838923"
+    "https://drive.google.com/file/d/1ZJsSdPkvigI9YZvGDheDZafl5ge2uMaT/view",
+    "https://drive.google.com/file/d/1hvWPHHKZdUp57deQu6gN5B5CTrR9lAZE/view",
+    "https://drive.google.com/file/d/11Ohtmd6M0VnnBbEZxklY7OJxM9vh0fvH/view"
    ],
    "personnage": "Pascale",
    "parcours": [],
