@@ -799,9 +799,9 @@ document.addEventListener('DOMContentLoaded',function(){
 <script>
 (function(){
  var GAP=4, GAPI=2, CACHE={};
- /* Vidéos de répétition : une par ville, dans la galerie de la troupe (Paris : une seule fois, dans la 1re troupe) */
+ /* Vidéos de répétition : une par ville, dans la galerie de chaque troupe (Paris : la même vidéo montre les 3 troupes, elle figure dans chacune) */
  var REP={"Paris":1,"Lyon":1,"Bordeaux":1,"Nantes":1,"Toulouse":1}, REPV={};
- function repv(v){ if(!REP[v]||REPV[v]) return null; REPV[v]=1; var k=v.toLowerCase(); return {src:'/assets/insta/'+k+'-repetitions/reel.jpg',mp4:'/assets/insta/'+k+'-repetitions/reel.mp4',titre:'Répétitions — '+v}; }
+ function repv(v){ if(!REP[v]) return null; var k=v.toLowerCase(); return {src:'/assets/insta/'+k+'-repetitions/reel.jpg',mp4:'/assets/insta/'+k+'-repetitions/reel.mp4',titre:'Répétitions — '+v}; }
  function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
  function vign(u){ var id=(String(u).match(/\/d\/([A-Za-z0-9_-]{15,})/)||String(u).match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; return id?'https://drive.google.com/thumbnail?id='+id+'&sz=w600':u; }
  function charge(u){ if(CACHE[u]) return CACHE[u]; CACHE[u]=new Promise(function(ok){ var i=new Image(); i.onload=function(){ ok(i.naturalWidth&&i.naturalHeight?i.naturalWidth/i.naturalHeight:0); }; i.onerror=function(){ ok(0); }; i.src=u; }); return CACHE[u]; }
