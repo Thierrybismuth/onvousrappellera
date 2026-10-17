@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-17T15:34:01.944Z",
+ "maj": "2026-10-17T15:34:41.653Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -417,8 +417,9 @@
    "nom": "Gautier",
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/frederique-gautier-1tbdqolkxite.jpg?v=1791483273321",
+   "portrait": "https://drive.google.com/file/d/1eVerEc8B_TgKzUetD5HLwhYuV5XPGc8C/view",
    "photos": [
+    "https://drive.google.com/file/d/1eVerEc8B_TgKzUetD5HLwhYuV5XPGc8C/view",
     "https://onvousrappellera.fr/assets/comediens/frederique-gautier-1tbdqolkxite.jpg?v=1791483273321",
     "https://onvousrappellera.fr/assets/comediens/frederique-gautier-1zyknqtl9tfb.jpg?v=1791176499089"
    ],
