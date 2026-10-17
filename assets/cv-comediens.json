@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-17T15:30:03.306Z",
+ "maj": "2026-10-17T15:31:10.751Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -545,6 +545,19 @@
     "https://onvousrappellera.fr/assets/comediens/nathalie-codani-185fvd5mlxeq.jpg?v=1791176499089"
    ],
    "personnage": "Danielle + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Nicolas",
+   "nom": "Sacroug",
+   "ville": "Paris",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1YN8bpls0s_L2ZaH3ZN_hexltG_jXI0QN/view",
+   "photos": [
+    "https://drive.google.com/file/d/1YN8bpls0s_L2ZaH3ZN_hexltG_jXI0QN/view"
+   ],
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
