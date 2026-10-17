@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-17T15:31:10.751Z",
+ "maj": "2026-10-17T15:31:58.532Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -512,8 +512,9 @@
    "nom": "Garnier",
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/nadege-garnier-1v1iegyul1y4.jpg?v=1791176499089",
+   "portrait": "https://drive.google.com/file/d/1fwpkuxkwjvFaPO1dcZPyZuXMwlclSvNI/view",
    "photos": [
+    "https://drive.google.com/file/d/1fwpkuxkwjvFaPO1dcZPyZuXMwlclSvNI/view",
     "https://onvousrappellera.fr/assets/comediens/nadege-garnier-1v1iegyul1y4.jpg?v=1791176499089"
    ],
    "personnage": "Danielle + Dominique",
