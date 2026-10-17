@@ -820,8 +820,14 @@ document.addEventListener('DOMContentLoaded',function(){
  function vign(u){ var id=(String(u).match(/\/d\/([A-Za-z0-9_-]{15,})/)||String(u).match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; return id?'https://drive.google.com/thumbnail?id='+id+'&sz=w600':u; }
  function charge(u){ if(CACHE[u]) return CACHE[u]; CACHE[u]=new Promise(function(ok){ var i=new Image(); i.onload=function(){ ok(i.naturalWidth&&i.naturalHeight?i.naturalWidth/i.naturalHeight:0); }; i.onerror=function(){ ok(0); }; i.src=u; }); return CACHE[u]; }
  var J=function(u){ return fetch(u+'?'+Date.now()).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}); };
- Promise.all([J('/assets/cv-comediens.json'),J('/assets/troupes/galerie.json'),J('/assets/troupes/photos-com.json')]).then(function(R){
-  var cv=(R[0]&&R[0].comediens)||[], gal=R[1]||{}, PC=(R[2]&&R[2].troupes)||{};
+ /* Photos déposées par les chargés de com (17/10) : liste Google publique, lue une fois au chargement */
+ var LPC=fetch('https://docs.google.com/spreadsheets/d/1ss6Mrds_tS8evr_WYcOy6Zb5X0HIlgzIQN4dU5Vkj64/gviz/tq?tqx=out:json&headers=1&_='+Date.now()).then(function(r){return r.ok?r.text():'';}).then(function(t){
+  var o={}; try{ var d=JSON.parse(t.slice(t.indexOf('(')+1,t.lastIndexOf(')'))); (d.table.rows||[]).forEach(function(r){ var v=function(i){var c=r.c[i];return c&&c.v!=null?String(c.v):'';};
+   if(!v(1)||!v(3)||v(9)==='retirée') return; var k=v(1), x={src:'https://drive.google.com/thumbnail?id='+v(3)+'&sz=w1600',legende:v(5)};
+   o[k]=o[k]||{troupe:null,photos:[]}; if(v(2)==='troupe') o[k].troupe=x; else o[k].photos.unshift(x); }); }catch(e){}
+  Object.keys(o).forEach(function(k){ o[k].photos=o[k].photos.slice(0,7); }); return o; }).catch(function(){return {};});
+ Promise.all([J('/assets/cv-comediens.json'),J('/assets/troupes/galerie.json'),LPC]).then(function(R){
+  var cv=(R[0]&&R[0].comediens)||[], gal=R[1]||{}, PC=R[2]||{};
   document.querySelectorAll('details.vd, .vgrp').forEach(function(dt){
    var grp=dt.classList.contains('vgrp'); if(!grp && dt.querySelector('.vgrp')) return;
    var sm=grp?null:dt.querySelector('summary'); var v=grp?dt.dataset.cvville:(sm&&sm.firstChild&&sm.firstChild.nodeType===3?sm.firstChild.nodeValue.trim():'');
