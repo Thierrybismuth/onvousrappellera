@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-17T10:10:33.108Z",
+ "maj": "2026-10-17T15:30:03.306Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -272,6 +272,19 @@
     "https://drive.google.com/file/d/1e7SPthyV7mO54O9np9Kyg3kv3vzzrInu/view"
    ],
    "personnage": "Delphine + Danielle",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Adèle",
+   "nom": "Bloch-Mazier",
+   "ville": "Paris",
+   "troupe": "",
+   "portrait": "https://drive.google.com/file/d/1lz1nNsTp01UI10UveBjblW1qXBomE8dq/view",
+   "photos": [
+    "https://drive.google.com/file/d/1lz1nNsTp01UI10UveBjblW1qXBomE8dq/view"
+   ],
+   "personnage": "Julia",
    "parcours": [],
    "videos": []
   },
