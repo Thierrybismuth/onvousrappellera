@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-17T15:36:12.103Z",
+ "maj": "2026-10-17T15:47:27.323Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -558,8 +558,9 @@
    "nom": "Sacroug",
    "ville": "Paris",
    "troupe": "",
-   "portrait": "https://drive.google.com/file/d/1YN8bpls0s_L2ZaH3ZN_hexltG_jXI0QN/view",
+   "portrait": "https://drive.google.com/file/d/1DihB0FUuGSqAT-WFc2egoAQ9COZLaLtO/view",
    "photos": [
+    "https://drive.google.com/file/d/1DihB0FUuGSqAT-WFc2egoAQ9COZLaLtO/view",
     "https://drive.google.com/file/d/1YN8bpls0s_L2ZaH3ZN_hexltG_jXI0QN/view"
    ],
    "personnage": "",
