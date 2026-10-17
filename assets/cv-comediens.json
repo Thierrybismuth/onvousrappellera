@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-17T15:34:41.653Z",
+ "maj": "2026-10-17T15:35:44.745Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -487,8 +487,9 @@
    "nom": "Luc",
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/marine-luc-1qcwnww1xnjo.jpg?v=1791486237829",
+   "portrait": "https://drive.google.com/file/d/1Z037UzK28ASfh0PH0gUMB3oSgqrq9JwB/view",
    "photos": [
+    "https://drive.google.com/file/d/1Z037UzK28ASfh0PH0gUMB3oSgqrq9JwB/view",
     "https://onvousrappellera.fr/assets/comediens/marine-luc-1qcwnww1xnjo.jpg?v=1791486237829"
    ],
    "personnage": "Johana",
