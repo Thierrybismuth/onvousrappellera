@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-17T15:35:44.745Z",
+ "maj": "2026-10-17T15:36:12.103Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -293,8 +293,9 @@
    "nom": "Bader",
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/alicia-bader-1yjya68l5dxt.jpg?v=1791460054958",
+   "portrait": "https://drive.google.com/file/d/1gVmCiI-sBrLqkaK8zlzJwa8k1BxfcFWg/view",
    "photos": [
+    "https://drive.google.com/file/d/1gVmCiI-sBrLqkaK8zlzJwa8k1BxfcFWg/view",
     "https://onvousrappellera.fr/assets/comediens/alicia-bader-1yjya68l5dxt.jpg?v=1791460054958",
     "https://onvousrappellera.fr/assets/comediens/alicia-bader-1zpwzsiowtru.jpg?v=1791176499089"
    ],
