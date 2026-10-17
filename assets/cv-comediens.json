@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-17T09:31:21.631Z",
+ "maj": "2026-10-17T10:10:33.108Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -294,8 +294,9 @@
    "nom": "Dupuy",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/anne-dupuy-18qy8xxe2wyp.jpg?v=1791176499089",
+   "portrait": "https://drive.google.com/file/d/1VOVt-UDMWNWPeD2ZOnqoe7DFT0ME3wCQ/view",
    "photos": [
+    "https://drive.google.com/file/d/1VOVt-UDMWNWPeD2ZOnqoe7DFT0ME3wCQ/view",
     "https://onvousrappellera.fr/assets/comediens/anne-dupuy-18qy8xxe2wyp.jpg?v=1791176499089"
    ],
    "personnage": "Delphine",
@@ -380,21 +381,6 @@
     "https://drive.google.com/file/d/11Ohtmd6M0VnnBbEZxklY7OJxM9vh0fvH/view"
    ],
    "personnage": "Pascale",
-   "parcours": [],
-   "videos": []
-  },
-  {
-   "prenom": "Daniel",
-   "nom": "Vandeberg",
-   "ville": "Paris",
-   "troupe": "Esprit d'équipe",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
-   "photos": [
-    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
-    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1or3odqbtoyd.jpg?v=1791486237829",
-    "https://drive.google.com/file/d/1dIQC42oC-jeDY8CbFZKriVtVMasY-qkc/view"
-   ],
-   "personnage": "Pascal",
    "parcours": [],
    "videos": []
   },
