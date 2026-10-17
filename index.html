@@ -820,8 +820,8 @@ document.addEventListener('DOMContentLoaded',function(){
  function vign(u){ var id=(String(u).match(/\/d\/([A-Za-z0-9_-]{15,})/)||String(u).match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; return id?'https://drive.google.com/thumbnail?id='+id+'&sz=w600':u; }
  function charge(u){ if(CACHE[u]) return CACHE[u]; CACHE[u]=new Promise(function(ok){ var i=new Image(); i.onload=function(){ ok(i.naturalWidth&&i.naturalHeight?i.naturalWidth/i.naturalHeight:0); }; i.onerror=function(){ ok(0); }; i.src=u; }); return CACHE[u]; }
  var J=function(u){ return fetch(u+'?'+Date.now()).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}); };
- Promise.all([J('/assets/cv-comediens.json'),J('/assets/troupes/galerie.json')]).then(function(R){
-  var cv=(R[0]&&R[0].comediens)||[], gal=R[1]||{};
+ Promise.all([J('/assets/cv-comediens.json'),J('/assets/troupes/galerie.json'),J('/assets/troupes/photos-com.json')]).then(function(R){
+  var cv=(R[0]&&R[0].comediens)||[], gal=R[1]||{}, PC=(R[2]&&R[2].troupes)||{};
   document.querySelectorAll('details.vd, .vgrp').forEach(function(dt){
    var grp=dt.classList.contains('vgrp'); if(!grp && dt.querySelector('.vgrp')) return;
    var sm=grp?null:dt.querySelector('summary'); var v=grp?dt.dataset.cvville:(sm&&sm.firstChild&&sm.firstChild.nodeType===3?sm.firstChild.nodeValue.trim():'');
@@ -831,12 +831,15 @@ document.addEventListener('DOMContentLoaded',function(){
    var T=[].slice.call(b.querySelectorAll('figure.vtroupe img')).map(function(i){return {src:i.getAttribute('src'),alt:i.alt};});
    var X=(gal[tr?v+'|'+tr:v]||[]).filter(function(x){return x&&x.src;});
    var RV=repv(v);
+   /* Photos déposées par le chargé de com de la troupe (17/10) : photo de troupe + 7 photos ; elles remplacent les photos des comédiens */
+   var pc=PC[tr?v+'|'+tr:v], com=!!(pc&&(pc.troupe||(pc.photos&&pc.photos.length)));
+   if(com){ if(pc.troupe) T=[{src:pc.troupe.src,alt:'La troupe '+(tr?tr+', à '+v:'de '+v)}]; L=[]; X=(pc.photos||[]).map(function(x){return {src:x.src,legende:x.legende||''};}); }
    if(!L.length && !T.length && !X.length && !RV) return;
    var md=b.querySelector('.vmedia');
    if(!md){ md=document.createElement('div'); md.className='vmedia'; var an=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an) an.after(md); else b.prepend(md); }
    var g=document.createElement('div'); g.className='vgal'; md.appendChild(g); b.classList.add('vgal-on');
    g._d={T:T,L:L.map(function(c){ var P=((c.photos&&c.photos.length)?c.photos:(c.portrait?[c.portrait]:[])).slice(0,3).map(vign); return {nom:c.prenom+' '+c.nom,role:c.personnage||'',P:P}; }).filter(function(c){return c.P.length;}),X:X};
-   g._d.V=(TV[tr?v+'|'+tr:v]||[]).concat(RV?[RV]:[]); prepare(g);
+   g._d.com=com; g._d.V=(TV[tr?v+'|'+tr:v]||[]).concat(RV?[RV]:[]); prepare(g);
   });
  });
  function prepare(g){
@@ -862,7 +865,8 @@ document.addEventListener('DOMContentLoaded',function(){
   C=C.concat(CC);
   var som=function(){ return C.reduce(function(s,x){ return s+x.im.reduce(function(a,i){return a+i.a;},0); },0); };
   /* compléments jusqu'à remplir deux lignes : photos de répétition, puis 2e et 3e photos des comédiens */
-  var plus=d.X.map(function(x){ return function(){ C.push({im:[{u:x.src,a:x.a}],alt:x.legende||'',t:x.legende?'<b>'+e(x.legende)+'</b>':''}); }; });
+  if(d.com){ d.X.forEach(function(x){ C.push({im:[{u:x.src,a:x.a}],alt:x.legende||'',t:x.legende?'<b>'+e(x.legende)+'</b>':''}); }); }
+  var plus=(d.com?[]:d.X).map(function(x){ return function(){ C.push({im:[{u:x.src,a:x.a}],alt:x.legende||'',t:x.legende?'<b>'+e(x.legende)+'</b>':''}); }; });
   [1,2].forEach(function(n){ CC.forEach(function(cl){ if(cl.c.P[n]) plus.push(function(){ cl.im.push({u:cl.c.P[n],a:cl.c.A[n]}); }); }); });
   for(var p=0;p<plus.length && som()<cible*0.92;p++) plus[p]();
   /* deux lignes, coupées au plus près de l'équilibre */
