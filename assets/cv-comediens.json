@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-16T13:09:58.204Z",
+ "maj": "2026-10-17T09:31:21.631Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -380,6 +380,21 @@
     "https://drive.google.com/file/d/11Ohtmd6M0VnnBbEZxklY7OJxM9vh0fvH/view"
    ],
    "personnage": "Pascale",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Daniel",
+   "nom": "Vandeberg",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1or3odqbtoyd.jpg?v=1791486237829",
+    "https://drive.google.com/file/d/1dIQC42oC-jeDY8CbFZKriVtVMasY-qkc/view"
+   ],
+   "personnage": "Pascal",
    "parcours": [],
    "videos": []
   },
