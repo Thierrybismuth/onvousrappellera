@@ -601,7 +601,7 @@ document.addEventListener('DOMContentLoaded',function(){
   vbox.addEventListener('click',function(e){ if(e.target===vbox) fermerVideo(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
   var DATES={
-    "Paris":[{d:"22 novembre 2026 · 19h",t:"Séance de 19h",l:"PVE",c:"PAR-1122",tr:"Engagement"},{d:"26 novembre 2026 · 21h",t:"Séance de 21h",l:"PVE",c:"PAR-1126",tr:"Honnêteté"}],
+    "Paris":[{d:"22 novembre 2026 · 19h",t:"Séance de 19h",l:"PVE",c:"PAR-1122",tr:"Engagement"},{d:"26 novembre 2026 · 21h",t:"Séance de 21h",l:"PVE",c:"PAR-1126",tr:"Honnêteté"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"GAL",tr:"Esprit d'équipe"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"GAL",tr:"Esprit d'équipe"}],
     "Toulouse":[{d:"2 décembre 2026 · 20h",t:"Séance de 20h (accueil dès 19h)",l:"EUR",c:"TLS-1203"}],
     "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"CDR",c:"REN-1209-20"}],
     "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"SPH",c:"NAN-0119-21"}],
@@ -612,6 +612,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var BILLETTERIE_OUVERTE=true || new URLSearchParams(location.search).get('billetterie')==='1';
   var LIEUX={
     "PVE":{n:"Théâtre Le Passage vers les Étoiles",a:"17 cité Joly, 75011 Paris"},
+    "GAL":{n:"Théâtre Montmartre Galabru",a:"4 rue de l'Armée d'Orient, 75018 Paris"},
     "CRO":{n:"Le Croiseur",a:"4 rue Croix-Barret, 69007 Lyon"},
     "MR":{n:"Théâtre Artisse",a:"62 rue Borie, 33300 Bordeaux"},
     "SPL":{n:"Le Spotlight",a:"100 rue Léon Gambetta, 59800 Lille"},
