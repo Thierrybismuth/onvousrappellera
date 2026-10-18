@@ -823,7 +823,7 @@ document.addEventListener('DOMContentLoaded',function(){
  var LPC=fetch('https://docs.google.com/spreadsheets/d/1ss6Mrds_tS8evr_WYcOy6Zb5X0HIlgzIQN4dU5Vkj64/gviz/tq?tqx=out:json&headers=1&_='+Date.now()).then(function(r){return r.ok?r.text():'';}).then(function(t){
   var o={}; try{ var d=JSON.parse(t.slice(t.indexOf('(')+1,t.lastIndexOf(')'))); (d.table.rows||[]).forEach(function(r){ var v=function(i){var c=r.c[i];return c&&c.v!=null?String(c.v):'';};
    if(!v(1)||!v(3)||v(9)==='retirée') return; var k=v(1), x={src:'https://drive.google.com/thumbnail?id='+v(3)+'&sz=w1600',legende:v(5)};
-   o[k]=o[k]||{troupe:null,photos:[]}; if(v(2)==='troupe') o[k].troupe=x; else o[k].photos.unshift(x); }); }catch(e){}
+   o[k]=o[k]||{troupe:null,photos:[],perso:{}}; if(v(2)==='troupe') o[k].troupe=x; else if(/^perso:/.test(v(7))) o[k].perso[v(7)]={src:x.src,nom:v(5)}; else o[k].photos.unshift(x); }); }catch(e){}
   Object.keys(o).forEach(function(k){ o[k].photos=o[k].photos.slice(0,12); }); return o; }).catch(function(){return {};});
  Promise.all([J('/assets/cv-comediens.json'),J('/assets/troupes/galerie.json'),LPC]).then(function(R){
   var cv=(R[0]&&R[0].comediens)||[], gal=R[1]||{}, PC=R[2]||{};
@@ -836,9 +836,13 @@ document.addEventListener('DOMContentLoaded',function(){
    var T=[].slice.call(b.querySelectorAll('figure.vtroupe img')).map(function(i){return {src:i.getAttribute('src'),alt:i.alt};});
    var X=(gal[tr?v+'|'+tr:v]||[]).filter(function(x){return x&&x.src;});
    var RV=repv(v);
-   /* Photos déposées par le chargé de com de la troupe (17/10) : photo de troupe + 12 photos ; elles remplacent les photos des comédiens */
-   var pc=PC[tr?v+'|'+tr:v], com=!!(pc&&(pc.troupe||(pc.photos&&pc.photos.length)));
-   if(com){ if(pc.troupe) T=[{src:pc.troupe.src,alt:'La troupe '+(tr?tr+', à '+v:'de '+v)}]; L=[]; X=(pc.photos||[]).map(function(x){return {src:x.src,legende:x.legende||''};}); }
+   /* Photos déposées par le chargé de com de la troupe (17/10) : photo de troupe + photos de scène + une photo par comédien ; elles remplacent les photos « Mon CV » */
+   /* 18/10 : une seule photo par comédien (sa dernière, envoyée par lui-même) ; photos de scène et photo de troupe à part */
+   var pc=PC[tr?v+'|'+tr:v], PK=pc?Object.keys(pc.perso||{}):[], com=!!(pc&&(pc.troupe||(pc.photos&&pc.photos.length)||PK.length));
+   if(com){ var nz=function(t){return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,'');};
+    var LP=PK.map(function(q){ var c=pc.perso[q], w=String(c.nom||'').trim().split(/\s+/), ref=L.filter(function(z){return nz(z.prenom+z.nom)===nz(c.nom);})[0];
+      return {prenom:w[0]||'',nom:w.slice(1).join(' '),personnage:ref?(ref.personnage||''):'',photos:[c.src]}; }).sort(function(x,y){return (x.prenom+x.nom).localeCompare(y.prenom+y.nom,'fr');});
+    if(pc.troupe) T=[{src:pc.troupe.src,alt:'La troupe '+(tr?tr+', à '+v:'de '+v)}]; L=LP; X=(pc.photos||[]).map(function(x){return {src:x.src,legende:x.legende||''};}); }
    if(!L.length && !T.length && !X.length && !RV) return;
    var md=b.querySelector('.vmedia');
    if(!md){ md=document.createElement('div'); md.className='vmedia'; var an=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an) an.after(md); else b.prepend(md); }
