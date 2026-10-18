@@ -618,9 +618,9 @@ document.addEventListener('DOMContentLoaded',function(){
     "SPL":{n:"Le Spotlight",a:"100 rue Léon Gambetta, 59800 Lille"},
     "SPH":{n:"Théâtre du Sphinx",a:"9 rue Monteil, 44000 Nantes"},
     "CDR":{n:"La Comédie de Rennes",a:"31 rue Xavier Grall, 35700 Rennes"},
-    "EUR":{n:"Campus Eurécia",a:"3 chemin des Canelles, 31320 Castanet-Tolosan (à confirmer)"}
+    "EUR":{n:"Campus Eurécia (lieu à confirmer)",a:"3 chemin des Canelles, 31320 Castanet-Tolosan"}
   };
-  function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
+  function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n.replace(/ \(lieu à confirmer\)/,'')+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
   function troupeHTML(tr){ return tr?'<p class="vtrp">🎭 Troupe <strong>'+esc(tr)+'</strong></p>':''; }
   var AUCUNE='Aucune de ces dates — prévenez-moi du prochain créneau';
   function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
