@@ -138,10 +138,28 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     ];
     /* Vidéos du matin : chacune n'apparaît qu'à partir de sa date de sortie (des), la plus récente en premier */
     VIDEOS=VIDEOS.filter(function(v){ return !v.des || Date.now()>=Date.parse(v.des); });
+    /* Arrivée depuis un mailing (franchise.html?v=v02-palmares) : la vidéo du mail passe en grand et se lance seule */
+    var VMAIL=(new URLSearchParams(location.search).get('v')||'').replace(/[^a-z0-9-]/gi,'');
+    if(VMAIL){
+      var vsrc='/assets/video/promo/'+VMAIL+'.mp4';
+      VIDEOS=VIDEOS.filter(function(v){ return v.src!==vsrc; });
+      VIDEOS.unshift({src:vsrc, poster:'/assets/video/promo/'+VMAIL+'.jpg', titre:'ON VOUS RAPPELLERA'});
+    }
     (function(){
       var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
       var v0=VIDEOS[0];
       main.innerHTML='<video controls playsinline preload="metadata" poster="'+v0.poster+'" title="'+v0.titre+'"><source src="'+v0.src+'" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="'+v0.src+'">ouvrir la vidéo</a>.</video>';
+      if(VMAIL){
+        var mv=main.querySelector('video'); main.style.position='relative';
+        var son=document.createElement('button'); son.type='button'; son.textContent='🔊 Activer le son';
+        son.style.cssText='position:absolute;left:50%;bottom:56px;transform:translateX(-50%);background:#d6201f;color:#fff;border:0;border-radius:24px;padding:12px 22px;font:600 16px Outfit,Arial,sans-serif;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);z-index:2';
+        main.appendChild(son);
+        son.addEventListener('click',function(){ mv.muted=false; mv.currentTime=0; mv.play(); son.remove(); });
+        mv.addEventListener('volumechange',function(){ if(!mv.muted&&son.parentNode) son.remove(); });
+        mv.preload='auto';
+        /* Le son sans geste de l'internaute est refusé par les navigateurs : on tente, sinon on lance en muet */
+        var p1=mv.play(); if(p1&&p1.then){ p1.then(function(){ son.remove(); }).catch(function(){ mv.muted=true; var p2=mv.play(); if(p2&&p2.catch) p2.catch(function(){}); }); }
+      }
       VIDEOS.slice(1).forEach(function(v){
         var b=document.createElement('button'); b.type='button'; b.className='vg-th';
         b.style.backgroundImage='url('+v.poster+')'; b.setAttribute('aria-label','Voir la vidéo : '+v.titre);
