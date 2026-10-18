@@ -141,9 +141,10 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
     /* Arrivée depuis un mailing (franchise.html?v=v02-palmares) : la vidéo du mail passe en grand et se lance seule */
     var VMAIL=(new URLSearchParams(location.search).get('v')||'').replace(/[^a-z0-9-]/gi,'');
     if(VMAIL){
-      var vsrc='/assets/video/promo/'+VMAIL+'.mp4';
+      var rep=VMAIL.match(/^rep-([a-z]+)$/i);
+      var vsrc=rep?'/assets/insta/'+rep[1]+'-repetitions/reel.mp4':'/assets/video/promo/'+VMAIL+'.mp4';
       VIDEOS=VIDEOS.filter(function(v){ return v.src!==vsrc; });
-      VIDEOS.unshift({src:vsrc, poster:'/assets/video/promo/'+VMAIL+'.jpg', titre:'ON VOUS RAPPELLERA'});
+      VIDEOS.unshift({src:vsrc, poster:rep?'':'/assets/video/promo/'+VMAIL+'.jpg', titre:'ON VOUS RAPPELLERA'});
     }
     (function(){
       var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
