@@ -315,6 +315,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .bulles2 .bulle-d::before{left:auto;right:34px;transform:skewX(25deg);}
 .bulles2 .bulle-d::after{left:auto;right:36px;transform:skewX(25deg);}
 .tclause{font-size:.8rem;line-height:1.55;color:var(--texte);margin:0 0 12px}
+.photonote{font-size:.7rem;line-height:1.45;color:#777;margin:.6rem 0 0}
 .tarif{text-transform:none;letter-spacing:normal;font-weight:400;color:var(--texte);display:flex;gap:10px;align-items:flex-start;font-size:.88rem;line-height:1.45;padding:9px 10px;margin:6px 0;cursor:pointer;border:1px solid transparent;border-radius:2px}
 .tarif input{width:18px;height:18px;padding:0;margin:3px 0 0;flex-shrink:0}
 .tarif.star{font-size:1.1rem;border-color:var(--accent);background:#fdf1ef}
@@ -550,7 +551,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <div id="f-resa" style="display:none">
       <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
       <div class="tarifs">
-        <p class="tclause"><strong>Je soutiens la troupe et la tournée, et je booste ma recherche d'emploi ou ma recherche de candidats.</strong><br>Nos partenaires financent la pièce&nbsp;: entreprises qui recrutent, portails d'emploi, organismes publics de l'emploi, et autres acteurs de la recherche d'emploi et de candidats. Avec ces tarifs, j'accepte qu'ils reçoivent mes coordonnées pour me proposer des offres d'emploi, des candidats ou des services liés au recrutement. Si je suis pris en photo ou filmé pendant la soirée, j'accepte que ces images servent à la communication de la pièce. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
+        <p class="tclause"><strong>Je soutiens la troupe et la tournée, et je booste ma recherche d'emploi ou ma recherche de candidats.</strong><br>Nos partenaires financent la pièce&nbsp;: entreprises qui recrutent, portails d'emploi, organismes publics de l'emploi, et autres acteurs de la recherche d'emploi et de candidats. Avec ces tarifs, j'accepte qu'ils reçoivent mes coordonnées pour me proposer des offres d'emploi, des candidats ou des services liés au recrutement. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
         <label class="tarif star"><input type="radio" name="tarif" value="partenaire" checked><span><b>★ Place partenaire — 20&nbsp;€</b></span></label>
         <label class="tarif"><input type="radio" name="tarif" value="reduit"><span><b>Tarif réduit — 15&nbsp;€</b> · demandeurs d'emploi et étudiants, justificatif à présenter à l'entrée</span></label>
         <div id="f-red-wrap" class="fgrid" style="display:none;margin-top:.6rem">
@@ -562,6 +563,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       </div>
       <a href="#" id="f-code-lien" class="codelien">Vous avez un code&nbsp;?</a>
       <div id="f-code-wrap" style="display:none"><input id="f-code" class="codeinput" type="text" placeholder="Votre code" autocomplete="off"></div>
+      <p class="photonote">Si je suis pris en photo ou filmé pendant la soirée, j'accepte que ces images servent à la communication de la pièce. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
     </div>
     <div id="f-alerte" style="display:none">
       <label class="refus"><input type="checkbox" id="f-part">
