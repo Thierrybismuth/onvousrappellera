@@ -426,6 +426,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     /* Galerie vidéo — la 1re s'affiche en grand, les suivantes en vignettes. Pour en ajouter une : une ligne de plus, dans l'ordre d'affichage */
     var VIDEOS=[
       {src:"/assets/video/ovr-teaser-2026-v3.mp4", poster:"/assets/video/ovr-teaser-2026-v3.jpg", titre:"Teaser ON VOUS RAPPELLERA"},
+      {src:"/assets/insta/paris-repetitions/reel.mp4", poster:"/assets/insta/paris-repetitions/reel.jpg", titre:"Les troupes de Paris en répétition"},
       {src:"/assets/video/promo/v24-les-livres.mp4", poster:"/assets/video/promo/v24-les-livres.jpg", titre:"Les deux livres", des:"2026-11-30T08:30:00+01:00"},
       {src:"/assets/video/promo/v22-avec-qui-vous-venez.mp4", poster:"/assets/video/promo/v22-avec-qui-vous-venez.jpg", titre:"Avec qui vous venez ?", des:"2026-11-28T08:30:00+01:00"},
       {src:"/assets/video/promo/v21-on-tombe-le-masque.mp4", poster:"/assets/video/promo/v21-on-tombe-le-masque.jpg", titre:"On tombe le masque", des:"2026-11-26T08:30:00+01:00"},
@@ -812,7 +813,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <script>
 (function(){
  var GAP=4, GAPI=2, CACHE={};
- /* Vidéos de répétition : une par ville, dans la galerie de chaque troupe (Paris : la vidéo montre la troupe Engagement, elle ne figure que dans sa galerie) */
+ /* Vidéos de répétition : une par ville, dans la galerie de chaque troupe (Paris : vidéo commune aux 3 troupes, placée dans la galerie du haut de page) */
  var REP={"Paris":1,"Lyon":1,"Bordeaux":1,"Nantes":1,"Toulouse":1}, REPV={};
  /* Montages consacrés à une troupe (dossier Vidéos de promotion de Thierry) : clé « Ville|Troupe » pour Paris, « Ville » ailleurs */
  var TV={
@@ -840,7 +841,7 @@ document.addEventListener('DOMContentLoaded',function(){
    var L=cv.filter(function(c){ return c.ville===v && (!tr || c.troupe===tr); });
    var T=[].slice.call(b.querySelectorAll('figure.vtroupe img')).map(function(i){return {src:i.getAttribute('src'),alt:i.alt};});
    var X=(gal[tr?v+'|'+tr:v]||[]).filter(function(x){return x&&x.src;});
-   var RV=(v==='Paris'&&tr&&tr!=='Engagement')?null:repv(v); /* 19/10 : la vidéo de répétition de Paris montre la troupe Engagement, seulement chez elle */
+   var RV=(v==='Paris')?null:repv(v); /* 19/10 : la vidéo de répétition de Paris (les 3 troupes) est dans la galerie du haut de page, pas dans les troupes */
    /* Photos déposées par le chargé de com de la troupe (17/10) : photo de troupe + photos de scène + une photo par comédien ; elles remplacent les photos « Mon CV » */
    /* 18/10 : une seule photo par comédien (sa dernière, envoyée par lui-même) ; photos de scène et photo de troupe à part */
    var pc=PC[tr?v+'|'+tr:v], PK=pc?Object.keys(pc.perso||{}):[], com=!!(pc&&(pc.troupe||(pc.photos&&pc.photos.length)||PK.length));
