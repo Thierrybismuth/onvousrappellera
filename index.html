@@ -446,11 +446,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
       var v0=VIDEOS[0];
       main.innerHTML='<video controls playsinline preload="metadata" poster="'+v0.poster+'" title="'+v0.titre+'"><source src="'+v0.src+'" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="'+v0.src+'">ouvrir la vidéo</a>.</video>';
+      /* 19/10 : à la fin d'une vidéo, la suivante de la galerie s'enchaîne */
+      var cur=0;
+      function joue(i){ var v=VIDEOS[i]; if(!v) return; cur=i; main.querySelector('video').pause(); lv.poster=v.poster; lv.src=v.src; box.classList.add('on'); var pr=lv.play(); if(pr&&pr.catch) pr.catch(function(){}); }
+      main.querySelector('video').addEventListener('ended',function(){ joue(1); });
+      lv.addEventListener('ended',function(){ if(box.classList.contains('on') && cur>0 && cur<VIDEOS.length-1 && lv.currentSrc.indexOf(VIDEOS[cur].src)>=0) joue(cur+1); });
       VIDEOS.slice(1).forEach(function(v){
         var b=document.createElement('button'); b.type='button'; b.className='vg-th';
         b.style.backgroundImage='url('+v.poster+')'; b.setAttribute('aria-label','Voir la vidéo : '+v.titre);
         b.innerHTML='<span>'+v.titre+'</span>';
-        b.addEventListener('click',function(){ main.querySelector('video').pause(); lv.poster=v.poster; lv.src=v.src; box.classList.add('on'); var pr=lv.play(); if(pr&&pr.catch) pr.catch(function(){}); });
+        b.addEventListener('click',function(){ joue(VIDEOS.indexOf(v)); });
         grid.appendChild(b);
       });
       if(VIDEOS.length<2){ grid.style.display='none'; document.getElementById('vgal').classList.add('seule'); }
