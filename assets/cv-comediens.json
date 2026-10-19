@@ -343,6 +343,17 @@
    "videos": []
   },
   {
+   "prenom": "Daniel",
+   "nom": "Vandeberg",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Frédérique",
    "nom": "Gautier",
    "ville": "Paris",
@@ -437,7 +448,7 @@
     "https://drive.google.com/file/d/1DihB0FUuGSqAT-WFc2egoAQ9COZLaLtO/view",
     "https://drive.google.com/file/d/1YN8bpls0s_L2ZaH3ZN_hexltG_jXI0QN/view"
    ],
-   "personnage": "",
+   "personnage": "Julien",
    "parcours": [],
    "videos": []
   },
