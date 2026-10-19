@@ -439,8 +439,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       {src:"/assets/video/promo/v13-trouver-un-job.mp4", poster:"/assets/video/promo/v13-trouver-un-job.jpg", titre:"Trouver un job", des:"2026-10-25T08:30:00+01:00"},
       {src:"/assets/video/promo/v14-pascal.mp4", poster:"/assets/video/promo/v14-pascal.jpg", titre:"Pascal", des:"2026-10-19T08:30:00+02:00"}
     ];
-    /* Vidéos du matin : chacune n'apparaît qu'à partir de sa date de sortie (des), la plus récente en premier */
-    VIDEOS=VIDEOS.filter(function(v){ return !v.des || Date.now()>=Date.parse(v.des); });
+    /* Toutes les vidéos de la page visibles d emblée (19/10) */
     (function(){
       var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
       var v0=VIDEOS[0];

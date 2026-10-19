@@ -166,8 +166,7 @@
       {src:"/assets/video/promo/v10-convention.mp4", poster:"/assets/video/promo/v10-convention.jpg", titre:"Votre convention", des:"2026-10-23T08:30:00+02:00"},
       {src:"/assets/video/promo/v02-palmares.mp4", poster:"/assets/video/promo/v02-palmares.jpg", titre:"Le palmarès", des:"2026-10-17T08:30:00+02:00"}
     ];
-    /* Vidéos du matin : chacune n'apparaît qu'à partir de sa date de sortie (des), la plus récente en premier */
-    VIDEOS=VIDEOS.filter(function(v){ return !v.des || Date.now()>=Date.parse(v.des); });
+    /* Toutes les vidéos de la page visibles d emblée (19/10) */
     (function(){
       var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
       var v0=VIDEOS[0];

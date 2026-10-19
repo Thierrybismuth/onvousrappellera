@@ -136,8 +136,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
       {src:"/assets/video/promo/v03-cout-candidat.mp4", poster:"/assets/video/promo/v03-cout-candidat.jpg", titre:"Le coût d'un candidat", des:"2026-10-21T08:30:00+02:00"},
       {src:"/assets/video/ovr-franchiseurs.mp4", poster:"/assets/video/ovr-franchiseurs.jpg", titre:"La soirée franchiseurs"}
     ];
-    /* Vidéos du matin : chacune n'apparaît qu'à partir de sa date de sortie (des), la plus récente en premier */
-    VIDEOS=VIDEOS.filter(function(v){ return !v.des || Date.now()>=Date.parse(v.des); });
+    /* Toutes les vidéos de la page visibles d emblée (19/10) */
     /* Arrivée depuis un mailing (franchise.html?v=v02-palmares) : la vidéo du mail passe en grand et se lance seule */
     var VMAIL=(new URLSearchParams(location.search).get('v')||'').replace(/[^a-z0-9-]/gi,'');
     if(VMAIL){
