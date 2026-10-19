@@ -799,11 +799,15 @@ document.addEventListener('DOMContentLoaded',function(){
 .vgal-on .vmedia > figure.vtroupe,.vgal-on .vcv,#f-info .vtz.vgal-on .vcv,#f-info .vtz.vgal-on .vmedia > figure.vtroupe,#f-info .vbody.vtz.vgal-on .vmedia > .vtroupe{display:none!important;}
 .vgal-on .vmedia{display:block!important;}
 .vgal{flex:1 1 100%;width:100%;min-width:0;}
+.vmedia .vgal{display:block!important;max-width:100%;} /* 19/10 : les 2 lignes de photos l'une sous l'autre, dans le pavé rose */
 .vgal-r{display:flex;gap:4px;margin:0 0 4px;justify-content:flex-start;}
 .vgal-r.court{justify-content:center;}
 .vgal-c{flex:none;min-width:0;}
 .vgal-i{display:flex;gap:2px;}
-.vgal-i img{display:block;flex:none;cursor:zoom-in;margin:0;background:#eee;}
+.vgal-i img{display:block;flex:none;cursor:zoom-in;margin:0;background:#eee;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.vgal-r:first-child{margin-bottom:10px;}
+.vgal-vid{border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.vgal-t{min-height:0!important;}
 .vgal-t{font-size:.6rem;line-height:1.2;color:var(--marine);text-align:center;margin:2px 0 0;min-height:2.4em;overflow:hidden;}
 .vgal-t b{font-weight:600;display:block;}
 .vgal-t i{font-style:normal;color:var(--accent);}
@@ -874,8 +878,9 @@ document.addEventListener('DOMContentLoaded',function(){
   if(!g._ok) return; var W=Math.floor(g.clientWidth); if(W<60||W===g._w) return; g._w=W; var d=g._d;
   var Ht=Math.max(80,Math.min(118,W/4.2)), cible=2*W/Ht;
   /* cellules obligatoires : photo(s) de troupe, puis un portrait par comédien */
-  var C=[]; d.T.forEach(function(t){ C.push({im:[{u:t.src,a:t.a}],alt:t.alt,t:''}); });
-  d.V.forEach(function(x){ C.push({im:[{u:x.src,a:x.a,mp4:x.mp4}],alt:x.titre,t:'<b>'+e(x.cap||'Répétitions')+'</b>'}); });
+  /* 19/10 : photo de troupe et vidéos en tête, en grand, sur leur propre ligne ; les comédiens dessous */
+  var H=[], C=[]; d.T.forEach(function(t){ H.push({im:[{u:t.src,a:t.a}],alt:t.alt,t:''}); });
+  d.V.forEach(function(x){ H.push({im:[{u:x.src,a:x.a,mp4:x.mp4}],alt:x.titre,t:'<b>'+e(x.cap||'Répétitions')+'</b>'}); });
   var CC=d.L.map(function(c){ return {im:[{u:c.P[0],a:c.A[0]}],alt:c.nom+(c.role?' — '+c.role:''),t:'<b>'+e(c.nom)+'</b>'+(c.role?'<i>'+e(c.role)+'</i>':''),c:c}; });
   C=C.concat(CC);
   var som=function(){ return C.reduce(function(s,x){ return s+x.im.reduce(function(a,i){return a+i.a;},0); },0); };
@@ -887,12 +892,13 @@ document.addEventListener('DOMContentLoaded',function(){
   /* deux lignes, coupées au plus près de l'équilibre */
   var w=C.map(function(x){ return x.im.reduce(function(a,i){return a+i.a;},0); }), tot=w.reduce(function(a,b){return a+b;},0), cut=C.length, best=1e9, acc=0;
   if(C.length>1){ for(var i=0;i<C.length-1;i++){ acc+=w[i]; var df=Math.abs(tot-2*acc); if(df<best){best=df;cut=i+1;} } }
-  var lignes=[C.slice(0,cut),C.slice(cut)].filter(function(l){return l.length;});
-  var tous=[]; C.forEach(function(x){ x.im.forEach(function(i){ if(!i.mp4) tous.push(i.u); }); });
+  var lignes=[C.slice(0,cut),C.slice(cut)].filter(function(l){return l.length;}), cap=lignes.map(function(){return Ht*2.6;});
+  if(H.length){ lignes.unshift(H); cap.unshift(Math.min(260,W*0.62)); }
+  var tous=[]; H.concat(C).forEach(function(x){ x.im.forEach(function(i){ if(!i.mp4) tous.push(i.u); }); });
   var ph=e(JSON.stringify(tous)), html='';
-  lignes.forEach(function(l){
+  lignes.forEach(function(l,li){
    var sa=0, gaps=GAP*(l.length-1); l.forEach(function(x){ sa+=x.im.reduce(function(a,i){return a+i.a;},0); gaps+=GAPI*(x.im.length-1); });
-   var h=(W-gaps-1)/sa, court=false; if(h>Ht*2.6){ h=Ht*2.6; court=true; }
+   var h=(W-gaps-1)/sa, court=false; if(h>cap[li]){ h=cap[li]; court=true; }
    html+='<div class="vgal-r'+(court?' court':'')+'">'+l.map(function(x){
      var cw=0; var ims=x.im.map(function(i){ var iw=Math.floor(h*i.a); cw+=iw; if(i.mp4) return '<button type="button" class="vgal-vid" data-mp4="'+e(i.mp4)+'" data-poster="'+e(i.u)+'" aria-label="Voir la vidéo : '+e(x.alt)+'" style="width:'+iw+'px;height:'+Math.round(h)+'px;background-image:url(\''+e(i.u)+'\')"></button>'; return '<img class="vcv-p" src="'+e(i.u)+'" style="width:'+iw+'px;height:'+Math.round(h)+'px" data-i="'+tous.indexOf(i.u)+'" data-ph="'+ph+'" alt="'+e(x.alt)+'" loading="lazy">'; }).join('');
      cw+=GAPI*(x.im.length-1);
