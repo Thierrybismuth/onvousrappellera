@@ -781,7 +781,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('details.vd, .vgrp').forEach(function(dt){
    var grp=dt.classList.contains('vgrp'); if(!grp && dt.querySelector('.vgrp')) return;
    var sm=grp?null:dt.querySelector('summary'); if(!grp && !sm) return;
-   var v=dt.dataset.cvville||(sm&&sm.firstChild&&sm.firstChild.textContent||'').trim(), L=par[v]; if(!L) return; if(dt.dataset.troupe){ L=L.filter(function(c){return c.troupe===dt.dataset.troupe;}); if(!L.length) return; }
+   var v=dt.dataset.cvville||(sm&&sm.firstChild&&sm.firstChild.textContent||'').trim(), L=par[v]; if(!L) return; L=L.filter(function(c){ return (c.photos&&c.photos.length)||c.portrait||(c.parcours||[]).length||(c.videos||[]).length; }); if(!L.length) return; /* 19/10 : un comédien sans photo sert seulement à retrouver son personnage */ if(dt.dataset.troupe){ L=L.filter(function(c){return c.troupe===dt.dataset.troupe;}); if(!L.length) return; }
    var b=grp?dt:dt.querySelector('.vbody'); if(!b) return;
    var h='<div class="vcv">'+L.map(function(c){
      var p=(c.parcours||[]).filter(Boolean), vi=(c.videos||[]).filter(Boolean);
