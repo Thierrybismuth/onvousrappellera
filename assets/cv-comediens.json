@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-19T19:24:13.814Z",
+ "maj": "2026-10-19T20:39:30.156Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -407,8 +407,11 @@
    "nom": "Dupuy",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://drive.google.com/file/d/1VOVt-UDMWNWPeD2ZOnqoe7DFT0ME3wCQ/view",
+   "photos": [
+    "https://drive.google.com/file/d/1VOVt-UDMWNWPeD2ZOnqoe7DFT0ME3wCQ/view",
+    "https://onvousrappellera.fr/assets/comediens/anne-dupuy-18qy8xxe2wyp.jpg?v=1791176499089"
+   ],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -457,8 +460,11 @@
    "nom": "De Laquintane",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1wye3vrrkluh.jpg?v=1791210838923",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1wye3vrrkluh.jpg?v=1791210838923",
+    "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1ojgfym7jbjh.jpg?v=1791210838923"
+   ],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -468,8 +474,10 @@
    "nom": "Pernot",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://onvousrappellera.fr/assets/comediens/clarence-pernot-1ik3zzhg0abv.jpg?v=1791176499089",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/clarence-pernot-1ik3zzhg0abv.jpg?v=1791176499089"
+   ],
    "personnage": "Julien",
    "parcours": [],
    "videos": []
@@ -479,8 +487,12 @@
    "nom": "Teixeira",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://drive.google.com/file/d/1ZJsSdPkvigI9YZvGDheDZafl5ge2uMaT/view",
+   "photos": [
+    "https://drive.google.com/file/d/1ZJsSdPkvigI9YZvGDheDZafl5ge2uMaT/view",
+    "https://drive.google.com/file/d/1hvWPHHKZdUp57deQu6gN5B5CTrR9lAZE/view",
+    "https://drive.google.com/file/d/11Ohtmd6M0VnnBbEZxklY7OJxM9vh0fvH/view"
+   ],
    "personnage": "Pascale",
    "parcours": [],
    "videos": []
@@ -505,8 +517,12 @@
    "nom": "Cony",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://onvousrappellera.fr/assets/comediens/fanny-cony-1wuflckeyhec.jpg?v=1791483185041",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1wuflckeyhec.jpg?v=1791483185041",
+    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1te1unpqjgks.jpg?v=1791483185041",
+    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1sbrrxciyov3.jpg?v=1791483185041"
+   ],
    "personnage": "Johana",
    "parcours": [],
    "videos": []
@@ -558,8 +574,12 @@
    "nom": "Laboute",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://drive.google.com/file/d/1k1JkwOKPsmyxAdneSPWnlW1wczBsHvla/view",
+   "photos": [
+    "https://drive.google.com/file/d/1k1JkwOKPsmyxAdneSPWnlW1wczBsHvla/view",
+    "https://drive.google.com/file/d/1fRSc0NbXr5W6PIPFWKFC0-sQ4j2LAf5T/view",
+    "https://drive.google.com/file/d/1dMHMYr7VNDDWW9E9Qf5rkMWwMfo6Fv0d/view"
+   ],
    "personnage": "Pascal",
    "parcours": [],
    "videos": []
@@ -569,8 +589,10 @@
    "nom": "Ehrler",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://onvousrappellera.fr/assets/comediens/lucile-ehrler-1msecyznae3t.jpg?v=1791176499089",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/lucile-ehrler-1msecyznae3t.jpg?v=1791176499089"
+   ],
    "personnage": "Johana",
    "parcours": [],
    "videos": []
@@ -594,8 +616,10 @@
    "nom": "Cauvé",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://onvousrappellera.fr/assets/comediens/melanie-cauve-19go0vdxfq8q.jpg?v=1791486237829",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/melanie-cauve-19go0vdxfq8q.jpg?v=1791486237829"
+   ],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -634,8 +658,11 @@
    "nom": "Codani",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "",
-   "photos": [],
+   "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-codani-1myi3ygxjoxi.jpg?v=1791176499089",
+   "photos": [
+    "https://onvousrappellera.fr/assets/comediens/nathalie-codani-1myi3ygxjoxi.jpg?v=1791176499089",
+    "https://onvousrappellera.fr/assets/comediens/nathalie-codani-185fvd5mlxeq.jpg?v=1791176499089"
+   ],
    "personnage": "Danielle + Dominique",
    "parcours": [],
    "videos": []
