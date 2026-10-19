@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-18T12:10:25.239Z",
+ "maj": "2026-10-19T19:24:13.814Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -37,6 +37,17 @@
     "https://onvousrappellera.fr/assets/comediens/kenzo-mavaut-17ambgzrhvfr.jpg?v=1791784809565"
    ],
    "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Kevin",
+   "nom": "Lissajoux",
+   "ville": "Bordeaux",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "",
    "parcours": [],
    "videos": []
   },
@@ -91,6 +102,28 @@
     "https://drive.google.com/file/d/1AIre3LMlICWoWnmxpyvtx9fru44pZE45/view"
    ],
    "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Laure",
+   "nom": "Duclercq",
+   "ville": "Lille",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Danielle + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Violaine",
+   "nom": "Verein",
+   "ville": "Lille",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Delphine",
    "parcours": [],
    "videos": []
   },
@@ -151,6 +184,39 @@
     "https://onvousrappellera.fr/assets/comediens/vanessa-selynn-1zjzz5hwegat.jpg?v=1791210838923"
    ],
    "personnage": "Pascale",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Juliette",
+   "nom": "Kerdiles",
+   "ville": "Marseille",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Muriel",
+   "nom": "Lorrain",
+   "ville": "Marseille",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Philippe",
+   "nom": "Blanc",
+   "ville": "Marseille",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Daniel + Dominique",
    "parcours": [],
    "videos": []
   },
@@ -263,6 +329,17 @@
    "videos": []
   },
   {
+   "prenom": "Nicolas",
+   "nom": "Mirallié",
+   "ville": "Nantes",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Sandrine",
    "nom": "Laverdure",
    "ville": "Nantes",
@@ -272,6 +349,28 @@
     "https://drive.google.com/file/d/1e7SPthyV7mO54O9np9Kyg3kv3vzzrInu/view"
    ],
    "personnage": "Delphine + Danielle",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Vincent",
+   "nom": "Blin",
+   "ville": "Nantes",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Virginie",
+   "nom": "Cayla",
+   "ville": "Nice",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Danielle + Dominique",
    "parcours": [],
    "videos": []
   },
@@ -299,6 +398,17 @@
     "https://onvousrappellera.fr/assets/comediens/alicia-bader-1yjya68l5dxt.jpg?v=1791460054958",
     "https://onvousrappellera.fr/assets/comediens/alicia-bader-1zpwzsiowtru.jpg?v=1791176499089"
    ],
+   "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Anne",
+   "nom": "Dupuy",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "",
+   "photos": [],
    "personnage": "Delphine",
    "parcours": [],
    "videos": []
@@ -343,13 +453,61 @@
    "videos": []
   },
   {
+   "prenom": "Caroline",
+   "nom": "De Laquintane",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Delphine",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Clarence",
+   "nom": "Pernot",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Julien",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Clémentine",
+   "nom": "Teixeira",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Pascale",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Daniel",
    "nom": "Vandeberg",
    "ville": "Paris",
    "troupe": "Esprit d'équipe",
+   "portrait": "https://drive.google.com/file/d/1PGUhawWBg7iz-JlbNScJft-woAhaxQZ1/view",
+   "photos": [
+    "https://drive.google.com/file/d/1PGUhawWBg7iz-JlbNScJft-woAhaxQZ1/view",
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1w7x2fu0yfyp.jpg?v=1791486237829",
+    "https://onvousrappellera.fr/assets/comediens/daniel-vandeberg-1or3odqbtoyd.jpg?v=1791486237829"
+   ],
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Fanny",
+   "nom": "Cony",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
    "portrait": "",
    "photos": [],
-   "personnage": "Pascal",
+   "personnage": "Johana",
    "parcours": [],
    "videos": []
   },
@@ -396,6 +554,28 @@
    "videos": []
   },
   {
+   "prenom": "Jérôme",
+   "nom": "Laboute",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Pascal",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Lucile",
+   "nom": "Ehrler",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Marine",
    "nom": "Luc",
    "ville": "Paris",
@@ -406,6 +586,17 @@
     "https://onvousrappellera.fr/assets/comediens/marine-luc-1qcwnww1xnjo.jpg?v=1791486237829"
    ],
    "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Mélanie",
+   "nom": "Cauvé",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Delphine",
    "parcours": [],
    "videos": []
   },
@@ -439,6 +630,17 @@
    "videos": []
   },
   {
+   "prenom": "Nathalie",
+   "nom": "Codani",
+   "ville": "Paris",
+   "troupe": "Honnêteté",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Danielle + Dominique",
+   "parcours": [],
+   "videos": []
+  },
+  {
    "prenom": "Nicolas",
    "nom": "Sacroug",
    "ville": "Paris",
@@ -462,6 +664,17 @@
     "https://onvousrappellera.fr/assets/comediens/nolwenn-canal-1qiy3sh04sla.jpg?v=1791176499089"
    ],
    "personnage": "Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Pascal",
+   "nom": "Benarousse",
+   "ville": "Paris",
+   "troupe": "Esprit d'équipe",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Pascal",
    "parcours": [],
    "videos": []
   },
@@ -501,6 +714,17 @@
     "https://onvousrappellera.fr/assets/comediens/coralie-perney-14w1zsjl0jlf.jpg?v=1791988115963"
    ],
    "personnage": "Delphine + Johana",
+   "parcours": [],
+   "videos": []
+  },
+  {
+   "prenom": "Eric",
+   "nom": "Beslay",
+   "ville": "Rennes",
+   "troupe": "",
+   "portrait": "",
+   "photos": [],
+   "personnage": "Daniel + Dominique",
    "parcours": [],
    "videos": []
   },
