@@ -21,8 +21,59 @@ a.dl{display:inline-block;margin-top:8px;color:var(--rouge);font-weight:600}
 <h1>Partage <b>ON VOUS RAPPELLERA</b> avec ton réseau</h1>
 <p class="intro">Choisis ta troupe : le message, le post, le visuel et la vidéo sont prêts, avec tes dates.</p>
 <label for="troupe">Ma troupe</label>
-<select id="troupe" onchange="voir(this.value)"><option value="">— Choisir —</option><option value="paris-engagement">Paris — troupe Engagement</option><option value="paris-honnetete">Paris — troupe Honnêteté</option><option value="paris-esprit-d-equipe">Paris — troupe Esprit d&#x27;équipe</option><option value="toulouse">Toulouse</option><option value="rennes">Rennes</option><option value="bordeaux">Bordeaux</option><option value="lyon">Lyon</option><option value="nantes">Nantes</option></select>
-<section class="kit" id="paris-engagement" hidden>
+<select id="troupe" onchange="voir(this.value)"><option value="">— Choisir —</option><option value="national">Contenu national — toutes les villes</option><option value="paris-engagement">Paris — troupe Engagement</option><option value="paris-honnetete">Paris — troupe Honnêteté</option><option value="paris-esprit-d-equipe">Paris — troupe Esprit d&#x27;équipe</option><option value="toulouse">Toulouse</option><option value="rennes">Rennes</option><option value="bordeaux">Bordeaux</option><option value="lyon">Lyon</option><option value="nantes">Nantes</option></select>
+<section class="kit" id="national" hidden>
+<h2>Contenu national — toutes les villes</h2>
+<h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
+<pre id="m-national">Ça y est, on lance les réservations pour ON VOUS RAPPELLERA !
+Les premières, ville par ville :
+• Paris : Dim. 22 nov. 19h · jeu. 26 nov. 21h — Théâtre Le Passage vers les Étoiles · Paris 11e
+• Toulouse : Mer. 2 déc. 20h — Campus Eurécia · Castanet-Tolosan
+• Rennes : Mer. 9 déc. 20h — La Comédie de Rennes
+• Bordeaux : Jeu. 10 et 17 déc. · 18h30 et 20h30 — Théâtre Artisse
+• Paris : Sam. 12 déc. 21h30 · ven. 18 déc. 19h30 — Théâtre Montmartre Galabru · Paris 18e
+• Lyon : Mer. 16 déc. · 19h et 21h — Le Croiseur
+• Nantes : Mar. 19 janv. 21h — Théâtre du Sphinx
+
+Tu es dans mon réseau ? 4 raisons de venir aux avant-premières :
+• Les premières, c&#x27;est toujours les plus drôles : trous de texte, boulettes, fous rires… Après 20 représentations la pièce est rodée ; pendant les 20 premières, on se marre.
+• Tu donnes de l&#x27;énergie à la troupe.
+• Aux avant-premières, on sera « entre nous » : les proches, les potes, les clients qu&#x27;on aime, pas ou peu d&#x27;inconnus. Comme une soirée d&#x27;anniversaire avec le premier cercle.
+• Un cadeau surprise t&#x27;attend pour te remercier.
+
+Réserve ta place : https://onvousrappellera.fr/</pre>
+<button onclick="copier('m-national',this)">Copier le message</button>
+<h3>2. Le post réseaux sociaux <small>(Instagram, Facebook, LinkedIn)</small></h3>
+<pre id="r-national">Ça y est, on lance les réservations pour ON VOUS RAPPELLERA !
+Les premières, ville par ville :
+• Paris : Dim. 22 nov. 19h · jeu. 26 nov. 21h — Théâtre Le Passage vers les Étoiles · Paris 11e
+• Toulouse : Mer. 2 déc. 20h — Campus Eurécia · Castanet-Tolosan
+• Rennes : Mer. 9 déc. 20h — La Comédie de Rennes
+• Bordeaux : Jeu. 10 et 17 déc. · 18h30 et 20h30 — Théâtre Artisse
+• Paris : Sam. 12 déc. 21h30 · ven. 18 déc. 19h30 — Théâtre Montmartre Galabru · Paris 18e
+• Lyon : Mer. 16 déc. · 19h et 21h — Le Croiseur
+• Nantes : Mar. 19 janv. 21h — Théâtre du Sphinx
+
+Tu es dans mon réseau ? 4 raisons de venir aux avant-premières :
+• Les premières, c&#x27;est toujours les plus drôles : trous de texte, boulettes, fous rires… Après 20 représentations la pièce est rodée ; pendant les 20 premières, on se marre.
+• Tu donnes de l&#x27;énergie à la troupe.
+• Aux avant-premières, on sera « entre nous » : les proches, les potes, les clients qu&#x27;on aime, pas ou peu d&#x27;inconnus. Comme une soirée d&#x27;anniversaire avec le premier cercle.
+• Un cadeau surprise t&#x27;attend pour te remercier.
+
+Réserve ta place : https://onvousrappellera.fr/
+
+#onvousrappellera</pre>
+<button onclick="copier('r-national',this)">Copier le texte du post</button>
+<p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
+<h3>3. Le visuel</h3>
+<div class="visuels">
+<figure><img src="assets/a-partager/post-national.jpg?v=20261021n" alt="Visuel Contenu national — toutes les villes" loading="lazy"><a class="dl" href="assets/a-partager/post-national.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-national.jpg?v=20261021n" alt="Story Contenu national — toutes les villes" loading="lazy"><a class="dl" href="assets/a-partager/story-national.jpg?v=20261021n" download>Télécharger — format story</a></figure>
+</div>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-national.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-national.mp4?v=20261021n" download>Télécharger la vidéo</a>
+</section><section class="kit" id="paris-engagement" hidden>
 <h2>Paris — troupe Engagement</h2>
 <h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
 <pre id="m-paris-engagement">Ça y est, on lance les réservations pour ON VOUS RAPPELLERA !
@@ -53,12 +104,12 @@ Réserve ta place : https://onvousrappellera.fr/
 <p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
 <h3>3. Le visuel</h3>
 <div class="visuels">
-<figure><img src="assets/a-partager/post-paris-engagement.jpg?v=20261020c" alt="Visuel Paris — troupe Engagement" loading="lazy"><a class="dl" href="assets/a-partager/post-paris-engagement.jpg?v=20261020c" download>Télécharger — format post</a></figure>
-<figure><img src="assets/a-partager/story-paris-engagement.jpg?v=20261020c" alt="Story Paris — troupe Engagement" loading="lazy"><a class="dl" href="assets/a-partager/story-paris-engagement.jpg?v=20261020c" download>Télécharger — format story</a></figure>
+<figure><img src="assets/a-partager/post-paris-engagement.jpg?v=20261021n" alt="Visuel Paris — troupe Engagement" loading="lazy"><a class="dl" href="assets/a-partager/post-paris-engagement.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-paris-engagement.jpg?v=20261021n" alt="Story Paris — troupe Engagement" loading="lazy"><a class="dl" href="assets/a-partager/story-paris-engagement.jpg?v=20261021n" download>Télécharger — format story</a></figure>
 </div>
-<h3>4. La vidéo <small>(environ 35 secondes, avec la musique de la pièce)</small></h3>
-<video src="assets/a-partager/video-paris-engagement.mp4?v=20261020c" controls playsinline preload="metadata"></video>
-<a class="dl" href="assets/a-partager/video-paris-engagement.mp4?v=20261020c" download>Télécharger la vidéo</a>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-paris-engagement.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-paris-engagement.mp4?v=20261021n" download>Télécharger la vidéo</a>
 </section><section class="kit" id="paris-honnetete" hidden>
 <h2>Paris — troupe Honnêteté</h2>
 <h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
@@ -90,12 +141,12 @@ Réserve ta place : https://onvousrappellera.fr/
 <p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
 <h3>3. Le visuel</h3>
 <div class="visuels">
-<figure><img src="assets/a-partager/post-paris-honnetete.jpg?v=20261020c" alt="Visuel Paris — troupe Honnêteté" loading="lazy"><a class="dl" href="assets/a-partager/post-paris-honnetete.jpg?v=20261020c" download>Télécharger — format post</a></figure>
-<figure><img src="assets/a-partager/story-paris-honnetete.jpg?v=20261020c" alt="Story Paris — troupe Honnêteté" loading="lazy"><a class="dl" href="assets/a-partager/story-paris-honnetete.jpg?v=20261020c" download>Télécharger — format story</a></figure>
+<figure><img src="assets/a-partager/post-paris-honnetete.jpg?v=20261021n" alt="Visuel Paris — troupe Honnêteté" loading="lazy"><a class="dl" href="assets/a-partager/post-paris-honnetete.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-paris-honnetete.jpg?v=20261021n" alt="Story Paris — troupe Honnêteté" loading="lazy"><a class="dl" href="assets/a-partager/story-paris-honnetete.jpg?v=20261021n" download>Télécharger — format story</a></figure>
 </div>
-<h3>4. La vidéo <small>(environ 35 secondes, avec la musique de la pièce)</small></h3>
-<video src="assets/a-partager/video-paris-honnetete.mp4?v=20261020c" controls playsinline preload="metadata"></video>
-<a class="dl" href="assets/a-partager/video-paris-honnetete.mp4?v=20261020c" download>Télécharger la vidéo</a>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-paris-honnetete.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-paris-honnetete.mp4?v=20261021n" download>Télécharger la vidéo</a>
 </section><section class="kit" id="paris-esprit-d-equipe" hidden>
 <h2>Paris — troupe Esprit d&#x27;équipe</h2>
 <h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
@@ -127,12 +178,12 @@ Réserve ta place : https://onvousrappellera.fr/
 <p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
 <h3>3. Le visuel</h3>
 <div class="visuels">
-<figure><img src="assets/a-partager/post-paris-esprit-d-equipe.jpg?v=20261020c" alt="Visuel Paris — troupe Esprit d&#x27;équipe" loading="lazy"><a class="dl" href="assets/a-partager/post-paris-esprit-d-equipe.jpg?v=20261020c" download>Télécharger — format post</a></figure>
-<figure><img src="assets/a-partager/story-paris-esprit-d-equipe.jpg?v=20261020c" alt="Story Paris — troupe Esprit d&#x27;équipe" loading="lazy"><a class="dl" href="assets/a-partager/story-paris-esprit-d-equipe.jpg?v=20261020c" download>Télécharger — format story</a></figure>
+<figure><img src="assets/a-partager/post-paris-esprit-d-equipe.jpg?v=20261021n" alt="Visuel Paris — troupe Esprit d&#x27;équipe" loading="lazy"><a class="dl" href="assets/a-partager/post-paris-esprit-d-equipe.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-paris-esprit-d-equipe.jpg?v=20261021n" alt="Story Paris — troupe Esprit d&#x27;équipe" loading="lazy"><a class="dl" href="assets/a-partager/story-paris-esprit-d-equipe.jpg?v=20261021n" download>Télécharger — format story</a></figure>
 </div>
-<h3>4. La vidéo <small>(environ 35 secondes, avec la musique de la pièce)</small></h3>
-<video src="assets/a-partager/video-paris-esprit-d-equipe.mp4?v=20261020c" controls playsinline preload="metadata"></video>
-<a class="dl" href="assets/a-partager/video-paris-esprit-d-equipe.mp4?v=20261020c" download>Télécharger la vidéo</a>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-paris-esprit-d-equipe.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-paris-esprit-d-equipe.mp4?v=20261021n" download>Télécharger la vidéo</a>
 </section><section class="kit" id="toulouse" hidden>
 <h2>Toulouse</h2>
 <h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
@@ -164,12 +215,12 @@ Réserve ta place : https://onvousrappellera.fr/
 <p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
 <h3>3. Le visuel</h3>
 <div class="visuels">
-<figure><img src="assets/a-partager/post-toulouse.jpg?v=20261020c" alt="Visuel Toulouse" loading="lazy"><a class="dl" href="assets/a-partager/post-toulouse.jpg?v=20261020c" download>Télécharger — format post</a></figure>
-<figure><img src="assets/a-partager/story-toulouse.jpg?v=20261020c" alt="Story Toulouse" loading="lazy"><a class="dl" href="assets/a-partager/story-toulouse.jpg?v=20261020c" download>Télécharger — format story</a></figure>
+<figure><img src="assets/a-partager/post-toulouse.jpg?v=20261021n" alt="Visuel Toulouse" loading="lazy"><a class="dl" href="assets/a-partager/post-toulouse.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-toulouse.jpg?v=20261021n" alt="Story Toulouse" loading="lazy"><a class="dl" href="assets/a-partager/story-toulouse.jpg?v=20261021n" download>Télécharger — format story</a></figure>
 </div>
-<h3>4. La vidéo <small>(environ 35 secondes, avec la musique de la pièce)</small></h3>
-<video src="assets/a-partager/video-toulouse.mp4?v=20261020c" controls playsinline preload="metadata"></video>
-<a class="dl" href="assets/a-partager/video-toulouse.mp4?v=20261020c" download>Télécharger la vidéo</a>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-toulouse.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-toulouse.mp4?v=20261021n" download>Télécharger la vidéo</a>
 </section><section class="kit" id="rennes" hidden>
 <h2>Rennes</h2>
 <h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
@@ -201,12 +252,12 @@ Réserve ta place : https://onvousrappellera.fr/
 <p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
 <h3>3. Le visuel</h3>
 <div class="visuels">
-<figure><img src="assets/a-partager/post-rennes.jpg?v=20261020c" alt="Visuel Rennes" loading="lazy"><a class="dl" href="assets/a-partager/post-rennes.jpg?v=20261020c" download>Télécharger — format post</a></figure>
-<figure><img src="assets/a-partager/story-rennes.jpg?v=20261020c" alt="Story Rennes" loading="lazy"><a class="dl" href="assets/a-partager/story-rennes.jpg?v=20261020c" download>Télécharger — format story</a></figure>
+<figure><img src="assets/a-partager/post-rennes.jpg?v=20261021n" alt="Visuel Rennes" loading="lazy"><a class="dl" href="assets/a-partager/post-rennes.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-rennes.jpg?v=20261021n" alt="Story Rennes" loading="lazy"><a class="dl" href="assets/a-partager/story-rennes.jpg?v=20261021n" download>Télécharger — format story</a></figure>
 </div>
-<h3>4. La vidéo <small>(environ 35 secondes, avec la musique de la pièce)</small></h3>
-<video src="assets/a-partager/video-rennes.mp4?v=20261020c" controls playsinline preload="metadata"></video>
-<a class="dl" href="assets/a-partager/video-rennes.mp4?v=20261020c" download>Télécharger la vidéo</a>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-rennes.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-rennes.mp4?v=20261021n" download>Télécharger la vidéo</a>
 </section><section class="kit" id="bordeaux" hidden>
 <h2>Bordeaux</h2>
 <h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
@@ -238,12 +289,12 @@ Réserve ta place : https://onvousrappellera.fr/
 <p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
 <h3>3. Le visuel</h3>
 <div class="visuels">
-<figure><img src="assets/a-partager/post-bordeaux.jpg?v=20261020c" alt="Visuel Bordeaux" loading="lazy"><a class="dl" href="assets/a-partager/post-bordeaux.jpg?v=20261020c" download>Télécharger — format post</a></figure>
-<figure><img src="assets/a-partager/story-bordeaux.jpg?v=20261020c" alt="Story Bordeaux" loading="lazy"><a class="dl" href="assets/a-partager/story-bordeaux.jpg?v=20261020c" download>Télécharger — format story</a></figure>
+<figure><img src="assets/a-partager/post-bordeaux.jpg?v=20261021n" alt="Visuel Bordeaux" loading="lazy"><a class="dl" href="assets/a-partager/post-bordeaux.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-bordeaux.jpg?v=20261021n" alt="Story Bordeaux" loading="lazy"><a class="dl" href="assets/a-partager/story-bordeaux.jpg?v=20261021n" download>Télécharger — format story</a></figure>
 </div>
-<h3>4. La vidéo <small>(environ 35 secondes, avec la musique de la pièce)</small></h3>
-<video src="assets/a-partager/video-bordeaux.mp4?v=20261020c" controls playsinline preload="metadata"></video>
-<a class="dl" href="assets/a-partager/video-bordeaux.mp4?v=20261020c" download>Télécharger la vidéo</a>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-bordeaux.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-bordeaux.mp4?v=20261021n" download>Télécharger la vidéo</a>
 </section><section class="kit" id="lyon" hidden>
 <h2>Lyon</h2>
 <h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
@@ -275,12 +326,12 @@ Réserve ta place : https://onvousrappellera.fr/
 <p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
 <h3>3. Le visuel</h3>
 <div class="visuels">
-<figure><img src="assets/a-partager/post-lyon.jpg?v=20261020c" alt="Visuel Lyon" loading="lazy"><a class="dl" href="assets/a-partager/post-lyon.jpg?v=20261020c" download>Télécharger — format post</a></figure>
-<figure><img src="assets/a-partager/story-lyon.jpg?v=20261020c" alt="Story Lyon" loading="lazy"><a class="dl" href="assets/a-partager/story-lyon.jpg?v=20261020c" download>Télécharger — format story</a></figure>
+<figure><img src="assets/a-partager/post-lyon.jpg?v=20261021n" alt="Visuel Lyon" loading="lazy"><a class="dl" href="assets/a-partager/post-lyon.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-lyon.jpg?v=20261021n" alt="Story Lyon" loading="lazy"><a class="dl" href="assets/a-partager/story-lyon.jpg?v=20261021n" download>Télécharger — format story</a></figure>
 </div>
-<h3>4. La vidéo <small>(environ 35 secondes, avec la musique de la pièce)</small></h3>
-<video src="assets/a-partager/video-lyon.mp4?v=20261020c" controls playsinline preload="metadata"></video>
-<a class="dl" href="assets/a-partager/video-lyon.mp4?v=20261020c" download>Télécharger la vidéo</a>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-lyon.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-lyon.mp4?v=20261021n" download>Télécharger la vidéo</a>
 </section><section class="kit" id="nantes" hidden>
 <h2>Nantes</h2>
 <h3>1. Le message <small>(mail, WhatsApp, SMS)</small></h3>
@@ -312,12 +363,12 @@ Réserve ta place : https://onvousrappellera.fr/
 <p class="note">Sur Instagram, identifie le compte <b>onvousrappellera.fr</b>.</p>
 <h3>3. Le visuel</h3>
 <div class="visuels">
-<figure><img src="assets/a-partager/post-nantes.jpg?v=20261020c" alt="Visuel Nantes" loading="lazy"><a class="dl" href="assets/a-partager/post-nantes.jpg?v=20261020c" download>Télécharger — format post</a></figure>
-<figure><img src="assets/a-partager/story-nantes.jpg?v=20261020c" alt="Story Nantes" loading="lazy"><a class="dl" href="assets/a-partager/story-nantes.jpg?v=20261020c" download>Télécharger — format story</a></figure>
+<figure><img src="assets/a-partager/post-nantes.jpg?v=20261021n" alt="Visuel Nantes" loading="lazy"><a class="dl" href="assets/a-partager/post-nantes.jpg?v=20261021n" download>Télécharger — format post</a></figure>
+<figure><img src="assets/a-partager/story-nantes.jpg?v=20261021n" alt="Story Nantes" loading="lazy"><a class="dl" href="assets/a-partager/story-nantes.jpg?v=20261021n" download>Télécharger — format story</a></figure>
 </div>
-<h3>4. La vidéo <small>(environ 35 secondes, avec la musique de la pièce)</small></h3>
-<video src="assets/a-partager/video-nantes.mp4?v=20261020c" controls playsinline preload="metadata"></video>
-<a class="dl" href="assets/a-partager/video-nantes.mp4?v=20261020c" download>Télécharger la vidéo</a>
+<h3>4. La vidéo <small>(avec la musique de la pièce)</small></h3>
+<video src="assets/a-partager/video-nantes.mp4?v=20261021n" controls playsinline preload="metadata"></video>
+<a class="dl" href="assets/a-partager/video-nantes.mp4?v=20261021n" download>Télécharger la vidéo</a>
 </section>
 </main>
 <script>
