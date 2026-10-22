@@ -81,6 +81,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .vd[open] summary::after{content:"\2212";}
   .vd.vd-off summary{cursor:default;}
   .vd.vd-off summary::after{content:none;}
+  .f-autreville{display:block;margin-top:10px;background:none;border:1px solid var(--accent);color:var(--accent);font:500 .9rem 'Outfit',sans-serif;padding:10px 14px;border-radius:2px;cursor:pointer;text-align:left;}
   .vd .vnl{margin-left:auto;background:none;border:1px solid var(--accent);color:var(--accent);font:500 .7rem 'Outfit',sans-serif;letter-spacing:.04em;text-transform:none;padding:6px 10px;border-radius:2px;cursor:pointer;white-space:nowrap;}
   @media(max-width:640px){.vd.vd-off summary{flex-wrap:wrap;}.vd .vnl{margin-left:0;}}
   .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
@@ -473,16 +474,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <div class="bulles2"><p class="bulle">On peut rire de tout. Même de sa recherche d'emploi.</p><p class="bulle bulle-d">Et si votre soirée pizza théâtre vous apprenait aussi comment obtenir votre prochain job&nbsp;?</p></div>
     <span class="sec-tag">Réservations</span>
     <h2>Réservez vos billets ou soyez prévenu de la date à venir</h2>
-    <p class="lead"><strong>Une date est déjà fixée dans votre ville&nbsp;?</strong> Choisissez-la et réservez vos places. <strong>Pas encore de date&nbsp;?</strong> Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que le théâtre et la date sont fixés, avant l'ouverture publique des réservations.</p>
+    <p class="lead"><strong>Une date est déjà fixée dans votre ville&nbsp;?</strong> Choisissez-la et réservez vos places. <strong>Votre ville n'est pas dans la liste&nbsp;?</strong> Inscrivez-vous aux actualités&nbsp;: vous serez prévenu dès qu'une date y est fixée.</p>
 
     <div class="fgrid">
       <div class="field full"><label for="f-ville">Votre ville</label>
         <select id="f-ville" required>
           <option value="">— Choisissez votre ville —</option>
-          <option>Paris</option><option>Lyon</option><option>Marseille</option><option>Toulouse</option><option>Lille</option><option>Bordeaux</option><option>Nantes</option><option>Rennes</option><option>Montpellier</option>
-          <option>Nice</option><option>Strasbourg</option><option>Grenoble</option><option>Rouen</option><option>Toulon</option><option>Saint-Étienne</option><option>Tours</option><option>Clermont-Ferrand</option><option>Nancy</option><option>Reims</option><option>Angers</option>
-          <option value="Autre ville">Une autre ville</option>
         </select>
+        <button type="button" id="f-autreville" class="f-autreville">Vous êtes dans une autre ville&nbsp;? Restez informé &rarr;</button>
       </div>
       <div class="field full" id="f-info">
     <div class="vlist">
@@ -695,17 +694,19 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('f-statut').addEventListener('change',majReduit);
   document.getElementById('f-date').addEventListener('change',modeResa);
   document.getElementById('f-code-lien').addEventListener('click',function(e){ e.preventDefault(); document.getElementById('f-code-wrap').style.display=''; this.style.display='none'; document.getElementById('f-code').focus(); });
+  (function(){ var sv=document.getElementById('f-ville'); Object.keys(DATES).sort(function(a,b){return a.localeCompare(b,'fr');}).forEach(function(v){ var o=document.createElement('option'); o.textContent=v; sv.appendChild(o); }); })();
+  document.getElementById('f-autreville').addEventListener('click',function(){ if(window.ovrNL) window.ovrNL(''); });
   document.getElementById('f-ville').addEventListener('change',function(){ majDates(this.value,''); document.getElementById('f-autre-wrap').style.display=(this.value==='Autre ville')?'':'none'; });
   modeResa();
   document.addEventListener('click',function(e){
     var a=e.target.closest('.vdate, .vprev'); if(!a) return;
     if(a.closest('#f-info')){ e.preventDefault(); setTimeout(function(){ var w=document.getElementById('f-date-wrap'); if(w) w.scrollIntoView({behavior:'smooth',block:'center'}); },0); }
-    var s=document.getElementById('f-ville'); s.value=a.dataset.ville; majDates(a.dataset.ville,a.dataset.date||'');
+    if(!DATES[a.dataset.ville]){ e.preventDefault(); if(window.ovrNL) window.ovrNL(a.dataset.ville); return; } var s=document.getElementById('f-ville'); s.value=a.dataset.ville; majDates(a.dataset.ville,a.dataset.date||'');
   });
   var btn=document.getElementById('f-btn'), msg=document.getElementById('f-msg');
   (function(){ var q=new URLSearchParams(location.search);
     if(q.get('merci')){ msg.className='msg ok'; msg.innerHTML='<b>Paiement reçu, merci !</b> Vos billets arrivent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.'; document.getElementById('prevenez-moi').scrollIntoView(); }
-    if(q.get('ville')){ var vv=q.get('ville'), sv=document.getElementById('f-ville'); if(sv){ sv.value=vv; majDates(vv,''); var pm=document.getElementById('prevenez-moi'); if(pm) setTimeout(function(){ pm.scrollIntoView(); },300); } }
+    if(q.get('ville')){ var vv=q.get('ville'), sv=document.getElementById('f-ville'); if(!DATES[vv] && window.ovrNL){ setTimeout(function(){ window.ovrNL(vv); },300); sv=null; } if(sv){ sv.value=vv; majDates(vv,''); var pm=document.getElementById('prevenez-moi'); if(pm) setTimeout(function(){ pm.scrollIntoView(); },300); } }
     if(q.get('seance')){ var sc=q.get('seance'), sv2=document.getElementById('f-ville'); Object.keys(DATES).forEach(function(v){ DATES[v].forEach(function(o){ if(o.c===sc && sv2){ sv2.value=v; majDates(v,o.d); var x=decoupe(o), lu=LIEUX[o.l], bt=document.getElementById('seance-top'); if(bt){ bt.innerHTML='Votre séance : <strong>'+esc(v.toUpperCase()+' · '+x.jour+' · '+x.h)+'</strong>'+(lu?'<br><span style="font-weight:500">'+esc(lu.n)+'</span>':'')+'<br><a href="#prevenez-moi" style="display:inline-block;margin-top:8px;color:#fff;text-decoration:underline;font-weight:700">Réserver mes places pour cette date &darr;</a>'; bt.hidden=false; } } }); }); }
     if(q.get('troupe')){ var nz=function(t){ return (t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z]+/g,''); }, tq=nz(q.get('troupe')).replace(/^espritdequipe$|^espritequipe$/,'espritdequipe'), sv3=document.getElementById('f-ville'); Object.keys(DATES).forEach(function(v){ var L=DATES[v].filter(function(o){ var n=nz(o.tr); return n===tq || n.replace('de','')===tq.replace('de',''); }); if(L.length && sv3){ sv3.value=v; majDates(v, L.length===1?L[0].d:''); var sd=document.getElementById('f-date'); if(sd && L.length>1){ Array.prototype.slice.call(sd.options).forEach(function(op){ if(op.value && op.value!=='__autre' && !L.some(function(o){ return o.d===op.value; })) op.remove(); }); } var lu=LIEUX[L[0].l], bt=document.getElementById('seance-top'); if(bt){ bt.innerHTML='La troupe <strong>'+esc(L[0].tr)+'</strong> à '+esc(v)+' : <strong>'+L.map(function(o){ var x=decoupe(o); return esc(x.jour+' · '+x.h); }).join(' ou ')+'</strong>'+(lu?'<br><span style="font-weight:500">'+esc(lu.n)+'</span>':'')+'<br><a href="#prevenez-moi" style="display:inline-block;margin-top:8px;color:#fff;text-decoration:underline;font-weight:700">Réserver mes places &darr;</a>'; bt.hidden=false; } } }); }
     if(q.get('annule')){ msg.className='msg ko'; msg.innerHTML='Le paiement a été abandonné, rien n\'a été débité. Vous pouvez recommencer ci-dessous.'; document.getElementById('prevenez-moi').scrollIntoView(); } })();
