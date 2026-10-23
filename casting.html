@@ -41,7 +41,7 @@
   .eco .pct{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--accent);line-height:1;display:block;margin-bottom:.5rem;}
 
   .video-box{margin:2.2rem auto 0;position:relative;width:100%;max-width:760px;aspect-ratio:16/9;background:#000;border:1px solid var(--gris-clair);box-shadow:0 14px 40px rgba(22,22,22,.14);opacity:0;animation:fadeUp .6s .35s forwards;}
-  .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-box iframe,.video-box video{position:absolute;inset:0;width:100%;height:100%;border:0;}
 
   .photo-band{margin-top:2.4rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
   .photo-band a{display:block;overflow:hidden;border:1px solid var(--gris-clair);background:var(--blanc-pur);}
@@ -136,6 +136,8 @@
 .wrap{max-width:1200px}
 .hero .sub,p.lead,.eco,ul.liste{max-width:820px}
 .video-box{max-width:1000px}
+.video-box.vertical{max-width:400px;aspect-ratio:9/16;background:#fff}
+.video-box.vertical video{object-fit:contain;background:#fff}
 .affiche{max-width:560px}
 .quoteband blockquote{max-width:960px}
 .assur,.combo{max-width:1100px}
@@ -150,8 +152,8 @@
   <div class="wrap">
     <div class="hero-eyebrow">Casting comédiens · Comédie satirique</div>
     <h1>ON VOUS <em>RAPPELLERA</em></h1>
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/rbZ6iufaujU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Teaser ON VOUS RAPPELLERA"></iframe>
+    <div class="video-box vertical">
+      <video src="/assets/video/ovr-teaser-2026-v3.mp4" poster="/assets/video/ovr-teaser-2026-v3.jpg" controls playsinline preload="metadata" title="Teaser ON VOUS RAPPELLERA"></video>
     </div>
     <p class="sub">Une comédie satirique sur le monde du recrutement, créée et jouée au Festival d'Avignon en 2022, puis en tournée dans 15 villes de France. La pièce revient — et cherche ses comédiens.</p>
     <div class="badges">
