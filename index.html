@@ -784,7 +784,7 @@ document.addEventListener('DOMContentLoaded',function(){
    g.insertAdjacentHTML('afterbegin','<p class="vgrp-t">Troupe '+e(g.dataset.troupe)+'</p>'); });
  fetch('/assets/cv-comediens.json?'+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
   if(!d||!d.comediens||!d.comediens.length) return;
-  var par={}; d.comediens.forEach(function(c){(par[c.ville]=par[c.ville]||[]).push(c);});
+  var par={}; d.comediens.forEach(function(c){ if(c.prenom==='Anne'&&c.nom==='Dupuy'){ c.portrait='/assets/comediens/anne-dupuy-bloquee.jpg'; c.photos=[c.portrait]; } /* photo bloquée 26/10 */ (par[c.ville]=par[c.ville]||[]).push(c);});
   document.querySelectorAll('details.vd, .vgrp').forEach(function(dt){
    var grp=dt.classList.contains('vgrp'); if(!grp && dt.querySelector('.vgrp')) return;
    var sm=grp?null:dt.querySelector('summary'); if(!grp && !sm) return;
@@ -851,8 +851,12 @@ document.addEventListener('DOMContentLoaded',function(){
    if(!v(1)||!v(3)||v(9)==='retirée') return; var k=v(1), x={src:'https://drive.google.com/thumbnail?id='+v(3)+'&sz=w1600',legende:v(5)};
    o[k]=o[k]||{troupe:null,photos:[],perso:{}}; if(v(2)==='troupe') o[k].troupe=x; else if(/^perso:/.test(v(7))) o[k].perso[v(7)]={src:x.src,nom:v(5)}; else o[k].photos.unshift(x); }); }catch(e){}
   Object.keys(o).forEach(function(k){ o[k].photos=o[k].photos.slice(0,12); }); return o; }).catch(function(){return {};});
+/* Photos bloquées par Thierry (26/10) : jamais remplacées par le robot ni par un envoi */
+ var BLOQ={'annedupuy':'/assets/comediens/anne-dupuy-bloquee.jpg'};
+ function bloq(c){ var k=String((c.prenom||'')+(c.nom||'')).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,''); if(BLOQ[k]){ c.portrait=BLOQ[k]; c.photos=[BLOQ[k]]; } return c; }
  Promise.all([J('/assets/cv-comediens.json'),J('/assets/troupes/galerie.json'),LPC]).then(function(R){
   var cv=(R[0]&&R[0].comediens)||[], gal=R[1]||{}, PC=R[2]||{};
+  cv.forEach(bloq);
   document.querySelectorAll('details.vd, .vgrp').forEach(function(dt){
    var grp=dt.classList.contains('vgrp'); if(!grp && dt.querySelector('.vgrp')) return;
    var sm=grp?null:dt.querySelector('summary'); var v=grp?dt.dataset.cvville:(sm&&sm.firstChild&&sm.firstChild.nodeType===3?sm.firstChild.nodeValue.trim():'');
@@ -868,7 +872,7 @@ document.addEventListener('DOMContentLoaded',function(){
    if(com){ var nz=function(t){return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,'');};
     var LP=PK.map(function(q){ var c=pc.perso[q], w=String(c.nom||'').trim().split(/\s+/), ref=L.filter(function(z){return nz(z.prenom+z.nom)===nz(c.nom);})[0];
       return {prenom:w[0]||'',nom:w.slice(1).join(' '),personnage:ref?(ref.personnage||''):'',photos:[c.src]}; }).sort(function(x,y){return (x.prenom+x.nom).localeCompare(y.prenom+y.nom,'fr');});
-    if(pc.troupe) T=[{src:pc.troupe.src,alt:'La troupe '+(tr?tr+', à '+v:'de '+v)}]; L=LP.concat(L.filter(function(z){ return ((z.photos&&z.photos.length)||z.portrait) && !LP.some(function(y){return nz(y.prenom+y.nom)===nz(z.prenom+z.nom);}); })).map(function(z){ return {prenom:z.prenom,nom:z.nom,personnage:z.personnage,photos:((z.photos&&z.photos.length)?z.photos:[z.portrait]).slice(0,1)}; }).sort(function(x,y){return (x.prenom+x.nom).localeCompare(y.prenom+y.nom,'fr');}); /* 19/10 : l'ancienne photo reste tant que le comédien n'a pas envoyé la sienne */ X=(pc.photos||[]).map(function(x){return {src:x.src,legende:x.legende||''};}); }
+    if(pc.troupe) T=[{src:pc.troupe.src,alt:'La troupe '+(tr?tr+', à '+v:'de '+v)}]; L=LP.concat(L.filter(function(z){ return ((z.photos&&z.photos.length)||z.portrait) && !LP.some(function(y){return nz(y.prenom+y.nom)===nz(z.prenom+z.nom);}); })).map(function(z){ return {prenom:z.prenom,nom:z.nom,personnage:z.personnage,photos:((z.photos&&z.photos.length)?z.photos:[z.portrait]).slice(0,1)}; }).sort(function(x,y){return (x.prenom+x.nom).localeCompare(y.prenom+y.nom,'fr');}); /* 19/10 : l'ancienne photo reste tant que le comédien n'a pas envoyé la sienne */ L.forEach(bloq); X=(pc.photos||[]).map(function(x){return {src:x.src,legende:x.legende||''};}); }
    if(!L.length && !T.length && !X.length && !RV) return;
    var md=b.querySelector('.vmedia');
    if(!md){ md=document.createElement('div'); md.className='vmedia'; var an=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an) an.after(md); else b.prepend(md); }
