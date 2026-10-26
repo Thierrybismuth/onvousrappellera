@@ -302,7 +302,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
         var vus={};
         L.forEach(function(o){ var lieu=(LIEUX[o.l]||{}).n||'', parts=o.d.split(' · ');
           vus[parts[0]]=(vus[parts[0]]||0)+1; var dernier=jours[parts[0]]>1&&vus[parts[0]]===jours[parts[0]];
-          var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet ce soir-là.':'');
+          var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet ce soir-là.':(e==='pause'?'Non réservable pour l\'instant.':''));
           html+='<div class="ville'+(e?' pris':'')+'"><label><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'>'+esc(v)+'<span class="v-dates"><span>'+esc(parts[0])+'</span>'+((parts[1]||lieu)?'<span class="v-sub">'+esc([parts[1],lieu].filter(Boolean).join(' — '))+'</span>':'')+'</span></label>'+(note?'<p class="pris-note">'+note+'</p>':'')+(dernier?'<p class="seance-note">'+jours[parts[0]]+' séances le même soir&nbsp;: cochez celle qui vous convient.</p>':'')+'</div>';
         });
       } else {
@@ -320,7 +320,8 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   function etat(v,d){ var o=OCC[cle(v,d)], s=(g('f-nb')||{}).value; if(!o) return ''; if(s&&s!=='Autre'&&o.s.indexOf(s)>-1) return 'pris'; if(o.n>=5) return 'complet'; return ''; }
   var DISPO={};
   function salleLibre(v,d){ var od=(DATES[v]||[]).filter(function(o){return o.d===d;})[0]; return !(od&&od.c&&(od.c in DISPO)&&DISPO[od.c]<9); }
-  var etat0=etat; etat=function(v,d){ var e=etat0(v,d); if(e) return e; return salleLibre(v,d)?'':'complet'; };
+  var PAUSE=['22 novembre 2026','26 novembre 2026'];
+  var etat0=etat; etat=function(v,d){ if(v==='Paris'&&PAUSE.indexOf(String(d).split(' · ')[0])>=0) return 'pause'; var e=etat0(v,d); if(e) return e; return salleLibre(v,d)?'':'complet'; };
   function chargerOcc(){
     return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'read',range:TAB+'!H2:K1000'})})
     .then(function(r){return r.json();}).then(function(j){ var O={};
