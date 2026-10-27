@@ -17,9 +17,15 @@ body{background:var(--blanc);color:var(--texte);font-family:'Outfit',sans-serif;
 .ovr-mark{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.55rem;letter-spacing:.06em;color:var(--rouge);line-height:1;text-align:center;}
 .ovr-mark small{display:block;font-family:'Outfit',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.24em;color:var(--noir);margin-top:6px;}
 .x{font-size:1.3rem;color:var(--or);font-weight:500;}
-.cosigle img{height:84px;width:auto;}
+.cosigle img{height:130px;width:auto;}
+@media(max-width:480px){.cosigle{flex-direction:column;gap:6px;}.cosigle img{height:120px;}}
 .hero{text-align:center;padding:40px 0 34px;border-bottom:1px solid var(--trait);}
-.eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--noir);}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--noir);}
+.eyebrow b{color:#e8327c;font-weight:700;}
+.rosa{display:flex;align-items:center;gap:18px;max-width:560px;margin:28px auto 0;background:#fdeef4;border-radius:10px;padding:16px 18px;text-align:left;}
+.rosa img{width:120px;height:auto;flex-shrink:0;border-radius:6px;}
+.rosa p{margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;line-height:1.3;color:var(--noir);}
+@media(max-width:480px){.rosa{flex-direction:column;text-align:center;}.rosa img{width:140px;}}
 h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,8vw,4rem);font-weight:700;line-height:1.05;color:var(--rouge);margin:.8rem 0 .6rem;}
 .date{font-size:1.1rem;font-weight:500;color:var(--noir);}
 .lieu{color:var(--gris);font-size:.95rem;margin-top:.2rem;}
@@ -93,10 +99,14 @@ footer a{color:var(--gris);}
   </div>
 
   <header class="hero">
-    <span class="eyebrow">Le Bureau des recruteurs de Toulouse présente</span>
+    <span class="eyebrow"><b>#BDR</b> — Le Bureau des recruteurs de Toulouse présente</span>
     <h1>ON VOUS RAPPELLERA</h1>
     <p class="date">Mercredi 2 décembre 2026 · dès 19h</p>
     <p class="lieu">Au 9 — 9 rue Lejeune, 31000 Toulouse · <a href="https://www.google.com/maps/search/?api=1&query=Le%209%2C%209%20rue%20Lejeune%2C%2031000%20Toulouse" target="_blank" rel="noopener">voir sur Google Maps</a></p>
+    <div class="rosa">
+      <img src="assets/bdr/rosa.jpg" alt="Rosa, la mascotte du #BDR">
+      <p>Rosa est ravie de vous proposer une soirée pleine de surprises le 2 décembre au soir.</p>
+    </div>
   </header>
 
   <section class="affiche">
