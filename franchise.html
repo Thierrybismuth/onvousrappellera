@@ -279,7 +279,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   var VILLES=['Paris','Bordeaux','Lyon','Toulouse','Nantes','Rennes','Montpellier','Marseille','Lille'];
   // Copie de secours : les dates sont relues sur la page grand public à chaque ouverture.
   var DATES={
-    "Paris":[{d:"22 novembre 2026",t:"Avant-première",l:"PVE"},{d:"26 novembre 2026",t:"Avant-première",l:"PVE"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"GAL"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"GAL"}],
+    "Paris":[{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"GAL"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"GAL"}],
     "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"SPH"}],
     "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"CDR"}],
     "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO"}],
@@ -320,7 +320,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   function etat(v,d){ var o=OCC[cle(v,d)], s=(g('f-nb')||{}).value; if(!o) return ''; if(s&&s!=='Autre'&&o.s.indexOf(s)>-1) return 'pris'; if(o.n>=5) return 'complet'; return ''; }
   var DISPO={};
   function salleLibre(v,d){ var od=(DATES[v]||[]).filter(function(o){return o.d===d;})[0]; return !(od&&od.c&&(od.c in DISPO)&&DISPO[od.c]<9); }
-  var PAUSE=['22 novembre 2026','26 novembre 2026'];
+  var PAUSE=[];
   var etat0=etat; etat=function(v,d){ if(v==='Paris'&&PAUSE.indexOf(String(d).split(' · ')[0])>=0) return 'pause'; var e=etat0(v,d); if(e) return e; return salleLibre(v,d)?'':'complet'; };
   function chargerOcc(){
     return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'read',range:TAB+'!H2:K1000'})})
