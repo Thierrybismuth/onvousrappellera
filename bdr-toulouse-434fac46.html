@@ -57,6 +57,11 @@ strong{font-weight:500;color:var(--noir);}
 .snav{position:absolute;top:42%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:0;background:rgba(22,22,22,.75);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer;z-index:2;}
 .sprev{left:4px;}.snext{right:4px;}
 .scount{text-align:center;font-size:.8rem;color:var(--gris);margin:.3rem 0 0;}
+.menu{position:relative;color:var(--rouge);text-decoration:underline;cursor:help;font-weight:500;}
+.menu .bulle{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);width:280px;max-width:80vw;background:#fff;color:var(--texte);border:1px solid var(--trait);border-radius:6px;box-shadow:0 10px 28px rgba(22,22,22,.18);padding:12px 14px;font-size:.82rem;line-height:1.45;font-weight:300;text-align:left;z-index:20;text-decoration:none;cursor:default;}
+.menu .bulle b{display:block;font-weight:600;color:var(--noir);margin-bottom:6px;}
+.menu .bulle i{display:block;font-style:normal;font-weight:600;color:var(--rouge);margin-top:6px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;}
+.menu:hover .bulle,.menu:focus .bulle,.menu.on .bulle{display:block;}
 .surprise{background:var(--noir);color:#fff;text-align:center;padding:16px;border-radius:3px;margin:1rem 0 0;font-weight:500;}
 .surprise b{color:#fff;font-weight:600;}
 .infos{background:var(--creme);border:1px solid var(--trait);padding:24px 18px;}
@@ -139,7 +144,7 @@ footer a{color:var(--gris);}
   <section>
     <span class="tag">Au programme</span>
     <ul class="perso" style="margin-top:0">
-      <li><b>À partir de 19h</b> — apéro et dîner</li>
+      <li><b>À partir de 19h</b> — apéro et <span class="menu" tabindex="0">dîner<span class="bulle" role="tooltip"><b>Quelques exemples de la carte</b><i>Entrée</i> Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<i>Plat</i> Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<i>Dessert</i> Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€</span></span></li>
       <li><b>21h</b> — lever de rideau <span class="titre">ON VOUS RAPPELLERA</span></li>
       <li><b>22h30</b> — on débriefe et on parle recrutement&nbsp;?</li>
       <li><b>23h</b> — musique&nbsp;! Soirée festive</li>
@@ -181,7 +186,7 @@ footer a{color:var(--gris);}
       </div>
 
       <div class="options">
-        <label class="ck"><input type="checkbox" id="f-diner"><span>Je pense aussi venir dîner, à partir de 19h (réglé sur place, à la carte)</span></label>
+        <label class="ck"><input type="checkbox" id="f-diner"><span>Je pense aussi venir dîner, à partir de 19h (réglé sur place, <span class="menu" tabindex="0">à la carte<span class="bulle" role="tooltip"><b>Quelques exemples de la carte</b><i>Entrée</i> Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<i>Plat</i> Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<i>Dessert</i> Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€</span></span>)</span></label>
         <label class="ck"><input type="checkbox" id="f-fete"><span>Je pense aussi rester pour la soirée festive</span></label>
       </div>
 
@@ -207,6 +212,7 @@ footer a{color:var(--gris);}
   document.querySelector('.snext').addEventListener('click',function(){go(1);});
   tr.addEventListener('scroll',function(){ ct.textContent=(idx()+1)+' / '+n; });
 })();
+document.addEventListener('click',function(e){ var m=e.target.closest('.menu'); document.querySelectorAll('.menu.on').forEach(function(x){ if(x!==m) x.classList.remove('on'); }); if(m){ e.preventDefault(); m.classList.toggle('on'); } });
 (function(){
   var API='https://thierryb.app.n8n.cloud/webhook/billetterie-paiement', MAIL='https://thierryb.app.n8n.cloud/webhook/send-email-unitaire', SEANCE='TLS-1203';
   var PRIX={bdr:20,partenaire:20,reduit:15,sans:22}, LIB={bdr:'Membre du BDR (Carré Or)',partenaire:'Place partenaire',reduit:'Tarif solidaire',sans:'Place sans partage'};
