@@ -39,6 +39,18 @@ strong{font-weight:500;color:var(--noir);}
 .photos img{display:block;width:100%;height:auto;border-radius:3px;}
 .photos figcaption{font-size:.8rem;color:var(--gris);text-align:center;margin-top:4px;}
 @media(max-width:600px){.photos{grid-template-columns:1fr;}}
+.affiche{padding:28px 0;}
+.affiche img{display:block;width:100%;max-width:520px;height:auto;margin:0 auto;box-shadow:0 14px 38px rgba(22,22,22,.15);}
+.photos .large{grid-column:1 / -1;}
+.slider{position:relative;margin-top:1.2rem;}
+.strack{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.strack::-webkit-scrollbar{display:none;}
+.sl{flex:0 0 100%;scroll-snap-align:center;margin:0;display:flex;flex-direction:column;align-items:center;}
+.sl img{display:block;max-width:100%;max-height:460px;width:auto;height:auto;border-radius:3px;}
+.sl figcaption{font-size:.85rem;color:var(--noir);font-weight:500;margin-top:6px;}
+.snav{position:absolute;top:42%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:0;background:rgba(22,22,22,.75);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer;z-index:2;}
+.sprev{left:4px;}.snext{right:4px;}
+.scount{text-align:center;font-size:.8rem;color:var(--gris);margin:.3rem 0 0;}
 .surprise{background:var(--noir);color:#fff;text-align:center;padding:16px;border-radius:3px;margin:1rem 0 0;font-weight:500;}
 .surprise b{color:#fff;font-weight:600;}
 .infos{background:var(--creme);border:1px solid var(--trait);padding:24px 18px;}
@@ -87,6 +99,10 @@ footer a{color:var(--gris);}
     <p class="lieu">Au 9 — 9 rue Lejeune, 31000 Toulouse · <a href="https://www.google.com/maps/search/?api=1&query=Le%209%2C%209%20rue%20Lejeune%2C%2031000%20Toulouse" target="_blank" rel="noopener">voir sur Google Maps</a></p>
   </header>
 
+  <section class="affiche">
+    <img src="assets/bdr/affiche-bdr-2-decembre.jpg" alt="Affiche ON VOUS RAPPELLERA — Toulouse, 2 décembre au 9">
+  </section>
+
   <section>
     <span class="tag">La pièce</span>
     <h2>Bienvenue chez Odyssée Bureautique</h2>
@@ -104,8 +120,9 @@ footer a{color:var(--gris);}
     <h2>Le 9, le cabaret de référence des nuits toulousaines</h2>
     <p>Shows transformistes, soirées brésiliennes… Si vous ne connaissez pas encore <a href="https://www.reservationsle9.fr/" target="_blank" rel="noopener">le 9</a>, vous allez être charmés.</p>
     <div class="photos">
+      <figure><img src="https://www.1001salles.com/images/provider/3270/1614877003_6041114ba1a24.jpg" alt="Dîner-spectacle au 9" loading="lazy"></figure>
       <figure><img src="https://www.hit-occitanie.com/media/hit/ois/RESMID031V5010T7/images/soiree-Bresil--62-_NXKMLAD.JPG" alt="Soirée brésilienne au 9" loading="lazy"></figure>
-      <figure><img src="https://www.hit-occitanie.com/media/hit/ois/RESMID031V5010T7/images/IMG-1845_9aVIcK9.JPG" alt="La salle du 9" loading="lazy"></figure>
+      <figure class="large"><img src="https://www.1001salles.com/images/provider/3270/1756134392_68ac7bf8448e0.jpg" alt="Show cabaret au 9" loading="lazy"></figure>
     </div>
   </section>
 
@@ -123,16 +140,7 @@ footer a{color:var(--gris);}
     <span class="tag">La troupe</span>
     <h2>Surprise&nbsp;!</h2>
     <p>Une des 8 troupes qui jouent <span class="titre">ON VOUS RAPPELLERA</span> aux quatre coins de la France viendra jouer à Toulouse. Laquelle&nbsp;? Vous le découvrirez le soir même.</p>
-    <div class="photos">
-      <figure><img src="assets/troupes/troupe-paris-engagement.jpg" alt="Troupe Engagement, Paris" loading="lazy"><figcaption>Paris — Engagement</figcaption></figure>
-      <figure><img src="assets/troupes/troupe-paris-esprit-d-equipe.jpg" alt="Troupe Esprit d'équipe, Paris" loading="lazy"><figcaption>Paris — Esprit d'équipe</figcaption></figure>
-      <figure><img src="assets/troupes/troupe-paris-honnetete.jpg" alt="Troupe Honnêteté, Paris" loading="lazy"><figcaption>Paris — Honnêteté</figcaption></figure>
-      <figure><img src="assets/troupes/troupe-lyon.jpg" alt="La troupe de Lyon" loading="lazy"><figcaption>Lyon</figcaption></figure>
-      <figure><img src="assets/troupes/troupe-bordeaux.jpg" alt="La troupe de Bordeaux" loading="lazy"><figcaption>Bordeaux</figcaption></figure>
-      <figure><img src="assets/troupes/troupe-montpellier.jpg" alt="La troupe de Montpellier" loading="lazy"><figcaption>Montpellier</figcaption></figure>
-      <figure><img src="assets/troupes/troupe-nantes.jpg" alt="La troupe de Nantes" loading="lazy"><figcaption>Nantes</figcaption></figure>
-      <figure><img src="assets/troupes/troupe-rennes.jpg" alt="La troupe de Rennes" loading="lazy"><figcaption>Rennes</figcaption></figure>
-    </div>
+    <div class="slider"><button type="button" class="snav sprev" aria-label="Troupe précédente">&#8249;</button><div class="strack" id="strack"><figure class="sl"><img src="assets/troupes/troupe-paris-engagement.jpg" alt="La troupe Paris — Engagement" loading="lazy"><figcaption>Paris — Engagement</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-paris-esprit-d-equipe.jpg" alt="La troupe Paris — Esprit d'équipe" loading="lazy"><figcaption>Paris — Esprit d'équipe</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-paris-honnetete.jpg" alt="La troupe Paris — Honnêteté" loading="lazy"><figcaption>Paris — Honnêteté</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-lyon.jpg" alt="La troupe Lyon" loading="lazy"><figcaption>Lyon</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-bordeaux.jpg" alt="La troupe Bordeaux" loading="lazy"><figcaption>Bordeaux</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-montpellier.jpg" alt="La troupe Montpellier" loading="lazy"><figcaption>Montpellier</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-nantes-2.jpg" alt="La troupe Nantes" loading="lazy"><figcaption>Nantes</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-rennes.jpg" alt="La troupe Rennes" loading="lazy"><figcaption>Rennes</figcaption></figure></div><button type="button" class="snav snext" aria-label="Troupe suivante">&#8250;</button></div><p class="scount" id="scount">1 / 8</p>
     <p class="surprise">Laquelle viendra à Toulouse&nbsp;? <b>Réponse le 2 décembre.</b></p>
   </section>
 
@@ -149,7 +157,7 @@ footer a{color:var(--gris);}
       </div>
 
       <div class="tarifs">
-        <label class="tarif or"><input type="radio" name="tarif" value="bdr" checked><span><b>Membre du BDR — 20&nbsp;€</b></span></label>
+        <label class="tarif or"><input type="radio" name="tarif" value="bdr" checked><span><b>Membre du BDR — 20&nbsp;€ · en Carré Or</b><br>Les meilleures places de la salle, réservées aux membres du BDR.</span></label>
         <label class="tarif star"><input type="radio" name="tarif" value="partenaire"><span><b>★ Place partenaire — 20&nbsp;€</b><br>Je soutiens la troupe et la tournée, et je booste ma recherche d'emploi ou ma recherche de candidats.</span></label>
         <p class="tclause">Nos partenaires financent la pièce&nbsp;: entreprises qui recrutent, portails d'emploi, organismes publics de l'emploi, et autres acteurs de la recherche d'emploi et de candidats. Avec ce tarif et le tarif solidaire, j'accepte qu'ils reçoivent mes coordonnées pour me proposer des offres d'emploi, des candidats ou des services liés au recrutement. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
         <label class="tarif"><input type="radio" name="tarif" value="reduit"><span><b>Tarif solidaire — 15&nbsp;€</b> · étudiants et demandeurs d'emploi, justificatif à présenter à l'entrée</span></label>
@@ -182,8 +190,16 @@ footer a{color:var(--gris);}
 </div>
 <script>
 (function(){
+  var tr=document.getElementById('strack'), ct=document.getElementById('scount'), n=tr.children.length;
+  function idx(){ return Math.round(tr.scrollLeft/tr.clientWidth); }
+  function go(d){ var i=(idx()+d+n)%n; tr.scrollTo({left:i*tr.clientWidth,behavior:'smooth'}); }
+  document.querySelector('.sprev').addEventListener('click',function(){go(-1);});
+  document.querySelector('.snext').addEventListener('click',function(){go(1);});
+  tr.addEventListener('scroll',function(){ ct.textContent=(idx()+1)+' / '+n; });
+})();
+(function(){
   var API='https://thierryb.app.n8n.cloud/webhook/billetterie-paiement', MAIL='https://thierryb.app.n8n.cloud/webhook/send-email-unitaire', SEANCE='TLS-1203';
-  var PRIX={bdr:20,partenaire:20,reduit:15,sans:22}, LIB={bdr:'Membre du BDR',partenaire:'Place partenaire',reduit:'Tarif solidaire',sans:'Place sans partage'};
+  var PRIX={bdr:20,partenaire:20,reduit:15,sans:22}, LIB={bdr:'Membre du BDR (Carré Or)',partenaire:'Place partenaire',reduit:'Tarif solidaire',sans:'Place sans partage'};
   var g=function(i){return document.getElementById(i);}, msg=g('f-msg'), btn=g('f-btn');
   function esc(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
   function show(c,t){msg.className='msg '+c;msg.innerHTML=t;}
