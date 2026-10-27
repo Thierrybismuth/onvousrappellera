@@ -51,10 +51,12 @@ strong{font-weight:500;color:var(--noir);}
 .slider{position:relative;margin-top:1.2rem;}
 .strack{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .strack::-webkit-scrollbar{display:none;}
-.sl{flex:0 0 100%;scroll-snap-align:center;margin:0;display:flex;flex-direction:column;align-items:center;}
-.sl img{display:block;max-width:100%;max-height:460px;width:auto;height:auto;border-radius:3px;}
+.sl{flex:0 0 100%;scroll-snap-align:center;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.sl .cadre{height:420px;width:100%;display:flex;align-items:center;justify-content:center;}
+@media(max-width:600px){.sl .cadre{height:260px;}}
+.sl img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;border-radius:3px;}
 .sl figcaption{font-size:.85rem;color:var(--noir);font-weight:500;margin-top:6px;}
-.snav{position:absolute;top:42%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:0;background:rgba(22,22,22,.75);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer;z-index:2;}
+.snav{position:absolute;top:calc(50% - 14px);transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:0;background:rgba(22,22,22,.75);color:#fff;font-size:1.8rem;line-height:1;cursor:pointer;z-index:2;}
 .sprev{left:4px;}.snext{right:4px;}
 .scount{text-align:center;font-size:.8rem;color:var(--gris);margin:.3rem 0 0;}
 .menu{position:relative;color:var(--rouge);text-decoration:underline;cursor:help;font-weight:500;}
@@ -144,7 +146,7 @@ footer a{color:var(--gris);}
   <section>
     <span class="tag">Au programme</span>
     <ul class="perso" style="margin-top:0">
-      <li><b>À partir de 19h</b> — apéro et <span class="menu" tabindex="0">dîner<span class="bulle" role="tooltip"><b>Quelques exemples de la carte</b><i>Entrée</i> Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<i>Plat</i> Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<i>Dessert</i> Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€</span></span></li>
+      <li><b>À partir de 19h</b> — apéro et <span class="menu" tabindex="0">dîner<span class="bulle" role="tooltip"><b>Quelques exemples de la carte</b>Le dîner est servi pour toute arrivée entre 19h et 20h15.<i>Entrée</i> Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<i>Plat</i> Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<i>Dessert</i> Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€</span></span></li>
       <li><b>21h</b> — lever de rideau <span class="titre">ON VOUS RAPPELLERA</span></li>
       <li><b>22h30</b> — on débriefe et on parle recrutement&nbsp;?</li>
       <li><b>23h</b> — musique&nbsp;! Soirée festive</li>
@@ -155,7 +157,7 @@ footer a{color:var(--gris);}
     <span class="tag">La troupe</span>
     <h2>Surprise&nbsp;!</h2>
     <p>Une des 8 troupes qui jouent <span class="titre">ON VOUS RAPPELLERA</span> aux quatre coins de la France viendra jouer à Toulouse. Laquelle&nbsp;? Vous le découvrirez le soir même.</p>
-    <div class="slider"><button type="button" class="snav sprev" aria-label="Troupe précédente">&#8249;</button><div class="strack" id="strack"><figure class="sl"><img src="assets/troupes/troupe-paris-esprit-d-equipe.jpg" alt="La troupe Paris — Esprit d'équipe" loading="lazy"><figcaption>Paris — Esprit d'équipe</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-paris-engagement.jpg" alt="La troupe Paris — Engagement" loading="lazy"><figcaption>Paris — Engagement</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-paris-honnetete.jpg" alt="La troupe Paris — Honnêteté" loading="lazy"><figcaption>Paris — Honnêteté</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-lyon.jpg" alt="La troupe Lyon" loading="lazy"><figcaption>Lyon</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-bordeaux.jpg" alt="La troupe Bordeaux" loading="lazy"><figcaption>Bordeaux</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-montpellier.jpg" alt="La troupe Montpellier" loading="lazy"><figcaption>Montpellier</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-nantes-2.jpg" alt="La troupe Nantes" loading="lazy"><figcaption>Nantes</figcaption></figure><figure class="sl"><img src="assets/troupes/troupe-rennes.jpg" alt="La troupe Rennes" loading="lazy"><figcaption>Rennes</figcaption></figure></div><button type="button" class="snav snext" aria-label="Troupe suivante">&#8250;</button></div><p class="scount" id="scount">1 / 8</p>
+    <div class="slider"><button type="button" class="snav sprev" aria-label="Troupe précédente">&#8249;</button><div class="strack" id="strack"><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-paris-esprit-d-equipe.jpg" alt="La troupe Paris — Esprit d'équipe" loading="lazy"></span><figcaption>Paris — Esprit d'équipe</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-paris-engagement.jpg" alt="La troupe Paris — Engagement" loading="lazy"></span><figcaption>Paris — Engagement</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-paris-honnetete.jpg" alt="La troupe Paris — Honnêteté" loading="lazy"></span><figcaption>Paris — Honnêteté</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-lyon.jpg" alt="La troupe Lyon" loading="lazy"></span><figcaption>Lyon</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-bordeaux.jpg" alt="La troupe Bordeaux" loading="lazy"></span><figcaption>Bordeaux</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-montpellier.jpg" alt="La troupe Montpellier" loading="lazy"></span><figcaption>Montpellier</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-nantes-2.jpg" alt="La troupe Nantes" loading="lazy"></span><figcaption>Nantes</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-rennes.jpg" alt="La troupe Rennes" loading="lazy"></span><figcaption>Rennes</figcaption></figure></div><button type="button" class="snav snext" aria-label="Troupe suivante">&#8250;</button></div><p class="scount" id="scount">1 / 8</p>
     <p class="surprise">Laquelle viendra à Toulouse&nbsp;? <b>Réponse le 2 décembre.</b></p>
   </section>
 
@@ -186,7 +188,7 @@ footer a{color:var(--gris);}
       </div>
 
       <div class="options">
-        <label class="ck"><input type="checkbox" id="f-diner"><span>Je pense aussi venir dîner, à partir de 19h (réglé sur place, <span class="menu" tabindex="0">à la carte<span class="bulle" role="tooltip"><b>Quelques exemples de la carte</b><i>Entrée</i> Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<i>Plat</i> Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<i>Dessert</i> Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€</span></span>)</span></label>
+        <label class="ck"><input type="checkbox" id="f-diner"><span>Je pense aussi venir dîner, servi pour toute arrivée entre 19h et 20h15 (réglé sur place, <span class="menu" tabindex="0">à la carte<span class="bulle" role="tooltip"><b>Quelques exemples de la carte</b>Le dîner est servi pour toute arrivée entre 19h et 20h15.<i>Entrée</i> Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<i>Plat</i> Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<i>Dessert</i> Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€</span></span>)</span></label>
         <label class="ck"><input type="checkbox" id="f-fete"><span>Je pense aussi rester pour la soirée festive</span></label>
       </div>
 
