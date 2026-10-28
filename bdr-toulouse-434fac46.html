@@ -200,7 +200,6 @@ footer a{color:var(--gris);}
         <label class="ck"><input type="checkbox" id="f-fete"><span>Je pense aussi rester pour la soirée festive</span></label>
       </div>
 
-      <p class="totlab">Total à payer pour vos places</p><div class="total" id="f-total">20 €</div>
       <button class="btn" id="f-btn" type="button">Payer et réserver mes places &rarr;</button>
       <div class="msg" id="f-msg"></div>
       <p class="photonote">Paiement sécurisé par Stripe. Si je suis pris en photo ou filmé pendant la soirée, j'accepte que ces images servent à la communication de la pièce. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
@@ -235,11 +234,11 @@ document.addEventListener('click',function(e){ var m=e.target.closest('.menu'); 
   function show(c,t){msg.className='msg '+c;msg.innerHTML=t;}
   function tarif(){var x=document.querySelector('input[name=tarif]:checked');return x?x.value:'bdr';}
   function nb(){return Math.max(1,Math.min(20,parseInt(g('f-places').value,10)||1));}
-  function maj(){var t=tarif();g('f-red-wrap').style.display=t==='reduit'?'':'none';g('f-ft-wrap').style.display=(t==='reduit'&&g('f-statut').value==="Demandeur d'emploi")?'':'none';g('f-total').textContent=(PRIX[t]*nb())+' €';}
+  function maj(){var t=tarif();g('f-red-wrap').style.display=t==='reduit'?'':'none';g('f-ft-wrap').style.display=(t==='reduit'&&g('f-statut').value==="Demandeur d'emploi")?'':'none';}
   document.querySelectorAll('input[name=tarif]').forEach(function(r){r.addEventListener('change',maj);});
   g('f-statut').addEventListener('change',maj); g('f-places').addEventListener('input',maj); maj();
   fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})}).then(function(r){return r.json();}).then(function(d){
-    if(d&&d.dispo&&(SEANCE in d.dispo)){var r=d.dispo[SEANCE]; if(r<=0){g('resa').innerHTML='<p class="complet">La soirée est complète.</p>';} else if(r<=20){g('f-total').insertAdjacentHTML('afterend','<p class="complet">Plus que '+r+' place'+(r>1?'s':'')+'&nbsp;!</p>');}}
+    if(d&&d.dispo&&(SEANCE in d.dispo)){var r=d.dispo[SEANCE]; if(r<=0){g('resa').innerHTML='<p class="complet">La soirée est complète.</p>';} else if(r<=20){g('f-btn').insertAdjacentHTML('beforebegin','<p class="complet">Plus que '+r+' place'+(r>1?'s':'')+'&nbsp;!</p>');}}
   }).catch(function(){});
   btn.addEventListener('click',function(){
     var t=tarif(), p={prenom:g('f-prenom').value.trim(),nom:g('f-nom').value.trim(),portable:g('f-tel').value.trim(),email:g('f-email').value.trim(),
