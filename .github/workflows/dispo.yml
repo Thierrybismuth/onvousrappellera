@@ -1,0 +1,22 @@
+name: Places restantes (1 fois par jour)
+on:
+  schedule:
+    - cron: "17 4 * * *"   # chaque jour vers 5h17 / 6h17 heure de Paris
+  workflow_dispatch: {}      # bouton « Run workflow » pour forcer une mise à jour
+permissions:
+  contents: write
+jobs:
+  maj:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lire les places auprès de la billetterie
+        run: |
+          curl -sS -m 60 -X POST -H 'Content-Type: text/plain' --data '{"action":"dispo"}' \
+            https://thierryb.app.n8n.cloud/webhook/billetterie-paiement -o /tmp/r.json
+          python3 -c "import json;d=json.load(open('/tmp/r.json'));assert isinstance(d.get('dispo'),dict) and d['dispo'];json.dump({'dispo':d['dispo'],'maj':__import__('datetime').datetime.utcnow().isoformat()+'Z'},open('dispo.json','w'),ensure_ascii=False)"
+      - name: Publier si changement
+        run: |
+          git config user.name "Claude"; git config user.email "noreply@anthropic.com"
+          git add dispo.json
+          git diff --cached --quiet -- dispo.json || { git commit -m "Places restantes du jour"; git push; }

@@ -341,12 +341,9 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   }
   rendre();
   chargerOcc().then(rerendre);
-  /* Places restantes : demandées au premier geste réel du visiteur (défilement, clic, toucher, clavier) — les robots qui ouvrent le lien sans rien faire ne déclenchent plus le service. Réponse gardée 5 min sur l'appareil. */
-  function auGeste(fn){ var fait=false, EV=['pointerdown','touchstart','keydown','scroll','wheel'];
-    function go(){ if(fait) return; fait=true; EV.forEach(function(e){ window.removeEventListener(e,go,true); }); fn(); }
-    EV.forEach(function(e){ window.addEventListener(e,go,{capture:true,passive:true}); }); }
-  function lireDispo(api){ try{ var c=JSON.parse(localStorage.getItem('ovr_dispo')||'null'); if(c&&Date.now()-c.t<300000) return Promise.resolve(c.d); }catch(e){}
-    return fetch(api,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})}).then(function(r){return r.json();}).then(function(d){ try{ if(d&&d.dispo) localStorage.setItem('ovr_dispo',JSON.stringify({t:Date.now(),d:d})); }catch(e){} return d; }); }
+  /* Places restantes : lues dans /dispo.json, fichier recalculé une fois par jour (GitHub Actions) — aucune exécution n8n quand on consulte la page. Le paiement revérifie toujours les places en direct. */
+  function auGeste(fn){ fn(); }
+  function lireDispo(){ var j=new Date().toISOString().slice(0,10).replace(/-/g,''); return fetch('/dispo.json?j='+j).then(function(r){ if(!r.ok) throw 0; return r.json(); }); }
   auGeste(function(){ lireDispo('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement').then(function(d){ if(d&&d.dispo){ DISPO=d.dispo; rerendre(); } }).catch(function(){}); });
   g('f-nb').addEventListener('change',rerendre);
   // Relecture des dates à jour sur la page grand public (une seule source).

@@ -672,12 +672,9 @@ document.addEventListener('DOMContentLoaded',function(){
         return '<a class="vdate vh" href="#prevenez-moi" data-ville="'+esc(ville)+'" data-date="'+esc(x.o.d)+'">'+esc(x.h)+((r!==null&&r<=20)?'<small>plus que '+r+'</small>':'')+'</a>'; }).join('')+'</div></div>'; }).join('')
       +lieuHTML(g[0].l)+troupeHTML(g[0].tr)+'</div>'; }
   rendreDates();
-  /* Places restantes : demandées au premier geste réel du visiteur (défilement, clic, toucher, clavier) — les robots qui ouvrent le lien sans rien faire ne déclenchent plus le service. Réponse gardée 5 min sur l'appareil. */
-  function auGeste(fn){ var fait=false, EV=['pointerdown','touchstart','keydown','scroll','wheel'];
-    function go(){ if(fait) return; fait=true; EV.forEach(function(e){ window.removeEventListener(e,go,true); }); fn(); }
-    EV.forEach(function(e){ window.addEventListener(e,go,{capture:true,passive:true}); }); }
-  function lireDispo(api){ try{ var c=JSON.parse(localStorage.getItem('ovr_dispo')||'null'); if(c&&Date.now()-c.t<300000) return Promise.resolve(c.d); }catch(e){}
-    return fetch(api,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})}).then(function(r){return r.json();}).then(function(d){ try{ if(d&&d.dispo) localStorage.setItem('ovr_dispo',JSON.stringify({t:Date.now(),d:d})); }catch(e){} return d; }); }
+  /* Places restantes : lues dans /dispo.json, fichier recalculé une fois par jour (GitHub Actions) — aucune exécution n8n quand on consulte la page. Le paiement revérifie toujours les places en direct. */
+  function auGeste(fn){ fn(); }
+  function lireDispo(){ var j=new Date().toISOString().slice(0,10).replace(/-/g,''); return fetch('/dispo.json?j='+j).then(function(r){ if(!r.ok) throw 0; return r.json(); }); }
   auGeste(function(){ lireDispo('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement').then(function(d){ if(d&&d.dispo){ DISPO=d.dispo; rendreDates(); var v=document.getElementById('f-ville'); if(v&&v.value){ var sd=document.getElementById('f-date').value; majDates(v.value, sd); } } }).catch(function(){}); });
   function montreVille(v){ document.querySelectorAll('#f-info details.vd').forEach(function(d){ var sm=d.querySelector('summary'), n=(sm&&sm.firstChild&&sm.firstChild.nodeType===3)?sm.firstChild.nodeValue.trim():''; var on=(!!v && n===v); d.classList.toggle('vd-on',on); if(on) d.setAttribute('open',''); }); }
   function majDates(v,choix){
