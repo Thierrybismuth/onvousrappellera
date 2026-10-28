@@ -65,10 +65,11 @@ strong{font-weight:500;color:var(--noir);}
 .sprev{left:4px;}.snext{right:4px;}
 .scount{text-align:center;font-size:.8rem;color:var(--gris);margin:.3rem 0 0;}
 .menu{position:relative;color:var(--rouge);text-decoration:underline;cursor:help;font-weight:500;}
-.menu .bulle{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);width:280px;max-width:80vw;background:#fff;color:var(--texte);border:1px solid var(--trait);border-radius:6px;box-shadow:0 10px 28px rgba(22,22,22,.18);padding:12px 14px;font-size:.82rem;line-height:1.45;font-weight:300;text-align:left;z-index:20;text-decoration:none;cursor:default;}
+.menu .bulle{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);width:320px;max-width:80vw;background:#fff;color:var(--texte);border:1px solid var(--trait);border-radius:6px;box-shadow:0 10px 28px rgba(22,22,22,.18);padding:12px 14px;font-size:.82rem;line-height:1.45;font-weight:300;text-align:left;z-index:20;text-decoration:none;cursor:default;}
 .menu .bulle b{display:block;font-weight:600;color:var(--noir);margin-bottom:6px;}
 .menu .bulle i{display:block;font-style:normal;font-weight:600;color:var(--rouge);margin-top:6px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;}
 .menu:hover .bulle,.menu:focus .bulle,.menu.on .bulle{display:block;}
+@media(max-width:700px){.menu .bulle{position:fixed;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);width:90vw;max-width:360px;max-height:80vh;overflow:auto;}}
 .surprise{background:var(--noir);color:#fff;text-align:center;padding:16px;border-radius:3px;margin:1rem 0 0;font-weight:500;}
 .surprise b{color:#fff;font-weight:600;}
 .infos{background:var(--creme);border:1px solid var(--trait);padding:24px 18px;}
@@ -151,7 +152,7 @@ footer a{color:var(--gris);}
   <section>
     <span class="tag">Au programme</span>
     <ul class="perso" style="margin-top:0">
-      <li><b>À partir de 19h</b> — apéro et <span class="menu" tabindex="0">dîner<span class="bulle" role="tooltip"><b>Quelques exemples de la carte</b>Le dîner est servi pour toute arrivée entre 19h et 20h15.<i>Entrée</i> Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<i>Plat</i> Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<i>Dessert</i> Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€</span></span></li>
+      <li><b>À partir de 19h</b> — un verre ou un <span class="menu" tabindex="0">dîner à la carte<span class="bulle" role="tooltip"><b>Carte</b>Le dîner est servi pour toute arrivée entre 19h et 20h15.<i>Entrées</i>Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<br>Salade thaï au wakamé et légumes croquants — 11&nbsp;€<i>À partager… ou pas</i>Planche mixte généreuse charcuterie et fromages — 22&nbsp;€<i>Plats</i>Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<br>Lasagnes végétariennes, ricotta et légumes du moment, salade de mâche — 18&nbsp;€<br>Assiette de frites fraîches, sauce au choix — 6&nbsp;€<i>Desserts</i>Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€<br>Tarte tatin et sa crème fouettée — 7&nbsp;€</span></span></li>
       <li><b>21h</b> — lever de rideau <span class="titre">ON VOUS RAPPELLERA</span></li>
       <li><b>22h30</b> — on débriefe et on parle recrutement&nbsp;?</li>
       <li><b>23h</b> — musique&nbsp;! Soirée festive</li>
@@ -193,7 +194,7 @@ footer a{color:var(--gris);}
       </div>
 
       <div class="options">
-        <label class="ck"><input type="checkbox" id="f-diner"><span>Je pense aussi venir dîner, servi pour toute arrivée entre 19h et 20h15 (réglé sur place, <span class="menu" tabindex="0">à la carte<span class="bulle" role="tooltip"><b>Quelques exemples de la carte</b>Le dîner est servi pour toute arrivée entre 19h et 20h15.<i>Entrée</i> Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<i>Plat</i> Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<i>Dessert</i> Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€</span></span>)</span></label>
+        <label class="ck"><input type="checkbox" id="f-diner"><span>Je pense aussi venir dès 19h prendre un verre ou un <span class="menu" tabindex="0">dîner à la carte<span class="bulle" role="tooltip"><b>Carte</b>Le dîner est servi pour toute arrivée entre 19h et 20h15.<i>Entrées</i>Salade de gésiers flambés, noix, persillade, terrine, mesclun — 13&nbsp;€<br>Salade thaï au wakamé et légumes croquants — 11&nbsp;€<i>À partager… ou pas</i>Planche mixte généreuse charcuterie et fromages — 22&nbsp;€<i>Plats</i>Confit de canard IGP du Sud-Ouest à l'orange, frites et salade — 22&nbsp;€<br>Lasagnes végétariennes, ricotta et légumes du moment, salade de mâche — 18&nbsp;€<br>Assiette de frites fraîches, sauce au choix — 6&nbsp;€<i>Desserts</i>Fondant au chocolat, piment d'Espelette et fleur de sel — 7&nbsp;€<br>Tarte tatin et sa crème fouettée — 7&nbsp;€</span></span> (servi pour toute arrivée entre 19h et 20h15, réglé sur place)</span></label>
         <label class="ck"><input type="checkbox" id="f-fete"><span>Je pense aussi rester pour la soirée festive</span></label>
       </div>
 
