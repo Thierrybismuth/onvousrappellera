@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les livres — ON VOUS RAPPELLERA</title>
+<meta name="description" content="Les deux livres de la pièce ON VOUS RAPPELLERA : « Recruter est un jeu d'enfant » pour les recruteurs, « Trouver un job est un jeu d'enfant » pour les candidats. Version électronique ou papier.">
+<link rel="canonical" href="https://onvousrappellera.fr/livres.html">
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Montserrat:wght@400;600;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--rouge:#d51e29;--noir:#161616;--jaune:#ffc700;--gris:#6b7280;--fond:#ffffff;--creme:#f7f4ee}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--fond);color:#1c1c1c;font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+  header{padding:48px 0 28px;text-align:center}
+  .eyebrow{font:600 12px/1 'Montserrat',sans-serif;letter-spacing:.18em;color:var(--gris);text-transform:uppercase}
+  h1{font:800 clamp(28px,6vw,46px)/1.05 'Montserrat',sans-serif;margin:14px 0 10px}
+  h1 b{color:var(--rouge)}
+  .lead{max-width:680px;margin:0 auto;font-size:1.05rem}
+  .livres{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0 40px}
+  .livre{border:1px solid #e7e2d8;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px;background:#fff}
+  .pour{font:800 11px/1 'Montserrat',sans-serif;letter-spacing:.16em;color:var(--rouge);text-transform:uppercase}
+  .couv{aspect-ratio:3/4;max-width:230px;width:70%;margin:0 auto;background:#fff;border:1px solid #e3e3e3;border-radius:3px 8px 8px 3px;
+        box-shadow:inset 8px 0 0 #f1f1f1,0 14px 34px rgba(0,0,0,.16);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:16% 10% 10%;text-align:center}
+  .couv .a{font:600 10px/1.3 'Montserrat',sans-serif;color:#777}
+  .couv .t{font-family:'Caveat Brush',cursive;font-size:clamp(20px,3.6vw,30px);line-height:1.1;color:var(--noir)}
+  .couv .o{font:800 9px/1.2 'Montserrat',sans-serif;color:var(--rouge);letter-spacing:.06em}
+  .livre h2{font:800 1.25rem/1.25 'Montserrat',sans-serif}
+  .livre h2 span{display:block;font:italic 400 .95rem/1.4 'Outfit',sans-serif;color:var(--gris);margin-top:4px}
+  .livre p{font-size:.98rem}
+  .prix{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+  .prix span{background:var(--creme);border-left:3px solid var(--jaune);padding:6px 10px;font-size:.92rem}
+  .prix b{font-weight:600}
+  .livre .go{align-self:flex-start;color:var(--rouge);font-weight:500;text-decoration:underline}
+  .bon{background:var(--creme);border-radius:12px;padding:28px 22px;margin:0 0 40px}
+  .bon h2{font:800 1.5rem/1.2 'Montserrat',sans-serif;margin-bottom:6px}
+  .bon .sous{color:var(--gris);margin-bottom:20px}
+  fieldset{border:0;margin:0 0 18px}
+  legend{font:600 .82rem/1 'Montserrat',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+  .choix{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .choix label{display:flex;gap:10px;align-items:flex-start;background:#fff;border:2px solid #e3ddd0;border-radius:10px;padding:12px;cursor:pointer;font-size:.98rem}
+  .choix label:has(input:checked){border-color:var(--rouge)}
+  .choix input{margin-top:5px;accent-color:var(--rouge)}
+  .choix small{display:block;color:var(--gris)}
+  .champs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .champs .plein{grid-column:1/-1}
+  .champs label{display:block;font-size:.85rem;font-weight:500;margin-bottom:4px}
+  input[type=text],input[type=email],input[type=tel],input[type=number],textarea{width:100%;font:inherit;font-size:1rem;padding:10px 12px;border:1px solid #d6cfc0;border-radius:8px;background:#fff}
+  textarea{min-height:70px}
+  .total{margin:18px 0 14px;font-size:1.1rem}
+  .total b{font:800 1.4rem 'Montserrat',sans-serif;color:var(--rouge)}
+  button{font:700 1rem 'Montserrat',sans-serif;background:var(--rouge);color:#fff;border:0;border-radius:30px;padding:14px 28px;cursor:pointer}
+  .note{font-size:.88rem;color:var(--gris);margin-top:12px}
+  .merci{display:none;background:#eaf7ee;border-left:4px solid #2e9e5b;padding:16px 18px;margin:0 0 24px;border-radius:6px}
+  .theatre{text-align:center;margin:0 0 50px;font-size:1rem}
+  .theatre b{color:var(--rouge)}
+  footer{border-top:1px solid #eee;padding:22px 0 40px;text-align:center;color:var(--gris);font-size:.9rem}
+  footer a{color:inherit}
+  @media(max-width:720px){.livres,.choix,.champs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#777;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Conventions d'entreprises</a><a href="/franchise.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Développement d'enseigne</a><a href="/livres.html" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px;white-space:nowrap">Les livres</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px;font-size:10.5px;opacity:.8">Casting</a></div><style id="ovr-topmenu-mobile">@media(max-width:700px){#ovr-topmenu{display:grid!important;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px!important;text-align:center!important;line-height:1.3!important}#ovr-topmenu a{display:flex;align-items:center;justify-content:center;margin:0!important;white-space:normal!important;padding:9px 6px;border:1px solid #e3e3e3;border-radius:6px;font-size:13.5px!important;opacity:1!important;color:#444!important;min-height:40px;box-sizing:border-box}#ovr-topmenu a[href="/casting.html"]{font-size:12.5px!important}#ovr-topmenu a[style*="font-weight:600"]{color:#161616!important;border-color:#161616;font-weight:700!important}#ovr-topmenu #nlx-btn{grid-column:1/-1;display:block;width:100%;margin:2px 0 0!important;padding:11px 12px;font-size:14px}}</style>
+
+<header class="wrap">
+  <div class="eyebrow">Les livres de la pièce</div>
+  <h1><b>ON VOUS RAPPELLERA</b><br>en deux livres</h1>
+  <p class="lead">Le texte de la pièce et le décryptage de l'auteur, scène par scène. Un livre pour ceux qui recrutent, un livre pour ceux qui cherchent un job.</p>
+</header>
+
+<main class="wrap">
+  <div class="merci" id="merci"><b>Merci, votre commande est bien enregistrée.</b> Nous revenons vers vous par mail pour le règlement et l'envoi. Une question ? contact@onvousrappellera.fr</div>
+
+  <section class="livres">
+    <article class="livre" id="reuje">
+      <div class="pour">Pour les recruteurs</div>
+      <div class="couv"><div class="a">Thierry Bismuth</div><div class="t">Recruter est un jeu d'enfant</div><div class="o">ON VOUS RAPPELLERA</div></div>
+      <h2>Recruter est un jeu d'enfant</h2>
+      <p>Le livre réunit le texte de la pièce, ses enseignements et les 30 conseils essentiels pour réussir un recrutement quand on est opérationnel.</p>
+      <div class="prix"><span>Électronique <b>10 €</b></span><span>Papier <b>20 €</b></span></div>
+      <a class="go" href="?livre=reuje#bon">Je commande ce livre →</a>
+    </article>
+    <article class="livre" id="tjej">
+      <div class="pour">Pour les candidats</div>
+      <div class="couv"><div class="a">Thierry Bismuth</div><div class="t">Trouver un job est un jeu d'enfant</div><div class="o">ON VOUS RAPPELLERA</div></div>
+      <h2>Trouver un job est un jeu d'enfant<span>Le décryptage de la pièce pour accélérer votre retour à l'emploi</span></h2>
+      <p>Le texte de la pièce et, en face de chaque scène, les conseils de l'auteur pour décrocher votre prochain job.</p>
+      <div class="prix"><span>Électronique <b>10 €</b></span><span>Papier <b>20 €</b></span></div>
+      <a class="go" href="?livre=tjej#bon">Je commande ce livre →</a>
+    </article>
+  </section>
+
+  <section class="bon" id="bon">
+    <h2>Bon de commande</h2>
+    <p class="sous">Choisissez votre livre et sa version.</p>
+    <form id="f" action="https://formsubmit.co/bismuththierry@gmail.com" method="POST">
+      <input type="hidden" name="_subject" id="subj" value="Commande de livre — onvousrappellera.fr">
+      <input type="hidden" name="_next" value="https://onvousrappellera.fr/livres.html?merci=1#merci">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="Total" id="tot">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <fieldset><legend>Le livre</legend><div class="choix">
+        <label><input type="radio" name="Livre" value="Recruter est un jeu d'enfant (recruteurs)" data-k="reuje" required><span>Recruter est un jeu d'enfant<small>Pour les recruteurs</small></span></label>
+        <label><input type="radio" name="Livre" value="Trouver un job est un jeu d'enfant (candidats)" data-k="tjej"><span>Trouver un job est un jeu d'enfant<small>Pour les candidats</small></span></label>
+      </div></fieldset>
+      <fieldset><legend>La version</legend><div class="choix">
+        <label><input type="radio" name="Version" value="Électronique (10 €)" data-p="10" required><span>Électronique<small>10 € — envoyée par mail</small></span></label>
+        <label><input type="radio" name="Version" value="Papier (20 €)" data-p="20"><span>Papier<small>20 € — envoyé par la poste</small></span></label>
+      </div></fieldset>
+      <div class="champs">
+        <div><label for="q">Nombre d'exemplaires</label><input type="number" id="q" name="Quantité" min="1" value="1" required></div>
+        <div></div>
+        <div><label for="pr">Prénom</label><input type="text" id="pr" name="Prénom" required></div>
+        <div><label for="no">Nom</label><input type="text" id="no" name="Nom" required></div>
+        <div><label for="em">Email</label><input type="email" id="em" name="email" required></div>
+        <div><label for="te">Téléphone</label><input type="tel" id="te" name="Téléphone"></div>
+        <div class="plein" id="adr-w"><label for="ad">Adresse postale (version papier)</label><textarea id="ad" name="Adresse postale"></textarea></div>
+        <div class="plein"><label for="me">Un mot (facultatif)</label><textarea id="me" name="Message"></textarea></div>
+      </div>
+      <div class="total">Total : <b id="t">—</b></div>
+      <button type="submit">Je commande</button>
+      <p class="note">Nous revenons vers vous par mail pour le règlement et l'envoi.</p>
+    </form>
+  </section>
+
+  <p class="theatre">Vous êtes au théâtre ce soir ? Le livre papier y est à <b>15 €</b> au lieu de 20 €.</p>
+</main>
+
+<footer class="wrap">La Compagnie MultiPotentieL · <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a> · <a href="/">onvousrappellera.fr</a></footer>
+
+<script>
+(function(){
+  var f=document.getElementById('f'), q=document.getElementById('q'), t=document.getElementById('t'), tot=document.getElementById('tot'), adw=document.getElementById('adr-w'), ad=document.getElementById('ad'), subj=document.getElementById('subj');
+  var P=new URLSearchParams(location.search);
+  var k=P.get('livre');
+  if(k){ var r=f.querySelector('input[data-k="'+k+'"]'); if(r){ r.checked=true; } }
+  if(P.get('merci')){ document.getElementById('merci').style.display='block'; }
+  function maj(){
+    var v=f.querySelector('input[name="Version"]:checked'), n=Math.max(1,parseInt(q.value,10)||1);
+    var papier=v&&v.getAttribute('data-p')==='20';
+    adw.style.display=(!v||papier)?'':'none'; ad.required=!!papier;
+    if(v){ var s=n*parseInt(v.getAttribute('data-p'),10); t.textContent=s+' €'; tot.value=s+' €'; } else { t.textContent='—'; tot.value=''; }
+    var l=f.querySelector('input[name="Livre"]:checked');
+    subj.value='Commande de livre — '+(l?l.value:'')+(v?' — '+v.value:'')+' × '+n;
+  }
+  f.addEventListener('change',maj); q.addEventListener('input',maj); maj();
+})();
+</script>
+</body>
+</html>
