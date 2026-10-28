@@ -15,14 +15,14 @@
 </style>
 </head>
 <body>
-<div class="bar"><a href="entreprises.html">← Retour</a><a href="assets/ovr/brochure-on-vous-rappellera.pdf?v=19" download="Brochure-On-Vous-Rappellera.pdf">Télécharger le PDF</a></div>
+<div class="bar"><a href="entreprises.html">← Retour</a><a href="assets/ovr/brochure-on-vous-rappellera.pdf?v=20" download="Brochure-On-Vous-Rappellera.pdf">Télécharger le PDF</a></div>
 <div id="etat">Chargement de la brochure…</div>
 <div id="pages"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 (async function(){
   var etat=document.getElementById('etat'), zone=document.getElementById('pages');
-  var url='assets/ovr/brochure-on-vous-rappellera.pdf?v=19';
+  var url='assets/ovr/brochure-on-vous-rappellera.pdf?v=20';
   try{
     pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     var pdf=await pdfjsLib.getDocument(url).promise;
