@@ -237,9 +237,15 @@ document.addEventListener('click',function(e){ var m=e.target.closest('.menu'); 
   function maj(){var t=tarif();g('f-red-wrap').style.display=t==='reduit'?'':'none';g('f-ft-wrap').style.display=(t==='reduit'&&g('f-statut').value==="Demandeur d'emploi")?'':'none';}
   document.querySelectorAll('input[name=tarif]').forEach(function(r){r.addEventListener('change',maj);});
   g('f-statut').addEventListener('change',maj); g('f-places').addEventListener('input',maj); maj();
-  fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})}).then(function(r){return r.json();}).then(function(d){
+  /* Places restantes : demandées au premier geste réel du visiteur (défilement, clic, toucher, clavier) — les robots qui ouvrent le lien sans rien faire ne déclenchent plus le service. Réponse gardée 5 min sur l'appareil. */
+  function auGeste(fn){ var fait=false, EV=['pointerdown','touchstart','keydown','scroll','wheel'];
+    function go(){ if(fait) return; fait=true; EV.forEach(function(e){ window.removeEventListener(e,go,true); }); fn(); }
+    EV.forEach(function(e){ window.addEventListener(e,go,{capture:true,passive:true}); }); }
+  function lireDispo(api){ try{ var c=JSON.parse(localStorage.getItem('ovr_dispo')||'null'); if(c&&Date.now()-c.t<300000) return Promise.resolve(c.d); }catch(e){}
+    return fetch(api,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'dispo'})}).then(function(r){return r.json();}).then(function(d){ try{ if(d&&d.dispo) localStorage.setItem('ovr_dispo',JSON.stringify({t:Date.now(),d:d})); }catch(e){} return d; }); }
+  auGeste(function(){ lireDispo(API).then(function(d){
     if(d&&d.dispo&&(SEANCE in d.dispo)){var r=d.dispo[SEANCE]; if(r<=0){g('resa').innerHTML='<p class="complet">La soirée est complète.</p>';} else if(r<=20){g('f-btn').insertAdjacentHTML('beforebegin','<p class="complet">Plus que '+r+' place'+(r>1?'s':'')+'&nbsp;!</p>');}}
-  }).catch(function(){});
+  }).catch(function(){}); });
   btn.addEventListener('click',function(){
     var t=tarif(), p={prenom:g('f-prenom').value.trim(),nom:g('f-nom').value.trim(),portable:g('f-tel').value.trim(),email:g('f-email').value.trim(),
       societe:g('f-soc').value.trim(),poste:g('f-poste').value.trim(),qty:nb(),diner:g('f-diner').checked,festive:g('f-fete').checked,
