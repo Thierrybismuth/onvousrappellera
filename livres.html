@@ -4,35 +4,106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les livres — ON VOUS RAPPELLERA</title>
-<meta name="description" content="Les deux livres de la pièce ON VOUS RAPPELLERA : « Recruter est un jeu d'enfant » pour les recruteurs, « Trouver un job est un jeu d'enfant » pour les candidats. Version électronique ou papier.">
+<meta name="description" content="Les deux livres de la pièce ON VOUS RAPPELLERA : « Trouver un job est un jeu d'enfant » pour les candidats, « Recruter est un jeu d'enfant » pour les recruteurs. Les 15 scènes de la pièce décryptées. Version électronique 10 €, papier 20 €.">
 <link rel="canonical" href="https://onvousrappellera.fr/livres.html">
-<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Montserrat:wght@400;600;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Montserrat:ital,wght@0,400;0,600;0,800;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--rouge:#d51e29;--noir:#161616;--jaune:#ffc700;--gris:#6b7280;--fond:#ffffff;--creme:#f7f4ee}
+  :root{--rouge:#d51e29;--noir:#161616;--jaune:#ffc700;--jpale:#fff6d6;--gris:#6b7280;--creme:#f7f4ee;--ligne:#e7e2d8}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--fond);color:#1c1c1c;font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 16px}
-  header{padding:48px 0 28px;text-align:center}
+  html{scroll-behavior:smooth}
+  body{background:#fff;color:#1c1c1c;font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
   .eyebrow{font:600 12px/1 'Montserrat',sans-serif;letter-spacing:.18em;color:var(--gris);text-transform:uppercase}
-  h1{font:800 clamp(28px,6vw,46px)/1.05 'Montserrat',sans-serif;margin:14px 0 10px}
-  h1 b{color:var(--rouge)}
-  .lead{max-width:680px;margin:0 auto;font-size:1.05rem}
-  .livres{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0 40px}
-  .livre{border:1px solid #e7e2d8;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px;background:#fff}
-  .pour{font:800 11px/1 'Montserrat',sans-serif;letter-spacing:.16em;color:var(--rouge);text-transform:uppercase}
-  .couv{aspect-ratio:3/4;max-width:230px;width:70%;margin:0 auto;background:#fff;border:1px solid #e3e3e3;border-radius:3px 8px 8px 3px;
-        box-shadow:inset 8px 0 0 #f1f1f1,0 14px 34px rgba(0,0,0,.16);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:16% 10% 10%;text-align:center}
-  .couv .a{font:600 10px/1.3 'Montserrat',sans-serif;color:#777}
-  .couv .t{font-family:'Caveat Brush',cursive;font-size:clamp(20px,3.6vw,30px);line-height:1.1;color:var(--noir)}
-  .couv .o{font:800 9px/1.2 'Montserrat',sans-serif;color:var(--rouge);letter-spacing:.06em}
-  .livre h2{font:800 1.25rem/1.25 'Montserrat',sans-serif}
-  .livre h2 span{display:block;font:italic 400 .95rem/1.4 'Outfit',sans-serif;color:var(--gris);margin-top:4px}
-  .livre p{font-size:.98rem}
+  .ovr{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--rouge)}
+
+  /* En-tête */
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;padding:44px 0 30px}
+  .hero h1{font:800 clamp(30px,5.4vw,50px)/1.05 'Montserrat',sans-serif;margin:14px 0 14px}
+  .hero h1 em{font-family:'Caveat Brush',cursive;font-style:normal;font-weight:400;color:var(--rouge);font-size:1.12em}
+  .hero .lead{font-size:1.08rem;max-width:520px}
+  .hero .lead b{font-weight:600}
+  .hero figure img{border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.14);margin-left:auto;max-height:440px;width:auto}
+  .portes{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+  .porte{display:inline-flex;flex-direction:column;text-decoration:none;color:var(--noir);border:2px solid var(--noir);border-radius:12px;padding:12px 18px;min-width:200px;transition:.15s}
+  .porte small{font:600 11px/1.2 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+  .porte span{font:800 1.05rem/1.3 'Montserrat',sans-serif}
+  .porte:hover{background:var(--noir);color:#fff}.porte:hover small{color:#ddd}
+  .porte.c{border-color:var(--rouge)}.porte.c span{color:var(--rouge)}.porte.c:hover{background:var(--rouge)}.porte.c:hover span{color:#fff}
+
+  /* Les deux livres */
+  .livres{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:26px 0 56px}
+  .livre{border:1px solid var(--ligne);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:16px;background:#fff;scroll-margin-top:20px}
+  .livre.tj{border-top:5px solid var(--rouge)} .livre.re{border-top:5px solid var(--noir)}
+  .pour{font:800 11px/1 'Montserrat',sans-serif;letter-spacing:.16em;text-transform:uppercase}
+  .tj .pour{color:var(--rouge)}
+  .vis{display:flex;justify-content:center;align-items:flex-end;min-height:250px}
+  .vis img{max-height:300px;width:auto;border-radius:6px;box-shadow:0 12px 30px rgba(0,0,0,.15)}
+  .couv{aspect-ratio:2/3;height:290px;background:#fff;border:1px solid #e3e3e3;border-radius:3px 8px 8px 3px;box-shadow:inset 9px 0 0 #f1f1f1,0 14px 34px rgba(0,0,0,.16);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:34px 18px 22px;text-align:center}
+  .couv .a{font:600 10px/1.3 'Montserrat',sans-serif;color:#888}
+  .couv .t{font-family:'Caveat Brush',cursive;font-size:30px;line-height:1.08;color:var(--noir)}
+  .couv .o{font:800 10px/1.2 'Montserrat',sans-serif;color:var(--rouge);letter-spacing:.06em}
+  .livre h2{font:800 1.3rem/1.25 'Montserrat',sans-serif}
+  .livre h2 span{display:block;font:italic 400 .98rem/1.4 'Outfit',sans-serif;color:var(--gris);margin-top:4px}
+  .dans{font:800 11px/1 'Montserrat',sans-serif;letter-spacing:.14em;color:var(--gris);margin-bottom:-6px}
+  .livre ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .livre li{padding-left:22px;position:relative;font-size:.97rem;line-height:1.45}
+  .livre li::before{content:'';position:absolute;left:2px;top:.5em;width:9px;height:9px;border-radius:2px;background:var(--jaune);transform:rotate(45deg)}
+  .re li::before{background:var(--noir)}
+  .livre li b{font-weight:600}
   .prix{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
-  .prix span{background:var(--creme);border-left:3px solid var(--jaune);padding:6px 10px;font-size:.92rem}
+  .prix span{background:var(--creme);border-left:3px solid var(--jaune);padding:6px 11px;font-size:.93rem}
   .prix b{font-weight:600}
-  .livre .go{align-self:flex-start;color:var(--rouge);font-weight:500;text-decoration:underline}
-  .bon{background:var(--creme);border-radius:12px;padding:28px 22px;margin:0 0 40px}
+  .cmd{align-self:flex-start;font:700 .95rem 'Montserrat',sans-serif;background:var(--rouge);color:#fff;text-decoration:none;border-radius:30px;padding:12px 22px}
+  .re .cmd{background:var(--noir)}
+
+  /* Scène par scène */
+  .titre2{text-align:center;margin:0 auto 10px;max-width:760px}
+  .titre2 h2{font:800 clamp(24px,4.4vw,36px)/1.15 'Montserrat',sans-serif;margin:12px 0 10px}
+  .titre2 p{color:#444}
+  .bascule{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);display:flex;justify-content:center;gap:8px;padding:12px 0;margin:14px 0 22px;border-bottom:1px solid #f0ece3;flex-wrap:wrap}
+  .bascule button{font:600 .9rem 'Montserrat',sans-serif;background:#fff;color:var(--noir);border:1.5px solid #d6cfc0;border-radius:30px;padding:9px 16px;cursor:pointer}
+  .bascule button[aria-pressed=true]{background:var(--noir);border-color:var(--noir);color:#fff}
+  .bascule button.c[aria-pressed=true]{background:var(--rouge);border-color:var(--rouge)}
+  .scenes{display:flex;flex-direction:column;gap:22px;max-width:980px;margin:0 auto}
+  .sc{border:1px solid var(--ligne);border-radius:14px;overflow:hidden;background:#fff;scroll-margin-top:80px;display:grid;grid-template-columns:300px 1fr;align-items:start}
+  .sc.sansphoto{grid-template-columns:1fr}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  body[data-vue=c] .duo, body[data-vue=r] .duo{grid-template-columns:1fr}
+  .sc img{width:100%;height:auto;background:#111}
+  .sb{padding:18px 22px 20px;display:flex;flex-direction:column;gap:10px}
+  .sansphoto .sb{padding-top:22px}
+  .num{font:400 12px/1 'Montserrat',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--rouge)}
+  .num b{font-weight:800;color:var(--noir);letter-spacing:.1em}
+  .sc h3{font-family:'Caveat Brush',cursive;font-weight:400;font-size:1.42rem;line-height:1.15;color:var(--noir)}
+  .hist{font-size:.93rem;color:#333}
+  .bx{border-radius:10px;padding:12px 14px;font-size:.93rem;line-height:1.5}
+  .bx p+p{margin-top:6px}
+  .bl{font:800 10.5px/1.2 'Montserrat',sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+  .bx .q{font:italic 600 .93rem/1.4 'Montserrat',sans-serif}
+  .bx .q span{font:italic 400 .82rem 'Outfit',sans-serif;color:#666}
+  .bx b{font-weight:600}
+  .bx-c{background:var(--jpale);border-left:4px solid var(--jaune)}
+  .bx-c .q{color:var(--rouge)}
+  .bx-r{background:#f3f3f3;border-left:4px solid var(--noir)}
+  .bx-r .q{color:#333}
+  body[data-vue=c] .bx-r, body[data-vue=r] .bx-c{display:none}
+  .scenes:not(.ouvert) .plus{display:none}
+  .voir{display:block;margin:24px auto 0;font:700 .95rem 'Montserrat',sans-serif;background:#fff;color:var(--noir);border:2px solid var(--noir);border-radius:30px;padding:12px 26px;cursor:pointer}
+  .apres{text-align:center;margin:26px auto 60px;font-size:1.02rem}
+  .apres a{color:var(--rouge);font-weight:600}
+
+  /* Feuilleter */
+  .feuil{margin:0 0 60px}
+  .feuil h2{font:800 1.5rem/1.2 'Montserrat',sans-serif;text-align:center;margin-bottom:6px}
+  .feuil .sous{text-align:center;color:var(--gris);margin-bottom:22px}
+  .galerie{display:flex;gap:14px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+  .galerie figure{flex:0 0 auto}
+  .galerie img{height:300px;width:auto;border-radius:8px}
+  .galerie figcaption{font-family:'Caveat Brush',cursive;font-size:1.05rem;text-align:center;max-width:230px;margin:8px auto 0;line-height:1.2}
+
+  /* Commande */
+  .bon{background:var(--creme);border-radius:14px;padding:28px 22px;margin:0 0 30px;scroll-margin-top:16px}
   .bon h2{font:800 1.5rem/1.2 'Montserrat',sans-serif;margin-bottom:6px}
   .bon .sous{color:var(--gris);margin-bottom:20px}
   fieldset{border:0;margin:0 0 18px}
@@ -49,45 +120,168 @@
   textarea{min-height:70px}
   .total{margin:18px 0 14px;font-size:1.1rem}
   .total b{font:800 1.4rem 'Montserrat',sans-serif;color:var(--rouge)}
-  button{font:700 1rem 'Montserrat',sans-serif;background:var(--rouge);color:#fff;border:0;border-radius:30px;padding:14px 28px;cursor:pointer}
+  form button{font:700 1rem 'Montserrat',sans-serif;background:var(--rouge);color:#fff;border:0;border-radius:30px;padding:14px 28px;cursor:pointer}
   .note{font-size:.88rem;color:var(--gris);margin-top:12px}
-  .merci{display:none;background:#eaf7ee;border-left:4px solid #2e9e5b;padding:16px 18px;margin:0 0 24px;border-radius:6px}
+  .merci{display:none;background:#eaf7ee;border-left:4px solid #2e9e5b;padding:16px 18px;margin:20px 0;border-radius:6px}
   .theatre{text-align:center;margin:0 0 50px;font-size:1rem}
   .theatre b{color:var(--rouge)}
   footer{border-top:1px solid #eee;padding:22px 0 40px;text-align:center;color:var(--gris);font-size:.9rem}
   footer a{color:inherit}
-  @media(max-width:720px){.livres,.choix,.champs{grid-template-columns:1fr}}
+
+  @media(max-width:900px){.sc{grid-template-columns:240px 1fr}}
+  @media(max-width:720px){
+    .hero{grid-template-columns:1fr;padding-top:28px;gap:22px}
+    .hero figure img{margin:0 auto;max-height:none;width:100%}
+    .livres,.choix,.champs,.sc,.duo{grid-template-columns:1fr}
+    .porte{flex:1 1 100%}
+    .galerie{flex-direction:column;align-items:stretch}
+    .galerie img{height:auto;width:100%}
+    .galerie figcaption{max-width:none}
+  }
 </style>
 </head>
-<body>
+<body data-vue="t">
 <div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#777;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Conventions d'entreprises</a><a href="/franchise.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Développement d'enseigne</a><a href="/livres.html" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px;white-space:nowrap">Les livres</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px;font-size:10.5px;opacity:.8">Casting</a></div><style id="ovr-topmenu-mobile">@media(max-width:700px){#ovr-topmenu{display:grid!important;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px!important;text-align:center!important;line-height:1.3!important}#ovr-topmenu a{display:flex;align-items:center;justify-content:center;margin:0!important;white-space:normal!important;padding:9px 6px;border:1px solid #e3e3e3;border-radius:6px;font-size:13.5px!important;opacity:1!important;color:#444!important;min-height:40px;box-sizing:border-box}#ovr-topmenu a[href="/casting.html"]{font-size:12.5px!important}#ovr-topmenu a[style*="font-weight:600"]{color:#161616!important;border-color:#161616;font-weight:700!important}#ovr-topmenu #nlx-btn{grid-column:1/-1;display:block;width:100%;margin:2px 0 0!important;padding:11px 12px;font-size:14px}}</style>
-
-<header class="wrap">
-  <div class="eyebrow">Les livres de la pièce</div>
-  <h1><b>ON VOUS RAPPELLERA</b><br>en deux livres</h1>
-  <p class="lead">Le texte de la pièce et le décryptage de l'auteur, scène par scène. Un livre pour ceux qui recrutent, un livre pour ceux qui cherchent un job.</p>
-</header>
 
 <main class="wrap">
   <div class="merci" id="merci"><b>Merci, votre commande est bien enregistrée.</b> Nous revenons vers vous par mail pour le règlement et l'envoi. Une question ? contact@onvousrappellera.fr</div>
 
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Les livres de la pièce</div>
+      <h1><span class="ovr">ON VOUS RAPPELLERA</span><br>en deux livres</h1>
+      <p class="lead">Le texte de la pièce et, scène par scène, le décryptage de l'auteur. <b>Un livre pour ceux qui cherchent un job, un livre pour ceux qui recrutent.</b></p>
+      <div class="portes">
+        <a class="porte c" href="#tjej" data-v="c"><small>Je cherche un job</small><span>Trouver un job est un jeu d'enfant</span></a>
+        <a class="porte" href="#reuje" data-v="r"><small>Je recrute</small><span>Recruter est un jeu d'enfant</span></a>
+      </div>
+    </div>
+    <figure><img src="/images/livre/livre-pile.jpg" width="825" height="1100" alt="Le livre Recruter est un jeu d'enfant ouvert sur une pile d'exemplaires"></figure>
+  </section>
+
   <section class="livres">
-    <article class="livre" id="reuje">
-      <div class="pour">Pour les recruteurs</div>
-      <div class="couv"><div class="a">Thierry Bismuth</div><div class="t">Recruter est un jeu d'enfant</div><div class="o">ON VOUS RAPPELLERA</div></div>
-      <h2>Recruter est un jeu d'enfant</h2>
-      <p>Le livre réunit le texte de la pièce, ses enseignements et les 30 conseils essentiels pour réussir un recrutement quand on est opérationnel.</p>
-      <div class="prix"><span>Électronique <b>10 €</b></span><span>Papier <b>20 €</b></span></div>
-      <a class="go" href="?livre=reuje#bon">Je commande ce livre →</a>
-    </article>
-    <article class="livre" id="tjej">
+    <article class="livre tj" id="tjej">
       <div class="pour">Pour les candidats</div>
-      <div class="couv"><div class="a">Thierry Bismuth</div><div class="t">Trouver un job est un jeu d'enfant</div><div class="o">ON VOUS RAPPELLERA</div></div>
+      <div class="vis"><div class="couv"><div class="a">Thierry Bismuth</div><div class="t">Trouver un job est un jeu d'enfant</div><div class="o">ON VOUS RAPPELLERA</div></div></div>
       <h2>Trouver un job est un jeu d'enfant<span>Le décryptage de la pièce pour accélérer votre retour à l'emploi</span></h2>
-      <p>Le texte de la pièce et, en face de chaque scène, les conseils de l'auteur pour décrocher votre prochain job.</p>
+      <p>Chaque enseignement de la pièce y est décrypté. Laissez Delphine, Pascal, Julien, Dominique et les autres vous donner leurs astuces.</p>
+      <div class="dans">DANS LE LIVRE</div>
+      <ul>
+        <li>Julien ne correspond à aucun critère… Et pourtant…</li>
+        <li>Delphine n'est <b>pas dupe</b>, et pourtant elle le valide… Explications et conseils.</li>
+        <li>Comment profiter d'un manager sur la défensive ?</li>
+        <li>Comment répondre aux questions que le recruteur n'a pas posées (alors qu'elles vous <b>arrangent</b>) ?</li>
+        <li>On ne peut pas en même temps <b>fuir</b> et <b>choisir</b> le bon chemin (Johana).</li>
+        <li>Un critère sur l'annonce est une question. Trouvez la question et apportez une <b>autre réponse</b>.</li>
+        <li>Soyez comédien et <b>metteur en scène</b> de votre entretien. Explication.</li>
+        <li>Le recruteur n'est pas votre psy. Qu'est-ce qu'on dit et qu'est-ce qu'on <b>ne dit pas</b> ?</li>
+      </ul>
       <div class="prix"><span>Électronique <b>10 €</b></span><span>Papier <b>20 €</b></span></div>
-      <a class="go" href="?livre=tjej#bon">Je commande ce livre →</a>
+      <a class="cmd" href="?livre=tjej#bon">Je commande ce livre</a>
     </article>
+    <article class="livre re" id="reuje">
+      <div class="pour">Pour les recruteurs et les managers</div>
+      <div class="vis"><img src="/images/livre/livre-cafe-2.jpg" width="508" height="1100" alt="Le livre Recruter est un jeu d'enfant" loading="lazy"></div>
+      <h2>Recruter est un jeu d'enfant<span>Le texte de la pièce et ses enseignements</span></h2>
+      <p>Le livre réunit le texte de la pièce, ses enseignements et les 30 conseils essentiels pour réussir un recrutement quand on est opérationnel.</p>
+      <div class="dans">QUELQUES CHAPITRES</div>
+      <ul>
+        <li>Recruter c'est trembler.</li>
+        <li>Transformez le hasard en opportunité.</li>
+        <li>À la question « est-ce que tu m'aimes », on ne répond pas « je vais réfléchir ».</li>
+        <li>On va s'aimer !</li>
+      </ul>
+      <div class="prix"><span>Électronique <b>10 €</b></span><span>Papier <b>20 €</b></span></div>
+      <a class="cmd" href="?livre=reuje#bon">Je commande ce livre</a>
+    </article>
+  </section>
+
+  <section id="scenes">
+    <div class="titre2">
+      <div class="eyebrow">La pièce scène par scène</div>
+      <h2>Chaque scène, deux lectures</h2>
+      <p>Celle du candidat, celle du recruteur. Choisissez la vôtre.</p>
+    </div>
+    <div class="bascule" role="group" aria-label="Choisir une lecture">
+      <button type="button" class="c" data-v="c" aria-pressed="false">Je cherche un job</button>
+      <button type="button" data-v="r" aria-pressed="false">Je recrute</button>
+      <button type="button" data-v="t" aria-pressed="true">Les deux lectures</button>
+    </div>
+    <div class="scenes" id="liste">
+<article class="sc" id="scene-1"><img src="/assets/livres/scene-1.jpg" width="760" height="507" alt="Scène 1 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>1</b></div><h3>Le psy de la RH</h3>
+<p class="hist">Daniel(e), le psy, reçoit l'appel de Delphine, RH chez Odyssée Bureautique.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Aussi malsain qu'un tortionnaire du goulag&nbsp;» <span>— Delphine, à propos du manager</span></p><p>Le plus souvent, la recruteuse ou le recruteur est de votre côté. Mais elle doit composer avec un opérationnel aux attentes improbables. Votre mission : l'aider à justifier votre candidature.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Aussi malsain qu'un tortionnaire du goulag ? Oui, je sais.&nbsp;»</p><p>Un recruteur est d'autant plus efficace qu'il aime le manager et la boîte qu'il représente.</p></div></div></div></article>
+<article class="sc" id="scene-2"><img src="/assets/livres/scene-2.jpg" width="760" height="507" alt="Scène 2 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>2</b></div><h3>Quand Delphine essaie de faire une fiche de poste avec Pascal, son manager incompétent</h3>
+<p class="hist">Pascal, patron d'Odyssée Bureautique, rédige la fiche de poste avec Delphine, sa RH.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Les candidats ne croient plus aux belles promesses. C'est comme en amour. On veut des preuves.&nbsp;» <span>— Delphine</span></p><p>Inversez le sens de l'entretien : demandez au recruteur de vous démontrer chaque argument de sa proposition de valeur.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Pourquoi quelqu'un qui fait la même chose ailleurs viendrait chez nous ?&nbsp;»</p><p>Une fiche de poste qui néglige les arguments de <b>séduction des candidats</b> n'est pas terminée.</p></div></div></div></article>
+<article class="sc" id="scene-3"><img src="/assets/livres/scene-3.jpg" width="506" height="760" alt="Scène 3 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>3</b></div><h3>Quand Julia/Julien postule à l'offre de commercial</h3>
+<p class="hist">Julia/Julien découvre l'offre d'emploi et la passe au crible de son regard de candidat.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Ils en demandent trop. Donc ils ne recrutent personne.&nbsp;» <span>— Julien, en lisant l'offre d'emploi</span></p><p>Vous ne correspondez pas à tous les critères ? Personne ne correspond à tous les critères. Postulez quand même.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Ma vraie motivation, elle n'est pas dans l'entreprise. Elle est en dehors.&nbsp;»</p><p>La vraie motivation d'un candidat n'est jamais celle qu'il annonce en entretien. Le rôle du recruteur, c'est de la découvrir.</p></div></div></div></article>
+<article class="sc" id="scene-4"><img src="/assets/livres/scene-4.jpg" width="570" height="760" alt="Scène 4 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>4</b></div><h3>Quand Pascal recrute Johana comme recruteuse</h3>
+<p class="hist">Johana, infirmière en reconversion, subit l'entretien d'embauche de Pascal.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Hyperactive, aucune écoute, mytho, dragueuse… Mais mignonne : je vous embauche.&nbsp;» <span>— Pascal</span></p><p>Au-delà de la caricature, retenez que les critères finaux de sélection sont rarement exclusivement objectifs.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Elle a les mains moites, donc je l'impressionne.&nbsp;»</p><p>En entretien, si vous n'êtes pas sûr, ne faites pas comme Pascal : ne faites pas d'hypothèse, posez la question.</p></div></div></div></article>
+<article class="sc" id="scene-5"><img src="/assets/livres/scene-5.jpg" width="507" height="760" alt="Scène 5 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>5</b></div><h3>Quand Julia/Julien appelle Delphine pour obtenir un entretien</h3>
+<p class="hist">Après des heures de relance, Julia/Julien passe le standard et tombe sur Delphine.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Négocier son loyer, c'est de la vente. Passer l'oral du bac, c'est de la vente. Draguer une fille…&nbsp;» <span>— Julien, à qui l'on demande s'il a déjà vendu</span></p><p>La question n'est pas : est-ce que vous correspondez aux critères ? La question est : <b>comment</b> pourriez-vous correspondre à chaque critère ?</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Tu m'étonnes qu'il a passé le standard, celui-là. Il a un truc.&nbsp;»</p><p>Le CV ne dit rien. L'entretien dit tout. Appelez 80 % des CV reçus, même 5 minutes.</p></div></div></div></article>
+<article class="sc sansphoto" id="scene-6"><div class="sb"><div class="num">Scène <b>6</b></div><h3>Quand Pascal forme sa jeune recruteuse</h3>
+<p class="hist">Johana est formée par Pascal. Elle adore ce manager, cette boîte, ce job : c'est la phase 1, « super boîte », de tout nouvel arrivant.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Chaque fois que je te pose une question, tu as choisi l'alternative. Tu pensais que tu me présentais une de tes qualités… En fait…&nbsp;» <span>— Pascal, qui explique l'ambivalence de ses questions</span></p><p>Derrière chaque question du recruteur, demandez-vous en quoi elle lui permet de cocher une des cases de la fiche de poste que vous avez lue dans l'annonce.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Le recrutement, c'est séduire ET sélectionner les bons candidats.&nbsp;»</p><p>Le métier de recruteur consiste d'abord à remplir une salle d'attente. Parce qu'en recrutement comme ailleurs, la séduction précède la sélection.</p></div></div></div></article>
+<article class="sc plus" id="scene-7"><img src="/assets/livres/scene-7.jpg" width="507" height="760" alt="Scène 7 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>7</b></div><h3>Quand Julia/Julien est en salle d'attente</h3>
+<p class="hist">Julia/Julien a décroché son entretien et patiente en salle d'attente.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Best place to work… la blague.&nbsp;» <span>— Julien, en salle d'attente</span></p><p>L'entretien, c'est le moment de vous demander si cette entreprise vous intéresse. La plupart des candidats se posent la question après. C'est une erreur : vous poser cette question pendant l'entretien vous amènera à poser des questions pertinentes.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Comme si j'allais croiser un Russe ou un Coréen dans le Maine-et-Loire.&nbsp;»</p><p>Quand les recruteurs en demandent trop, ils obtiennent les meilleurs menteurs.</p></div></div></div></article>
+<article class="sc plus" id="scene-8"><img src="/assets/livres/scene-8.jpg" width="507" height="760" alt="Scène 8 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>8</b></div><h3>Quand Julia/Julien et Delphine sont en entretien</h3>
+<p class="hist">Delphine fait passer son entretien à Julia/Julien.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;— Pourquoi ça vous intéresse ? — Je suis en fin de droits. J'ai faim.&nbsp;» <span>— Delphine et Julien, en entretien</span></p><p>Bien sûr, on est là dans un cas extrême de sincérité. Mais retenez que le recruteur n'est pas dupe de sa proposition de valeur. Vous n'êtes pas obligé de lui faire croire que vous avez toujours rêvé de travailler dans son entreprise.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Ça vous inspire quoi, les ramettes de papier ?&nbsp;»</p><p>Un bon recrutement vise le meilleur candidat <b>possible</b>.</p></div></div></div></article>
+<article class="sc plus" id="scene-9"><img src="/assets/livres/scene-9.jpg" width="552" height="760" alt="Scène 9 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>9</b></div><h3>Quand Johana va chez le psy</h3>
+<p class="hist">Johana consulte Daniel(e), le psy offert aux nouveaux. Phase 2 : elle se demande si elle a bien fait de venir.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Lorsque le jeune loup veut se faire adopter par la meute, il se choisit une mère d'adoption pour le prendre sous son aile.&nbsp;» <span>— Le psy, à propos de la relation entre le candidat et la recruteuse</span></p><p>Votre entretien avec la RH est votre passeport pour le rendez-vous avec l'opérationnel. Donnez-lui ENVIE de se battre pour vous malgré les failles de votre CV.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Votre métier, c'est de savoir s'il va réussir à un poste. Le grand déballage, c'est pas votre truc.&nbsp;»</p><p>Pendant l'intégration, il y a toujours un moment de bascule. Le manager doit l'identifier et le gérer.</p></div></div></div></article>
+<article class="sc plus" id="scene-10"><img src="/assets/livres/scene-10.jpg" width="570" height="760" alt="Scène 10 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>10</b></div><h3>Quand Dominique est trop vieux pour le poste</h3>
+<p class="hist">Dominique, senior, postule au même poste que Julia/Julien. Il n'est ni jeune ni une femme : il ne passera pas. Et pourtant il va convaincre Johana.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;C'est un métier de dire bonjour. Et votre bonjour à vous n'était pas vendeur.&nbsp;» <span>— Le candidat senior, en entretien</span></p><p>Votre processus de sélection commence sur le pas de la porte de l'entreprise et ne se termine qu'à la sortie. L'accueil, la salle d'attente, le small talk dans l'ascenseur… Chaque étape contribue à forger l'opinion du recruteur.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;C'est tout un métier de dire bonjour. Votre bonjour n'était pas vendeur.&nbsp;»</p><p>Si le recruteur ne prépare pas son entretien aussi bien que le candidat, c'est le candidat qui mène la danse.</p></div></div></div></article>
+<article class="sc plus sansphoto" id="scene-10bis"><div class="sb"><div class="num">Scène <b>10 bis</b></div><h3>Quand Dominique rencontre Delphine</h3>
+<p class="hist">Dominique rencontre Delphine. L'entretien quitte vite le poste à pourvoir : il devient le détonateur de sa vie.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Vous me rappelez ma fille. Vous me permettez un exercice ? Pourquoi avoir choisi ce métier de recruteuse ?&nbsp;» <span>— Le candidat senior, à la recruteuse</span></p><p>Vous voulez marquer le recruteur ? Prenez la main dans l'entretien. Ne laissez pas les questions arriver sans créer des moments inattendus.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;On n'a jamais gagné une partie de cartes en renversant la table. La révolte est un luxe d'adolescent.&nbsp;»</p><p>Quand un candidat correspond à tous les critères sauf un… c'est déjà le candidat parfait.</p></div></div></div></article>
+<article class="sc plus" id="scene-11"><img src="/assets/livres/scene-11.jpg" width="760" height="570" alt="Scène 11 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>11</b></div><h3>Quand Johana et Pascal débriefent la semaine</h3>
+<p class="hist">Après 8 semaines, Johana fait le point sur les candidats avec Pascal.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;— Tu lui as fait le coup du poste mis en pause ? — Mieux : je lui ai dit “ J'ai tous les éléments qu'il me faut, on vous rappellera. ”&nbsp;» <span>— Pascal et Johana</span></p><p>80 % des recruteurs n'osent pas dire non, ou n'osent pas expliquer honnêtement leur non. À la fin de l'entretien, allez chercher l'avis du recruteur. Et dans ses réserves, trouvez une occasion de le faire changer d'avis.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Séduire, séduire, séduire.&nbsp;»</p><p>Intégrer, c'est transmettre. Pour le meilleur et pour le pire.</p></div></div></div></article>
+<article class="sc plus sansphoto" id="scene-12"><div class="sb"><div class="num">Scène <b>12</b></div><h3>Quand Pascal rencontre Julia/Julien</h3>
+<p class="hist">Le pire des managers face au pire des candidats. Ils mentent, ils trichent, chacun croit manipuler l'autre. Qui gagnera ce duel d'ego ?</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;J'ai toujours rêvé de travailler comme un forcené. Mon équipe, c'est ma deuxième famille. Travailler ici, ce sera comme travailler en famille.&nbsp;» <span>— Julien, qui manipule le manager en entretien</span></p><p>Dire au recruteur ce qu'il a envie d'entendre est tentant… Ça vous aidera peut-être à avoir le job. Pas toujours à trouver le job fait pour vous.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Ce que je cherche ? Un mini-moi !&nbsp;»</p><p>Le recrutement, c'est comme l'amour. À un moment, faut conclure.</p></div></div></div></article>
+<article class="sc plus" id="scene-13"><img src="/assets/livres/scene-13.jpg" width="760" height="570" alt="Scène 13 sur scène" loading="lazy"><div class="sb"><div class="num">Scène <b>13</b></div><h3>Quand Pascal déjeune avec Daniel(e)</h3>
+<p class="hist">Le chiffre se tasse, Pascal ne recrute plus et Delphine lui échappe. Le déjeuner avec Daniel(e) tourne au coaching.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Le salaire, le plaisir, le confort, le sens.&nbsp;» <span>— Le psy, qui explique au manager les principaux moteurs de motivation</span></p><p>Vous n'obtiendrez jamais le parfait équilibre de ces quatre éléments. Choisissez les deux qui comptent vraiment pour vous et concentrez-vous sur les entreprises qui peuvent y correspondre.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Ne pas avoir de recul, c'est utile pour un canon. Moins efficace pour un patron.&nbsp;»</p><p>Soit votre équipe est un troupeau d'éléphants, soit c'est une meute de loups.</p></div></div></div></article>
+<article class="sc plus sansphoto" id="scene-14"><div class="sb"><div class="num">Scène <b>14</b></div><h3>Quand toute l'équipe passe à la télé</h3>
+<p class="hist">Deux ans plus tard, toute l'équipe est invitée dans une émission sur la « Grande Démission ». Chacun règle ses comptes en direct.</p>
+<div class="duo"><div class="bx bx-c"><div class="bl">Le conseil au candidat</div><p class="q">«&nbsp;Vous saviez que la recruteuse facturait les entretiens d'embauche comme un psy ?&nbsp;» <span>— Delphine, dévoilant les petits secrets de Johana</span></p><p>Le recruteur n'est pas votre psy. La meilleure preuve, c'est que c'est l'entreprise qui le paie, et pas vous. Dites-lui ce qu'il a besoin d'entendre. Pas (tout) ce que vous avez sur le cœur.</p></div>
+<div class="bx bx-r"><div class="bl">La clef de succès du recruteur</div><p class="q">«&nbsp;Mangouste !&nbsp;»</p><p>Aucune boîte n'est parfaite. C'est pas bien grave. Vous le saviez ?</p></div></div></div></article>
+    </div>
+    <button type="button" class="voir" id="voir">Voir les 9 autres scènes</button>
+    <p class="apres">Envie d'aller plus loin ? <a href="#bon">Commandez le livre</a> : version électronique 10 €, papier 20 €.</p>
+  </section>
+
+  <section class="feuil">
+    <h2>Feuilletez le livre</h2>
+    <p class="sous">Recruter est un jeu d'enfant</p>
+    <div class="galerie">
+      <figure><img src="/images/livre/livre-trembler.jpg" width="825" height="1100" alt="Double page : Recruter c'est trembler" loading="lazy"><figcaption>Recruter c'est trembler.</figcaption></figure>
+      <figure><img src="/images/livre/livre-coeur.jpg" width="806" height="1100" alt="Double page : est-ce que tu m'aimes" loading="lazy"><figcaption>On ne répond pas « je vais réfléchir ».</figcaption></figure>
+      <figure><img src="/images/livre/livre-hasard.jpg" width="508" height="1100" alt="Page : Transformez le hasard en opportunité" loading="lazy"><figcaption>Transformez le hasard en opportunité.</figcaption></figure>
+      <figure><img src="/images/livre/livre-cafe-1.jpg" width="508" height="1100" alt="Un lecteur en terrasse avec le livre" loading="lazy"></figure>
+    </div>
   </section>
 
   <section class="bon" id="bon">
@@ -145,6 +339,18 @@
     subj.value='Commande de livre — '+(l?l.value:'')+(v?' — '+v.value:'')+' × '+n;
   }
   f.addEventListener('change',maj); q.addEventListener('input',maj); maj();
+})();
+</script>
+<script>
+(function(){
+  var b=document.body, L=document.getElementById('liste'), V=document.getElementById('voir');
+  var btn=[].slice.call(document.querySelectorAll('.bascule button'));
+  function vue(v){ b.setAttribute('data-vue',v); btn.forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-v')===v?'true':'false');}); }
+  btn.forEach(function(x){ x.addEventListener('click',function(){ vue(x.getAttribute('data-v')); }); });
+  [].forEach.call(document.querySelectorAll('.porte'),function(a){ a.addEventListener('click',function(){ vue(a.getAttribute('data-v')); }); });
+  var k=new URLSearchParams(location.search).get('livre'); if(k==='tjej') vue('c'); else if(k==='reuje') vue('r');
+  V.addEventListener('click',function(){ L.classList.add('ouvert'); V.style.display='none'; });
+  if(/^#scene-/.test(location.hash)){ L.classList.add('ouvert'); V.style.display='none'; }
 })();
 </script>
 </body>
