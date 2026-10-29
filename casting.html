@@ -968,10 +968,11 @@ function render(n){
   });
   var tb=document.getElementById('tab-com');
   if(tb){var h='',S='padding:10px 14px;border-bottom:1px solid var(--gris-clair);font-size:.88rem;';
-    [100,150,200,250].forEach(function(p){
-      var b=r*cpt(p), t=b, nc=Math.floor(t/120);
-      var lab=p+((p>=200)?'<br><span style="font-size:.72rem;font-weight:700;color:var(--accent);">2 représentations le même soir</span>':'');
-      h+='<tr style="background:var(--blanc-pur);"><td style="'+S+'">'+lab+'</td><td style="'+S+'text-align:right;">'+eu(b,1)+'</td><td style="'+S+'text-align:right;"><strong>'+eu(t,1)+'</strong></td><td style="'+S+'text-align:right;">'+(nc?nc+' → '+eu(120*nc)+' versés':'0')+'</td><td style="'+S+'text-align:right;">'+eu(t-120*nc,1)+'</td></tr>';
+    var SEU={3:102,4:119,5:136};
+    [50,102,119,136,180].forEach(function(p){
+      var b=r*cpt(p), t=b, nc=Math.floor(t/120), Y=(p===SEU[n])?'background:#ffe14d;font-weight:700;':'';
+      var lab=p+(Y?'<br><span style="font-size:.72rem;font-weight:700;">seuil du cachet à '+n+' sur scène</span>':'');
+      h+='<tr style="background:var(--blanc-pur);"><td style="'+S+Y+'">'+lab+'</td><td style="'+S+'text-align:right;">'+eu(b,1)+'</td><td style="'+S+'text-align:right;"><strong>'+eu(t,1)+'</strong></td><td style="'+S+'text-align:right;">'+(nc?nc+' → '+eu(120*nc)+' versés':'0')+'</td><td style="'+S+'text-align:right;">'+eu(t-120*nc,1)+'</td></tr>';
     });tb.innerHTML=h;}
   var cn=document.getElementById('calcul-n');
   if(cn){var Q='margin:0 0 .3rem;font-size:.92rem;line-height:1.7;',h2='';
