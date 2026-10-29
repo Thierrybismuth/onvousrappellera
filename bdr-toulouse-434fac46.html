@@ -251,7 +251,6 @@ document.addEventListener('click',function(e){ var m=e.target.closest('.menu'); 
     if(!p.portable){show('ko','Merci d\'indiquer votre portable : c\'est là que nous envoyons vos places.');return;}
     if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)){show('ko','Votre adresse email semble incorrecte.');return;}
     if(!p.societe||!p.poste){show('ko','Merci d\'indiquer votre société et votre poste.');return;}
-    if(t==='reduit'&&p.statut==="Demandeur d'emploi"&&!p.ft){show('ko','Merci d\'indiquer votre numéro France Travail pour le tarif solidaire.');return;}
     btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
     var detail='<p><b>Soirée BDR — Toulouse, 2 décembre (Le 9)</b></p><p>'+esc(p.prenom)+' '+esc(p.nom)+' — '+esc(p.societe)+' ('+esc(p.poste)+')<br>'+esc(p.email)+' — '+esc(p.portable)+'</p><p>'+p.qty+' place(s) — '+esc(LIB[t])+' — '+(PRIX[t]*p.qty)+' €'+(p.statut?' — '+esc(p.statut)+(p.ft?' n° '+esc(p.ft):''):'')+'</p><p>Dîner : '+(p.diner?'oui':'non')+' · Soirée festive : '+(p.festive?'oui':'non')+'</p><p>Paiement Stripe en cours : vérifier l\'encaissement dans les réservations.</p>';
     fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:'bismuththierry@gmail.com',subject:'Résa BDR 2 déc. — '+p.prenom+' '+p.nom+' ('+LIB[t]+', '+p.qty+' pl.)',body:detail})}).catch(function(){});

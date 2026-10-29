@@ -730,7 +730,6 @@ document.addEventListener('DOMContentLoaded',function(){
       p.tarif=LIB[tf]; p.prix=PRIX[tf]; p.partenaire=g('f-accord').checked;
       p.statut=(tf==='reduit')?g('f-statut').value:''; p.france_travail=(tf==='reduit' && p.statut==="Demandeur d'emploi")?g('f-ft').value.trim():'';
       p.code=g('f-code').value.trim();
-      if(tf==='reduit' && p.statut==="Demandeur d'emploi" && !p.france_travail){ show('ko','Merci d\'indiquer votre numéro France Travail pour le tarif solidaire.'); return; }
     }
     if(!p.ville){ show('ko','Merci de choisir votre ville.'); return; }
     if(DATES[p.ville] && !g('f-date').value){ show('ko','Merci de choisir une date, ou d\'indiquer qu\'aucune ne vous convient.'); return; }
