@@ -523,15 +523,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <div id="f-resa" style="display:none">
       <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
       <div class="tarifs">
-        <p class="tclause"><strong>Je soutiens la troupe et la tournée, et je booste ma recherche d'emploi ou ma recherche de candidats.</strong><br>Nos partenaires financent la pièce&nbsp;: entreprises qui recrutent, portails d'emploi, organismes publics de l'emploi, et autres acteurs de la recherche d'emploi et de candidats. Avec ces tarifs, j'accepte qu'ils reçoivent mes coordonnées pour me proposer des offres d'emploi, des candidats ou des services liés au recrutement. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
-        <label class="tarif star"><input type="radio" name="tarif" value="partenaire" checked><span><b>★ Place partenaire — 20&nbsp;€</b></span></label>
+        <label class="tarif star"><input type="radio" name="tarif" value="partenaire" checked><span><b>Tarif normal — 20&nbsp;€</b></span></label>
         <label class="tarif"><input type="radio" name="tarif" value="reduit"><span><b>Tarif solidaire — 15&nbsp;€</b> · demandeurs d'emploi et étudiants, justificatif à présenter à l'entrée</span></label>
         <div id="f-red-wrap" class="fgrid" style="display:none;margin-top:.6rem">
           <div class="field"><label for="f-statut">Je suis</label><select id="f-statut"><option value="Demandeur d'emploi">Demandeur d'emploi</option><option value="Étudiant">Étudiant</option></select></div>
           <div class="field" id="f-ft-wrap"><label for="f-ft">Numéro France Travail</label><input id="f-ft" type="text"></div>
         </div>
         <hr class="tsep">
-        <label class="tarif sans"><input type="radio" name="tarif" value="sans"><span><b>Place sans partage — 22&nbsp;€</b> · mes coordonnées restent chez On vous rappellera.</span></label>
+        <label class="refus"><input type="checkbox" id="f-accord"><span class="petit">Je souhaite que mes coordonnées soient transmises à des cabinets de recrutement et à des portails d'emploi pour accélérer mon retour à l'emploi.</span></label>
       </div>
       <a href="#" id="f-code-lien" class="codelien">Vous avez un code&nbsp;?</a>
       <div id="f-code-wrap" style="display:none"><input id="f-code" class="codeinput" type="text" placeholder="Votre code" autocomplete="off"></div>
@@ -539,7 +538,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     </div>
     <div id="f-alerte" style="display:none">
       <label class="refus"><input type="checkbox" id="f-part">
-        <span class="petit">Je soutiens la troupe et la tournée, et je booste ma recherche d'emploi ou ma recherche de candidats&nbsp;: j'accepte que les partenaires de la pièce reçoivent mes coordonnées. Désinscription par mail à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</span></label>
+        <span class="petit">Je souhaite que mes coordonnées soient transmises à des cabinets de recrutement et à des portails d'emploi pour accélérer mon retour à l'emploi.</span></label>
     </div>
     <button class="btn" id="f-btn" type="button">Prévenez-moi &rarr;</button>
     <div class="msg" id="f-msg"></div>
@@ -725,10 +724,10 @@ document.addEventListener('DOMContentLoaded',function(){
            ville:g('f-ville').value, date:(g('f-date').value==='__autre'?'':g('f-date').value),
            entreprise:'', fonction:'', cadre:'', places:'',
            info:true, partenaire:g('f-part').checked};
-    var PRIX={partenaire:20, reduit:15, sans:22}, LIB={partenaire:'Place partenaire', reduit:'Tarif solidaire', sans:'Place sans partage'};
+    var PRIX={partenaire:20, reduit:15}, LIB={partenaire:'Tarif normal', reduit:'Tarif solidaire'};
     if(enResa()){ var tf=tarifChoisi();
       p.places=String(Math.max(1,parseInt(g('f-places').value,10)||1));
-      p.tarif=LIB[tf]; p.prix=PRIX[tf]; p.partenaire=(tf!=='sans');
+      p.tarif=LIB[tf]; p.prix=PRIX[tf]; p.partenaire=g('f-accord').checked;
       p.statut=(tf==='reduit')?g('f-statut').value:''; p.france_travail=(tf==='reduit' && p.statut==="Demandeur d'emploi")?g('f-ft').value.trim():'';
       p.code=g('f-code').value.trim();
       if(tf==='reduit' && p.statut==="Demandeur d'emploi" && !p.france_travail){ show('ko','Merci d\'indiquer votre numéro France Travail pour le tarif solidaire.'); return; }
@@ -744,7 +743,7 @@ document.addEventListener('DOMContentLoaded',function(){
       btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
       var tfp=tarifChoisi();
       fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},
-        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:(tfp!=='sans'),code:p.code,source:'grand-public'})})
+        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,source:'grand-public'})})
         .then(function(r){return r.json();})
         .then(function(d){ if(d&&d.ok&&d.invite){ show('ok','<b>'+esc(d.message)+'</b>'); return; } if(d&&d.ok&&d.url){ location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
         .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
