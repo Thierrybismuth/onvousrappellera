@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Désinscription</title>
+<style>
+  body{margin:0;background:#fff;color:#222;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5}
+  main{max-width:560px;margin:60px auto;padding:0 16px}
+</style>
+</head>
+<body>
+<main>
+  <p id="msg">Désinscription en cours…</p>
+</main>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  var e = q.get('e'), c = q.get('c') || '';
+  if (!e || !/^[A-Za-z0-9_-]+$/.test(e)) {
+    document.getElementById('msg').textContent = "Ce lien de désinscription est incomplet. Répondez simplement « non » au mail reçu et vous ne recevrez plus de messages.";
+    return;
+  }
+  location.replace('https://thierryb.app.n8n.cloud/webhook/desinscription-amen?e=' + encodeURIComponent(e) + '&c=' + encodeURIComponent(c));
+})();
+</script>
+</body>
+</html>
