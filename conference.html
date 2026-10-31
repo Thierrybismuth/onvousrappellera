@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Trouver un job est un jeu d'enfant — conférence gratuite</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+  /* Page bis réservée au lien du mail 3 de la campagne conférence. D'abord la conférence, puis la pièce en option.
+     Les dates et les lieux sont lus sur la page principale (index.html) : une seule mise à jour suffit. */
+  :root{
+    --fond:#ffffff; --papier:#faf7f2; --encre:#1c1c1c; --gris:#6b6660; --trait:#e7e2d8;
+    --rouge:#d8281f; --rouge-pale:#fbecea; --vert-pale:#eaf5ec;
+    --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --texte:'Outfit', 'Helvetica Neue', Arial, sans-serif;
+    color-scheme: light;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;background:var(--fond);color:var(--encre);font-family:var(--texte);font-weight:300;line-height:1.6;font-size:16px;
+    padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-top:20px;padding-bottom:48px}
+  .wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+  .tag{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);font-weight:600}
+  h1{font-family:var(--display);font-style:italic;font-weight:700;font-size:clamp(2rem,7vw,2.7rem);line-height:1.08;margin:4px 0 12px;text-wrap:balance}
+  .auteur{display:flex;align-items:center;gap:14px;color:var(--gris);font-size:.95rem}
+  .auteur img{width:72px;height:auto;border-radius:4px;flex:none}
+  .auteur p{margin:0}
+  .auteur b{color:var(--encre);font-weight:600}
+  .auteur a{color:var(--rouge);font-weight:500}
+  .titre-piece{color:var(--rouge);font-weight:700;letter-spacing:.02em}
+  h2{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.2;margin:0;text-wrap:balance}
+  .bloc{display:flex;flex-direction:column;gap:12px}
+  .quand{background:var(--papier);border-left:3px solid var(--rouge);padding:10px 14px;font-weight:500;margin:0}
+  .quand span{color:var(--rouge)}
+  .quand small{display:block;font-weight:400;color:var(--gris);font-size:.88rem}
+  .cles{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .cle{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--trait);min-width:0}
+  .cle img{display:block;width:96px;height:auto;border-radius:3px}
+  .cle p{margin:0;font-size:1.08rem;line-height:1.3;font-weight:600;min-width:0}
+  .cle b{font-family:var(--display);font-size:1.6rem;font-weight:700;color:var(--rouge);margin-right:8px;vertical-align:-2px}
+  .livre{margin:0;font-size:.85rem;color:var(--gris)}
+  .livre i{color:var(--encre);font-weight:400}
+  form{display:flex;flex-direction:column;gap:24px}
+  .grille{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .champ{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .champ.plein{grid-column:1/-1}
+  label.lib{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);font-weight:500}
+  input[type=text],input[type=email],input[type=tel],input[type=number],select{font:inherit;font-weight:400;padding:10px 12px;border:1px solid var(--trait);border-radius:4px;background:var(--fond);color:var(--encre);width:100%}
+  input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--rouge);outline-offset:2px}
+  .piece{border:1.5px solid var(--encre);border-radius:4px;padding:18px;display:flex;flex-direction:column;gap:12px;background:var(--papier)}
+  .piece p{margin:0}
+  .coche{display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--trait);border-radius:4px;background:var(--fond);cursor:pointer;font-weight:500}
+  .coche input{accent-color:var(--rouge);width:18px;height:18px;flex:none}
+  .tarif{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--trait);border-radius:4px;background:var(--fond);cursor:pointer}
+  .tarif input{margin-top:5px;accent-color:var(--rouge)}
+  .tarif b{font-weight:600}
+  .tarif small{color:var(--gris);font-size:.85rem}
+  .tarif.petit b{font-weight:500;font-size:.92rem}
+  .btn{font:inherit;font-weight:600;font-size:1rem;background:var(--rouge);color:#fff;border:0;border-radius:4px;padding:14px 18px;cursor:pointer}
+  .btn:disabled{opacity:.55;cursor:wait}
+  .msg{font-size:.92rem;border-radius:4px;padding:12px 14px;margin:0}
+  .msg.ko{background:var(--rouge-pale)}
+  .msg.ok{background:var(--vert-pale)}
+  .media{display:block;max-width:360px}
+  .media video{display:block;width:100%;height:auto;border-radius:3px;background:#000}
+  .legende{font-size:.82rem;color:var(--gris);margin-top:4px}
+  figure{margin:0}
+  .vide{color:var(--gris);font-style:italic}
+  .pied{font-size:.85rem;color:var(--gris);text-align:center}
+  .pied a{color:var(--gris)}
+  @media (max-width:560px){.cle{grid-template-columns:76px 1fr}.cle img{width:76px}.cle p{font-size:1rem}}
+  @media (max-width:440px){.grille{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="tag">Conférence gratuite · 45 minutes</span>
+    <h1>Trouver un job est un jeu d'enfant</h1>
+    <div class="auteur"><img src="assets/conference/thierry.jpg" alt="Thierry Bismuth"><p>Par <b>Thierry Bismuth</b><br><a href="https://www.linkedin.com/in/thierry-bismuth" target="_blank" rel="noopener">Son profil LinkedIn</a></p></div>
+  </header>
+
+  <form id="resa" novalidate>
+    <section class="bloc" aria-labelledby="t-quand">
+      <h2 id="t-quand">Où et quand ?</h2>
+      <div class="grille">
+        <div class="champ"><label class="lib" for="f-ville">Votre ville</label><select id="f-ville"></select></div>
+        <div class="champ"><label class="lib" for="f-soir">Date</label><select id="f-soir"></select></div>
+      </div>
+      <p class="quand" id="quand">Chargement des dates…</p>
+    </section>
+
+    <section class="bloc" aria-labelledby="t-cles">
+      <h2 id="t-cles">Les 7 clés pour trouver un job plus vite que les autres</h2>
+      <ul class="cles">
+        <li class="cle"><img src="assets/conference/cle1.jpg" alt="Une candidate concentrée sur une annonce" loading="lazy"><p><b>1</b>Décrypter une annonce</p></li>
+        <li class="cle"><img src="assets/conference/cle2.jpg" alt="Le recruteur lit le CV face à la candidate" loading="lazy"><p><b>2</b>Rédiger le CV qui y correspond</p></li>
+        <li class="cle"><img src="assets/conference/cle3.jpg" alt="Julien appelle, la recruteuse décroche" loading="lazy"><p><b>3</b>Obtenir le recruteur au téléphone</p></li>
+        <li class="cle"><img src="assets/conference/cle4.jpg" alt="Poignée de main avant l'entretien" loading="lazy"><p><b>4</b>Le convaincre de vous rencontrer</p></li>
+        <li class="cle"><img src="assets/conference/cle5.jpg" alt="La RH présente le candidat au manager" loading="lazy"><p><b>5</b>L'aider à vous « vendre » à l'opérationnel qui recrute</p></li>
+        <li class="cle"><img src="assets/conference/cle6.jpg" alt="Une candidate défend sa candidature face au manager" loading="lazy"><p><b>6</b>Convaincre l'opérationnel, même sans le profil idéal</p></li>
+        <li class="cle"><img src="assets/conference/cle7.jpg" alt="Le patron accueille la nouvelle recrue" loading="lazy"><p><b>7</b>Réussir vos premiers jours d'intégration</p></li>
+      </ul>
+      <p class="livre">Tout est extrait du livre <i>Trouver un job est un jeu d'enfant</i>.</p>
+    </section>
+
+    <section class="bloc" aria-labelledby="t-vous">
+      <h2 id="t-vous">Réservez votre place</h2>
+      <div class="grille">
+        <div class="champ"><label class="lib" for="f-prenom">Prénom</label><input id="f-prenom" type="text" autocomplete="given-name"></div>
+        <div class="champ"><label class="lib" for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name"></div>
+        <div class="champ plein"><label class="lib" for="f-email">Email</label><input id="f-email" type="email" autocomplete="email"></div>
+        <div class="champ"><label class="lib" for="f-tel">Portable</label><input id="f-tel" type="tel" autocomplete="tel"></div>
+      </div>
+    </section>
+
+    <section class="piece" aria-labelledby="t-piece">
+      <h2 id="t-piece">Et juste après, la pièce</h2>
+      <p>Au même endroit, juste après la conférence : <span class="titre-piece">ON VOUS RAPPELLERA</span>, une pièce écrite pour faire passer les mêmes conseils de façon plus drôle qu'un livre ou une conférence 😀. Plus de 3 000 spectateurs l'ont déjà vue.</p>
+      <figure class="media">
+        <video controls preload="none" playsinline poster="assets/conference/teaser-affiche.jpg" src="assets/video/ovr-teaser-2026-v6.mp4"></video>
+        <figcaption class="legende">Le teaser de la pièce</figcaption>
+      </figure>
+      <label class="coche"><input type="checkbox" id="f-piece">Je réserve aussi des places pour la pièce</label>
+      <div class="bloc" id="w-piece" hidden>
+        <div class="grille">
+          <div class="champ" id="w-seance"><label class="lib" for="f-seance">Séance</label><select id="f-seance"></select></div>
+          <div class="champ"><label class="lib" for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div>
+        </div>
+        <label class="tarif"><input type="radio" name="tarif" id="t-reduit" value="reduit" checked><span><b>Tarif demandeurs d'emploi et étudiants — 15&nbsp;€</b><br><small>justificatif à présenter à l'entrée</small></span></label>
+        <div class="champ" id="w-statut"><label class="lib" for="f-statut">Je suis</label><select id="f-statut"><option value="Demandeur d'emploi">Demandeur d'emploi</option><option value="Étudiant">Étudiant</option></select></div>
+        <label class="tarif petit"><input type="radio" name="tarif" id="t-normal" value="partenaire"><span><b>Plein tarif — 20&nbsp;€</b></span></label>
+      </div>
+    </section>
+
+    <button class="btn" type="submit" id="f-btn">Réserver ma place à la conférence →</button>
+    <p class="msg" id="f-msg" hidden></p>
+  </form>
+
+  <p class="pied">Une question ? <a href="tel:0610703090">06 10 70 30 90</a></p>
+</div>
+
+<script>
+(function(){
+  var GATEWAY='https://thierryb.app.n8n.cloud/webhook/sheets-gateway';
+  var BILLETTERIE='https://thierryb.app.n8n.cloud/webhook/billetterie-paiement';
+  var SHEET='1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg';
+  var MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  var JOURS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+  var $=function(id){return document.getElementById(id);};
+  var sv=$('f-ville'), so=$('f-soir'), sc=$('f-seance'), cb=$('f-piece'), btn=$('f-btn'), msg=$('f-msg');
+  var V={}, DISPO={};
+  function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+  function maj1(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+  function show(cls,html){ msg.className='msg '+cls; msg.innerHTML=html; msg.hidden=false; }
+  function enMinutes(h){ var m=String(h).match(/(\d{1,2})h(\d{2})?/); return m ? (+m[1])*60+(+(m[2]||0)) : null; }
+  function enHeure(min){ var h=Math.floor(min/60), m=min%60; return h+'h'+(m?String(m).padStart(2,'0'):''); }
+
+  /* Lit le bloc DATES / LIEUX / EN_PAUSE de la page principale : une seule mise à jour pour les deux pages. */
+  function bloc(src, nom, ouvre, ferme){
+    var i=src.indexOf('var '+nom+'='); if(i<0) return null;
+    var a=src.indexOf(ouvre,i), prof=0;
+    for(var k=a;k<src.length;k++){ var c=src[k]; if(c===ouvre) prof++; else if(c===ferme){ prof--; if(!prof) return src.slice(a,k+1); } }
+    return null;
+  }
+  function lire(t){ return Function('"use strict";return ('+t+');')(); }
+
+  function construire(DATES, LIEUX, PAUSE){
+    Object.keys(DATES).forEach(function(ville){
+      var soirs={}, ordre=[];
+      DATES[ville].forEach(function(o){
+        if(PAUSE.indexOf(o.c)>=0) return;
+        var p=o.d.split(' · '), m=p[0].match(/^(\d+)\s+(\S+)\s+(\d{4})$/); if(!m) return;
+        var mi=MOIS.indexOf(m[2]); if(mi<0) return;
+        var dt=new Date(+m[3],mi,+m[1]);
+        var auj=new Date(); auj.setHours(0,0,0,0); if(dt<auj) return;
+        var cle=p[0];
+        if(!soirs[cle]){ soirs[cle]={iso:m[3]+'-'+String(mi+1).padStart(2,'0')+'-'+String(+m[1]).padStart(2,'0'), j:maj1(JOURS[dt.getDay()])+' '+(+m[1])+' '+m[2], lieu:o.l, s:[]}; ordre.push(cle); }
+        soirs[cle].s.push({h:p[1], c:o.c});
+      });
+      if(!ordre.length) return;
+      ordre.sort(function(a,b){ return soirs[a].iso<soirs[b].iso?-1:1; });
+      V[ville]={soirs:ordre.map(function(k){
+        var x=soirs[k]; x.s.sort(function(a,b){ return enMinutes(a.h)-enMinutes(b.h); });
+        /* Conférence : une heure avant la 1re séance de la soirée ; Toulouse (Le 9, apéro et dîner dès 19h) à 18h. */
+        x.c = (x.lieu==='LE9') ? '18h' : enHeure(enMinutes(x.s[0].h)-60);
+        var L=LIEUX[x.lieu]||{n:'',a:''}; x.nom=L.n; x.adr=L.a;
+        return x; })};
+    });
+    var villes=Object.keys(V).sort(function(a,b){ return V[a].soirs[0].iso<V[b].soirs[0].iso?-1:1; });
+    sv.innerHTML=villes.map(function(v){ return '<option value="'+esc(v)+'">'+esc(v)+'</option>'; }).join('');
+    var q=new URLSearchParams(location.search).get('ville');
+    if(q){ var t=villes.filter(function(v){ return v.toLowerCase()===q.toLowerCase(); })[0]; if(t) sv.value=t; }
+    soirs();
+  }
+  function soirs(){ var d=V[sv.value]; so.innerHTML=''; if(!d) return; d.soirs.forEach(function(x,i){ var o=document.createElement('option'); o.value=i; o.textContent=x.j; so.appendChild(o); }); seances(); }
+  function soir(){ var d=V[sv.value]; return d ? d.soirs[+so.value||0] : null; }
+  function seances(){ var x=soir(); sc.innerHTML=''; if(!x) return;
+    x.s.forEach(function(s){ var r=(s.c in DISPO)?DISPO[s.c]:null, plein=(r!==null&&r<=0); var o=document.createElement('option'); o.value=s.c; o.textContent='Pièce à '+s.h+(plein?' — complet':''); o.disabled=plein; sc.appendChild(o); });
+    var libre=[].slice.call(sc.options).filter(function(o){return !o.disabled;})[0]; if(libre) sc.value=libre.value;
+    $('w-seance').hidden=(x.s.length<2); maj(); }
+  function maj(){
+    var x=soir();
+    if(x) $('quand').innerHTML=esc(x.j)+' à <span>'+esc(x.c)+'</span> · 45 minutes · '+esc(x.nom)+', '+esc(sv.value)+(x.adr?'<small>'+esc(x.adr)+'</small>':'');
+    $('w-piece').hidden=!cb.checked;
+    $('w-statut').hidden=!$('t-reduit').checked;
+    btn.textContent= cb.checked ? 'Réserver la conférence et la pièce →' : 'Réserver ma place à la conférence →';
+    msg.hidden=true;
+  }
+  sv.addEventListener('change',soirs); so.addEventListener('change',seances); cb.addEventListener('change',maj);
+  [].forEach.call(document.querySelectorAll('input[name=tarif]'),function(r){ r.addEventListener('change',maj); });
+
+  fetch('/index.html?'+Date.now()).then(function(r){ return r.text(); }).then(function(src){
+    var D=bloc(src,'DATES','{','}'), L=bloc(src,'LIEUX','{','}'), P=bloc(src,'EN_PAUSE','[',']');
+    if(!D) throw 0;
+    construire(lire(D), L?lire(L):{}, P?lire(P):[]);
+    if(!Object.keys(V).length) $('quand').innerHTML='<span class="vide">Aucune date ouverte pour le moment.</span>';
+  }).catch(function(){ $('quand').innerHTML='Les dates n\'ont pas pu être chargées. Rechargez la page, ou appelez le 06 10 70 30 90.'; });
+  fetch('/dispo.json?j='+new Date().toISOString().slice(0,10)).then(function(r){ return r.ok?r.json():null; }).then(function(d){ if(d&&d.dispo){ DISPO=d.dispo; if(soir()) seances(); } }).catch(function(){});
+
+  function horodatage(){ var d=new Date(), p=function(n){return String(n).padStart(2,'0');}; return p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds()); }
+
+  $('resa').addEventListener('submit',function(e){
+    e.preventDefault();
+    var x=soir(); if(!x){ show('ko','Merci de choisir votre ville et votre date.'); return; }
+    var p={prenom:$('f-prenom').value.trim(), nom:$('f-nom').value.trim(), email:$('f-email').value.trim(), tel:$('f-tel').value.trim()};
+    if(!p.prenom||!p.nom){ show('ko','Merci d\'indiquer votre prénom et votre nom.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
+    var piece=cb.checked, seance=piece?sc.value:'', tarif=(document.querySelector('input[name=tarif]:checked')||{}).value||'reduit';
+    var qty=Math.max(1,parseInt($('f-places').value,10)||1), statut=(piece&&tarif==='reduit')?$('f-statut').value:'';
+    if(piece && !seance){ show('ko','Cette séance est complète : choisissez-en une autre, ou réservez seulement la conférence.'); return; }
+    if(piece && !p.tel){ show('ko','Merci d\'indiquer votre portable pour réserver la pièce.'); return; }
+    btn.disabled=true; show('ok','Enregistrement de votre place…');
+    var codeConf='CONF-'+x.iso;
+    /* Une ligne « conférence » dans Réservations GP (colonne Conférence = OUI). Aucune place de pièce n'y est comptée. */
+    var ligne=[horodatage(), sv.value, x.j+' · conférence '+x.c, p.nom.toUpperCase(), p.prenom, p.tel, p.email, '', '', '', '0', 'OUI', 'NON',
+      'Conférence gratuite', '0,00 €', statut, '', '', codeConf, 'Gratuit (conférence)', '', '', '', 'Page conférence'+(piece?' + pièce '+seance:''), 'OUI', ''];
+    fetch(GATEWAY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SHEET,action:'append',range:"'Réservations GP'!A:Z",valueInputOption:'RAW',values:[ligne]})})
+      .then(function(r){ if(!r.ok) throw 0; return r.text(); })
+      .then(function(t){ if(!/updates|updatedRange|spreadsheetId/.test(t)) throw 0;
+        if(!piece){
+          btn.textContent='C\'est réservé ✓';
+          show('ok','<b>C\'est noté, '+esc(p.prenom)+' !</b> Votre place à la conférence est réservée : <b>'+esc(x.j)+' à '+esc(x.c)+'</b>, '+esc(x.nom)+', '+esc(sv.value)+(x.adr?' ('+esc(x.adr)+')':'')+'. Vous recevrez une confirmation par mail.');
+          return;
+        }
+        show('ok','Votre place à la conférence est réservée. Préparation du paiement sécurisé pour la pièce…');
+        return fetch(BILLETTERIE,{method:'POST',headers:{'Content-Type':'text/plain'},
+          body:JSON.stringify({seance:seance,tarif:tarif,qty:qty,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.tel,statut:statut,ft:'',accord:false,code:'',source:'conference'})})
+          .then(function(r){ return r.json(); })
+          .then(function(d){ if(d&&d.ok&&d.url){ location.href=d.url; return; }
+            if(d&&d.ok&&d.invite){ show('ok','<b>'+esc(d.message)+'</b>'); return; }
+            btn.disabled=false; show('ko','Votre place à la <b>conférence</b> est bien réservée, mais le paiement de la pièce n\'a pas pu être préparé : '+esc((d&&d.message)||'erreur inconnue')+'. Rien n\'a été débité. Vous pouvez réessayer, ou appeler le 06 10 70 30 90.'); })
+          .catch(function(){ btn.disabled=false; show('ko','Votre place à la <b>conférence</b> est bien réservée, mais le service de paiement de la pièce ne répond pas. Rien n\'a été débité. Réessayez dans un instant, ou appelez le 06 10 70 30 90.'); });
+      })
+      .catch(function(){ btn.disabled=false; maj(); show('ko','Votre place n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez le 06 10 70 30 90.'); });
+  });
+})();
+</script>
+</body>
+</html>
