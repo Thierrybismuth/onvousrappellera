@@ -190,8 +190,6 @@ footer a{color:var(--gris);}
 
       <div class="tarifs">
         <div class="carre"><input type="radio" name="tarif" value="bdr" checked hidden><span class="badge">Carré Or</span><span class="prix">20&nbsp;€</span><span class="sous">Réservé aux membres du BDR : les meilleures places de la salle.</span></div>
-        <hr class="tsep">
-        <label class="ck"><input type="checkbox" id="f-accord"><span>Je souhaite que mes coordonnées soient transmises à des cabinets de recrutement et à des portails d'emploi pour accélérer mon retour à l'emploi.</span></label>
         <div class="fgrid" style="margin-top:.8rem"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
       </div>
 
@@ -254,7 +252,7 @@ document.addEventListener('click',function(e){ var m=e.target.closest('.menu'); 
     btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
     var detail='<p><b>Soirée BDR — Toulouse, 2 décembre (Le 9)</b></p><p>'+esc(p.prenom)+' '+esc(p.nom)+' — '+esc(p.societe)+' ('+esc(p.poste)+')<br>'+esc(p.email)+' — '+esc(p.portable)+'</p><p>'+p.qty+' place(s) — '+esc(LIB[t])+' — '+(PRIX[t]*p.qty)+' €'+(p.statut?' — '+esc(p.statut)+(p.ft?' n° '+esc(p.ft):''):'')+'</p><p>Dîner : '+(p.diner?'oui':'non')+' · Soirée festive : '+(p.festive?'oui':'non')+'</p><p>Paiement Stripe en cours : vérifier l\'encaissement dans les réservations.</p>';
     fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:'bismuththierry@gmail.com',subject:'Résa BDR 2 déc. — '+p.prenom+' '+p.nom+' ('+LIB[t]+', '+p.qty+' pl.)',body:detail})}).catch(function(){});
-    fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({seance:SEANCE,tarif:(t==='bdr'?'partenaire':t),qty:p.qty,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.portable,statut:p.statut,ft:p.ft,accord:document.getElementById('f-accord').checked,code:'',source:'bdr-toulouse',bdr:(t==='bdr'),entreprise:p.societe,fonction:p.poste,diner:p.diner,festive:p.festive})})
+    fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({seance:SEANCE,tarif:(t==='bdr'?'partenaire':t),qty:p.qty,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.portable,statut:p.statut,ft:p.ft,accord:false,code:'',source:'bdr-toulouse',bdr:(t==='bdr'),entreprise:p.societe,fonction:p.poste,diner:p.diner,festive:p.festive})})
       .then(function(r){return r.json();})
       .then(function(d){ if(d&&d.ok&&d.url){location.href=d.url;return;} show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
       .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
