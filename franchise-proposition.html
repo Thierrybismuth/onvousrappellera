@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ON VOUS RAPPELLERA — Présentez votre enseigne sur scène</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Franchiseurs : nous invitons pour votre enseigne 20 à 30 entrepreneurs à une représentation d'On vous rappellera, dans les villes où vous voulez vous développer.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{--fond:#ffffff;--marine:#161616;--accent:#d8281f;--or:#c8913a;--gris:#5f6570;--trait:#e7e2d8;--doux:#faf8f4}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fond);color:var(--marine);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65}
+.wrap{max-width:900px;margin:0 auto;padding:0 6%}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.1;color:var(--marine)}
+.hero{padding:56px 0 40px;text-align:center}
+.hero h1{font-size:clamp(2.1rem,5.6vw,3.8rem);max-width:780px;margin:0 auto}
+.hero .slogan{margin-top:1.2rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(1.3rem,3vw,1.8rem);color:var(--accent)}
+.video-box{margin:2.2rem auto 0;position:relative;width:100%;max-width:820px;aspect-ratio:16/9;background:#000}
+.video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+section{padding:48px 0;border-top:1px solid var(--trait)}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:1.2rem}
+ul.puces{list-style:none;display:grid;gap:.55rem;max-width:680px}
+ul.puces li{position:relative;padding-left:1.2rem;font-size:1.02rem}
+ul.puces li::before{content:"";position:absolute;left:0;top:.72rem;width:6px;height:6px;background:var(--accent)}
+ol.soiree{list-style:none;counter-reset:s;display:grid;gap:0;max-width:700px;border-left:2px solid var(--accent);margin-left:6px}
+ol.soiree li{counter-increment:s;position:relative;padding:0 0 1.1rem 1.6rem}
+ol.soiree li::before{content:counter(s);position:absolute;left:-14px;top:0;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+ol.soiree li b{font-weight:600}
+.trio{display:grid;gap:.4rem;margin-top:.4rem}
+.trio p{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.4rem,3.2vw,2rem);line-height:1.2}
+.trio p span{color:var(--gris);font-weight:600}
+.trio2{display:grid;gap:14px}
+@media(min-width:760px){.trio2{grid-template-columns:repeat(3,1fr)}}
+.trio2 .t{border-top:4px solid var(--accent);background:var(--doux);padding:22px 20px 24px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.trio2.vu .t{opacity:1;transform:none}
+.trio2.vu .t:nth-child(2){transition-delay:.18s}.trio2.vu .t:nth-child(3){transition-delay:.36s}
+.t-ic{position:relative;width:56px;height:56px;color:#9aa0a8;margin-bottom:12px}
+.t-ic svg{width:100%;height:100%}
+.t-ic.barre::after{content:"";position:absolute;left:-4px;top:88%;width:0;height:3px;background:var(--accent);transform:rotate(-35deg);transform-origin:left center;transition:width .5s ease .5s}
+.trio2.vu .t-ic.barre::after{width:72px}
+.t-a{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.7rem,3.6vw,2.2rem);line-height:1.05;color:var(--marine)}
+.t-b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.3rem,2.8vw,1.6rem);color:var(--gris);line-height:1.15;margin-top:2px}
+.inclus-t{margin-top:1.6rem;font-weight:600;font-size:1.05rem}
+ul.inclus2{list-style:none;display:grid;gap:12px;margin-top:.8rem;max-width:700px}
+ul.inclus2 li{display:flex;gap:16px;align-items:center;background:var(--doux);padding:14px 16px;border-left:3px solid var(--or)}
+.i-ic{flex:0 0 46px;width:46px;height:46px;color:var(--accent)}
+.i-ic svg{width:100%;height:100%}
+ul.inclus2 b{display:block;font-weight:600;font-size:1.02rem}
+@media(prefers-reduced-motion:reduce){.trio2 .t{opacity:1;transform:none}.t-ic.barre::after{width:72px}}
+.photos{display:grid;gap:14px;margin-top:1.6rem}
+.photos img{display:block;width:100%;height:auto}
+@media(min-width:760px){.photos{grid-template-columns:1fr 1fr;align-items:start}}
+.prix{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1}
+.prix small{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:400;color:var(--gris)}
+.inclus{margin-top:.9rem;color:var(--gris)}
+.aparte{margin-top:1.6rem;max-width:680px;padding:14px 18px;background:#faf7f2;border:1px solid var(--trait);font-size:.98rem}
+.aparte b{display:block;font-weight:600;color:var(--accent);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+ul.avantages{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:.45rem}
+ul.avantages li{position:relative;padding-left:1.1rem}
+ul.avantages li::before{content:"";position:absolute;left:0;top:.68rem;width:5px;height:5px;background:var(--accent)}
+.info{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;margin-left:6px;border-radius:50%;border:1px solid var(--accent);background:#fff;color:var(--accent);font:italic 600 .75rem/1 Georgia,serif;cursor:pointer;vertical-align:1px}
+.info:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.bulle{display:block;margin-top:6px;padding:8px 12px;background:#fff;border:1px solid var(--trait);font-size:.92rem;color:var(--gris)}
+.form-sec{background:var(--doux)}
+.field.autres{margin:14px 0 22px}
+.slogan2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:1.3rem;color:var(--accent);margin:-.6rem 0 1.4rem}
+.ville{background:#fff;border:1px solid var(--trait);margin-bottom:8px}
+.ville>label{display:flex;gap:10px;align-items:center;padding:13px 14px;font-weight:500;cursor:pointer}
+.ville .dates{display:none;padding:0 14px 12px 40px}
+.ville.on .dates{display:block}
+.ville .dates label{display:flex;gap:8px;align-items:flex-start;font-size:.92rem;padding:5px 0;cursor:pointer}
+.ville .dates small{display:block;color:var(--gris);font-size:.8rem}
+.secteur{max-width:440px;margin-bottom:1.2rem}
+.aide{font-size:.85rem;color:var(--gris);line-height:1.4}
+.ville .dates label.pris{cursor:not-allowed;color:var(--gris)}
+.pris-note{display:block;color:var(--accent);font-size:.8rem;margin-top:2px}
+.ville .v-dates{margin-left:auto;font-size:.85rem;font-weight:400;color:var(--gris);text-align:right}
+.ville .v-dates span{display:block;white-space:nowrap}
+.ville .v-dates .v-sub{font-size:.78rem;white-space:normal}
+.ville.pris>label{cursor:not-allowed;color:var(--gris)}
+.ville .pris-note{padding:0 14px 12px 40px;font-size:.82rem;color:var(--accent)}
+.ville .seance-note{padding:0 14px 12px 40px;font-size:.82rem;color:var(--gris);font-style:italic}
+.ville .avenir{font-size:.88rem;color:var(--gris);font-style:italic}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;margin-top:2px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:1.6rem}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.85rem;font-weight:500;color:var(--gris)}
+.field input,.field select,.field textarea{background:#fff;border:1px solid #d9d3c7;color:var(--marine);font:inherit;font-size:.95rem;padding:11px 12px;border-radius:2px;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus,input[type=checkbox]:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:620px){.fgrid{grid-template-columns:1fr}}
+.btn{display:inline-block;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:1rem;padding:15px 30px;border:0;border-radius:2px;cursor:pointer;margin-top:1.4rem}
+.btn[disabled]{opacity:.55;cursor:default}
+.total{margin-top:1.4rem;font-weight:500}
+.avance{display:flex;gap:10px;align-items:flex-start;margin-top:1rem;font-size:.92rem;cursor:pointer;max-width:680px}
+.msg{margin-top:1rem;padding:0;font-size:.95rem}
+.msg.ok{padding:14px 16px;background:#eaf6ec;border-left:3px solid #2e7d32}
+.msg.ko{padding:14px 16px;background:#fdeceb;border-left:3px solid var(--accent)}
+.contact{padding:40px 0 64px;text-align:center;color:var(--gris)}
+.contact a{color:var(--marine)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.preuves{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start;margin-top:28px}
+.preuves img{width:100%;height:auto;border:1px solid #e0ddd6;background:#fff}
+.preuves-lien{margin-top:16px}.preuves-lien a{font-weight:600}
+@media(max-width:700px){.preuves{grid-template-columns:1fr}}
+</style>
+<style>.video-v{margin:2rem auto 0;width:100%;max-width:400px;background:#fff}.video-v video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}.video-f{margin:1.5rem auto 0;width:100%;max-width:480px}.video-f video{display:block;width:100%;height:auto;aspect-ratio:4/5;background:#000;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}
+</style>
+<style>.vgal{display:flex;gap:16px;align-items:flex-start;margin:2rem auto 0;width:100%}.vg-main{flex:0 0 400px;max-width:400px}.vg-main video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}.vg-grid{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.vg-th{position:relative;aspect-ratio:1/1;padding:0;border:1px solid #ddd;background:#fff center/cover no-repeat;cursor:pointer;box-shadow:0 6px 18px rgba(22,22,22,.12)}.vg-th:after{content:"";position:absolute;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#d51e29 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 6l10 6-10 6z'/%3E%3C/svg%3E") center/26px no-repeat;box-shadow:0 4px 12px rgba(0,0,0,.25)}.vg-th span{position:absolute;left:0;right:0;bottom:0;padding:6px 8px;background:rgba(255,255,255,.92);color:#161616;font-size:13px;font-weight:600;text-align:left}.vg-box{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}.vg-box.on{display:flex}.vg-box video{max-height:90vh;max-width:100%;height:auto;background:#000}.vg-x{position:absolute;top:12px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#d51e29;color:#fff;font-size:28px;line-height:40px;cursor:pointer}@media(max-width:760px){.vgal{flex-direction:column;align-items:center}.vg-main{flex:none;width:100%}.vg-grid{width:100%;grid-template-columns:repeat(2,1fr)}}.vgal.seule{justify-content:center}@media(min-width:761px){.vgal{width:min(1024px,94vw);position:relative;left:50%;transform:translateX(-50%)}}</style>
+</head>
+<body>
+<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#777;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Conventions d'entreprises</a><a href="/franchise.html" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px;white-space:nowrap">Développement d'enseigne</a><a href="/livres.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Les livres</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px;font-size:10.5px;opacity:.8">Casting</a></div><style id="ovr-topmenu-mobile">@media(max-width:700px){#ovr-topmenu{display:grid!important;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px!important;text-align:center!important;line-height:1.3!important}#ovr-topmenu a{display:flex;align-items:center;justify-content:center;margin:0!important;white-space:normal!important;padding:9px 6px;border:1px solid #e3e3e3;border-radius:6px;font-size:13.5px!important;opacity:1!important;color:#444!important;min-height:40px;box-sizing:border-box}#ovr-topmenu a[href="/casting.html"]{font-size:12.5px!important}#ovr-topmenu a[style*="font-weight:600"]{color:#161616!important;border-color:#161616;font-weight:700!important}#ovr-topmenu #nlx-btn{grid-column:1/-1;display:block;width:100%;margin:2px 0 0!important;padding:11px 12px;font-size:14px}}</style>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Présentez votre enseigne sur scène, devant 20 à 30 entrepreneurs invités pour vous.</h1>
+    <p class="slogan">Choisissez votre ville. On s'occupe du reste.</p>
+    <!-- VIDEO-THIERRY : emplacement prévu pour la vidéo d'explication de Thierry -->
+    <div class="vgal" id="vgal" aria-label="Vidéos de la pièce">
+      <div class="vg-main" id="vg-main"></div>
+      <div class="vg-grid" id="vg-grid"></div>
+    </div>
+    <div class="vg-box" id="vg-box" role="dialog" aria-modal="true" aria-label="Lecture de la vidéo"><button class="vg-x" type="button" aria-label="Fermer">&times;</button><video controls playsinline preload="none"></video></div>
+    <script>
+    /* Galerie vidéo — la 1re s'affiche en grand, les suivantes en vignettes. Pour en ajouter une : une ligne de plus, dans l'ordre d'affichage */
+    var VIDEOS=[
+      {src:"/assets/video/ovr-teaser-2026-v6.mp4", poster:"/assets/video/ovr-teaser-2026-v6.jpg", titre:"Teaser ON VOUS RAPPELLERA"},
+      {src:"/assets/video/promo/v12-coup-double.mp4?v=20261029c", poster:"/assets/video/promo/v12-coup-double.jpg", titre:"Coup double", des:"2026-11-18T08:30:00+01:00"},
+      {src:"/assets/video/promo/v11-mailings.mp4?v=20261029c", poster:"/assets/video/promo/v11-mailings.jpg", titre:"Vos mailings", des:"2026-11-16T08:30:00+01:00"},
+      {src:"/assets/video/promo/v09-villes-cibles.mp4?v=20261029c", poster:"/assets/video/promo/v09-villes-cibles.jpg", titre:"Vos villes cibles", des:"2026-11-12T08:30:00+01:00"},
+      {src:"/assets/video/promo/v06-moments.mp4?v=20261029c", poster:"/assets/video/promo/v06-moments.jpg", titre:"Des moments de qualité", des:"2026-11-08T08:30:00+01:00"},
+      {src:"/assets/video/promo/v07-sur-scene.mp4?v=20261029b", poster:"/assets/video/promo/v07-sur-scene.jpg", titre:"Montez sur scène", des:"2026-11-04T08:30:00+01:00"},
+      {src:"/assets/video/promo/v05-photos-videos.mp4?v=20261029c", poster:"/assets/video/promo/v05-photos-videos.jpg", titre:"Photos et vidéos", des:"2026-11-02T08:30:00+01:00"},
+      {src:"/assets/video/promo/v04-qui-sont-les-invites.mp4?v=20261029c", poster:"/assets/video/promo/v04-qui-sont-les-invites.jpg", titre:"Qui sont les invités", des:"2026-10-27T08:30:00+01:00"},
+      {src:"/assets/video/promo/v03-cout-candidat.mp4?v=20261029c", poster:"/assets/video/promo/v03-cout-candidat.jpg", titre:"Le coût d'un candidat", des:"2026-10-21T08:30:00+02:00"},
+      {src:"/assets/video/ovr-franchiseurs.mp4", poster:"/assets/video/ovr-franchiseurs.jpg", titre:"La soirée franchiseurs"},
+      {src:"/assets/video/promo/v25-consultants-recrutement.mp4?v=20261029b", poster:"/assets/video/promo/v25-consultants-recrutement.jpg", titre:"Consultants en recrutement"}
+    ];
+    /* Toutes les vidéos de la page visibles d emblée (19/10) */
+    /* Arrivée depuis un mailing (franchise.html?v=v02-palmares) : la vidéo du mail passe en grand et se lance seule */
+    var VMAIL=(new URLSearchParams(location.search).get('v')||'').replace(/[^a-z0-9-]/gi,'');
+    if(VMAIL){
+      var rep=VMAIL.match(/^rep-([a-z]+)$/i);
+      var vsrc=rep?'/assets/insta/'+rep[1]+'-repetitions/reel.mp4':'/assets/video/promo/'+VMAIL+'.mp4';
+      VIDEOS=VIDEOS.filter(function(v){ return v.src!==vsrc; });
+      VIDEOS.unshift({src:vsrc, poster:rep?'':'/assets/video/promo/'+VMAIL+'.jpg', titre:'ON VOUS RAPPELLERA'});
+    }
+    (function(){
+      var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
+      var v0=VIDEOS[0];
+      main.innerHTML='<video controls playsinline preload="metadata" poster="'+v0.poster+'" title="'+v0.titre+'"><source src="'+v0.src+'" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="'+v0.src+'">ouvrir la vidéo</a>.</video>';
+      if(VMAIL){
+        var mv=main.querySelector('video'); main.style.position='relative';
+        var son=document.createElement('button'); son.type='button'; son.textContent='🔊 Activer le son';
+        son.style.cssText='position:absolute;left:50%;bottom:56px;transform:translateX(-50%);background:#d6201f;color:#fff;border:0;border-radius:24px;padding:12px 22px;font:600 16px Outfit,Arial,sans-serif;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);z-index:2';
+        main.appendChild(son);
+        son.addEventListener('click',function(){ mv.muted=false; mv.currentTime=0; mv.play(); son.remove(); });
+        mv.addEventListener('volumechange',function(){ if(!mv.muted&&son.parentNode) son.remove(); });
+        mv.preload='auto';
+        /* Le son sans geste de l'internaute est refusé par les navigateurs : on tente, sinon on lance en muet */
+        var p1=mv.play(); if(p1&&p1.then){ p1.then(function(){ son.remove(); }).catch(function(){ mv.muted=true; var p2=mv.play(); if(p2&&p2.catch) p2.catch(function(){}); }); }
+      }
+      VIDEOS.slice(1).forEach(function(v){
+        var b=document.createElement('button'); b.type='button'; b.className='vg-th';
+        b.style.backgroundImage='url('+v.poster+')'; b.setAttribute('aria-label','Voir la vidéo : '+v.titre);
+        b.innerHTML='<span>'+v.titre+'</span>';
+        b.addEventListener('click',function(){ main.querySelector('video').pause(); lv.poster=v.poster; lv.src=v.src; box.classList.add('on'); var pr=lv.play(); if(pr&&pr.catch) pr.catch(function(){}); });
+        grid.appendChild(b);
+      });
+      if(VIDEOS.length<2){ grid.style.display='none'; document.getElementById('vgal').classList.add('seule'); }
+      function fermer(){ lv.pause(); lv.removeAttribute('src'); lv.load(); box.classList.remove('on'); }
+      box.querySelector('.vg-x').addEventListener('click',fermer);
+      box.addEventListener('click',function(e){ if(e.target===box) fermer(); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&box.classList.contains('on')) fermer(); });
+    })();
+    </script>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>La pièce</h2>
+    <ul class="puces">
+      <li>La vie d'une PME, d'un petit patron.</li>
+      <li>Ses problèmes du quotidien&nbsp;: le business, le recrutement, le management.</li>
+      <li>On s'en moque ensemble. Ensuite, on en parle sérieusement.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Votre soirée</h2>
+    <p class="inclus">Une salle de <b>100 places</b>, dont <b>20 à 30 entrepreneurs invités pour votre enseigne</b>. <b>4 enseignes</b> par soirée, jamais deux concurrentes.</p>
+    <ol class="soiree">
+      <li><b>19h</b>&nbsp;: réunion d'information sur la création d'entreprise. Chaque enseigne pitche <b>10 minutes</b> sur scène&nbsp;: votre témoignage et la présentation de votre enseigne.</li>
+      <li><b>20h</b>&nbsp;: la pièce ON VOUS RAPPELLERA.</li>
+      <li><b>21h30</b>&nbsp;: un verre au bar pour répondre aux questions.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="trio2"><div class="t"><div class="t-ic barre"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="12" width="36" height="24" rx="2"/><path d="M6 14l18 13 18-13"/></svg></div><p class="t-a">Plus efficace</p><p class="t-b">qu'un mailing.</p></div><div class="t"><div class="t-ic barre"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6h7l3 9-4.5 3a22 22 0 0 0 10.5 10.5L33 24l9 3v7a3 3 0 0 1-3 3A32 32 0 0 1 11 9a3 3 0 0 1 3-3z"/></svg></div><p class="t-a">Plus original</p><p class="t-b">qu'un appel.</p></div><div class="t"><div class="t-ic barre"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 40V16l18-8 18 8v24"/><rect x="12" y="24" width="8" height="16"/><rect x="28" y="24" width="8" height="16"/><path d="M6 40h36"/></svg></div><p class="t-a">Plus agréable</p><p class="t-b">qu'un salon de la franchise.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Les entrepreneurs invités</h2>
+    <ul class="puces">
+      <li>Ils ont déclaré vouloir créer leur entreprise.</li>
+      <li>Ils sont ou ont été gérants d'entreprise.</li>
+      <li>Ils ont choisi votre enseigne parmi les quatre de la soirée.</li>
+    </ul>
+    <div class="preuves">
+      <img src="assets/franchise/hellowork-franchise.jpg" alt="Sur une CVthèque, le candidat coche lui-même « Franchise »">
+      <img src="assets/franchise/hellowork-gerant.jpg" alt="Recherche de gérants autour d'une ville sur une CVthèque">
+      <img src="assets/franchise/formulaire-entrepreneurs.jpg" alt="Extrait du formulaire d'inscription des entrepreneurs invités">
+    </div>
+    <p class="preuves-lien"><a href="franchise-inscription.html">Voir le formulaire d'inscription des entrepreneurs →</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Le coût</h2>
+    <p class="prix">500&nbsp;€&nbsp;HT <small>par enseigne et par soirée</small></p>
+    <p class="inclus"><b>20 à 30 entrepreneurs</b> invités pour votre enseigne.</p>
+    <div class="aparte"><b>Vos franchisés et vos propres candidats</b>
+      <ul class="avantages">
+        <li>Prenez des places pour vos franchisés ou vos propres candidats&nbsp;: <b>20&nbsp;€ la place</b>.</li>
+      </ul>
+    </div>
+    <div class="aparte"><b>Une seule soirée, cinq usages</b>
+      <ul class="avantages">
+        <li>Un moment de développement.</li>
+        <li>Une exposition sur scène.</li>
+        <li>La rencontre de nouveaux profils.</li>
+        <li>Des rendez-vous avec vos candidats.</li>
+        <li>L'animation de vos franchisés.</li>
+      </ul>
+    </div>
+    <p class="inclus-t">Tout est inclus</p><ul class="inclus2"><li><span class="i-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="11"/><path d="M28 28l12 12"/><circle cx="20" cy="17" r="3.5"/><path d="M14 26c1.5-3 3.5-4 6-4s4.5 1 6 4"/></svg></span><span><b>Le sourcing</b>de vos entrepreneurs, sur toutes les bases de données.</span></li><li><span class="i-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14h36v6a4 4 0 0 0 0 8v6H6v-6a4 4 0 0 0 0-8z"/><path d="M24 17.5l1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6z"/></svg></span><span><b>Le spectacle</b>pour vos entrepreneurs invités.</span></li><li><span class="i-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 8h12l-1 10a5 5 0 0 1-10 0z"/><path d="M16 23v13M11 36h10"/><path d="M28 14h10v16a5 5 0 0 1-10 0z"/><path d="M38 18h3a3 3 0 0 1 0 6h-3"/></svg></span><span><b>Le verre au bar</b>après le spectacle.</span></li></ul>
+    <p class="inclus">Payable d'avance&nbsp;: c'est ce qui finance le sourcing, la salle de théâtre et les comédiens.</p>
+  </div>
+</section>
+
+<section class="form-sec" id="demande">
+  <div class="wrap">
+    <h2>Choisissez vos villes</h2>
+    <p class="slogan2">On s'occupe du reste.</p>
+    <div class="field secteur"><label for="f-nb">Votre secteur d'activité *</label><select id="f-nb"><option value="">— Choisissez d'abord votre secteur —</option><option>Automobile, moto, bateau</option><option>Beauté et santé</option><option>Bricolage et jardinage</option><option>Commerce alimentaire</option><option>Divertissements</option><option>Grande distribution</option><option>Horlogerie, bijouterie</option><option>Hôtellerie-restauration (CHR)</option><option>Immobilier</option><option>Jouets et cadeaux</option><option>Maison et décoration</option><option>Mode, chaussures et enfant</option><option>Produits culturels</option><option>Services aux entreprises</option><option>Services aux particuliers</option><option>Sport et loisirs</option><option>Autre</option></select><small class="aide">Il sert à bloquer vos dates à vos concurrents&nbsp;: une seule enseigne par secteur et par soirée.</small></div>
+    <div id="villes"></div>
+    <div class="field autres"><label for="f-autres">Je suis davantage intéressé par les villes suivantes</label><input id="f-autres" placeholder="Par exemple : Nice, Strasbourg"><small class="aide">Si vous êtes 5 à être intéressés par la même ville… on l'ajoute&nbsp;😀</small></div>
+    <div class="fgrid">
+      <div class="field full"><label for="f-ens">Enseigne *</label><input id="f-ens" autocomplete="organization"></div>
+      <div class="field"><label for="f-prenom">Prénom *</label><input id="f-prenom" autocomplete="given-name"></div>
+      <div class="field"><label for="f-nom">Nom *</label><input id="f-nom" autocomplete="family-name"></div>
+      <div class="field"><label for="f-fonction">Fonction</label><input id="f-fonction" autocomplete="organization-title"></div>
+      <div class="field"><label for="f-email">Email *</label><input id="f-email" type="email" autocomplete="email"></div>
+      <div class="field"><label for="f-tel">Portable *</label><input id="f-tel" type="tel" autocomplete="tel"></div>
+      <div class="field full"><label for="f-msg">Un mot sur votre projet de développement</label><textarea id="f-msg" rows="3"></textarea></div>
+    </div>
+    <p class="total" id="f-total"></p>
+    <label class="avance"><input type="checkbox" id="f-avance"><span>J'ai bien noté que la prestation (500&nbsp;€&nbsp;HT par soirée) est payable d'avance (elle finance le sourcing, la salle de théâtre et les comédiens).</span></label>
+    <button class="btn" id="f-btn" type="button">Envoyer ma demande</button>
+    <div class="msg" id="f-res" role="status"></div>
+  </div>
+</section>
+
+<footer class="contact">
+  <p>Une question&nbsp;? Thierry Bismuth — <a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a> — <a href="tel:0610703090">06 10 70 30 90</a></p>
+</footer>
+
+<script>
+(function(){ var b=document.getElementById('info-scene'), t=document.getElementById('bulle-scene'); if(!b||!t) return;
+  b.addEventListener('click',function(){ t.hidden=!t.hidden; b.setAttribute('aria-expanded',String(!t.hidden)); }); })();
+(function(){
+  var VILLES=['Paris','Bordeaux','Lyon','Toulouse','Nantes','Rennes','Montpellier','Marseille','Lille'];
+  // Copie de secours : les dates sont relues sur la page grand public à chaque ouverture.
+  var DATES={
+    "Paris":[{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"GAL"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"GAL"}],
+    "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"SPH"}],
+    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"CDR"}],
+    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO"}],
+    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR"}]
+  };
+  var LIEUX={"PVE":{n:"Théâtre Le Passage vers les Étoiles"},"GAL":{n:"Théâtre Montmartre Galabru"},"CRO":{n:"Le Croiseur"},"MR":{n:"Théâtre Artisse"},"SPL":{n:"Le Spotlight"},"SPH":{n:"Théâtre du Sphinx"},"CDR":{n:"La Comédie de Rennes"}};
+  var GW='https://thierryb.app.n8n.cloud/webhook/sheets-gateway', SS='1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg', TAB="'Soirées franchise'";
+  var MAIL='https://thierryb.app.n8n.cloud/webhook/send-email-unitaire';
+  var g=function(i){return document.getElementById(i);};
+  function esc(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+
+  function syncCv(){ document.querySelectorAll('input.cv[hidden]').forEach(function(cv){ cv.checked=[].some.call(document.querySelectorAll('.cd:checked'),function(x){return x.dataset.v===cv.value;}); }); }
+  function rendre(){
+    var html='';
+    VILLES.forEach(function(v,i){
+      var L=DATES[v]||[];
+      if(L.length){
+        html+='<input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'" hidden>';
+        var jours={}; L.forEach(function(o){ var j=o.d.split(' · ')[0]; jours[j]=(jours[j]||0)+1; });
+        var vus={};
+        L.forEach(function(o){ var lieu=(LIEUX[o.l]||{}).n||'', parts=o.d.split(' · ');
+          vus[parts[0]]=(vus[parts[0]]||0)+1; var dernier=jours[parts[0]]>1&&vus[parts[0]]===jours[parts[0]];
+          var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet ce soir-là.':(e==='pause'?'Non réservable pour l\'instant.':''));
+          html+='<div class="ville'+(e?' pris':'')+'"><label><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'>'+esc(v)+'<span class="v-dates"><span>'+esc(parts[0])+'</span>'+((parts[1]||lieu)?'<span class="v-sub">'+esc([parts[1],lieu].filter(Boolean).join(' — '))+'</span>':'')+'</span></label>'+(note?'<p class="pris-note">'+note+'</p>':'')+(dernier?'<p class="seance-note">'+jours[parts[0]]+' séances le même soir&nbsp;: cochez celle qui vous convient.</p>':'')+'</div>';
+        });
+      } else {
+        html+='<div class="ville"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'<span class="v-dates"><span>Date à venir</span></span></label></div>';
+      }
+    });
+    g('villes').innerHTML=html;
+    document.querySelectorAll('.cd').forEach(function(c){ c.addEventListener('change',syncCv); });
+  }
+  (function(){ var t=document.querySelector('.trio2'); if(!t) return;
+    if(!('IntersectionObserver' in window)){ t.classList.add('vu'); return; }
+    var io=new IntersectionObserver(function(e){ if(e[0].isIntersecting){ t.classList.add('vu'); io.disconnect(); } },{threshold:.35}); io.observe(t); })();
+  var OCC={};
+  function cle(v,d){ return v+'|'+d; }
+  function etat(v,d){ var o=OCC[cle(v,d)], s=(g('f-nb')||{}).value; if(!o) return ''; if(s&&s!=='Autre'&&o.s.indexOf(s)>-1) return 'pris'; if(o.n>=4) return 'complet'; return ''; }
+  var DISPO={};
+  function salleLibre(v,d){ var od=(DATES[v]||[]).filter(function(o){return o.d===d;})[0]; return !(od&&od.c&&(od.c in DISPO)&&DISPO[od.c]<9); }
+  var PAUSE=[];
+  var etat0=etat; etat=function(v,d){ if(v==='Paris'&&PAUSE.indexOf(String(d).split(' · ')[0])>=0) return 'pause'; var e=etat0(v,d); if(e) return e; return salleLibre(v,d)?'':'complet'; };
+  function chargerOcc(){
+    return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'read',range:TAB+'!H2:K1000'})})
+    .then(function(r){return r.json();}).then(function(j){ var O={};
+      (j.values||[]).forEach(function(r){ var st=(r[3]||'').toLowerCase(); if(/annul|stop/.test(st)) return; var sec=(r[1]||'').trim();
+        String(r[0]||'').split(' | ').forEach(function(p){ var k=p.indexOf(' : '); if(k<0) return; var v=p.slice(0,k).trim();
+          p.slice(k+3).split(' / ').forEach(function(d){ d=d.trim(); if(!d||/^date /.test(d)) return; var o=O[cle(v,d)]||(O[cle(v,d)]={n:0,s:[]}); o.n++; if(sec) o.s.push(sec); }); }); });
+      OCC=O; }).catch(function(){});
+  }
+  function rerendre(){
+    var cv=[].map.call(document.querySelectorAll('.cv:checked'),function(c){return c.value;});
+    var cd=[].map.call(document.querySelectorAll('.cd:checked'),function(c){return cle(c.dataset.v,c.value);});
+    rendre();
+    document.querySelectorAll('.cv:not([hidden])').forEach(function(c){ if(cv.indexOf(c.value)>-1) c.checked=true; });
+    document.querySelectorAll('.cd').forEach(function(c){ if(!c.disabled && cd.indexOf(cle(c.dataset.v,c.value))>-1) c.checked=true; });
+    syncCv();
+    majTotal();
+  }
+  rendre();
+  chargerOcc().then(rerendre);
+  /* Places restantes : lues dans /dispo.json, fichier recalculé une fois par jour (GitHub Actions) — aucune exécution n8n quand on consulte la page. Le paiement revérifie toujours les places en direct. */
+  function auGeste(fn){ fn(); }
+  function lireDispo(){ var j=new Date().toISOString().slice(0,10).replace(/-/g,''); return fetch('/dispo.json?j='+j).then(function(r){ if(!r.ok) throw 0; return r.json(); }); }
+  auGeste(function(){ lireDispo('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement').then(function(d){ if(d&&d.dispo){ DISPO=d.dispo; rerendre(); } }).catch(function(){}); });
+  g('f-nb').addEventListener('change',rerendre);
+  // Relecture des dates à jour sur la page grand public (une seule source).
+  fetch('/?v='+Date.now()).then(function(r){return r.text();}).then(function(h){
+    var m=h.match(/var DATES=(\{[\s\S]*?\n  \});/), n=h.match(/var LIEUX=(\{[\s\S]*?\n  \});/);
+    if(m){ var D=(new Function('return '+m[1]))(); if(D&&typeof D==='object'){ DATES=D; } }
+    if(n){ var Lx=(new Function('return '+n[1]))(); if(Lx) LIEUX=Lx; }
+    rerendre();
+  }).catch(function(){});
+
+  function nbSoirees(){ var n=0,av=0; document.querySelectorAll('.cv:checked').forEach(function(c){ var d=[].filter.call(document.querySelectorAll('.cd:checked'),function(x){return x.dataset.v===c.value;}).length; if(d) n+=d; else av++; }); return {n:n,av:av}; }
+  function majTotal(){ var s=nbSoirees(), t=g('f-total'); if(!s.n&&!s.av){t.textContent='';return;}
+    t.innerHTML=(s.n?s.n+' soirée'+(s.n>1?'s':'')+' × 500&nbsp;€&nbsp;HT = <b>'+(s.n*500).toLocaleString('fr-FR')+'&nbsp;€&nbsp;HT</b>':'')+(s.av?(s.n?'<br>':'')+s.av+' ville'+(s.av>1?'s':'')+' sans date choisie&nbsp;: montant calculé quand la date sera fixée.':''); }
+  document.addEventListener('change',function(e){ if(e.target.matches('.cv,.cd')) majTotal(); });
+  function show(k,t){ var m=g('f-res'); m.className='msg '+k; m.innerHTML=t; }
+  g('f-btn').addEventListener('click',function(){
+    var choix=[];
+    document.querySelectorAll('.cv:checked').forEach(function(c){
+      var d=[].map.call(document.querySelectorAll('.cd:checked'),function(x){return x;}).filter(function(x){return x.dataset.v===c.value;}).map(function(x){return x.value;});
+      choix.push(c.value+' : '+(d.length?d.join(' / '):((DATES[c.value]||[]).length?'date à préciser':'date à venir')));
+    });
+    var p={ens:g('f-ens').value.trim(),prenom:g('f-prenom').value.trim(),nom:g('f-nom').value.trim(),fonction:g('f-fonction').value.trim(),
+           email:g('f-email').value.trim(),tel:g('f-tel').value.trim(),nb:g('f-nb').value,msg:g('f-msg').value.trim(),autres:g('f-autres').value.trim()};
+    if(p.autres) p.msg=(p.msg?p.msg+'\n':'')+'Autres villes souhaitées : '+p.autres;
+    if(!choix.length&&!g('f-autres').value.trim()){ show('ko','Cochez au moins une ville, ou indiquez les villes qui vous intéressent.'); return; }
+    if(!p.ens){ show('ko','Indiquez le nom de votre enseigne.'); return; }
+    if(!p.prenom||!p.nom){ show('ko','Indiquez votre prénom et votre nom.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
+    if(!p.nb){ show('ko','Indiquez votre secteur d\'activité.'); return; }
+    if(p.tel.replace(/\D/g,'').length<9){ show('ko','Indiquez votre portable.'); return; }
+    if(!g('f-avance').checked){ show('ko','Cochez la case sur le paiement d\'avance.'); return; }
+    var S=nbSoirees(); p.montant=S.n*500;
+    var btn=g('f-btn'); btn.disabled=true; show('ok','Envoi en cours…');
+    var villes=choix.join(' | ');
+    var voulues=[].map.call(document.querySelectorAll('.cd:checked'),function(c){return [c.dataset.v,c.value];});
+    chargerOcc().then(function(){ var conf=voulues.filter(function(x){return etat(x[0],x[1]);}); if(conf.length) throw {conf:conf};
+    return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SS,action:'append',range:TAB+'!A:N',
+      values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),p.ens,p.prenom,p.nom,p.fonction,p.email,"'"+p.tel,villes,p.nb,p.msg,'Nouvelle demande (offre 500 €)','',p.montant,'Oui']]})}); })
+    .then(function(r){ return r.text().then(function(t){ if(!r.ok||!t) throw 0; var j=JSON.parse(t); if(!j.updates) throw 0; return j; }); })
+    .then(function(){
+      show('ok','<b>Demande enregistrée.</b> Thierry Bismuth vous rappelle pour caler les détails. Un email de confirmation vient de vous être envoyé.');
+      var li=choix.map(function(c){return '<li>'+esc(c)+'</li>';}).join('');
+      fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:'bismuththierry@gmail.com',
+        subject:'Soirée franchise (offre 500 €) — demande de '+p.ens,
+        body:'<p><b>'+esc(p.ens)+'</b> — '+esc(p.prenom)+' '+esc(p.nom)+(p.fonction?' ('+esc(p.fonction)+')':'')+'<br>'+esc(p.email)+' — '+esc(p.tel)+'</p><p>Secteur : '+esc(p.nb)+' — montant estimé : '+p.montant+' € HT (paiement d\'avance accepté)</p><ul>'+li+'</ul>'+(p.msg?'<p>Message : '+esc(p.msg)+'</p>':'')+'<p>Enregistré dans l\'onglet « Soirées franchise » du tableau de chasse.</p>'})}).catch(function(){});
+      fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:p.email,
+        subject:'On vous rappellera — votre demande de soirée franchise',
+        body:'<p>Bonjour '+esc(p.prenom)+',</p><p>Merci pour votre demande au nom de '+esc(p.ens)+'. Voici ce que vous avez choisi :</p><ul>'+li+'</ul><p>Montant estimé : '+p.montant+' € HT pour les dates choisies, payable d\'avance.</p><p>Je vous rappelle pour vérifier qu\'aucune enseigne concurrente n\'est déjà inscrite sur vos soirées, puis caler les détails.</p><p>Thierry Bismuth<br>bismuththierry@gmail.com — 06 10 70 30 90</p><p style="font-size:12px;color:#777">Ce message est envoyé automatiquement. En cas d\'erreur, appelez-moi directement au 06 10 70 30 90.</p>'})}).catch(function(){});
+      ['f-ens','f-prenom','f-nom','f-fonction','f-email','f-tel','f-msg','f-autres'].forEach(function(x){g(x).value='';});
+      document.querySelectorAll('input[type=checkbox]').forEach(function(c){c.checked=false;}); document.querySelectorAll('.ville').forEach(function(v){v.classList.remove('on');}); majTotal();
+      btn.disabled=false;
+    })
+    .catch(function(e){ if(e&&e.conf){ rerendre(); show('ko','Une autre enseigne vient de s\'inscrire&nbsp;: '+e.conf.map(function(x){return esc(x[0]+' — '+x[1]);}).join(', ')+' n\'est plus disponible pour votre secteur. Choisissez une autre soirée dans cette ville, ou une autre ville. Rien n\'a été enregistré.'); btn.disabled=false; return; }
+      show('ko','Votre demande n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez Thierry au 06 10 70 30 90.'); btn.disabled=false; });
+  });
+})();
+</script>
+</body>
+</html>
