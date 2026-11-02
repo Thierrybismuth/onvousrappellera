@@ -28,6 +28,8 @@ ol.soiree{list-style:none;counter-reset:s;display:grid;gap:0;max-width:700px;bor
 ol.soiree li{counter-increment:s;position:relative;padding:0 0 1.1rem 1.6rem}
 ol.soiree li::before{content:counter(s);position:absolute;left:-14px;top:0;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center}
 ol.soiree li b{font-weight:600}
+.soiree li li{counter-increment:none;padding:0 0 .25rem 1.1rem;margin-top:.3rem}
+.soiree li li::before{content:'–';background:none;color:inherit;left:0;top:0;width:auto;height:auto;border-radius:0;font-size:1rem;font-weight:400;display:inline}
 .trio{display:grid;gap:.4rem;margin-top:.4rem}
 .trio p{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.4rem,3.2vw,2rem);line-height:1.2}
 .trio p span{color:var(--gris);font-weight:600}
