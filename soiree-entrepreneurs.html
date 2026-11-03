@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soirée entrepreneurs — ON VOUS RAPPELLERA</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--rouge:#c8322a;--jaune:#f5c842;--gris:#f2f0ec;--muted:#6b6b6b;--ink:#1a1a1a;--ligne:#e4e1da;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{background:#fff;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.55;}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px;}
+a{color:var(--rouge);}
+.titre{color:var(--rouge);font-weight:700;letter-spacing:.02em;}
+header{padding:34px 0 10px;}
+.kicker{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--rouge);margin-bottom:10px;}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,6.4vw,46px);line-height:1.08;margin-bottom:14px;}
+.intro{font-size:1.05rem;color:#333;}
+.offert{display:inline-block;margin-top:14px;background:var(--jaune);font-weight:600;padding:6px 12px;border-radius:2px;}
+.choix{margin:26px 0 8px;padding:16px;background:var(--gris);border-radius:4px;}
+.choix label{display:block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+select,input,textarea{width:100%;border:1px solid #d6d3cc;border-radius:2px;padding:12px;font-family:inherit;font-size:16px;background:#fff;color:var(--ink);}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--rouge);}
+.lieu{margin-top:10px;font-size:.95rem;}
+.lieu small{display:block;color:var(--muted);}
+h2{font-family:'DM Serif Display',serif;font-size:clamp(24px,4.6vw,32px);line-height:1.15;margin:40px 0 16px;}
+.etape{display:grid;grid-template-columns:92px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--ligne);}
+.heure{font-family:'DM Serif Display',serif;font-size:26px;color:var(--rouge);line-height:1;}
+.etape h3{font-size:1.12rem;margin-bottom:4px;}
+.etape p{color:#333;}
+.etape ul{margin:8px 0 0 18px;}
+.etape li{margin:3px 0;}
+.photo{position:relative;margin:12px 0 0;}
+.photo img{display:block;width:100%;height:auto;}
+.photo .logo{position:absolute;right:8px;bottom:8px;width:84px;height:auto;}
+.galerie{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.galerie .photo{margin:0;}
+video{display:block;width:100%;height:auto;margin-top:12px;background:#000;}
+.encart{margin:30px 0 0;padding:18px;border-left:4px solid var(--rouge);background:#fbf7f6;}
+.encart p+p{margin-top:8px;}
+form{margin-top:10px;}
+.champ{margin-bottom:14px;}
+.champ>label,.q{display:block;font-weight:600;margin-bottom:6px;}
+.q small{font-weight:400;color:var(--muted);}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer;}
+.opt input{width:18px;height:18px;margin-top:3px;flex-shrink:0;accent-color:var(--rouge);}
+button{width:100%;background:var(--rouge);color:#fff;border:0;border-radius:2px;padding:16px;font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;margin-top:8px;}
+button:disabled{opacity:.6;cursor:default;}
+.msg{margin-top:14px;padding:14px;border-radius:2px;}
+.msg.ko{background:#fdecea;color:#8a1c14;}
+.msg.ok{background:#eef6ee;color:#1d4d1f;}
+.fini{margin-top:10px;padding:22px;background:#eef6ee;border-radius:4px;}
+.fini h3{font-family:'DM Serif Display',serif;font-size:26px;margin-bottom:8px;}
+.fini .rdv{margin-top:12px;font-size:1.05rem;}
+.vide{color:var(--muted);font-style:italic;}
+.pied{margin:40px 0 30px;font-size:.88rem;color:var(--muted);text-align:center;}
+@media(max-width:600px){.grid,.galerie{grid-template-columns:1fr;}.etape{grid-template-columns:1fr;gap:6px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Soirée entrepreneurs</div>
+    <h1>5 concepts à découvrir, puis une pièce de théâtre</h1>
+    <p class="intro">Vous dirigez ou avez dirigé une entreprise, et vous envisagez de découvrir de nouveaux concepts ? Venez à la réunion d'information qui présente <strong>5 concepts en une heure</strong>, puis restez pour la pièce <span class="titre">ON VOUS RAPPELLERA</span>, à laquelle vous êtes invité par les enseignes.</p>
+    <span class="offert">Invitation offerte</span>
+  </header>
+
+  <div class="choix">
+    <label for="ville">Votre ville</label>
+    <select id="ville"><option value="">Chargement des dates…</option></select>
+    <div id="w-soir" style="margin-top:10px" hidden>
+      <label for="soir">Votre soirée</label>
+      <select id="soir"></select>
+    </div>
+    <div class="lieu" id="lieu"></div>
+  </div>
+
+  <h2>Le programme</h2>
+
+  <div class="etape">
+    <div class="heure" id="h-accueil">—</div>
+    <div>
+      <h3>Rendez-vous au théâtre</h3>
+      <p>On vous accueille avec quelques friandises.</p>
+      <div id="photo-theatre"></div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="heure" id="h-reunion">—</div>
+    <div>
+      <h3>Présentation de l'entrepreneuriat et de 5 concepts disponibles sur votre ville</h3>
+      <p><strong>Conseils avant de se mettre à son compte :</strong></p>
+      <ul>
+        <li>Choisir un marché porteur</li>
+        <li>Choisir l'enseigne pour vous accompagner</li>
+        <li>Choisir le statut adapté à sa situation personnelle</li>
+        <li>Les grandes étapes avant de se lancer</li>
+      </ul>
+      <p style="margin-top:10px"><strong>Présentation de 5 enseignes.</strong></p>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="heure" id="h-rideau">—</div>
+    <div>
+      <h3>Lever de rideau : <span class="titre">ON VOUS RAPPELLERA</span></h3>
+      <video controls playsinline preload="none" poster="assets/video/ovr-teaser-2026-v6.jpg" src="assets/video/ovr-teaser-2026-v6.mp4"></video>
+      <div class="galerie">
+        <div class="photo"><img src="assets/ovr/b2b26v8-q02.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"><img class="logo" src="assets/ovr/logo-photo-ovr.png" alt=""></div>
+        <div class="photo"><img src="assets/ovr/b2b26v8-q10.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"><img class="logo" src="assets/ovr/logo-photo-ovr.png" alt=""></div>
+        <div class="photo"><img src="assets/ovr/b2b26v8-q04.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"><img class="logo" src="assets/ovr/logo-photo-ovr.png" alt=""></div>
+        <div class="photo"><img src="assets/ovr/b2b26v8-q13.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"><img class="logo" src="assets/ovr/logo-photo-ovr.png" alt=""></div>
+        <div class="photo"><img src="assets/ovr/b2b26v8-q18.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"><img class="logo" src="assets/ovr/logo-photo-ovr.png" alt=""></div>
+        <div class="photo"><img src="assets/ovr/b2b26v8-q16.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"><img class="logo" src="assets/ovr/logo-photo-ovr.png" alt=""></div>
+        <div class="photo"><img src="assets/ovr/b2b26v8-q17.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"><img class="logo" src="assets/ovr/logo-photo-ovr.png" alt=""></div>
+        <div class="photo"><img src="assets/ovr/b2b26v8-q09.jpg" alt="ON VOUS RAPPELLERA sur scène" loading="lazy"><img class="logo" src="assets/ovr/logo-photo-ovr.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="heure" id="h-verre">—</div>
+    <div>
+      <h3>Autour d'un verre</h3>
+      <p>Discussion avec les enseignes qui ont pu vous intéresser.</p>
+    </div>
+  </div>
+
+  <div class="encart">
+    <p>Ce sont les enseignes qui financent l'événement, la représentation et les comédiens.</p>
+    <p>Une façon plus agréable de faire connaissance qu'une réunion d'information ou qu'un salon professionnel.</p>
+  </div>
+
+  <h2 id="invitation">Demander mon invitation</h2>
+
+  <form id="f" novalidate>
+    <div class="grid">
+      <div class="champ"><label for="prenom">Prénom</label><input id="prenom" autocomplete="given-name"></div>
+      <div class="champ"><label for="nom">Nom</label><input id="nom" autocomplete="family-name"></div>
+      <div class="champ"><label for="email">E-mail</label><input id="email" type="email" autocomplete="email"></div>
+      <div class="champ"><label for="tel">Portable</label><input id="tel" type="tel" autocomplete="tel"></div>
+    </div>
+
+    <div class="champ">
+      <span class="q">Êtes-vous ou avez-vous été chef d'entreprise ?</span>
+      <label class="opt"><input type="radio" name="exp" value="Dirige une entreprise aujourd'hui"> <span>Je dirige une entreprise aujourd'hui</span></label>
+      <label class="opt"><input type="radio" name="exp" value="A dirigé une entreprise"> <span>J'ai dirigé une entreprise</span></label>
+      <label class="opt"><input type="radio" name="exp" value="Indépendant ou auto-entrepreneur"> <span>Je suis ou j'ai été indépendant, auto-entrepreneur</span></label>
+      <label class="opt"><input type="radio" name="exp" value="Jamais"> <span>Non, jamais</span></label>
+    </div>
+    <div class="grid" id="w-societe">
+      <div class="champ"><label for="societe">Société dirigée</label><input id="societe"></div>
+      <div class="champ"><label for="annees">Depuis combien de temps ?</label>
+        <select id="annees"><option value="">—</option><option>Moins de 3 ans</option><option>De 3 à 10 ans</option><option>Plus de 10 ans</option></select></div>
+    </div>
+
+    <div class="champ">
+      <span class="q">La création d'entreprise fait-elle partie de vos pistes de réflexion à 6 ou 12 mois ?</span>
+      <label class="opt"><input type="radio" name="piste" value="Oui, à 6 mois"> <span>Oui, à 6 mois</span></label>
+      <label class="opt"><input type="radio" name="piste" value="Oui, à 12 mois"> <span>Oui, à 12 mois</span></label>
+      <label class="opt"><input type="radio" name="piste" value="Pas encore, je me renseigne"> <span>Pas encore, je me renseigne</span></label>
+    </div>
+
+    <div class="champ">
+      <label for="secteurs">Quels sont les secteurs d'activité ou les enseignes que vous avez déjà envisagés ?</label>
+      <textarea id="secteurs" rows="3"></textarea>
+    </div>
+
+    <div class="champ">
+      <span class="q">Un mot sur votre financement : combien pensez-vous pouvoir apporter à titre personnel ? <small>(indépendamment de l'apport bancaire)</small></span>
+      <label class="opt"><input type="radio" name="apport" value="Moins de 20 000 €"> <span>Moins de 20 000 €</span></label>
+      <label class="opt"><input type="radio" name="apport" value="De 20 000 à 50 000 €"> <span>De 20 000 à 50 000 €</span></label>
+      <label class="opt"><input type="radio" name="apport" value="De 50 000 à 100 000 €"> <span>De 50 000 à 100 000 €</span></label>
+      <label class="opt"><input type="radio" name="apport" value="Plus de 100 000 €"> <span>Plus de 100 000 €</span></label>
+    </div>
+
+    <div class="champ">
+      <label for="mot">Un mot de plus ? <small style="font-weight:400;color:var(--muted)">(facultatif)</small></label>
+      <textarea id="mot" rows="2"></textarea>
+    </div>
+
+    <button type="submit" id="go">Demander mon invitation</button>
+    <div class="msg" id="msg" hidden></div>
+  </form>
+  <div class="fini" id="fini" hidden></div>
+
+  <p class="pied">Thierry Bismuth — auteur de la pièce <span class="titre">ON VOUS RAPPELLERA</span> · <a href="tel:0610703090">06 10 70 30 90</a></p>
+</div>
+
+<script>
+(function(){
+  var GATEWAY='https://thierryb.app.n8n.cloud/webhook/sheets-gateway';
+  var MAIL='https://thierryb.app.n8n.cloud/webhook/send-email-unitaire';
+  var SHEET='1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg';
+  var ONGLET="'Entrepreneurs soirées'!A:V";
+  var VALIDATION='https://thierrybismuth.com/entrepreneurs-validation-prive.html';
+  /* Lieux exclus de ce format (Toulouse, Le 9 : apéro et dîner dès 19h). */
+  var EXCLUS=['LE9'];
+  /* Photo du théâtre : assets/theatres/<code du lieu>.jpg — rien ne s'affiche tant qu'elle n'existe pas. */
+  var MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  var JOURS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+  var $=function(id){return document.getElementById(id);};
+  var V={};
+  function esc(x){ return String(x==null?'':x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+  function maj1(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+  function enMin(h){ var m=String(h).match(/(\d{1,2})h(\d{2})?/); return m?(+m[1])*60+(+(m[2]||0)):null; }
+  function enH(min){ var h=Math.floor(min/60), m=min%60; return h+'h'+(m?String(m).padStart(2,'0'):''); }
+  function bloc(src,nom,o,f){ var i=src.indexOf('var '+nom+'='); if(i<0) return null; var a=src.indexOf(o,i),p=0; for(var k=a;k<src.length;k++){ var c=src[k]; if(c===o)p++; else if(c===f){ p--; if(!p) return src.slice(a,k+1);} } return null; }
+  function lire(t){ return Function('"use strict";return ('+t+');')(); }
+
+  function construire(DATES,LIEUX,PAUSE){
+    var auj=new Date(); auj.setHours(0,0,0,0);
+    Object.keys(DATES).forEach(function(ville){
+      var soirs={}, ordre=[];
+      DATES[ville].forEach(function(o){
+        if(PAUSE.indexOf(o.c)>=0 || EXCLUS.indexOf(o.l)>=0) return;
+        var p=o.d.split(' · '), m=p[0].match(/^(\d+)\s+(\S+)\s+(\d{4})$/); if(!m) return;
+        var mi=MOIS.indexOf(m[2]); if(mi<0) return;
+        var dt=new Date(+m[3],mi,+m[1]); if(dt<auj) return;
+        if(!soirs[p[0]]){ soirs[p[0]]={iso:m[3]+'-'+String(mi+1).padStart(2,'0')+'-'+String(+m[1]).padStart(2,'0'), j:maj1(JOURS[dt.getDay()])+' '+(+m[1])+' '+m[2]+' '+m[3], l:o.l, s:[]}; ordre.push(p[0]); }
+        soirs[p[0]].s.push({h:p[1],c:o.c});
+      });
+      if(!ordre.length) return;
+      ordre.sort(function(a,b){ return soirs[a].iso<soirs[b].iso?-1:1; });
+      V[ville]=ordre.map(function(k){
+        var x=soirs[k]; x.s.sort(function(a,b){ return enMin(a.h)-enMin(b.h); });
+        /* La réunion se cale toujours sur la première séance : 1h30 avant le lever de rideau, accueil 15 min avant. */
+        var r=enMin(x.s[0].h); x.code=x.s[0].c; x.rideau=enH(r); x.reunion=enH(r-90); x.accueil=enH(r-105); x.verre=enH(r+90);
+        var L=LIEUX[x.l]||{n:'',a:''}; x.nom=L.n; x.adr=L.a; return x; });
+    });
+    var villes=Object.keys(V).sort(function(a,b){ return V[a][0].iso<V[b][0].iso?-1:1; });
+    if(!villes.length){ $('ville').innerHTML='<option value="">Aucune soirée ouverte pour le moment</option>'; return; }
+    $('ville').innerHTML=villes.map(function(v){ return '<option value="'+esc(v)+'">'+esc(v)+'</option>'; }).join('');
+    var q=new URLSearchParams(location.search).get('ville');
+    if(q){ var t=villes.filter(function(v){ return v.toLowerCase()===q.toLowerCase(); })[0]; if(t) $('ville').value=t; }
+    soirs();
+  }
+  function soirs(){ var L=V[$('ville').value]||[]; $('soir').innerHTML=L.map(function(x,i){ return '<option value="'+i+'">'+esc(x.j)+'</option>'; }).join(''); $('w-soir').hidden=L.length<2; maj(); }
+  function soir(){ var L=V[$('ville').value]; return L?L[+$('soir').value||0]:null; }
+  function maj(){
+    var x=soir(); if(!x) return;
+    $('lieu').innerHTML='<strong>'+esc(x.j)+'</strong> · '+esc(x.nom)+'<small><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.nom+', '+x.adr)+'" target="_blank" rel="noopener">'+esc(x.adr)+'</a></small>';
+    $('h-accueil').textContent=x.accueil; $('h-reunion').textContent=x.reunion; $('h-rideau').textContent=x.rideau; $('h-verre').textContent=x.verre;
+    var img=new Image(); img.onload=function(){ $('photo-theatre').innerHTML='<div class="photo"><img src="'+img.src+'" alt="'+esc(x.nom)+'"></div>'; }; img.onerror=function(){ $('photo-theatre').innerHTML=''; }; img.src='assets/theatres/'+x.l+'.jpg';
+  }
+  $('ville').addEventListener('change',soirs); $('soir').addEventListener('change',maj);
+
+  fetch('/index.html?'+Date.now()).then(function(r){ return r.text(); }).then(function(src){
+    var D=bloc(src,'DATES','{','}'), L=bloc(src,'LIEUX','{','}'), P=bloc(src,'EN_PAUSE','[',']'); if(!D) throw 0;
+    construire(lire(D), L?lire(L):{}, P?lire(P):[]);
+  }).catch(function(){ $('ville').innerHTML='<option value="">Les dates n\'ont pas pu être chargées</option>'; $('lieu').innerHTML='Rechargez la page, ou appelez le 06 10 70 30 90.'; });
+
+  function val(n){ var r=document.querySelector('input[name='+n+']:checked'); return r?r.value:''; }
+  function show(t){ var m=$('msg'); m.className='msg ko'; m.innerHTML=t; m.hidden=false; }
+  function horo(){ var d=new Date(),p=function(n){return String(n).padStart(2,'0');}; return p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds()); }
+
+  $('f').addEventListener('submit',function(e){
+    e.preventDefault(); $('msg').hidden=true;
+    var x=soir();
+    var d={prenom:$('prenom').value.trim(), nom:$('nom').value.trim(), email:$('email').value.trim(), tel:$('tel').value.trim(),
+      exp:val('exp'), societe:$('societe').value.trim(), annees:$('annees').value, piste:val('piste'), secteurs:$('secteurs').value.trim(), apport:val('apport'), mot:$('mot').value.trim()};
+    if(!x){ show('Merci de choisir votre ville et votre soirée.'); return; }
+    if(!d.prenom||!d.nom){ show('Merci d\'indiquer votre prénom et votre nom.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(d.email)){ show('Votre adresse e-mail semble incorrecte.'); return; }
+    if(d.tel.replace(/\D/g,'').length<9){ show('Merci d\'indiquer votre portable.'); return; }
+    if(!d.exp||!d.piste||!d.apport){ show('Merci de répondre aux trois questions : expérience de chef d\'entreprise, projet à 6 ou 12 mois et apport personnel.'); return; }
+    var id='ENT-'+Date.now().toString(36).toUpperCase();
+    var src=new URLSearchParams(location.search).get('src')||'Page soirée entrepreneurs';
+    var ligne=[horo(), id, $('ville').value, x.j, x.code, x.reunion, x.nom, d.prenom, d.nom.toUpperCase(), d.email, d.tel, d.exp, d.societe, d.annees, d.piste, d.secteurs, d.apport, d.mot, 'En attente', '', '', src];
+    var go=$('go'); go.disabled=true; go.textContent='Envoi en cours…';
+    fetch(GATEWAY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SHEET,action:'append',range:ONGLET,valueInputOption:'RAW',values:[ligne]})})
+    .then(function(r){ if(!r.ok) throw 0; return r.text(); })
+    .then(function(t){ if(!/updates|updatedRange/.test(t)) throw 0;
+      var rows=[['Soirée',x.j+' — '+$('ville').value+' — '+x.nom+' (réunion '+x.reunion+', rideau '+x.rideau+')'],['Nom',d.prenom+' '+d.nom.toUpperCase()],['E-mail',d.email],['Portable',d.tel],['Chef d\'entreprise',d.exp],['Société',d.societe||'—'],['Ancienneté',d.annees||'—'],['Création à 6-12 mois',d.piste],['Secteurs envisagés',d.secteurs||'—'],['Apport personnel',d.apport],['Un mot de plus',d.mot||'—'],['Origine',src]];
+      var corps='<p>Nouvelle demande d\'invitation pour une soirée entrepreneurs :</p><table cellpadding="6" style="border-collapse:collapse">'+rows.map(function(r){ return '<tr><td style="border-bottom:1px solid #eee;color:#666">'+esc(r[0])+'</td><td style="border-bottom:1px solid #eee"><b>'+esc(r[1])+'</b></td></tr>'; }).join('')+'</table><p><a href="'+VALIDATION+'#'+id+'">Inviter ou décliner '+esc(d.prenom)+' →</a></p>';
+      return fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:'bismuththierry@gmail.com',subject:'Soirée entrepreneurs — '+d.prenom+' '+d.nom.toUpperCase()+' ('+$('ville').value+', '+x.j+')',body:corps})}).catch(function(){});
+    })
+    .then(function(){
+      $('f').hidden=true;
+      var fi=$('fini'); fi.innerHTML='<h3>Message bien reçu, '+esc(d.prenom)+'.</h3><p>Je vous envoie votre invitation sous 24 heures.</p><p class="rdv">Vous pouvez d\'ores et déjà bloquer votre date :<br><strong>'+esc(x.j)+' à '+esc(x.accueil)+'</strong><br>'+esc(x.nom)+', '+esc(x.adr)+'</p><p style="margin-top:12px">Thierry Bismuth</p>'; fi.hidden=false; fi.scrollIntoView({behavior:'smooth',block:'start'});
+    })
+    .catch(function(){ go.disabled=false; go.textContent='Demander mon invitation'; show('Votre demande n\'a <b>pas</b> été enregistrée. Réessayez dans un instant, ou appelez le 06 10 70 30 90.'); });
+  });
+})();
+</script>
+</body>
+</html>
