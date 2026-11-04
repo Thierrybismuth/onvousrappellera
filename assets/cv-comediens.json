@@ -41,17 +41,6 @@
    "videos": []
   },
   {
-   "prenom": "Kevin",
-   "nom": "Lissajoux",
-   "ville": "Bordeaux",
-   "troupe": "",
-   "portrait": "",
-   "photos": [],
-   "personnage": "",
-   "parcours": [],
-   "videos": []
-  },
-  {
    "prenom": "Lisa",
    "nom": "Bergerot",
    "ville": "Bordeaux",
@@ -59,19 +48,6 @@
    "portrait": "https://onvousrappellera.fr/assets/comediens/lisa-bergerot-1jg4ov5a91tb.jpg?v=1791784809565",
    "photos": [
     "https://onvousrappellera.fr/assets/comediens/lisa-bergerot-1jg4ov5a91tb.jpg?v=1791784809565"
-   ],
-   "personnage": "Johana",
-   "parcours": [],
-   "videos": []
-  },
-  {
-   "prenom": "Pauline",
-   "nom": "Montfort",
-   "ville": "Bordeaux",
-   "troupe": "",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/pauline-montfort-1wdnjr8xvsex.jpg?v=1791784809565",
-   "photos": [
-    "https://onvousrappellera.fr/assets/comediens/pauline-montfort-1wdnjr8xvsex.jpg?v=1791784809565"
    ],
    "personnage": "Johana",
    "parcours": [],
