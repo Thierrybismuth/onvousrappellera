@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soirée théâtre — ON VOUS RAPPELLERA</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--r:#d8281f;--n:#161616;--g:#6b6b6b;--l:#e6e1d8}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--n);font-family:Outfit,system-ui,sans-serif}
+.barre{max-width:760px;margin:0 auto;padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap}
+.barre button{font:600 15px Outfit,sans-serif;padding:10px 16px;border:0;border-radius:3px;background:var(--r);color:#fff;cursor:pointer}
+.barre .msg{align-self:center;font-size:14px;color:var(--g)}
+#flyer{max-width:760px;margin:0 auto 30px;padding:28px 26px;background:#fff;border:1px solid var(--l)}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--g);margin:0 0 8px}
+h1{font-size:30px;line-height:1.15;margin:0 0 6px}
+h1 .t{color:var(--r)}
+.sous{font-size:18px;margin:0 0 18px}
+.infos{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin:0 0 18px;font-size:16px}
+.infos b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--g);font-weight:600}
+.photo img{width:100%;height:auto;display:block}
+.resa{display:flex;gap:20px;align-items:center;margin-top:20px;padding-top:18px;border-top:2px solid var(--r)}
+#qr{flex:0 0 150px;width:150px;height:150px}
+#qr img,#qr canvas{width:150px!important;height:150px!important}
+.resa p{margin:0 0 8px;font-size:16px;line-height:1.45}
+.resa a{color:var(--r);font-weight:600;word-break:break-all}
+.code{display:inline-block;font-size:24px;font-weight:700;letter-spacing:.1em;color:var(--r);border:2px solid var(--r);padding:4px 12px;margin:4px 0}
+.pied{margin-top:16px;font-size:13px;color:var(--g)}
+.err{max-width:760px;margin:40px auto;padding:16px;font-size:17px}
+@media(max-width:560px){h1{font-size:24px}.infos{grid-template-columns:1fr}.resa{flex-direction:column;align-items:flex-start}}
+@media print{.barre{display:none}#flyer{border:0;margin:0}}
+</style>
+</head>
+<body>
+<div class="barre"><button id="pdf" type="button">Télécharger le flyer (PDF)</button><span class="msg" id="msg"></span></div>
+<div id="flyer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+/* Dates et lieux : même référentiel que la page d'accueil (index.html) — à tenir à jour ensemble */
+var LIEUX={
+  "GAL":{n:"Théâtre Montmartre Galabru",a:"4 rue de l'Armée d'Orient, 75018 Paris"},
+  "CRO":{n:"Le Croiseur",a:"4 rue Croix-Barret, 69007 Lyon"},
+  "MR":{n:"Théâtre Artisse",a:"29 rue Ausone, 33000 Bordeaux"},
+  "SPH":{n:"Théâtre du Sphinx",a:"9 rue Monteil, 44000 Nantes"},
+  "CDR":{n:"La Comédie de Rennes",a:"31 rue Xavier Grall, 35700 Rennes"},
+  "LE9":{n:"Le 9",a:"9 rue Lejeune, 31000 Toulouse"}
+};
+var DATES={
+  "Paris":{l:"GAL",d:["Samedi 12 décembre 2026 · 21h30","Vendredi 18 décembre 2026 · 19h30"],p:"assets/troupes/troupe-paris-esprit-d-equipe.jpg"},
+  "Toulouse":{l:"LE9",d:["Mercredi 2 décembre 2026 · 21h (apéro et dîner dès 19h)"],p:"assets/troupes/troupe-toulouse.jpg"},
+  "Rennes":{l:"CDR",d:["Mercredi 9 décembre 2026 · 20h"],p:"assets/troupes/troupe-rennes.jpg"},
+  "Nantes":{l:"SPH",d:["Mardi 19 janvier 2027 · 21h"],p:"assets/troupes/troupe-nantes.jpg"},
+  "Lyon":{l:"CRO",d:["Mercredi 16 décembre 2026 · 19h ou 21h"],p:"assets/troupes/troupe-lyon.jpg"},
+  "Bordeaux":{l:"MR",d:["Jeudi 10 décembre 2026 · 18h30 ou 20h30","Jeudi 17 décembre 2026 · 18h30 ou 20h30"],p:"assets/troupes/troupe-bordeaux.jpg"}
+};
+function esc(x){return String(x==null?"":x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");}
+var q=new URLSearchParams(location.search), asso=(q.get("a")||"").trim(), code=(q.get("c")||"").trim().toUpperCase();
+var ville=Object.keys(DATES).find(function(v){return v.toLowerCase()===String(q.get("v")||"").trim().toLowerCase();});
+var F=document.getElementById("flyer");
+if(!asso||!ville){
+  document.getElementById("pdf").style.display="none";
+  F.className="err";F.innerHTML="Ce lien est incomplet. Écrivez-nous à <a href=\"mailto:contact@onvousrappellera.fr\">contact@onvousrappellera.fr</a>.";
+}else{
+  var o=DATES[ville], lu=LIEUX[o.l];
+  var url="https://onvousrappellera.fr/?ville="+encodeURIComponent(ville)+(code?"&code="+encodeURIComponent(code):"");
+  document.title="ON VOUS RAPPELLERA × "+asso+" — "+ville;
+  F.innerHTML='<p class="eyebrow">Soirée théâtre · '+esc(ville)+'</p>'
+    +'<h1><span class="t">ON VOUS RAPPELLERA</span> et '+esc(asso)+' s\'associent pour une soirée théâtre</h1>'
+    +'<p class="sous">Une comédie sur le monde de l\'entreprise : un patron énervé, une RH à bout de nerfs, des candidats, un psy…</p>'
+    +'<div class="infos"><div><b>Date</b>'+o.d.map(esc).join("<br>")+'</div><div><b>Lieu</b>'+esc(lu.n)+'<br>'+esc(lu.a)+'</div></div>'
+    +'<div class="photo"><img src="'+o.p+'" alt="La troupe de '+esc(ville)+'"></div>'
+    +'<div class="resa"><div id="qr"></div><div>'
+    +'<p><b>Réservez votre place</b> en scannant le QR code ou sur :<br><a href="'+esc(url)+'">'+esc(url.replace("https://",""))+'</a></p>'
+    +(code?'<p>Membres de '+esc(asso)+', indiquez votre code au moment de réserver (« Vous avez un code ? ») pour être installés ensemble en <b>Carré Or</b> :<br><span class="code">'+esc(code)+'</span></p>':'')
+    +'<p>20 € la place.</p></div></div>'
+    +'<p class="pied">onvousrappellera.fr · contact@onvousrappellera.fr</p>';
+  try{new QRCode(document.getElementById("qr"),{text:url,width:300,height:300,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
+  document.getElementById("pdf").onclick=function(){
+    var m=document.getElementById("msg");m.textContent="Préparation du PDF...";
+    var nom=("Flyer OVR "+asso+" "+ville).replace(/[^A-Za-z0-9À-ÿ -]/g,"").replace(/\s+/g,"-");
+    try{html2pdf().set({margin:8,filename:nom+".pdf",image:{type:"jpeg",quality:.92},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}}).from(F).save().then(function(){m.textContent="";},function(){m.textContent="Le PDF n'a pas pu être créé : utilisez Imprimer > Enregistrer en PDF.";});}
+    catch(e){window.print();m.textContent="";}
+  };
+}
+</script>
+</body>
+</html>
