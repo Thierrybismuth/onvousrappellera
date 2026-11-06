@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Facture — ON VOUS RAPPELLERA</title>
+<style>
+  :root{--encre:#161616;--rouge:#c8102e;--gris:#666;--trait:#e3e3e3}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--encre);font:15px/1.5 -apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  .page{max-width:800px;margin:0 auto;padding:24px 16px 48px}
+  .barre{display:flex;justify-content:flex-end;margin-bottom:16px}
+  .btn{background:var(--encre);color:#fff;border:0;border-radius:6px;padding:10px 16px;font:600 14px/1 inherit;cursor:pointer}
+  header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-bottom:2px solid var(--encre);padding-bottom:14px}
+  h1{font-size:26px;margin:0}
+  .titre{color:var(--rouge);font-weight:800}
+  .bloc{font-size:13.5px}
+  .bloc b{font-size:14.5px}
+  .parties{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+  .parties div{border:1px solid var(--trait);border-radius:6px;padding:12px}
+  .k{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--gris);display:block;margin-bottom:4px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+  th,td{padding:9px 6px;border-bottom:1px solid var(--trait);text-align:left;vertical-align:top}
+  th{font-size:12px;color:var(--gris);font-weight:600}
+  td.n,th.n{text-align:right;white-space:nowrap}
+  .tot{margin-left:auto;width:min(320px,100%);font-size:14px}
+  .tot div{display:flex;justify-content:space-between;padding:5px 0}
+  .tot .g{font-weight:800;border-top:2px solid var(--encre);margin-top:4px;padding-top:8px;font-size:16px}
+  .acq{margin:18px 0;padding:10px 12px;background:#f4f8f2;border:1px solid #cfe3c6;border-radius:6px;font-weight:600}
+  .mentions{font-size:11.5px;color:var(--gris);margin-top:24px;border-top:1px solid var(--trait);padding-top:10px}
+  .erreur{padding:40px 0;text-align:center;color:var(--gris)}
+  @media(max-width:600px){.parties{grid-template-columns:1fr}}
+  @media print{.barre{display:none}.page{padding:0}@page{margin:14mm}}
+</style>
+</head>
+<body>
+<div class="page" id="page"><p class="erreur">Chargement de la facture…</p></div>
+<script>
+(function(){
+  function esc(x){return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function fr(n){return Number(n).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
+  var d=null;
+  try{ var s=new URLSearchParams(location.search).get('d').replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='='; d=JSON.parse(decodeURIComponent(escape(atob(s)))); }catch(e){}
+  var P=document.getElementById('page');
+  if(!d||!d.n){ P.innerHTML='<p class="erreur">Ce lien de facture est incomplet. Écrivez-nous à contact@onvousrappellera.fr.</p>'; return; }
+  document.title='Facture '+d.n+' — ON VOUS RAPPELLERA';
+  var sir=String(d.s).replace(/(\d{3})(\d{3})(\d{3})/,'$1 $2 $3');
+  P.innerHTML=
+   '<div class="barre"><button class="btn" onclick="window.print()">Télécharger en PDF</button></div>'
+  +'<header><div><h1>Facture '+esc(d.n)+'</h1><div class="bloc">Date d\'émission : '+esc(d.dt)+'</div></div>'
+  +'<div class="bloc"><span class="titre">ON VOUS RAPPELLERA</span><br>onvousrappellera.fr</div></header>'
+  +'<div class="parties">'
+  +'<div class="bloc"><span class="k">Émetteur</span><b>SAS ODYSKILLS</b><br>22 boulevard de Stalingrad<br>92320 Châtillon<br>SIREN 902 770 627<br>TVA intracommunautaire FR16902770627<br>contact@onvousrappellera.fr</div>'
+  +'<div class="bloc"><span class="k">Client</span><b>'+esc(d.c)+'</b><br>'+esc(d.ad)+'<br>SIREN '+esc(sir)+'</div></div>'
+  +'<table><thead><tr><th>Désignation</th><th class="n">Qté</th><th class="n">PU HT</th><th class="n">Total HT</th></tr></thead><tbody>'
+  +'<tr><td>'+esc(d.o)+'<br><span style="font-size:12px;color:#666">Prestation de services — billetterie de spectacle vivant</span></td><td class="n">'+esc(d.q)+'</td><td class="n">'+fr(d.pu/1.055)+'</td><td class="n">'+fr(d.ht)+'</td></tr>'
+  +'</tbody></table>'
+  +'<div class="tot"><div><span>Total HT</span><span>'+fr(d.ht)+'</span></div><div><span>TVA 5,5 %</span><span>'+fr(d.tva)+'</span></div><div class="g"><span>Total TTC</span><span>'+fr(d.ttc)+'</span></div></div>'
+  +'<div class="acq">Facture acquittée — réglée le '+esc(d.dt)+' par carte bancaire.</div>'
+  +'<div class="mentions">TVA sur les encaissements. En cas de retard de paiement : pénalités au taux de trois fois le taux d\'intérêt légal et indemnité forfaitaire pour frais de recouvrement de 40 € (art. L441-10 du Code de commerce). Pas d\'escompte pour paiement anticipé.</div>';
+})();
+</script>
+</body>
+</html>

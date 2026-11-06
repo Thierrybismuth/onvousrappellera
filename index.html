@@ -537,6 +537,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       </div>
       <a href="#" id="f-code-lien" class="codelien">Vous avez un code&nbsp;?</a>
       <div id="f-code-wrap" style="display:none"><input id="f-code" class="codeinput" type="text" placeholder="Votre code" autocomplete="off"></div>
+      <div id="fe-ancre"></div>
       <p class="photonote">Si je suis pris en photo ou filmé pendant la soirée, j'accepte que ces images servent à la communication de la pièce. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
     </div>
     <div id="f-alerte" style="display:none">
@@ -599,8 +600,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 </section>
 
 
+<script src="/assets/facture-entreprise.js?v=1"></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+  if(window.FE) FE.monter(document.getElementById('fe-ancre'), null);
 
   var vbox=document.getElementById('vbox'), vslot=document.getElementById('vslot'), vtitre=document.getElementById('vtitre');
   function fermerVideo(){ vbox.classList.remove('on'); vslot.innerHTML=''; document.body.style.overflow=''; }
@@ -717,7 +720,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
   var btn=document.getElementById('f-btn'), msg=document.getElementById('f-msg');
   (function(){ var q=new URLSearchParams(location.search);
-    if(q.get('merci')){ msg.className='msg ok'; msg.innerHTML='<b>Paiement reçu, merci !</b> Vos billets arrivent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.'; document.getElementById('prevenez-moi').scrollIntoView(); }
+    if(q.get('merci')){ msg.className='msg ok'; msg.innerHTML='<b>Paiement reçu, merci !</b> Vos billets arrivent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.'; document.getElementById('prevenez-moi').scrollIntoView(); if(window.FE) FE.auRetour(msg); }
     if(q.get('ville')){ var vv=q.get('ville'), sv=document.getElementById('f-ville'); if(!DATES[vv] && ['Marseille','Montpellier'].indexOf(vv)<0){ sv=null; } if(sv){ sv.value=vv; majDates(vv,''); var pm=document.getElementById('prevenez-moi'); if(pm) setTimeout(function(){ pm.scrollIntoView(); },300); } }
     if(q.get('code')){ var cw=document.getElementById('f-code-wrap'), ci=document.getElementById('f-code'), cl=document.getElementById('f-code-lien'); if(ci){ ci.value=q.get('code'); if(cw) cw.style.display=''; if(cl) cl.style.display='none'; } }
     if(q.get('seance')){ var sc=q.get('seance'), sv2=document.getElementById('f-ville'); Object.keys(DATES).forEach(function(v){ DATES[v].forEach(function(o){ if(o.c===sc && sv2){ sv2.value=v; majDates(v,o.d); var x=decoupe(o), lu=LIEUX[o.l], bt=document.getElementById('seance-top'); if(bt){ bt.innerHTML='Votre séance : <strong>'+esc(v.toUpperCase()+' · '+x.jour+' · '+x.h)+'</strong>'+(lu?'<br><span style="font-weight:500">'+esc(lu.n)+'</span>':'')+'<br><a href="#prevenez-moi" style="display:inline-block;margin-top:8px;color:#fff;text-decoration:underline;font-weight:700">Réserver mes places pour cette date &darr;</a>'; bt.hidden=false; } } }); }); }
@@ -746,12 +749,13 @@ document.addEventListener('DOMContentLoaded',function(){
       var S=(DATES[p.ville]||[]).filter(function(o){return o.d===p.date;})[0];
       if(!S||!S.c){ show('ko','Cette séance n\'est pas encore ouverte à la vente. Appelez-nous au 06 10 70 30 90.'); return; }
       if(!p.telephone){ show('ko','Merci d\'indiquer votre portable.'); return; }
+      var fe=window.FE?FE.lire():null; if(fe&&fe.erreur){ show('ko',fe.erreur); return; }
       btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
       var tfp=tarifChoisi();
       fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},
         body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,source:'grand-public'})})
         .then(function(r){return r.json();})
-        .then(function(d){ if(d&&d.ok&&d.invite){ show('ok','<b>'+esc(d.message)+'</b>'); return; } if(d&&d.ok&&d.url){ location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
+        .then(function(d){ if(d&&d.ok&&d.invite){ show('ok','<b>'+esc(d.message)+'</b>'); return; } if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:p.ville+' — '+p.date,qty:parseInt(p.places,10)||1,pu:PRIX[tfp],tarif:LIB[tfp],prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone}); location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
         .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
       return;
     }
