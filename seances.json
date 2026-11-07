@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-07T10:57:36.424Z",
+ "maj": "2026-11-07T10:58:40.484Z",
  "seances": [
   {
    "code": "TLS-1203",
@@ -28,11 +28,11 @@
    "confirmee": false
   },
   {
-   "code": "PAR-1207-20",
+   "code": "PAR-1207-1730",
    "ville": "Paris",
    "date": "2026-12-07",
    "jour": "Lundi 7 décembre 2026",
-   "heure": "20h",
+   "heure": "17h30",
    "troupe": "Les 3 troupes",
    "theatre": "Kido Comedy Club",
    "adresse": "39 boulevard Saint-Michel, 75005 Paris",
@@ -41,11 +41,11 @@
    "confirmee": false
   },
   {
-   "code": "PAR-1207-1730",
+   "code": "PAR-1207-20",
    "ville": "Paris",
    "date": "2026-12-07",
    "jour": "Lundi 7 décembre 2026",
-   "heure": "17h30",
+   "heure": "20h",
    "troupe": "Les 3 troupes",
    "theatre": "Kido Comedy Club",
    "adresse": "39 boulevard Saint-Michel, 75005 Paris",
