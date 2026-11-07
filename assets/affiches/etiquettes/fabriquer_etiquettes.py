@@ -50,7 +50,7 @@ def etiquette(g,W,H):
         tw=d.textlength(t,font=f); d.text(((W-tw)/2,y),t,fill=c,font=f); y+=h
     return im
 
-FORMATS={'40x60':(cm(15.5),cm(11),2,1,False),'A3':(cm(11.5),cm(7.8),2,2,True)}
+FORMATS={'A2':(cm(16.3),cm(11.2),2,1,False),'A3':(cm(11.5),cm(7.8),2,2,True),'A4':(cm(8.1),cm(5.5),4,2,False)}
 import math, random
 def slug(t): return re.sub(r'[^a-z0-9]+','-',unicodedata.normalize('NFD',t).encode('ascii','ignore').decode().lower()).strip('-')
 def postit(lab):
@@ -73,7 +73,7 @@ for fmt,(W,H,n,nc,pays) in FORMATS.items():
     for gi,g in enumerate(groups):
         lab=postit(etiquette(g,W,H))
         p=Image.new('RGB',A4,'white'); d=ImageDraw.Draw(p)
-        d.text((cm(1.2),cm(0.8)),g['ville']+' — '+g['theatre']+' · post-it pour l\'affiche '+fmt.replace('x',' × ')+' — à découper sur les pointillés',fill=(140,140,140),font=fl)
+        d.text((cm(1.2),cm(0.8)),g['ville']+' — '+g['theatre']+' · post-it pour l\'affiche '+fmt+' — à découper sur les pointillés',fill=(140,140,140),font=fl)
         gap=(A4[1]-cm(1.6)-n*(H+cm(0.6)))//(n+1)
         colw=A4[0]//nc
         for k in range(n*nc):
