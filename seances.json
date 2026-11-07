@@ -1,6 +1,19 @@
 {
- "maj": "2026-11-07T10:58:40.484Z",
+ "maj": "2026-11-07T12:40:31.523Z",
  "seances": [
+  {
+   "code": "PAR-1202-19",
+   "ville": "Paris",
+   "date": "2026-12-02",
+   "jour": "Mercredi 2 décembre 2026",
+   "heure": "19h",
+   "troupe": "Engagement",
+   "theatre": "Théâtre Clavel",
+   "adresse": "3 rue Clavel, 75019 Paris",
+   "jauge": 120,
+   "precision": "",
+   "confirmee": false
+  },
   {
    "code": "TLS-1203",
    "ville": "Toulouse",
