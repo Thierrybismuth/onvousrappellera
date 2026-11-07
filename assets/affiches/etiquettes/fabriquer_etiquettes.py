@@ -19,7 +19,7 @@ for x in S:
     else: g['jours'].append({'j':j,'h':[x['heure']]})
 def lignes(g):
     J=g['jours']; L=[]
-    hs=[' et '.join(d['h']) for d in J]
+    hs=[(', '.join(d['h'][:-1])+' et '+d['h'][-1]) if len(d['h'])>1 else d['h'][0] for d in J]
     if len(J)==1:
         L=[J[0]['j'], hs[0]+(' — '+g['prec'] if g['prec'] else '')]
     elif len(set(hs))==1:
@@ -50,7 +50,7 @@ def etiquette(g,W,H):
         tw=d.textlength(t,font=f); d.text(((W-tw)/2,y),t,fill=c,font=f); y+=h
     return im
 
-FORMATS={'40x60':(cm(14.4),cm(9.8),2,1,False),'A3':(cm(10.5),cm(6.5),2,2,True)}
+FORMATS={'40x60':(cm(15.5),cm(11),2,1,False),'A3':(cm(11.5),cm(7.8),2,2,True)}
 import math, random
 def slug(t): return re.sub(r'[^a-z0-9]+','-',unicodedata.normalize('NFD',t).encode('ascii','ignore').decode().lower()).strip('-')
 def postit(lab):
