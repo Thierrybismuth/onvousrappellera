@@ -639,12 +639,12 @@ document.addEventListener('DOMContentLoaded',function(){
   vbox.addEventListener('click',function(e){ if(e.target===vbox) fermerVideo(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
   var DATES={
-    "Paris":[{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"CLA",c:"PAR-1209-19",tr:"Honnêteté"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"GAL",c:"PAR-1212-2130",tr:"Esprit d'équipe"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"GAL",c:"PAR-1218-1930",tr:"Esprit d'équipe"}],
-    "Toulouse":[{d:"2 décembre 2026 · 21h",t:"Séance de 21h — apéro et dîner dès 19h",l:"LE9",c:"TLS-1203"}],
-    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"CDR",c:"REN-1209-20"}],
-    "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"SPH",c:"NAN-0119-21"}],
-    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO",c:"LYO-1216-21"}],
-    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR",c:"BOR-1217-2030"}]
+    "Toulouse":[{d:"2 décembre 2026 · 21h",t:"Séance de 21h — apéro et dîner dès 19h",l:"T1",c:"TLS-1203"}],
+    "Paris":[{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T2",c:"PAR-1209-19",tr:"Honnêteté"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T5",c:"PAR-1212-2130",tr:"Esprit d'équipe"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T5",c:"PAR-1218-1930",tr:"Esprit d'équipe"}],
+    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T3",c:"REN-1209-20"}],
+    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4",c:"BOR-1217-2030"}],
+    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"T6",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"T6",c:"LYO-1216-21"}],
+    "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"T7",c:"NAN-0119-21"}]
   };
   // Séances affichées mais non réservables (réactivable en retirant le code de la liste)
   var EN_PAUSE=["PAR-1122","PAR-1126"];
@@ -652,15 +652,13 @@ document.addEventListener('DOMContentLoaded',function(){
   // Billetterie : false = pré-réservation (aucun paiement). true = paiement en ligne Stripe. ?billetterie=1 force l'ouverture pour les tests.
   var BILLETTERIE_OUVERTE=true || new URLSearchParams(location.search).get('billetterie')==='1';
   var LIEUX={
-    "PVE":{n:"Théâtre Le Passage vers les Étoiles",a:"17 cité Joly, 75011 Paris"},
-    "CLA":{n:"Théâtre Clavel",a:"3 rue Clavel, 75019 Paris"},
-    "GAL":{n:"Théâtre Montmartre Galabru",a:"4 rue de l'Armée d'Orient, 75018 Paris"},
-    "CRO":{n:"Le Croiseur",a:"4 rue Croix-Barret, 69007 Lyon"},
-    "MR":{n:"Théâtre Artisse",a:"29 rue Ausone, 33000 Bordeaux"},
-    "SPL":{n:"Le Spotlight",a:"100 rue Léon Gambetta, 59800 Lille"},
-    "SPH":{n:"Théâtre du Sphinx",a:"9 rue Monteil, 44000 Nantes"},
-    "CDR":{n:"La Comédie de Rennes",a:"31 rue Xavier Grall, 35700 Rennes"},
-    "LE9":{n:"Le 9",a:"9 rue Lejeune, 31000 Toulouse"}
+    "T1":{n:"Le 9",a:"9 rue Lejeune, 31000 Toulouse"},
+    "T2":{n:"Théâtre Clavel",a:"3 rue Clavel, 75019 Paris"},
+    "T3":{n:"La Comédie de Rennes",a:"31 rue Xavier Grall, 35700 Rennes"},
+    "T4":{n:"Théâtre Artisse",a:"29 rue Ausone, 33000 Bordeaux"},
+    "T5":{n:"Théâtre Montmartre Galabru",a:"4 rue de l'Armée d'Orient, 75018 Paris"},
+    "T6":{n:"Le Croiseur",a:"4 rue Croix-Barret, 69007 Lyon"},
+    "T7":{n:"Théâtre du Sphinx",a:"9 rue Monteil, 44000 Nantes"}
   };
   function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n.replace(/ \(lieu à confirmer\)/,'')+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
   function troupeHTML(tr){ return tr?'<p class="vtrp">🎭 Troupe <strong>'+esc(tr)+'</strong></p>':''; }
