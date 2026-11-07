@@ -333,6 +333,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .msg{margin-top:1.2rem;font-size:.92rem;font-weight:500;display:none;padding:14px 16px;border-radius:2px;}
   .msg.ok{display:block;background:#eef7ee;border:1px solid #bcd9bc;color:#22622a;}
   .msg.ko{display:block;background:#fdeceb;border:1px solid #f0bcb8;color:#a3231b;}
+  .cadeau{margin-top:1.4rem;border-top:1px dashed var(--gris-clair);padding-top:1rem;}
+  .cadeau summary{cursor:pointer;font-weight:500;color:var(--accent);list-style:none;font-size:.95rem;}
+  .cadeau summary::-webkit-details-marker{display:none;}
+  .cadeau .cbody{margin-top:.8rem;}
+  .cadeau .cbody p{font-size:.9rem;margin-bottom:.6rem;}
   .early{background:var(--marine);color:#fff;padding:1.7rem 1.8rem;margin-top:1.8rem;border-left:3px solid var(--or);}
   .early h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;margin-bottom:.5rem;color:#fff;}
   .early p{font-size:.9rem;color:#e4e0d6;line-height:1.7;}
@@ -546,6 +551,21 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     </div>
     <button class="btn" id="f-btn" type="button">Prévenez-moi &rarr;</button>
     <div class="msg" id="f-msg"></div>
+    <details class="cadeau" id="cadeau">
+      <summary>🎁 J'offre des billets pour Noël &rarr;</summary>
+      <div class="cbody">
+        <p>Un <strong>billet open</strong> : la personne qui le reçoit choisit sa ville et sa date, sur toutes nos représentations 2027. Vous recevez un billet à imprimer, avec le code cadeau. 20&nbsp;€ la place.</p>
+        <div class="fgrid">
+          <div class="field"><label for="c-qty">Nombre de billets</label><select id="c-qty"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
+          <div class="field"><label for="c-prenom">Votre prénom</label><input id="c-prenom" type="text" autocomplete="given-name"></div>
+          <div class="field"><label for="c-nom">Votre nom</label><input id="c-nom" type="text" autocomplete="family-name"></div>
+          <div class="field"><label for="c-email">Votre email</label><input id="c-email" type="email" autocomplete="email"></div>
+          <div class="field"><label for="c-tel">Votre portable</label><input id="c-tel" type="tel" autocomplete="tel"></div>
+        </div>
+        <button class="btn" id="c-btn" type="button">Payer mes billets cadeaux &rarr;</button>
+        <div class="msg" id="c-msg"></div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -1034,6 +1054,25 @@ document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
   });
 
 },0); });
+</script>
+<script>
+(function(){
+  var g=function(i){return document.getElementById(i);}, btn=g('c-btn'), msg=g('c-msg'); if(!btn) return;
+  function e(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function show(k,t){ msg.className='msg '+k; msg.innerHTML=t; }
+  if(/[?&]cadeau=1/.test(location.search)){ g('cadeau').open=true; setTimeout(function(){ g('cadeau').scrollIntoView({block:'center'}); },300); }
+  btn.addEventListener('click',function(){
+    var d={action:'cadeau', qty:parseInt(g('c-qty').value,10)||1, prenom:g('c-prenom').value.trim(), nom:g('c-nom').value.trim(), email:g('c-email').value.trim(), portable:g('c-tel').value.trim(), source:'grand-public'};
+    if(!d.prenom||!d.nom){ show('ko','Merci d\'indiquer votre prénom et votre nom.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(d.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
+    if(!d.portable){ show('ko','Merci d\'indiquer votre portable.'); return; }
+    btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
+    fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)})
+      .then(function(r){return r.json();})
+      .then(function(r){ if(r&&r.ok&&r.url){ location.href=r.url; return; } show('ko',e((r&&r.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
+      .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
+  });
+})();
 </script>
 </body>
 </html>

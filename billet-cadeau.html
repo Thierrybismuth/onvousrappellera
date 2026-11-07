@@ -53,6 +53,7 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:44pt;line-he
 </head>
 <body>
 <div class="barre">
+  <p id="merci" style="display:none;color:#22622a;font-weight:600;font-size:1rem">Paiement reçu, merci ! Voici votre billet cadeau. Vous le recevez aussi par mail.</p>
   <button type="button" onclick="window.print()">Imprimer / enregistrer en PDF</button>
   <p>Au moment d'imprimer, choisissez « Enregistrer au format PDF » pour garder le billet sur votre téléphone.</p>
 </div>
@@ -98,6 +99,7 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:44pt;line-he
 <script>
 (function(){
   var q=new URLSearchParams(location.search);
+  if(q.get('merci')) document.getElementById('merci').style.display='block';
   var code=(q.get('code')||'').toUpperCase().replace(/[^A-Z0-9-]/g,'').slice(0,20);
   var n=parseInt(q.get('n'),10); if(!(n>=1&&n<=6)) n=1;
   var de=(q.get('de')||'').replace(/[<>]/g,'').slice(0,60);
