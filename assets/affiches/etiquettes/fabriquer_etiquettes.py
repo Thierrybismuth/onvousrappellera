@@ -35,7 +35,7 @@ def fit(d,t,fn,size,maxw):
     return ImageFont.truetype(F+fn,size)
 def etiquette(g,W,H):
     z=H/cm(11)
-    im=Image.new('RGB',(W,H),'white'); d=ImageDraw.Draw(im)
+    im=Image.new('RGB',(W,H),(255,236,90)); d=ImageDraw.Draw(im)
     rows=[(g['ville'].upper(),'Poppins-Bold.ttf',int(230*z),RED)]
     cols=[DARK,RED]
     for i,t in enumerate(lignes(g)): rows.append((t,'Poppins-Bold.ttf',int(150*z),cols[i%2]))
@@ -50,26 +50,48 @@ def etiquette(g,W,H):
         tw=d.textlength(t,font=f); d.text(((W-tw)/2,y),t,fill=c,font=f); y+=h
     return im
 
-FORMATS={'40x60':(cm(15),cm(10.5),2),'A3':(cm(11),cm(6.8),4)}
+FORMATS={'40x60':(cm(14.4),cm(9.8),2,1,False),'A3':(cm(10.5),cm(6.5),2,2,True)}
+import math, random
 def slug(t): return re.sub(r'[^a-z0-9]+','-',unicodedata.normalize('NFD',t).encode('ascii','ignore').decode().lower()).strip('-')
+def postit(lab):
+    W,H=lab.size; p=lab.convert('RGBA')
+    sh=Image.new('L',(W,H),0); ds=ImageDraw.Draw(sh)
+    for i in range(int(H*0.18)):        # léger dégradé en bas, papier qui se décolle
+        ds.line((0,H-1-i,W,H-1-i),fill=int(38*(1-i/(H*0.18))))
+    dark=Image.new('RGBA',(W,H),(150,110,0,255)); p=Image.composite(dark,p,sh.point(lambda v:v))
+    # coin bas droit corné
+    c=int(min(W,H)*0.09); d=ImageDraw.Draw(p)
+    d.polygon([(W-c,H),(W,H-c),(W,H)],fill=(255,255,255,0))
+    d.polygon([(W-c,H),(W,H-c),(W-c*0.92,H-c*0.92)],fill=(232,205,60,255))
+    return p
 A4=(cm(21),cm(29.7)); os.makedirs('out',exist_ok=True); fichiers=[]
 fl=ImageFont.truetype(F+'Poppins-Medium.ttf',cm(0.35))
-for fmt,(W,H,n) in FORMATS.items():
-    for g in groups:
-        lab=etiquette(g,W,H)
+for f in os.listdir('out'):
+    if f.endswith('.pdf'): os.remove('out/'+f)
+for fmt,(W,H,n,nc,pays) in FORMATS.items():
+    A4=(cm(29.7),cm(21)) if pays else (cm(21),cm(29.7))
+    for gi,g in enumerate(groups):
+        lab=postit(etiquette(g,W,H))
         p=Image.new('RGB',A4,'white'); d=ImageDraw.Draw(p)
-        d.text((cm(1.2),cm(0.8)),g['ville']+' — '+g['theatre']+' · étiquettes pour l\'affiche '+fmt.replace('x',' × ')+' — à découper sur les pointillés',fill=(140,140,140),font=fl)
-        gap=(A4[1]-cm(2)-n*H)//(n+1)
-        for k in range(n):
-            x=(A4[0]-W)//2; y=cm(1.6)+gap+k*(H+gap)
-            p.paste(lab,(x,y))
-            for (x0,y0,x1,y1) in [(x,y,x+W,y),(x,y+H,x+W,y+H),(x,y,x,y+H),(x+W,y,x+W,y+H)]:
-                L=max(x1-x0,y1-y0); st=40
-                for s0 in range(0,L,2*st):
-                    if x0==x1: d.line((x0,y0+s0,x0,min(y1,y0+s0+st)),fill=(150,150,150),width=4)
-                    else: d.line((x0+s0,y0,min(x1,x0+s0+st),y0),fill=(150,150,150),width=4)
+        d.text((cm(1.2),cm(0.8)),g['ville']+' — '+g['theatre']+' · post-it pour l\'affiche '+fmt.replace('x',' × ')+' — à découper sur les pointillés',fill=(140,140,140),font=fl)
+        gap=(A4[1]-cm(1.6)-n*(H+cm(0.6)))//(n+1)
+        colw=A4[0]//nc
+        for k in range(n*nc):
+            ang=[-3,2.5,2,-2.5][k%4]; row,colk=k//nc,k%nc
+            r=lab.rotate(ang,expand=True,resample=Image.BICUBIC)
+            x=colk*colw+(colw-r.width)//2; y=cm(1.6)+gap+row*(H+cm(0.6)+gap)
+            p.paste(r,(x,y),r)
+            # pointillés autour du post-it penché
+            cx,cy=x+r.width/2,y+r.height/2; t=math.radians(-ang)
+            pts=[(-W/2,-H/2),(W/2,-H/2),(W/2,H/2),(-W/2,H/2)]
+            P=[(cx+px*math.cos(t)-py*math.sin(t), cy+px*math.sin(t)+py*math.cos(t)) for px,py in pts]
+            for i in range(4):
+                (x0,y0),(x1,y1)=P[i],P[(i+1)%4]; L=math.hypot(x1-x0,y1-y0); st=40
+                for s0 in range(0,int(L),2*st):
+                    a0=s0/L; a1=min(1,(s0+st)/L)
+                    d.line((x0+(x1-x0)*a0-((x1-x0)/L)*cm(0.15)*0, y0+(y1-y0)*a0, x0+(x1-x0)*a1, y0+(y1-y0)*a1),fill=(150,150,150),width=4)
         nom='out/etiquettes-%s-%s-%s.pdf'%(fmt,slug(g['ville']),slug(g['theatre']))
         p.save(nom,resolution=DPI); fichiers.append((fmt,g['ville'],g['theatre'],nom))
-        if g['theatre']=='Théâtre Clavel': p.resize((A4[0]//6,A4[1]//6)).save('apercu_planche_%s.jpg'%fmt)
+        if g['theatre']=='Théâtre Artisse': p.resize((A4[0]//6,A4[1]//6)).save('apercu_planche_%s.jpg'%fmt)
 json.dump(fichiers,open('out/liste.json','w'),ensure_ascii=False)
 print(len(fichiers),'planches')
