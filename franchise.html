@@ -280,13 +280,14 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   var VILLES=['Paris','Bordeaux','Lyon','Toulouse','Nantes','Rennes','Montpellier','Marseille','Lille'];
   // Copie de secours : les dates sont relues sur la page grand public à chaque ouverture.
   var DATES={
-    "Paris":[{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"CLA"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"GAL"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"GAL"}],
-    "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"SPH"}],
-    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"CDR"}],
-    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"CRO"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"CRO"}],
-    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"MR"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"MR"}]
+    "Toulouse":[{d:"2 décembre 2026 · 21h",t:"Séance de 21h",l:"T1"}],
+    "Paris":[{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T2"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T5"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T5"}],
+    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T3"}],
+    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4"}],
+    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"T6"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"T6"}],
+    "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"T7"}]
   };
-  var LIEUX={"PVE":{n:"Théâtre Le Passage vers les Étoiles"},"CLA":{n:"Théâtre Clavel"},"GAL":{n:"Théâtre Montmartre Galabru"},"CRO":{n:"Le Croiseur"},"MR":{n:"Théâtre Artisse"},"SPL":{n:"Le Spotlight"},"SPH":{n:"Théâtre du Sphinx"},"CDR":{n:"La Comédie de Rennes"}};
+  var LIEUX={"T1":{n:"Le 9"},"T2":{n:"Théâtre Clavel"},"T3":{n:"La Comédie de Rennes"},"T4":{n:"Théâtre Artisse"},"T5":{n:"Théâtre Montmartre Galabru"},"T6":{n:"Le Croiseur"},"T7":{n:"Théâtre du Sphinx"}};
   var GW='https://thierryb.app.n8n.cloud/webhook/sheets-gateway', SS='1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg', TAB="'Soirées franchise'";
   var MAIL='https://thierryb.app.n8n.cloud/webhook/send-email-unitaire';
   var g=function(i){return document.getElementById(i);};
