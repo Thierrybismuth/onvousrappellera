@@ -438,7 +438,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     /* Galerie vidéo — la 1re s'affiche en grand, les suivantes en vignettes. Pour en ajouter une : une ligne de plus, dans l'ordre d'affichage */
     var VIDEOS=[
       {src:"/assets/video/ovr-teaser-2026-v6.mp4?v=20261108", poster:"/assets/video/ovr-teaser-2026-v6.jpg?v=20261108", titre:"Teaser ON VOUS RAPPELLERA"},
-      {src:"/assets/insta/paris-repetitions/reel.mp4?v=20261108", poster:"/assets/insta/paris-repetitions/reel.jpg", titre:"Les troupes de Paris en répétition"},
+      {src:"/assets/insta/paris-repetitions/reel.mp4?v=20261108b", poster:"/assets/insta/paris-repetitions/reel.jpg", titre:"Les troupes de Paris en répétition"},
       {src:"/assets/video/promo/v24-les-livres.mp4?v=20261108", poster:"/assets/video/promo/v24-les-livres.jpg?v=20261108", titre:"Les deux livres", des:"2026-11-30T08:30:00+01:00"},
       {src:"/assets/video/promo/v22-avec-qui-vous-venez.mp4?v=20261108", poster:"/assets/video/promo/v22-avec-qui-vous-venez.jpg", titre:"Avec qui vous venez ?", des:"2026-11-28T08:30:00+01:00"},
       {src:"/assets/video/promo/v21-on-tombe-le-masque.mp4?v=20261108", poster:"/assets/video/promo/v21-on-tombe-le-masque.jpg?v=3", titre:"On tombe le masque", des:"2026-11-26T08:30:00+01:00"},
@@ -872,7 +872,7 @@ document.addEventListener('DOMContentLoaded',function(){
  var TV={
   "Paris|Esprit d'équipe":[{src:'/assets/video/troupes/esprit-equipe-shooting.jpg',mp4:'/assets/video/troupes/esprit-equipe-shooting.mp4?v=20261108',titre:'Jour de shooting',cap:'Shooting'}]
  };
- function repv(v){ if(!REP[v]) return null; var k=v.toLowerCase(); return {src:'/assets/insta/'+k+'-repetitions/reel.jpg',mp4:'/assets/insta/'+k+'-repetitions/reel.mp4?v=20261108',titre:'Répétitions — '+v}; }
+ function repv(v){ if(!REP[v]) return null; var k=v.toLowerCase(); return {src:'/assets/insta/'+k+'-repetitions/reel.jpg',mp4:'/assets/insta/'+k+'-repetitions/reel.mp4?v=20261108b',titre:'Répétitions — '+v}; }
  function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
  function vign(u){ var id=(String(u).match(/\/d\/([A-Za-z0-9_-]{15,})/)||String(u).match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; return id?'https://drive.google.com/thumbnail?id='+id+'&sz=w600':u; }
  function charge(u){ if(CACHE[u]) return CACHE[u]; CACHE[u]=new Promise(function(ok){ var i=new Image(); i.onload=function(){ ok(i.naturalWidth&&i.naturalHeight?i.naturalWidth/i.naturalHeight:0); }; i.onerror=function(){ ok(0); }; i.src=u; }); return CACHE[u]; }
