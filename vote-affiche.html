@@ -106,6 +106,7 @@ var GW='https://thierryb.app.n8n.cloud/webhook/sheets-gateway';
 var SS='1aPDNlSrvXAac2PAgZLd2mQLGWrVUWtxHfmOKarsU5xI';
 var AFF=[null,'Le dossier de candidature','Les portraits','Les lettres découpées','La sérigraphie','La convocation','Le collage',"L'offre d'emploi",'Les bulles de questions','Le dossier jaune'];
 var MONTRE=[1,2,5,6,7], choix=[], VOTES={};
+function N(i){return MONTRE.indexOf(i)+1;}  /* numéro affiché 1 à 5 (même numérotation que les visuels diffusés) */
 function $(i){return document.getElementById(i);}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
 function img(i){return 'assets/vote-affiche/affiche-'+i+'.jpg?v=3';}
@@ -142,14 +143,14 @@ function resultats(){
   vs.forEach(function(v){v.forEach(function(x,k){pts[x]+=3-k;nb[x]++;});});
   var ord=Object.keys(pts).map(Number).filter(function(i){return pts[i]>0;}).sort(function(a,b){return pts[b]-pts[a]||nb[b]-nb[a]||a-b;});
   var h='<div style="font-size:13px;color:#6b7280;margin-bottom:8px">'+vs.length+' participant'+(vs.length>1?'s':'')+'</div>';
-  h+='<div class="lead"><img src="'+img(ord[0])+'" data-i="'+ord[0]+'" alt="Affiche '+ord[0]+'"><div><b>En tête : n°'+ord[0]+'</b><br>'+esc(AFF[ord[0]])+'</div></div>';
-  h+='<ol>'+ord.slice(0,3).map(function(i){return '<li><b>n°'+i+'</b> · '+esc(AFF[i])+' — '+pts[i]+' pt'+(pts[i]>1?'s':'')+'</li>';}).join('')+'</ol>';
+  h+='<div class="lead"><img src="'+img(ord[0])+'" data-i="'+ord[0]+'" alt="Affiche '+ord[0]+'"><div><b>En tête : n°'+N(ord[0])+'</b><br>'+esc(AFF[ord[0]])+'</div></div>';
+  h+='<ol>'+ord.slice(0,3).map(function(i){return '<li><b>n°'+N(i)+'</b> · '+esc(AFF[i])+' — '+pts[i]+' pt'+(pts[i]>1?'s':'')+'</li>';}).join('')+'</ol>';
   $('res').innerHTML=h;
 }
 
 function grille(){
   var h='';
-  MONTRE.forEach(function(i){ h+='<div class="carte" id="c'+i+'"><span class="badge">'+i+'</span><img src="'+img(i)+'" alt="Affiche '+i+'" loading="lazy" data-i="'+i+'"><div class="b"><div class="t">'+i+' · '+esc(AFF[i])+'</div><div class="rk">'+[1,2,3].map(function(r){return '<button data-i="'+i+'" data-r="'+r+'">'+r+(r===1?'re':'e')+'</button>';}).join('')+'</div></div></div>'; });
+  MONTRE.forEach(function(i){ h+='<div class="carte" id="c'+i+'"><span class="badge">'+N(i)+'</span><img src="'+img(i)+'" alt="Affiche '+i+'" loading="lazy" data-i="'+i+'"><div class="b"><div class="t">'+N(i)+' · '+esc(AFF[i])+'</div><div class="rk">'+[1,2,3].map(function(r){return '<button data-i="'+i+'" data-r="'+r+'">'+r+(r===1?'re':'e')+'</button>';}).join('')+'</div></div></div>'; });
   $('grille').innerHTML=h;
 }
 document.addEventListener('click',function(e){
@@ -173,7 +174,7 @@ function choisis(){return [choix[0],choix[1],choix[2]].filter(function(x){return
 function maj(){
   MONTRE.forEach(function(i){ var c=$('c'+i), r=choix.indexOf(i); c.className='carte'+(r>=0?' r'+(r+1):'');
     c.querySelectorAll('.rk button').forEach(function(b){b.classList.toggle('on',+b.dataset.r===r+1);}); });
-  [1,2,3].forEach(function(r){var x=choix[r-1],p=$('p'+r);p.className='pill'+(x?' on':'');p.innerHTML=r+'<sup>'+(r===1?'re':'e')+'</sup> : '+(x?'n°'+x:'—');});
+  [1,2,3].forEach(function(r){var x=choix[r-1],p=$('p'+r);p.className='pill'+(x?' on':'');p.innerHTML=r+'<sup>'+(r===1?'re':'e')+'</sup> : '+(x?'n°'+N(x):'—');});
   $('envoyer').disabled=!(identifie()&&choisis().length);
   document.body.classList.toggle('anon',!identifie());
 }
