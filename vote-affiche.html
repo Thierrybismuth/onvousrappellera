@@ -108,7 +108,7 @@ var AFF=[null,'Le dossier de candidature','Les portraits','Les lettres découpé
 var choix=[], VOTES={};
 function $(i){return document.getElementById(i);}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
-function img(i){return 'assets/vote-affiche/affiche-'+i+'.jpg?v=1';}
+function img(i){return 'assets/vote-affiche/affiche-'+i+'.jpg?v=2';}
 async function gw(p){
   p.spreadsheetId=SS;
   var r=await fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
