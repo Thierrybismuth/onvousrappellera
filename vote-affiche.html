@@ -87,7 +87,7 @@ h2.s{font-size:21px;font-weight:800;margin:26px 0 12px}
     <div class="msg" id="msg"></div>
   </div>
 
-  <h2 class="s">Les 9 affiches</h2>
+  <h2 class="s">Les 5 affiches</h2>
   <div class="grille" id="grille"></div>
 
   <h2 class="s">Le classement du public</h2>
@@ -105,7 +105,7 @@ h2.s{font-size:21px;font-weight:800;margin:26px 0 12px}
 var GW='https://thierryb.app.n8n.cloud/webhook/sheets-gateway';
 var SS='1aPDNlSrvXAac2PAgZLd2mQLGWrVUWtxHfmOKarsU5xI';
 var AFF=[null,'Le dossier de candidature','Les portraits','Les lettres découpées','La sérigraphie','La convocation','Le collage',"L'offre d'emploi",'Les bulles de questions','Le dossier jaune'];
-var choix=[], VOTES={};
+var MONTRE=[1,2,5,6,7], choix=[], VOTES={};
 function $(i){return document.getElementById(i);}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
 function img(i){return 'assets/vote-affiche/affiche-'+i+'.jpg?v=3';}
@@ -130,7 +130,7 @@ async function charger(){
     var k=(j.valueRanges[0]&&j.valueRanges[0].values)||[], c=(j.valueRanges[1]&&j.valueRanges[1].values)||[];
     VOTES={};
     k.forEach(function(r,i){var key=r[0]; if(!key||key==='k') return;
-      var v=(c[i]||[]).map(function(x){return parseInt(x,10);}).filter(function(x){return x>=1&&x<=9;});
+      var v=(c[i]||[]).map(function(x){return parseInt(x,10);}).filter(function(x){return MONTRE.indexOf(x)>=0;});
       if(v.length) VOTES[key]=v;});
     resultats();
   }catch(e){ $('res').textContent='Le classement s\'affichera ici.'; }
@@ -149,7 +149,7 @@ function resultats(){
 
 function grille(){
   var h='';
-  for(var i=1;i<=9;i++) h+='<div class="carte" id="c'+i+'"><span class="badge">'+i+'</span><img src="'+img(i)+'" alt="Affiche '+i+'" loading="lazy" data-i="'+i+'"><div class="b"><div class="t">'+i+' · '+esc(AFF[i])+'</div><div class="rk">'+[1,2,3].map(function(r){return '<button data-i="'+i+'" data-r="'+r+'">'+r+(r===1?'re':'e')+'</button>';}).join('')+'</div></div></div>';
+  MONTRE.forEach(function(i){ h+='<div class="carte" id="c'+i+'"><span class="badge">'+i+'</span><img src="'+img(i)+'" alt="Affiche '+i+'" loading="lazy" data-i="'+i+'"><div class="b"><div class="t">'+i+' · '+esc(AFF[i])+'</div><div class="rk">'+[1,2,3].map(function(r){return '<button data-i="'+i+'" data-r="'+r+'">'+r+(r===1?'re':'e')+'</button>';}).join('')+'</div></div></div>'; });
   $('grille').innerHTML=h;
 }
 document.addEventListener('click',function(e){
@@ -171,8 +171,8 @@ function placer(i,r){
 }
 function choisis(){return [choix[0],choix[1],choix[2]].filter(function(x){return x;});}
 function maj(){
-  for(var i=1;i<=9;i++){ var c=$('c'+i), r=choix.indexOf(i); c.className='carte'+(r>=0?' r'+(r+1):'');
-    c.querySelectorAll('.rk button').forEach(function(b){b.classList.toggle('on',+b.dataset.r===r+1);}); }
+  MONTRE.forEach(function(i){ var c=$('c'+i), r=choix.indexOf(i); c.className='carte'+(r>=0?' r'+(r+1):'');
+    c.querySelectorAll('.rk button').forEach(function(b){b.classList.toggle('on',+b.dataset.r===r+1);}); });
   [1,2,3].forEach(function(r){var x=choix[r-1],p=$('p'+r);p.className='pill'+(x?' on':'');p.innerHTML=r+'<sup>'+(r===1?'re':'e')+'</sup> : '+(x?'n°'+x:'—');});
   $('envoyer').disabled=!(identifie()&&choisis().length);
   document.body.classList.toggle('anon',!identifie());
