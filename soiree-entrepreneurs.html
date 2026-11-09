@@ -192,7 +192,9 @@ button:disabled{opacity:.6;cursor:default;}
   var ONGLET="'Entrepreneurs soirées'!A:V";
   var VALIDATION='https://thierrybismuth.com/entrepreneurs-validation-prive.html';
   /* Lieux exclus de ce format (Toulouse, Le 9 : apéro et dîner dès 19h). */
-  var EXCLUS=['LE9'];
+  var EXCLUS=[];
+  /* Horaires fixés à la main pour une séance (sinon : réunion 1h30 avant le rideau, accueil 15 min avant). */
+  var FIXE={'TLS-1203':{reunion:'18h',accueil:'17h45'}};
   /* Photo du théâtre : assets/theatres/<code du lieu>.jpg — rien ne s'affiche tant qu'elle n'existe pas. */
   var MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
   var JOURS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
@@ -222,7 +224,7 @@ button:disabled{opacity:.6;cursor:default;}
       V[ville]=ordre.map(function(k){
         var x=soirs[k]; x.s.sort(function(a,b){ return enMin(a.h)-enMin(b.h); });
         /* La réunion se cale toujours sur la première séance : 1h30 avant le lever de rideau, accueil 15 min avant. */
-        var r=enMin(x.s[0].h); x.code=x.s[0].c; x.rideau=enH(r); x.reunion=enH(r-90); x.accueil=enH(r-105); x.verre=enH(r+90);
+        var r=enMin(x.s[0].h); x.code=x.s[0].c; x.rideau=enH(r); x.reunion=enH(r-90); x.accueil=enH(r-105); if(FIXE[x.code]){ x.reunion=FIXE[x.code].reunion; x.accueil=FIXE[x.code].accueil; } x.verre=enH(r+90);
         var L=LIEUX[x.l]||{n:'',a:''}; x.nom=L.n; x.adr=L.a; return x; });
     });
     var villes=Object.keys(V).sort(function(a,b){ return V[a][0].iso<V[b][0].iso?-1:1; });
