@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Choisissez l'affiche · ON VOUS RAPPELLERA !</title>
+<meta name="description" content="Votez pour votre affiche préférée de la comédie ON VOUS RAPPELLERA ! et tentez de gagner une des 10 places pour les avant-premières.">
+<meta property="og:title" content="ON VOUS RAPPELLERA ! · Choisissez notre affiche">
+<meta property="og:description" content="Votez pour votre affiche préférée : 10 places à gagner pour les avant-premières, par tirage au sort.">
+<meta property="og:image" content="https://onvousrappellera.fr/assets/vote-affiche/affiche-1.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--rouge:#d8281f;--noir:#161616;--gris:#6b7280;--ligne:#e5e1d8;--vert:#1f7a3f;--fond:#ffffff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Outfit,system-ui,sans-serif;background:var(--fond);color:#1c1c1c;line-height:1.45}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 16px 60px}
+.titre{font-weight:800;color:var(--rouge);font-size:15px;letter-spacing:.06em}
+h1{font-size:30px;line-height:1.15;margin:6px 0 4px;font-weight:800}
+.sous{color:var(--gris);font-size:15px;margin-bottom:14px}
+.gain{background:#fff6e0;border:2px solid #f0c24b;border-radius:14px;padding:14px 16px;margin:14px 0 18px;font-size:16px}
+.gain b{font-size:19px}
+.intro{font-size:15px;color:#333;margin-bottom:16px}
+.moi{border:1px solid var(--ligne);border-radius:14px;padding:14px;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+.champs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.champs input,.champs select{font-family:inherit;font-size:15px;padding:10px 11px;border:1px solid #cfcac0;border-radius:9px;width:100%;background:#fff}
+.ok{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:#444;margin-top:9px}
+.ok input{margin-top:3px}
+.choix{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.pill{font-size:14px;border:1px solid var(--ligne);border-radius:999px;padding:5px 11px;color:var(--gris)}
+.pill.on{border-color:var(--noir);color:var(--noir);font-weight:700}
+.envoyer{margin-left:auto;font-family:inherit;font-size:15px;font-weight:700;padding:10px 18px;border-radius:10px;border:0;background:var(--rouge);color:#fff;cursor:pointer}
+.envoyer:disabled{opacity:.4;cursor:default}
+.msg{margin-top:9px;font-size:14px;padding:8px 11px;border-radius:9px;background:#f3f4f6;display:none}
+.msg.err{background:#fde8e7;color:#a11d16}.msg.bon{background:#e7f5ec;color:var(--vert)}
+.flash{outline:3px solid var(--rouge);outline-offset:2px}
+h2.s{font-size:21px;font-weight:800;margin:26px 0 12px}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.carte{position:relative;border:1px solid var(--ligne);border-radius:12px;overflow:hidden;background:#fff}
+.carte.r1{outline:3px solid var(--rouge)}.carte.r2,.carte.r3{outline:3px solid var(--noir)}
+.carte img{display:block;width:100%;height:auto;cursor:zoom-in}
+.carte .b{padding:10px 12px 12px}
+.carte .t{font-weight:700;font-size:15px}
+.rk{display:flex;gap:6px;margin-top:8px}
+.rk button{flex:1;font-family:inherit;font-size:14px;font-weight:700;padding:8px 0;border-radius:8px;border:1px solid var(--ligne);background:#fff;cursor:pointer}
+.rk button.on{background:var(--noir);color:#fff;border-color:var(--noir)}
+.anon .rk button{opacity:.45}
+.badge{position:absolute;top:10px;left:10px;background:var(--noir);color:#fff;font-weight:800;font-size:15px;border-radius:999px;padding:4px 11px}
+.res{border:1px solid var(--ligne);border-radius:12px;padding:14px;background:#fff}
+.res .lead{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.res .lead img{width:120px;border-radius:6px;border:1px solid var(--ligne);cursor:zoom-in}
+.res ol{margin-left:20px;font-size:14.5px;line-height:1.7}
+.regle{font-size:13px;color:var(--gris);margin-top:26px;border-top:1px solid var(--ligne);padding-top:14px}
+.regle p{margin-bottom:6px}
+.regle a{color:var(--gris)}
+#zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:99;align-items:center;justify-content:center;padding:14px}
+#zoom img{max-width:100%;max-height:100%;border-radius:6px}
+@media(max-width:560px){h1{font-size:25px}.moi{position:static}.envoyer{width:100%;margin-left:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="titre">ON VOUS RAPPELLERA !</div>
+  <h1>Aidez-nous à choisir notre affiche</h1>
+  <div class="sous">La comédie qui se moque affectueusement de l'Entreprise · Succès au Festival Off d'Avignon</div>
+
+  <div class="gain">🎟️ <b>10 places à gagner</b> pour les avant-premières : tirage au sort parmi tous les participants.</div>
+
+  <p class="intro">Indiquez vos coordonnées, puis classez vos affiches préférées : une, deux ou trois, comme vous voulez. Chaque modèle sera décliné pour chaque ville : seule la mise en page compte, pas la ville ni la troupe qui figurent sur l'exemple.</p>
+
+  <div class="moi" id="moi">
+    <div class="champs">
+      <input id="prenom" placeholder="Prénom" autocomplete="given-name">
+      <input id="nom" placeholder="Nom" autocomplete="family-name">
+      <input id="email" type="email" placeholder="Adresse mail" autocomplete="email">
+      <select id="ville">
+        <option value="">— Avant-première qui vous intéresse —</option>
+        <option>Paris</option><option>Rennes</option><option>Nantes</option><option>Lyon</option><option>Bordeaux</option>
+      </select>
+    </div>
+    <label class="ok"><input type="checkbox" id="accord"> J'accepte d'être contacté(e) par mail si je suis tiré(e) au sort.</label>
+    <div class="choix">
+      <span class="pill" id="p1">1<sup>re</sup> : —</span>
+      <span class="pill" id="p2">2<sup>e</sup> : —</span>
+      <span class="pill" id="p3">3<sup>e</sup> : —</span>
+      <button class="envoyer" id="envoyer" disabled>Envoyer mon vote</button>
+    </div>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <h2 class="s">Les 9 affiches</h2>
+  <div class="grille" id="grille"></div>
+
+  <h2 class="s">Le classement du public</h2>
+  <div class="res" id="res">Chargement…</div>
+
+  <div class="regle">
+    <p>Une affiche classée 1<sup>re</sup> rapporte 3 points, 2<sup>e</sup> 2 points, 3<sup>e</sup> 1 point.</p>
+    <p>Participation gratuite et sans obligation d'achat. Une participation par adresse mail : si vous votez à nouveau, c'est votre dernier vote qui compte. 10 places à gagner pour les avant-premières, tirées au sort parmi les participants avant les représentations ; les gagnants sont prévenus par mail.</p>
+    <p>Vos coordonnées servent uniquement à ce tirage au sort : elles ne sont ni affichées, ni cédées. Une question : <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a> · <a href="https://onvousrappellera.fr/">onvousrappellera.fr</a></p>
+  </div>
+</div>
+<div id="zoom"><img alt=""></div>
+
+<script>
+var GW='https://thierryb.app.n8n.cloud/webhook/sheets-gateway';
+var SS='1aPDNlSrvXAac2PAgZLd2mQLGWrVUWtxHfmOKarsU5xI';
+var AFF=[null,'Le dossier de candidature','Les portraits','Les lettres découpées','La sérigraphie','La convocation','Le collage',"L'offre d'emploi",'Les bulles de questions','Le dossier jaune'];
+var choix=[], VOTES={};
+function $(i){return document.getElementById(i);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+function img(i){return 'assets/vote-affiche/affiche-'+i+'.jpg?v=1';}
+async function gw(p){
+  p.spreadsheetId=SS;
+  var r=await fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+  var t=await r.text(); if(!r.ok) throw new Error('HTTP '+r.status); if(!t) throw new Error('réponse vide');
+  var j=JSON.parse(t); if(j.method==='ERROR'||j.error) throw new Error(j.error||'erreur serveur'); return j;
+}
+async function cle(mail){
+  var d=new TextEncoder().encode(mail.trim().toLowerCase());
+  var h=await crypto.subtle.digest('SHA-256',d);
+  return Array.from(new Uint8Array(h)).map(function(b){return b.toString(16).padStart(2,'0');}).join('').slice(0,24);
+}
+function mailOk(){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('email').value.trim());}
+function identifie(){return $('prenom').value.trim()&&$('nom').value.trim()&&mailOk()&&$('ville').value&&$('accord').checked;}
+
+/* lecture : seulement la clé (empreinte de l'adresse) et les choix, jamais les coordonnées */
+async function charger(){
+  try{
+    var j=await gw({action:'batchGet',ranges:['Votes!B2:B5000','Votes!G2:I5000']});
+    var k=(j.valueRanges[0]&&j.valueRanges[0].values)||[], c=(j.valueRanges[1]&&j.valueRanges[1].values)||[];
+    VOTES={};
+    k.forEach(function(r,i){var key=r[0]; if(!key||key==='k') return;
+      var v=(c[i]||[]).map(function(x){return parseInt(x,10);}).filter(function(x){return x>=1&&x<=9;});
+      if(v.length) VOTES[key]=v;});
+    resultats();
+  }catch(e){ $('res').textContent='Le classement s\'affichera ici.'; }
+}
+function resultats(){
+  var vs=Object.keys(VOTES).map(function(k){return VOTES[k];});
+  if(!vs.length){ $('res').innerHTML='<i style="color:#6b7280">Pas encore de vote : soyez le premier !</i>'; return; }
+  var pts={},nb={}; for(var i=1;i<=9;i++){pts[i]=0;nb[i]=0;}
+  vs.forEach(function(v){v.forEach(function(x,k){pts[x]+=3-k;nb[x]++;});});
+  var ord=Object.keys(pts).map(Number).filter(function(i){return pts[i]>0;}).sort(function(a,b){return pts[b]-pts[a]||nb[b]-nb[a]||a-b;});
+  var h='<div style="font-size:13px;color:#6b7280;margin-bottom:8px">'+vs.length+' participant'+(vs.length>1?'s':'')+'</div>';
+  h+='<div class="lead"><img src="'+img(ord[0])+'" data-i="'+ord[0]+'" alt="Affiche '+ord[0]+'"><div><b>En tête : n°'+ord[0]+'</b><br>'+esc(AFF[ord[0]])+'</div></div>';
+  h+='<ol>'+ord.slice(0,3).map(function(i){return '<li><b>n°'+i+'</b> · '+esc(AFF[i])+' — '+pts[i]+' pt'+(pts[i]>1?'s':'')+'</li>';}).join('')+'</ol>';
+  $('res').innerHTML=h;
+}
+
+function grille(){
+  var h='';
+  for(var i=1;i<=9;i++) h+='<div class="carte" id="c'+i+'"><span class="badge">'+i+'</span><img src="'+img(i)+'" alt="Affiche '+i+'" loading="lazy" data-i="'+i+'"><div class="b"><div class="t">'+i+' · '+esc(AFF[i])+'</div><div class="rk">'+[1,2,3].map(function(r){return '<button data-i="'+i+'" data-r="'+r+'">'+r+(r===1?'re':'e')+'</button>';}).join('')+'</div></div></div>';
+  $('grille').innerHTML=h;
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.rk button');
+  if(b){ if(!identifie()){ alerte(); return; } placer(+b.dataset.i,+b.dataset.r); return; }
+  var im=e.target.closest('.carte img,.res img'); if(im){ $('zoom').querySelector('img').src=img(im.dataset.i); $('zoom').style.display='flex'; }
+});
+$('zoom').onclick=function(){this.style.display='none';};
+function alerte(){
+  var manque=!$('prenom').value.trim()?'prenom':!$('nom').value.trim()?'nom':!mailOk()?'email':!$('ville').value?'ville':'accord';
+  msg('👆 Remplissez d\'abord vos coordonnées en haut (prénom, nom, adresse mail, ville) et cochez la case.','err');
+  var el=$(manque); el.classList.add('flash'); el.focus(); window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(function(){el.classList.remove('flash');},1600);
+}
+function placer(i,r){
+  if(choix[r-1]===i) choix[r-1]=undefined;
+  else{ for(var k=0;k<3;k++) if(choix[k]===i) choix[k]=undefined; choix[r-1]=i; }
+  maj();
+}
+function choisis(){return [choix[0],choix[1],choix[2]].filter(function(x){return x;});}
+function maj(){
+  for(var i=1;i<=9;i++){ var c=$('c'+i), r=choix.indexOf(i); c.className='carte'+(r>=0?' r'+(r+1):'');
+    c.querySelectorAll('.rk button').forEach(function(b){b.classList.toggle('on',+b.dataset.r===r+1);}); }
+  [1,2,3].forEach(function(r){var x=choix[r-1],p=$('p'+r);p.className='pill'+(x?' on':'');p.innerHTML=r+'<sup>'+(r===1?'re':'e')+'</sup> : '+(x?'n°'+x:'—');});
+  $('envoyer').disabled=!(identifie()&&choisis().length);
+  document.body.classList.toggle('anon',!identifie());
+}
+['prenom','nom','email','ville','accord'].forEach(function(id){$(id).addEventListener('input',maj);$(id).addEventListener('change',maj);});
+function msg(t,c){var m=$('msg');m.className='msg'+(c?' '+c:'');m.innerHTML=t;m.style.display=t?'':'none';}
+
+$('envoyer').onclick=async function(){
+  var c=choisis(); if(!(identifie()&&c.length)) return;
+  var b=this; b.disabled=true; msg('Envoi…');
+  try{
+    var mail=$('email').value.trim().toLowerCase(), k=await cle(mail);
+    await gw({action:'append',range:'Votes!A:I',valueInputOption:'RAW',values:[[new Date().toISOString(),k,$('prenom').value.trim(),$('nom').value.trim(),mail,$('ville').value,c[0]||'',c[1]||'',c[2]||'']]});
+    VOTES[k]=c.slice(); resultats();
+    msg('✅ Merci '+esc($('prenom').value.trim())+' ! Votre vote est enregistré et vous participez au tirage au sort.','bon');
+  }catch(e){ msg('❌ Le vote n\'est pas parti ('+esc(e.message)+'). Réessayez.','err'); }
+  b.disabled=false; maj();
+};
+grille(); maj(); charger();
+</script>
+</body>
+</html>
