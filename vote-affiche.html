@@ -109,7 +109,7 @@ var MONTRE=[1,2,5,6,7], choix=[], VOTES={};
 function N(i){return MONTRE.indexOf(i)+1;}  /* numéro affiché 1 à 5 (même numérotation que les visuels diffusés) */
 function $(i){return document.getElementById(i);}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
-function img(i){return 'assets/vote-affiche/affiche-'+i+'.jpg?v=7';}
+function img(i){return 'assets/vote-affiche/affiche-'+i+'.jpg?v=8';}
 async function gw(p){
   p.spreadsheetId=SS;
   var r=await fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
