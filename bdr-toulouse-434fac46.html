@@ -247,7 +247,7 @@ document.addEventListener('click',function(e){ var m=e.target.closest('.menu'); 
 (function(){
   if(window.FE) FE.monter(document.getElementById('fe-ancre'), document.getElementById('f-soc'));
   var API='https://thierryb.app.n8n.cloud/webhook/billetterie-paiement', MAIL='https://thierryb.app.n8n.cloud/webhook/send-email-unitaire', SEANCE='TLS-1203';
-  var PRIX={bdr:20,partenaire:20,reduit:15}, LIB={bdr:'Membre du BDR (Carré Or)',partenaire:'Tarif normal',reduit:'Tarif solidaire'};
+  var PRIX={bdr:20,partenaire:20,reduit:15}, LIB={bdr:'Membre du BDR (Carré Or)',partenaire:'Tarif normal',reduit:'Tarif réduit'};
   var g=function(i){return document.getElementById(i);}, msg=g('f-msg'), btn=g('f-btn');
   function esc(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
   function show(c,t){msg.className='msg '+c;msg.innerHTML=t;}

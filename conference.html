@@ -129,8 +129,8 @@
           <div class="champ" id="w-seance"><label class="lib" for="f-seance">Séance</label><select id="f-seance"></select></div>
           <div class="champ"><label class="lib" for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div>
         </div>
-        <label class="tarif"><input type="radio" name="tarif" id="t-reduit" value="reduit" checked><span><b>Tarif demandeurs d'emploi et étudiants — 15&nbsp;€</b><br><small>justificatif à présenter à l'entrée</small></span></label>
-        <div class="champ" id="w-statut"><label class="lib" for="f-statut">Je suis</label><select id="f-statut"><option value="Demandeur d'emploi">Demandeur d'emploi</option><option value="Étudiant">Étudiant</option></select></div>
+        <label class="tarif"><input type="radio" name="tarif" id="t-reduit" value="reduit" checked><span><b>Tarif réduit — 15&nbsp;€</b><br><small>(étudiants, demandeurs d'emploi…) · justificatif à présenter à l'entrée</small></span></label>
+        <div class="champ" id="w-statut"><label class="lib" for="f-statut">Je suis</label><select id="f-statut"><option value="Demandeur d'emploi">Demandeur d'emploi</option><option value="Étudiant">Étudiant</option><option value="Autre">Autre</option></select></div>
         <label class="tarif petit"><input type="radio" name="tarif" id="t-normal" value="partenaire"><span><b>Plein tarif — 20&nbsp;€</b></span></label>
         <div id="fe-ancre"></div>
       </div>
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded',function(){ if(window.FE) FE.monter
         return fetch(BILLETTERIE,{method:'POST',headers:{'Content-Type':'text/plain'},
           body:JSON.stringify({seance:seance,tarif:tarif,qty:qty,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.tel,statut:statut,ft:'',accord:false,code:'',source:'conference'})})
           .then(function(r){ return r.json(); })
-          .then(function(d){ if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:(sc.options[sc.selectedIndex]?sc.options[sc.selectedIndex].text:seance),qty:qty,pu:(tarif==='reduit'?15:20),tarif:(tarif==='reduit'?'Tarif solidaire':'Tarif normal'),prenom:p.prenom,nom:p.nom,email:p.email,portable:p.tel}); location.href=d.url; return; }
+          .then(function(d){ if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:(sc.options[sc.selectedIndex]?sc.options[sc.selectedIndex].text:seance),qty:qty,pu:(tarif==='reduit'?15:20),tarif:(tarif==='reduit'?'Tarif réduit':'Tarif normal'),prenom:p.prenom,nom:p.nom,email:p.email,portable:p.tel}); location.href=d.url; return; }
             if(d&&d.ok&&d.invite){ show('ok','<b>'+esc(d.message)+'</b>'); return; }
             btn.disabled=false; show('ko','Votre place à la <b>conférence</b> est bien réservée, mais le paiement de la pièce n\'a pas pu être préparé : '+esc((d&&d.message)||'erreur inconnue')+'. Rien n\'a été débité. Vous pouvez réessayer, ou appeler le 06 10 70 30 90.'); })
           .catch(function(){ btn.disabled=false; show('ko','Votre place à la <b>conférence</b> est bien réservée, mais le service de paiement de la pièce ne répond pas. Rien n\'a été débité. Réessayez dans un instant, ou appelez le 06 10 70 30 90.'); });
