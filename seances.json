@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-07T12:40:31.523Z",
+ "maj": "2026-11-13T13:00:06.914Z",
  "seances": [
   {
    "code": "PAR-1202-19",
@@ -26,45 +26,6 @@
    "jauge": 100,
    "precision": "apéro et dîner dès 19h",
    "confirmee": true
-  },
-  {
-   "code": "PAR-1207-15",
-   "ville": "Paris",
-   "date": "2026-12-07",
-   "jour": "Lundi 7 décembre 2026",
-   "heure": "15h",
-   "troupe": "Les 3 troupes",
-   "theatre": "Kido Comedy Club",
-   "adresse": "39 boulevard Saint-Michel, 75005 Paris",
-   "jauge": 50,
-   "precision": "",
-   "confirmee": false
-  },
-  {
-   "code": "PAR-1207-1730",
-   "ville": "Paris",
-   "date": "2026-12-07",
-   "jour": "Lundi 7 décembre 2026",
-   "heure": "17h30",
-   "troupe": "Les 3 troupes",
-   "theatre": "Kido Comedy Club",
-   "adresse": "39 boulevard Saint-Michel, 75005 Paris",
-   "jauge": 50,
-   "precision": "",
-   "confirmee": false
-  },
-  {
-   "code": "PAR-1207-20",
-   "ville": "Paris",
-   "date": "2026-12-07",
-   "jour": "Lundi 7 décembre 2026",
-   "heure": "20h",
-   "troupe": "Les 3 troupes",
-   "theatre": "Kido Comedy Club",
-   "adresse": "39 boulevard Saint-Michel, 75005 Paris",
-   "jauge": 50,
-   "precision": "",
-   "confirmee": false
   },
   {
    "code": "PAR-1209-19",
