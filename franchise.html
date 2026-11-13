@@ -280,14 +280,14 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   var VILLES=['Paris','Bordeaux','Lyon','Toulouse','Nantes','Rennes','Montpellier','Marseille','Lille'];
   // Copie de secours : les dates sont relues sur la page grand public à chaque ouverture.
   var DATES={
-    "Paris":[{d:"2 décembre 2026 · 19h",t:"Séance de 19h",l:"T1"},{d:"7 décembre 2026 · 15h",t:"Séance de 15h",l:"T3"},{d:"7 décembre 2026 · 17h30",t:"Séance de 17h30",l:"T3"},{d:"7 décembre 2026 · 20h",t:"Séance de 20h",l:"T3"},{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T1"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T6"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T6"}],
+    "Paris":[{d:"2 décembre 2026 · 19h",t:"Séance de 19h",l:"T1"},{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T1"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T5"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T5"}],
     "Toulouse":[{d:"2 décembre 2026 · 21h",t:"Séance de 21h",l:"T2"}],
-    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T4"}],
-    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T5"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T5"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T5"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T5"}],
-    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"T7"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"T7"}],
-    "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"T8"}]
+    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T3"}],
+    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4"}],
+    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"T6"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"T6"}],
+    "Nantes":[{d:"19 janvier 2027 · 21h",t:"Séance de 21h",l:"T7"}]
   };
-  var LIEUX={"T1":{n:"Théâtre Clavel"},"T2":{n:"Le 9"},"T3":{n:"Kido Comedy Club"},"T4":{n:"La Comédie de Rennes"},"T5":{n:"Théâtre Artisse"},"T6":{n:"Théâtre Montmartre Galabru"},"T7":{n:"Le Croiseur"},"T8":{n:"Théâtre du Sphinx"}};
+  var LIEUX={"T1":{n:"Théâtre Clavel"},"T2":{n:"Le 9"},"T3":{n:"La Comédie de Rennes"},"T4":{n:"Théâtre Artisse"},"T5":{n:"Théâtre Montmartre Galabru"},"T6":{n:"Le Croiseur"},"T7":{n:"Théâtre du Sphinx"}};
   var GW='https://thierryb.app.n8n.cloud/webhook/sheets-gateway', SS='1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg', TAB="'Soirées franchise'";
   var MAIL='https://thierryb.app.n8n.cloud/webhook/send-email-unitaire';
   var g=function(i){return document.getElementById(i);};
