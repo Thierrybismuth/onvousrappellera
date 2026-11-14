@@ -749,19 +749,6 @@
    "videos": []
   },
   {
-   "prenom": "Marion",
-   "nom": "Bourdier Prevost",
-   "ville": "Toulouse",
-   "troupe": "",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/marion-bourdier-prevost-10iosqoijhb7.png?v=1791176499089",
-   "photos": [
-    "https://onvousrappellera.fr/assets/comediens/marion-bourdier-prevost-10iosqoijhb7.png?v=1791176499089"
-   ],
-   "personnage": "Delphine",
-   "parcours": [],
-   "videos": []
-  },
-  {
    "prenom": "Ocellina",
    "nom": "Coudé",
    "ville": "Toulouse",
@@ -771,19 +758,6 @@
     "https://onvousrappellera.fr/assets/comediens/ocellina-coude-10xlz4bboi5p.png?v=1791176499089"
    ],
    "personnage": "Johana + Julia",
-   "parcours": [],
-   "videos": []
-  },
-  {
-   "prenom": "Sarah",
-   "nom": "Pascual",
-   "ville": "Toulouse",
-   "troupe": "",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/sarah-pascual-1ofptbyicaor.png?v=1791176499089",
-   "photos": [
-    "https://onvousrappellera.fr/assets/comediens/sarah-pascual-1ofptbyicaor.png?v=1791176499089"
-   ],
-   "personnage": "Pascale + Dominique",
    "parcours": [],
    "videos": []
   }
