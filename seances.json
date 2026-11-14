@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-13T13:00:06.914Z",
+ "maj": "2026-11-14T05:41:17.472Z",
  "seances": [
   {
    "code": "PAR-1202-19",
@@ -154,19 +154,6 @@
    "theatre": "Théâtre Montmartre Galabru",
    "adresse": "4 rue de l'Armée d'Orient, 75018 Paris",
    "jauge": 90,
-   "precision": "",
-   "confirmee": false
-  },
-  {
-   "code": "NAN-0119-21",
-   "ville": "Nantes",
-   "date": "2027-01-19",
-   "jour": "Mardi 19 janvier 2027",
-   "heure": "21h",
-   "troupe": "",
-   "theatre": "Théâtre du Sphinx",
-   "adresse": "9 rue Monteil, 44000 Nantes",
-   "jauge": 120,
    "precision": "",
    "confirmee": false
   }
