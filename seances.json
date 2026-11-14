@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-14T05:41:17.472Z",
+ "maj": "2026-11-14T18:28:16.464Z",
  "seances": [
   {
    "code": "PAR-1202-19",
@@ -23,7 +23,7 @@
    "troupe": "",
    "theatre": "Le 9",
    "adresse": "9 rue Lejeune, 31000 Toulouse",
-   "jauge": 100,
+   "jauge": 150,
    "precision": "apéro et dîner dès 19h",
    "confirmee": true
   },
