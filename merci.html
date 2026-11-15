@@ -80,7 +80,7 @@
     e.innerHTML='<b>'+x.ville+'</b> — '+x.jour+' · '+x.heure+(x.precision?' ('+x.precision+')':'')+'<br>'+(x.theatre==='Le 9'?'Cabaret Le 9':x.theatre)+', '+x.adresse;
     e.style.display='block';
     ville=x.ville; lien='https://onvousrappellera.fr/?ville='+encodeURIComponent(x.ville); majPartage();
-    if(/d[iî]ner|restaurant/i.test(x.precision||'')){ var dn=document.getElementById('diner'); dn.innerHTML='<b>Envie de dîner sur place ?</b> Le restaurant vous accueille dès 19h ('+x.precision+'), avant le lever de rideau à '+x.heure+'.'; dn.style.display='block'; }
+    if(/d[iî]ner|restaurant/i.test(x.precision||'')){ var dn=document.getElementById('diner'); dn.innerHTML='<b>Envie de dîner sur place ?</b> Le restaurant vous accueille dès 19h pour l\'apéro et le dîner, avant le lever de rideau à '+x.heure+'.'; dn.style.display='block'; }
   }).catch(function(){});
 })();
 </script>
