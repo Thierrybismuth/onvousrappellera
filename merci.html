@@ -40,7 +40,7 @@
   <div class="diner" id="diner"></div>
   <div class="share" id="share">
     <h3>Faites-en profiter votre réseau</h3>
-    <p>Vous connaissez des recruteurs, des managers ou des candidats qui en ont besoin ? Envoyez-leur la pièce :</p>
+    <p><span id="sh-intro">Vous connaissez des recruteurs, des managers ou des candidats qui en ont besoin ? Envoyez-leur la pièce :</span></p>
     <button type="button" id="sh-btn">Partager la pièce</button>
     <div class="sh-links">
       <a id="sh-wa" target="_blank" rel="noopener">WhatsApp</a>
@@ -59,9 +59,10 @@
   var q=new URLSearchParams(location.search), s=q.get('s')||'';
   if(q.get('test')) document.getElementById('test').style.display='block';
   if(window.FE && FE.auRetour){ try{ FE.auRetour(document.getElementById('fe-retour')); }catch(e){} }
-  var ville='', lien='https://onvousrappellera.fr/';
+  var BDR=(q.get('src')==='bdr'), BDRURL='https://onvousrappellera.fr/bdr-toulouse-434fac46.html';
+  var ville='', lien=BDR?BDRURL:'https://onvousrappellera.fr/';
   function majPartage(){
-    var txt='Une comédie sur le recrutement qui fait rire et réfléchir : ON VOUS RAPPELLERA'+(ville?', à '+ville:'')+'. J\'ai pris mes places, venez !';
+    var txt=BDR?'Soirée du #BDR le 2 décembre au Cabaret Le 9 : ON VOUS RAPPELLERA, la comédie qui a mis le recrutement en pièce. Membres du BDR : 20 €, en Carré Or. J\'ai pris ma place, venez !':'Une comédie sur le recrutement qui fait rire et réfléchir : ON VOUS RAPPELLERA'+(ville?', à '+ville:'')+'. J\'ai pris mes places, venez !';
     var u=encodeURIComponent(lien), t=encodeURIComponent(txt);
     document.getElementById('sh-wa').href='https://wa.me/?text='+t+'%20'+u;
     document.getElementById('sh-li').href='https://www.linkedin.com/sharing/share-offsite/?url='+u;
@@ -72,6 +73,7 @@
       else { window.open(document.getElementById('sh-wa').href,'_blank'); }
     };
   }
+  if(BDR) document.getElementById('sh-intro').textContent='Invitez les autres membres du #BDR à vous rejoindre au Carré Or :';
   majPartage();
   if(!s) return;
   fetch('/seances.json?j='+Date.now()).then(function(r){return r.json();}).then(function(d){
@@ -79,7 +81,7 @@
     var e=document.getElementById('seance');
     e.innerHTML='<b>'+x.ville+'</b> — '+x.jour+' · '+x.heure+(x.precision?' ('+x.precision+')':'')+'<br>'+(x.theatre==='Le 9'?'Cabaret Le 9':x.theatre)+', '+x.adresse;
     e.style.display='block';
-    ville=x.ville; lien='https://onvousrappellera.fr/?ville='+encodeURIComponent(x.ville); majPartage();
+    ville=x.ville; lien=BDR?BDRURL:'https://onvousrappellera.fr/?ville='+encodeURIComponent(x.ville); majPartage();
     if(/d[iî]ner|restaurant/i.test(x.precision||'')){ var dn=document.getElementById('diner'); dn.innerHTML='<b>Envie de dîner sur place ?</b> Le restaurant vous accueille dès 19h pour l\'apéro et le dîner, avant le lever de rideau à '+x.heure+'.'; dn.style.display='block'; }
   }).catch(function(){});
 })();
