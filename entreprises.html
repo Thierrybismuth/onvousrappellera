@@ -62,6 +62,11 @@
   .punch{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.5rem 1.6rem;}
   .punch p{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;font-style:italic;color:var(--marine);line-height:1.35;}
 
+  .reflogos{display:flex;flex-wrap:wrap;gap:14px;margin-top:.8rem;}
+  .reflogo{background:#fff;border:1px solid var(--gris-clair);border-radius:2px;padding:12px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:180px;min-height:100px;box-sizing:border-box;}
+  @media(max-width:600px){.reflogo{width:calc(50% - 7px);}}
+  .reflogo img{max-height:46px;max-width:100%;width:auto;height:auto;display:block;}
+  .reflogo span{font-size:.7rem;color:var(--gris);letter-spacing:.04em;text-align:center;}
   .refs{display:flex;flex-wrap:wrap;gap:10px;margin-top:.7rem;}
   .reftitre{margin-top:1.6rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gris);}
   .ref{font-size:.78rem;font-weight:500;letter-spacing:.08em;color:var(--marine);border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:9px 18px;border-radius:2px;}
@@ -249,16 +254,22 @@
       </div>
     </div>
     <p class="reftitre" style="margin-top:1.8rem;">Elle a aussi été jouée chez</p>
-    <div class="refs">
-      <span class="ref">Schlumberger</span>
-      <span class="ref">Safran</span>
-      <span class="ref">Hubbard</span>
-      <span class="ref">Veolia</span>
+    <div class="reflogos">
+      <div class="reflogo"><img src="assets/logos/slb.svg" alt="Schlumberger (SLB)" loading="lazy"><span>Schlumberger</span></div>
+      <div class="reflogo"><img src="assets/logos/safran.png" alt="Safran" loading="lazy"></div>
+      <div class="reflogo"><img src="assets/logos/hubbard.svg" alt="Hubbard" loading="lazy"></div>
+      <div class="reflogo"><img src="assets/logos/veolia.svg" alt="Veolia" loading="lazy"></div>
     </div>
     <p class="reftitre">Fédérations, CCI, ANDRH et salons professionnels</p>
+    <div class="reflogos">
+      <div class="reflogo"><img src="assets/logos/fff.svg" alt="Fédération Française de la Franchise" loading="lazy"><span>Bordeaux</span></div>
+      <div class="reflogo"><img src="assets/logos/cci-nord-isere.jpg" alt="CCI Nord-Isère" loading="lazy"><span>Bourgoin-Jallieu</span></div>
+      <div class="reflogo"><img src="assets/logos/andrh.svg" alt="ANDRH" loading="lazy"><span>10 groupes locaux</span></div>
+      <div class="reflogo"><img src="assets/logos/entreprendre-dans-l-ouest.png" alt="Salon de l'Entrepreneur Rennes" loading="lazy"><span>Salon de l'Entrepreneur — Rennes</span></div>
+      <div class="reflogo"><img src="assets/logos/forum-toulouse-technologies.svg" alt="Forum Toulouse Technologies" loading="lazy"><span>Forum Toulouse Technologies</span></div>
+      <div class="reflogo"><img src="assets/logos/sepem.png" alt="SEPEM Industries" loading="lazy"><span>Toulouse</span></div>
+    </div>
     <div class="refs">
-      <span class="ref">Fédération Française de la Franchise — Bordeaux</span>
-      <span class="ref">CCI Nord-Isère — Bourgoin-Jallieu</span>
       <span class="ref">ANDRH Paris</span>
       <span class="ref">ANDRH Lille</span>
       <span class="ref">ANDRH Rennes</span>
@@ -269,9 +280,6 @@
       <span class="ref">ANDRH Épernay</span>
       <span class="ref">ANDRH Montpellier</span>
       <span class="ref">ANDRH du Loiret</span>
-      <span class="ref">Salon de l'Entrepreneur — Rennes</span>
-      <span class="ref">Forum Toulouse Technologies</span>
-      <span class="ref">SEPEM Industries — Toulouse</span>
       <span class="ref">Syndicat viticole — Épernay</span>
     </div>
     <p class="lead" style="margin-top:1.8rem;"><strong>Tout est paramétrable</strong> selon l'état d'esprit de votre événement, vos attentes, votre temps et votre budget.</p>
