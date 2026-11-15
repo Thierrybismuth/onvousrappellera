@@ -187,10 +187,9 @@ footer a{color:var(--gris);}
 
   <section>
     <span class="tag">La troupe</span>
-    <h2>Surprise&nbsp;!</h2>
-    <p>Une des 8 troupes qui jouent <span class="titre">ON VOUS RAPPELLERA</span> aux quatre coins de la France viendra jouer à Toulouse. Laquelle&nbsp;? Vous le découvrirez le soir même.</p>
-    <div class="slider"><button type="button" class="snav sprev" aria-label="Troupe précédente">&#8249;</button><div class="strack" id="strack"><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-paris-esprit-d-equipe.jpg" alt="La troupe Paris — Esprit d'équipe" loading="lazy"></span><figcaption>Paris — Esprit d'équipe</figcaption></figure><figure class="sl"><span class="cadre duo"><span class="dm"><img src="assets/troupes/troupe-paris-engagement.jpg?v=20261107" alt="La troupe Paris — Engagement" loading="lazy"><small>Paris — Engagement</small></span><span class="dm"><img src="assets/troupes/troupe-rennes.jpg" alt="La troupe de Rennes" loading="lazy"><small>Rennes</small></span></span></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-paris-honnetete.jpg?v=20261115" alt="La troupe Paris — Honnêteté" loading="lazy"></span><figcaption>Paris — Honnêteté</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-lyon.jpg" alt="La troupe Lyon" loading="lazy"></span><figcaption>Lyon</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-bordeaux.jpg" alt="La troupe Bordeaux" loading="lazy"></span><figcaption>Bordeaux</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-montpellier.jpg" alt="La troupe Montpellier" loading="lazy"></span><figcaption>Montpellier</figcaption></figure><figure class="sl"><span class="cadre"><img src="assets/troupes/troupe-nantes-2.jpg" alt="La troupe Nantes" loading="lazy"></span><figcaption>Nantes</figcaption></figure></div><button type="button" class="snav snext" aria-label="Troupe suivante">&#8250;</button></div><p class="scount" id="scount">Troupe 1 / 8</p>
-    <p class="surprise">Laquelle viendra à Toulouse&nbsp;? <b>Réponse le 2 décembre.</b></p>
+    <h2>La troupe qui vient jouer à Toulouse</h2>
+    <p>Le 2 décembre, c'est cette troupe qui jouera <span class="titre">ON VOUS RAPPELLERA</span> au cabaret Le 9.</p>
+    <figure style="margin:1rem 0 0"><img src="assets/troupes/troupe-bordeaux.jpg?v=2" alt="La troupe qui joue ON VOUS RAPPELLERA à Toulouse" loading="lazy" style="width:100%;height:auto;display:block"></figure>
   </section>
 
   <section id="reserver">
@@ -233,7 +232,7 @@ footer a{color:var(--gris);}
 <script src="/assets/facture-entreprise.js?v=1"></script>
 <script>
 (function(){
-  var tr=document.getElementById('strack'), ct=document.getElementById('scount'), n=tr.children.length;
+  var tr=document.getElementById('strack'); if(!tr) return; var ct=document.getElementById('scount'), n=tr.children.length;
   function idx(){ return Math.round(tr.scrollLeft/tr.clientWidth); }
   function go(d){ var i=(idx()+d+n)%n; tr.scrollTo({left:i*tr.clientWidth,behavior:'smooth'}); }
   document.querySelector('.sprev').addEventListener('click',function(){go(-1);});
