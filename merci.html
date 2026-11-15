@@ -19,6 +19,11 @@
   p.small{font-size:14px;color:#555}
   a{color:#d12a2f;font-weight:bold}
   #fe-retour{margin-top:16px}
+  .diner{display:none;margin-top:14px;border-left:4px solid #d12a2f;padding:6px 12px}
+  .share{margin-top:22px;border:1px solid #eee;border-radius:12px;padding:16px}
+  .share h3{margin:0 0 6px;color:#d12a2f}
+  .share button{background:#d12a2f;color:#fff;border:0;border-radius:24px;padding:12px 22px;font-size:16px;font-weight:bold;width:100%}
+  .sh-links{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:12px}
 </style>
 </head>
 <body>
@@ -26,12 +31,24 @@
 <main>
   <div class="ok">
     <h2>Paiement reçu, merci !</h2>
-    <p>Vos billets partent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.</p>
-    <p>Présentez simplement ce mail à l'entrée, sur votre téléphone ou imprimé.</p>
+    <p>Vos billets numérotés arrivent par mail dans quelques minutes (pensez à vérifier vos courriers indésirables).</p>
+    <p><b>C'est ce mail avec vos billets que vous présenterez à l'entrée</b>, sur votre téléphone ou imprimé.</p>
   </div>
   <div class="seance" id="seance"></div>
   <p class="test" id="test">Paiement de test (séance interne).</p>
   <div id="fe-retour"></div>
+  <div class="diner" id="diner"></div>
+  <div class="share" id="share">
+    <h3>Faites-en profiter votre réseau</h3>
+    <p>Vous connaissez des recruteurs, des managers ou des candidats qui en ont besoin ? Envoyez-leur la pièce :</p>
+    <button type="button" id="sh-btn">Partager la pièce</button>
+    <div class="sh-links">
+      <a id="sh-wa" target="_blank" rel="noopener">WhatsApp</a>
+      <a id="sh-li" target="_blank" rel="noopener">LinkedIn</a>
+      <a id="sh-fb" target="_blank" rel="noopener">Facebook</a>
+      <a id="sh-mail">Mail</a>
+    </div>
+  </div>
   <p>Prévoyez de rester avec nous : la soirée se prolonge au bar pour discuter de théâtre et de recrutement avec les comédiens :-)</p>
   <p class="small">Une question ? Appelez-nous au 06 10 70 30 90 ou écrivez à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
   <p class="small"><a href="https://onvousrappellera.fr/">onvousrappellera.fr</a></p>
@@ -42,12 +59,28 @@
   var q=new URLSearchParams(location.search), s=q.get('s')||'';
   if(q.get('test')) document.getElementById('test').style.display='block';
   if(window.FE && FE.auRetour){ try{ FE.auRetour(document.getElementById('fe-retour')); }catch(e){} }
+  var ville='', lien='https://onvousrappellera.fr/';
+  function majPartage(){
+    var txt='Une comédie sur le recrutement qui fait rire et réfléchir : ON VOUS RAPPELLERA'+(ville?', à '+ville:'')+'. J\'ai pris mes places, venez !';
+    var u=encodeURIComponent(lien), t=encodeURIComponent(txt);
+    document.getElementById('sh-wa').href='https://wa.me/?text='+t+'%20'+u;
+    document.getElementById('sh-li').href='https://www.linkedin.com/sharing/share-offsite/?url='+u;
+    document.getElementById('sh-fb').href='https://www.facebook.com/sharer/sharer.php?u='+u;
+    document.getElementById('sh-mail').href='mailto:?subject='+encodeURIComponent('ON VOUS RAPPELLERA')+'&body='+t+'%0A'+u;
+    document.getElementById('sh-btn').onclick=function(){
+      if(navigator.share){ navigator.share({title:'ON VOUS RAPPELLERA',text:txt,url:lien}).catch(function(){}); }
+      else { window.open(document.getElementById('sh-wa').href,'_blank'); }
+    };
+  }
+  majPartage();
   if(!s) return;
   fetch('/seances.json?j='+Date.now()).then(function(r){return r.json();}).then(function(d){
     var x=(d.seances||[]).filter(function(z){return z.code===s;})[0]; if(!x) return;
     var e=document.getElementById('seance');
     e.innerHTML='<b>'+x.ville+'</b> — '+x.jour+' · '+x.heure+(x.precision?' ('+x.precision+')':'')+'<br>'+(x.theatre==='Le 9'?'Cabaret Le 9':x.theatre)+', '+x.adresse;
     e.style.display='block';
+    ville=x.ville; lien='https://onvousrappellera.fr/?ville='+encodeURIComponent(x.ville); majPartage();
+    if(/d[iî]ner|restaurant/i.test(x.precision||'')){ var dn=document.getElementById('diner'); dn.innerHTML='<b>Envie de dîner sur place ?</b> Le restaurant vous accueille dès 19h ('+x.precision+'), avant le lever de rideau à '+x.heure+'.'; dn.style.display='block'; }
   }).catch(function(){});
 })();
 </script>
