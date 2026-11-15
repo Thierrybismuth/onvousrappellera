@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Merci ! — ON VOUS RAPPELLERA</title>
+<style>
+  body{margin:0;background:#fff;color:#161616;font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+  .top{background:#d12a2f;color:#fff;text-align:center;padding:26px 16px}
+  .top h1{margin:0;font-size:30px;letter-spacing:.5px}
+  .top p{margin:6px 0 0;font-size:15px}
+  main{max-width:560px;margin:0 auto;padding:26px 18px 40px}
+  .ok{border:2px solid #1e8e3e;background:#eef8f0;border-radius:12px;padding:18px}
+  .ok h2{margin:0 0 6px;color:#1e8e3e;font-size:22px}
+  .seance{margin-top:18px;border-radius:12px;background:#fff6d6;padding:14px 16px;display:none}
+  .seance b{color:#d12a2f}
+  .test{margin-top:14px;font-size:13px;color:#8a5a00;display:none}
+  p.small{font-size:14px;color:#555}
+  a{color:#d12a2f;font-weight:bold}
+  #fe-retour{margin-top:16px}
+</style>
+</head>
+<body>
+<div class="top"><h1>ON VOUS RAPPELLERA</h1><p>Ils ont mis le recrutement en pièce</p></div>
+<main>
+  <div class="ok">
+    <h2>Paiement reçu, merci !</h2>
+    <p>Vos billets partent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.</p>
+    <p>Présentez simplement ce mail à l'entrée, sur votre téléphone ou imprimé.</p>
+  </div>
+  <div class="seance" id="seance"></div>
+  <p class="test" id="test">Paiement de test (séance interne).</p>
+  <div id="fe-retour"></div>
+  <p>Prévoyez de rester avec nous : la soirée se prolonge au bar pour discuter de théâtre et de recrutement avec les comédiens :-)</p>
+  <p class="small">Une question ? Appelez-nous au 06 10 70 30 90 ou écrivez à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
+  <p class="small"><a href="https://onvousrappellera.fr/">onvousrappellera.fr</a></p>
+</main>
+<script src="/assets/facture-entreprise.js?v=1"></script>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search), s=q.get('s')||'';
+  if(q.get('test')) document.getElementById('test').style.display='block';
+  if(window.FE && FE.auRetour){ try{ FE.auRetour(document.getElementById('fe-retour')); }catch(e){} }
+  if(!s) return;
+  fetch('/seances.json?j='+Date.now()).then(function(r){return r.json();}).then(function(d){
+    var x=(d.seances||[]).filter(function(z){return z.code===s;})[0]; if(!x) return;
+    var e=document.getElementById('seance');
+    e.innerHTML='<b>'+x.ville+'</b> — '+x.jour+' · '+x.heure+(x.precision?' ('+x.precision+')':'')+'<br>'+(x.theatre==='Le 9'?'Cabaret Le 9':x.theatre)+', '+x.adresse;
+    e.style.display='block';
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>
