@@ -800,6 +800,7 @@ document.addEventListener('DOMContentLoaded',function(){
       var fe=window.FE?FE.lire():null; if(fe&&fe.erreur){ show('ko',fe.erreur); return; }
       btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
       var tfp=tarifChoisi();
+      if(window.ovrOrigine) ovrOrigine(p.email,S.c,'Site onvousrappellera.fr',p.code);
       fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},
         body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,source:'grand-public'})})
         .then(function(r){return r.json();})
@@ -1104,5 +1105,11 @@ document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
 <footer style="margin:40px auto 0;padding:22px 16px 30px;border-top:1px solid #e5e5e5;text-align:center;font-size:1rem;color:var(--marine);background:#fff">
   Une question ? Écrivez-nous : <a href="mailto:contact@onvousrappellera.fr" style="color:var(--accent);font-weight:600">contact@onvousrappellera.fr</a>
 </footer>
+<script id="ovr-origine">
+/* Origine des réservations : chaque passage au paiement est noté (page, lien suivi ?src=, provenance) dans l'onglet « Origines réservations ». */
+window.ovrOrigine=function(email,seance,source,code){try{var q=new URLSearchParams(location.search);
+fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Origines réservations'!A:H",valueInputOption:'RAW',
+values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(email||'').trim().toLowerCase(),seance||'',source,String(code||'').toUpperCase(),q.get('src')||q.get('utm_campaign')||'',location.pathname+location.search,document.referrer||'']]})}).catch(function(){});}catch(e){}};
+</script>
 </body>
 </html>
