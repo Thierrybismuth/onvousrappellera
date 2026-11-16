@@ -759,12 +759,15 @@ document.addEventListener('DOMContentLoaded',function(){
   (function(){ var sv=document.getElementById('f-ville'); Object.keys(DATES).sort(function(a,b){return a.localeCompare(b,'fr');}).forEach(function(v){ var o=document.createElement('option'); o.textContent=v; sv.appendChild(o); });
     /* Villes avec une troupe résidente mais sans date encore */
     ['Marseille','Montpellier'].forEach(function(v){ if(DATES[v]) return; var o=document.createElement('option'); o.value=v; o.textContent=v+' — date à venir'; sv.appendChild(o); }); })();
-  document.getElementById('f-ville').addEventListener('change',function(){ window.FILTRE_TR=null; majDates(this.value,''); document.getElementById('f-autre-wrap').style.display=(this.value==='Autre ville')?'':'none'; });
+  window.urlVille=function(v){ try{ var q=new URLSearchParams(location.search); ['merci','annule'].forEach(function(k){q.delete(k);}); if(v && v!=='Autre ville'){ q.set('ville',v); } else { q.delete('ville'); } var s=q.toString(); history.replaceState(null,'',location.pathname+(s?'?'+s:'')); }catch(e){} };
+  document.addEventListener('click',function(e){ var a=e.target.closest('a[href="#prevenez-moi"]'); if(!a || e.defaultPrevented) return; e.preventDefault(); var pm=document.getElementById('prevenez-moi'); if(pm) pm.scrollIntoView({behavior:'smooth'}); },true);
+  if(location.hash==='#prevenez-moi'){ try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){} }
+  document.getElementById('f-ville').addEventListener('change',function(){ window.FILTRE_TR=null; majDates(this.value,''); urlVille(this.value); document.getElementById('f-autre-wrap').style.display=(this.value==='Autre ville')?'':'none'; });
   modeResa();
   document.addEventListener('click',function(e){
     var a=e.target.closest('.vdate, .vprev'); if(!a) return;
     if(a.closest('#f-info')){ e.preventDefault(); setTimeout(function(){ var w=document.getElementById('f-date-wrap'); if(w) w.scrollIntoView({behavior:'smooth',block:'center'}); },0); }
-    if(!DATES[a.dataset.ville] && ['Marseille','Montpellier'].indexOf(a.dataset.ville)<0){ e.preventDefault(); if(window.ovrNL) window.ovrNL(a.dataset.ville); return; } var s=document.getElementById('f-ville'); s.value=a.dataset.ville; majDates(a.dataset.ville,a.dataset.date||'');
+    if(!DATES[a.dataset.ville] && ['Marseille','Montpellier'].indexOf(a.dataset.ville)<0){ e.preventDefault(); if(window.ovrNL) window.ovrNL(a.dataset.ville); return; } var s=document.getElementById('f-ville'); s.value=a.dataset.ville; majDates(a.dataset.ville,a.dataset.date||''); urlVille(a.dataset.ville);
   });
   var btn=document.getElementById('f-btn'), msg=document.getElementById('f-msg');
   (function(){ var q=new URLSearchParams(location.search);
