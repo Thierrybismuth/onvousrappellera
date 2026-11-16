@@ -274,12 +274,19 @@ document.addEventListener('click',function(e){ var m=e.target.closest('.menu'); 
     btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
     var detail='<p><b>Soirée BDR — Toulouse, 2 décembre (Le 9)</b></p><p>'+esc(p.prenom)+' '+esc(p.nom)+' — '+esc(p.societe)+' ('+esc(p.poste)+')<br>'+esc(p.email)+' — '+esc(p.portable)+'</p><p>'+p.qty+' place(s) — '+esc(LIB[t])+' — '+(PRIX[t]*p.qty)+' €'+(p.statut?' — '+esc(p.statut)+(p.ft?' n° '+esc(p.ft):''):'')+'</p><p>Dîner : '+(p.diner?'oui':'non')+' · Soirée festive : '+(p.festive?'oui':'non')+'</p><p>Paiement Stripe en cours : vérifier l\'encaissement dans les réservations.</p>';
     fetch(MAIL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:'bismuththierry@gmail.com',subject:'Résa BDR 2 déc. — '+p.prenom+' '+p.nom+' ('+LIB[t]+', '+p.qty+' pl.)',body:detail})}).catch(function(){});
+    if(window.ovrOrigine) ovrOrigine(p.email,SEANCE,'Page BDR Toulouse','');
     fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({seance:SEANCE,tarif:(t==='bdr'?'partenaire':t),qty:p.qty,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.portable,statut:p.statut,ft:p.ft,accord:document.getElementById('f-accord').checked,code:'',source:'bdr-toulouse',bdr:(t==='bdr'),entreprise:p.societe,fonction:p.poste,diner:p.diner,festive:p.festive})})
       .then(function(r){return r.json();})
       .then(function(d){ if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:'Toulouse — 2 décembre 2026, Le 9',qty:p.qty,pu:PRIX[t],tarif:LIB[t],prenom:p.prenom,nom:p.nom,email:p.email,portable:p.portable}); location.href=d.url;return;} show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
       .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
   });
 })();
+</script>
+<script id="ovr-origine">
+/* Origine des réservations : chaque passage au paiement est noté (page, lien suivi ?src=, provenance) dans l'onglet « Origines réservations ». */
+window.ovrOrigine=function(email,seance,source,code){try{var q=new URLSearchParams(location.search);
+fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Origines réservations'!A:H",valueInputOption:'RAW',
+values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(email||'').trim().toLowerCase(),seance||'',source,String(code||'').toUpperCase(),q.get('src')||q.get('utm_campaign')||'',location.pathname+location.search,document.referrer||'']]})}).catch(function(){});}catch(e){}};
 </script>
 </body>
 </html>
