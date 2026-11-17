@@ -24,6 +24,8 @@
   .hero .lead{font-size:1.08rem;max-width:520px}
   .hero .lead b{font-weight:600}
   .hero figure img{border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.14);margin-left:auto;max-height:440px;width:auto}
+  .hero figure.duo-cv{display:flex;gap:14px;justify-content:flex-end;margin:0}
+  .hero figure.duo-cv img{width:calc(50% - 7px);max-height:none;margin:0;border:1px solid #e3e3e3;border-radius:2px 6px 6px 2px}
   .portes{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
   .porte{display:inline-flex;flex-direction:column;text-decoration:none;color:var(--noir);border:2px solid var(--noir);border-radius:12px;padding:12px 18px;min-width:200px;transition:.15s}
   .porte small{font:600 11px/1.2 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
@@ -133,6 +135,7 @@
   @media(max-width:720px){
     .hero{grid-template-columns:1fr;padding-top:28px;gap:22px}
     .hero figure img{margin:0 auto;max-height:none;width:100%}
+    .hero figure.duo-cv{flex-direction:column;align-items:center}.hero figure.duo-cv img{width:100%}
     .livres,.choix,.champs,.sc,.duo{grid-template-columns:1fr}
     .porte{flex:1 1 100%}
     .galerie{flex-direction:column;align-items:stretch}
@@ -157,7 +160,7 @@
         <a class="porte" href="#reuje" data-v="r"><small>Je recrute</small><span>Recruter est un jeu d'enfant</span></a>
       </div>
     </div>
-    <figure><img src="/images/livre/livre-pile.jpg" width="825" height="1100" alt="Le livre Recruter est un jeu d'enfant ouvert sur une pile d'exemplaires"></figure>
+    <figure class="duo-cv"><img src="/images/livre/couverture-tjej.jpg" width="700" height="993" alt="Couverture du livre Trouver un job est un jeu d'enfant"><img src="/images/livre/couverture-reuje.jpg" width="700" height="993" alt="Couverture du livre Recruter est un jeu d'enfant"></figure>
   </section>
 
   <section class="livres">
