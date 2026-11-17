@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ON VOUS RAPPELLERA — Autorisation d'utilisation de l'image</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1c1c1c;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+.wrap{max-width:680px;margin:0 auto;padding:26px 18px 60px}
+.ovr{color:#d62828;font-weight:800;letter-spacing:.02em}
+h1{font-size:1.45rem;line-height:1.25;margin:4px 0 18px}
+.card{border:1px solid #e3e3e3;border-radius:12px;padding:18px;margin-bottom:16px;background:#fff}
+.texte p{margin:0 0 12px}
+.texte ol{padding-left:20px;margin:8px 0 0}
+.texte li{margin-bottom:12px}
+label.f{display:block;font-weight:600;margin:12px 0 6px}
+select,input[type=text],input[type=email]{width:100%;padding:12px;border:1px solid #ccc;border-radius:9px;font:inherit;font-size:1rem;background:#fff}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:6px 0;cursor:pointer}
+.chk input{width:20px;height:20px;margin-top:3px;flex:0 0 auto;accent-color:#d62828}
+.sig-pad{border:2px dashed #bbb;border-radius:8px;background:#fff;touch-action:none;width:100%;height:180px;display:block}
+.sig-tools{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap;font-size:.85rem;color:#666}
+.sig-tools button{background:#eee;border:1px solid #ccc;border-radius:6px;padding:6px 14px;font:inherit;cursor:pointer}
+button.go{width:100%;padding:15px;border:0;border-radius:999px;background:#d62828;color:#fff;font:inherit;font-size:1.05rem;font-weight:700;cursor:pointer}
+button.go:disabled{background:#ddd;color:#888}
+.msg{margin-top:14px;padding:13px 15px;border-radius:10px;display:none}
+.msg.err{display:block;background:#fdeceb;border:1px solid #f5b7b1;color:#922b21}
+.msg.att{display:block;background:#fef6e0;border:1px solid #e8d08a;color:#7a5c10}
+.ok{display:none}.ok.on{display:block}
+.off{display:none}
+.note{font-size:.85rem;color:#666}
+.masque{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="zoneForm">
+  <div class="ovr">ON VOUS RAPPELLERA</div>
+  <h1>Autorisation d'utilisation de l'image</h1>
+
+  <div class="card">
+    <label class="f" for="nom">Je suis</label>
+    <select id="nom"><option value="">— Choisis ton nom —</option></select>
+    <div id="blocAutre" class="masque">
+      <label class="f" for="nomLibre">Prénom et nom</label>
+      <input type="text" id="nomLibre" autocomplete="off">
+    </div>
+    <label class="f" for="mail">Mon adresse mail <span class="note">(pour recevoir mon exemplaire signé)</span></label>
+    <input type="email" id="mail" autocomplete="email" inputmode="email">
+  </div>
+
+  <div class="card texte">
+    <p>Je soussigné(e) <strong id="nomTexte">……………………</strong>, comédien(ne) de la pièce <strong class="ovr">ON VOUS RAPPELLERA</strong> :</p>
+    <ol>
+      <li><strong>Mon image.</strong> J'autorise Thierry Bismuth, producteur de la pièce, et toute société qu'il crée ou désigne pour l'exploiter (« la Production »), à capter, reproduire et diffuser mon image, mon nom et ma voix. Cela vaut pour les représentations, les répétitions, les événements et toute activité liée à la pièce.</li>
+      <li><strong>Mes photos et vidéos.</strong> Je cède à la Production le droit de reproduire, diffuser et adapter les photos et vidéos que j'ai prises ou transmises, et celles que je transmettrai, à elle ou à ma troupe. Le moyen d'envoi ne compte pas (WhatsApp, mail, Drive, réseaux sociaux…). Je garantis en être l'auteur ou avoir l'accord de l'auteur et des personnes qui y figurent.</li>
+      <li><strong>Supports.</strong> Tous supports, existants ou à venir : promotion de la pièce, site, réseaux sociaux, presse, affiches, flyers, livres et éditions, produits dérivés, conférences.</li>
+      <li><strong>Gratuité.</strong> Cette autorisation est donnée gratuitement, y compris pour les supports vendus. Elle entre dans la stratégie globale de communication de la pièce, dont je bénéficie.</li>
+      <li><strong>Durée.</strong> Cette autorisation vaut pour le monde entier pendant 10 ans. Elle couvre aussi les images prises avant la signature de ce document. Si je quitte le projet, je comprends que les supports déjà imprimés ou publiés continueront d'être diffusés jusqu'à épuisement. En revanche, les nouvelles éditions et réimpressions n'utiliseront plus de photos me représentant, sauf les photos de groupe où je ne suis pas mis(e) en avant.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <label class="chk"><input type="checkbox" id="accord"><span>J'ai lu et j'accepte cette autorisation.</span></label>
+    <label class="f">Ma signature</label>
+    <canvas id="sigpad" class="sig-pad"></canvas>
+    <div class="sig-tools"><button type="button" id="sigclear">Effacer</button><span>Signe avec le doigt sur téléphone.</span></div>
+  </div>
+
+  <button class="go" id="btn">Je signe</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<div class="ok" id="zoneOk">
+  <div class="ovr">ON VOUS RAPPELLERA</div>
+  <h1>Merci <span id="okPrenom"></span>, c'est signé.</h1>
+  <div class="card">
+    <p>Ton exemplaire signé et horodaté part à l'adresse <strong id="okMail"></strong>. Pense à vérifier tes spams.</p>
+    <p class="note">Une question ? Thierry Bismuth · <a href="tel:+33610703090">06 10 70 30 90</a></p>
+  </div>
+</div>
+</div>
+
+<script>
+var NOMS = [{"n": "Adèle Bloch-Mazier", "c": "Adèle Bloch-Mazier"}, {"n": "Alicia Bader", "c": "Alicia Bader"}, {"n": "Aliénor de Lambilly", "c": "Aliénor de Lambilly"}, {"n": "Anne Dupuy", "c": "Anne Dupuy"}, {"n": "Arthur Pichon", "c": "Arthur Pichon"}, {"n": "Béatrice Laout", "c": "Béatrice Laout"}, {"n": "Bertrand Laumonier", "c": "Bertrand Laumonier"}, {"n": "Briag Querhault", "c": "Briag Querhault"}, {"n": "Brigitte du Bois Saint Sévrin", "c": "Brigitte du Bois Saint Sévrin"}, {"n": "Bruno Rodet", "c": "Bruno Rodet"}, {"n": "Caroline de Laquintane", "c": "Caroline de Laquintane"}, {"n": "Caroline Larose", "c": "Caroline Larose"}, {"n": "Charlotte Orsini", "c": "Charlotte Peltier"}, {"n": "Christian Bahezre", "c": "Christian Bahezre"}, {"n": "Clarence Pernot", "c": "Clarence Pernot"}, {"n": "Clémentine Teixeira", "c": "Clémentine Teixeira"}, {"n": "Coralie Perney", "c": "Coralie Perney"}, {"n": "Daniel Vandeberg", "c": "Daniel Vandeberg"}, {"n": "Elisabeth Bon", "c": "Elisabeth Bon"}, {"n": "Éric Beslay", "c": "Éric Beslay"}, {"n": "Éric Tchu", "c": "Éric Tchu"}, {"n": "Fanny Coléno", "c": "Fanny Coléno"}, {"n": "Fanny Cony", "c": "Fanny Cony"}, {"n": "Flavio Coudon", "c": "Flavio Coudon"}, {"n": "Frédérique Gautier", "c": "Frédérique Gautier"}, {"n": "Fritz Sönnichsen", "c": "Fritz Sönnichsen"}, {"n": "Guillaume Biégnon", "c": "Guillaume Biégnon"}, {"n": "Isabelle Ricard", "c": "Isabelle Ricard"}, {"n": "Juliette Kerdiles", "c": "Juliette Kerdiles"}, {"n": "Kenzo Mavaut", "c": "Kenzo Mavaut"}, {"n": "Kevin Sergent", "c": "Kevin Sergent"}, {"n": "Lisa Bergerot", "c": "Lisa Bergerot"}, {"n": "Marine Luc", "c": "Marine Luc"}, {"n": "Mélanie Cauvé", "c": "Mélanie Cauvé"}, {"n": "Melody Dufour", "c": "Melody Dufour"}, {"n": "Muriel Lorrain", "c": "Muriel Lorrain"}, {"n": "Nadège Garnier", "c": "Nadège Garnier"}, {"n": "Nathalie Charade", "c": "Nathalie Charade"}, {"n": "Nathalie Codani", "c": "Nathalie Codani"}, {"n": "Nicolas Mirallié", "c": "Nicolas Mirallié"}, {"n": "Nicolas Sacroug", "c": "Nicolas Sacroug"}, {"n": "Nolwenn Canal", "c": "Nolwenn Canal"}, {"n": "Ocellina Coudé", "c": "Ocellina Coudé"}, {"n": "Pauline de Leusse", "c": "Pauline de Leusse"}, {"n": "Philippe Blanc", "c": "Philippe Blanc"}, {"n": "Philippe Levy", "c": "Philippe Levy"}, {"n": "Sandra Brazzi", "c": "Sandra Brazzi"}, {"n": "Sandrine Coucaud", "c": "Sandrine Coucaud"}, {"n": "Sandrine Laverdure", "c": "Sandrine Laverdure"}, {"n": "Sonia Garrido", "c": "Sonia Garrido"}, {"n": "Thomas Delaporte", "c": "Thomas Delaporte"}, {"n": "Thomas Le Meur", "c": "Thomas Le Meur"}, {"n": "Vanessa Selynn", "c": "Vanessa Selynn"}, {"n": "Victor Chevrel", "c": "Victor Chevrel"}, {"n": "Violaine Verein", "c": "Violaine Verein"}, {"n": "Virginie Cayla", "c": "Virginie Cayla"}, {"n": "Xavier Lescot", "c": "Xavier Lescot"}];
+var VERSION = 'OVR-IMAGE-2026-11-17';
+var GW = 'https://thierryb.app.n8n.cloud/webhook/sheets-gateway';
+var SSID = '1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg';
+var PDFWH = 'https://thierryb.app.n8n.cloud/webhook/ovr-pdf-mail';
+var COPIE = 'bismuththierry@gmail.com';
+
+var sel = document.getElementById('nom');
+NOMS.forEach(function(x,i){ var o=document.createElement('option'); o.value=String(i); o.textContent=x.n; sel.appendChild(o); });
+var oa=document.createElement('option'); oa.value='autre'; oa.textContent='Mon nom n’est pas dans la liste'; sel.appendChild(oa);
+sel.value='';
+
+function nomChoisi(){
+  if(sel.value==='autre') return {n:document.getElementById('nomLibre').value.trim(), c:document.getElementById('nomLibre').value.trim()};
+  if(sel.value==='') return null;
+  return NOMS[parseInt(sel.value,10)];
+}
+function majNom(){
+  document.getElementById('blocAutre').className = sel.value==='autre' ? '' : 'masque';
+  var x=nomChoisi(); document.getElementById('nomTexte').textContent = (x&&x.c) ? x.c : '……………………';
+}
+sel.addEventListener('change', majNom);
+document.getElementById('nomLibre').addEventListener('input', majNom);
+
+/* Signature */
+var cv=document.getElementById('sigpad'), ctx, vide=true;
+function fit(){ var r=cv.getBoundingClientRect(), d=window.devicePixelRatio||1;
+  var img = vide ? null : cv.toDataURL();
+  cv.width=Math.round(r.width*d); cv.height=Math.round(r.height*d);
+  ctx=cv.getContext('2d'); ctx.scale(d,d); ctx.lineWidth=2.2; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#111';
+  if(img){ var im=new Image(); im.onload=function(){ ctx.drawImage(im,0,0,r.width,r.height); }; im.src=img; } }
+fit(); window.addEventListener('resize', fit);
+var dessin=false;
+function pt(e){ var r=cv.getBoundingClientRect(); var t=e.touches?e.touches[0]:e; return {x:t.clientX-r.left,y:t.clientY-r.top}; }
+function dn(e){ e.preventDefault(); dessin=true; var p=pt(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); }
+function mv(e){ if(!dessin) return; e.preventDefault(); var p=pt(e); ctx.lineTo(p.x,p.y); ctx.stroke(); vide=false; }
+function up(){ dessin=false; }
+cv.addEventListener('mousedown',dn); cv.addEventListener('mousemove',mv); window.addEventListener('mouseup',up);
+cv.addEventListener('touchstart',dn,{passive:false}); cv.addEventListener('touchmove',mv,{passive:false}); cv.addEventListener('touchend',up);
+document.getElementById('sigclear').onclick=function(){ ctx.clearRect(0,0,cv.width,cv.height); vide=true; };
+function sigData(){ var c=document.createElement('canvas'); c.width=cv.width; c.height=cv.height; var x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(cv,0,0); return c.toDataURL('image/png'); }
+
+function horoFR(){ var d=new Date(), o={timeZone:'Europe/Paris'}; return d.toLocaleDateString('fr-FR',o)+' à '+d.toLocaleTimeString('fr-FR',o)+' (heure de Paris)'; }
+
+var msg=document.getElementById('msg');
+function dire(t,c){ msg.className='msg '+c; msg.innerHTML=t; }
+
+function chargerJsPDF(){
+  if(window.jspdf&&window.jspdf.jsPDF) return Promise.resolve();
+  return new Promise(function(ok,ko){ var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.onload=ok; s.onerror=function(){ko(new Error('jsPDF'));}; document.head.appendChild(s); });
+}
+function propre(t){ return String(t).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/…/g,'...').replace(/[–—]/g,'-').replace(/ /g,' '); }
+function pdf(nomC, mail, sig, horo){
+  var d=new window.jspdf.jsPDF({unit:'mm',format:'a4'}); var W=210,M=18,y=20,LH=5.2;
+  function saut(h){ if(y+h>282){ d.addPage(); y=20; } }
+  d.setFont('helvetica','bold'); d.setFontSize(14); d.setTextColor(214,40,40);
+  d.text('ON VOUS RAPPELLERA',M,y); y+=7; d.setTextColor(0,0,0); d.setFontSize(13);
+  d.text("Autorisation d'utilisation de l'image",M,y); y+=5;
+  d.setDrawColor(214,40,40); d.setLineWidth(.8); d.line(M,y,W-M,y); y+=8;
+  d.setFontSize(10);
+  var blocs=[].slice.call(document.querySelectorAll('.texte p, .texte li'));
+  blocs.forEach(function(b,i){
+    var t=propre(b.innerText.replace(/\s+/g,' ').trim());
+    if(i>0) t=i+'. '+t;
+    d.setFont('helvetica', i===0?'bold':'normal');
+    var parts=d.splitTextToSize(t,W-2*M);
+    parts.forEach(function(p){ saut(LH); d.text(p,M,y); y+=LH; }); y+=3;
+  });
+  y+=4; saut(55);
+  d.setFont('helvetica','normal'); d.text('Signataire : '+propre(nomC)+'  ('+mail+')',M,y); y+=5;
+  d.text("Case cochee : J'ai lu et j'accepte cette autorisation.",M,y); y+=7;
+  d.setFont('helvetica','bold'); d.text('Signature',M,y); y+=3;
+  try{ d.addImage(sig,'PNG',M,y,70,26); }catch(e){}
+  d.rect(M,y,70,26); y+=31;
+  d.setFont('helvetica','normal'); d.setFontSize(9);
+  d.text('Horodatage : '+propre(horo),M,y); y+=4.5;
+  d.text('Version du texte : '+VERSION+' - document genere au moment de la signature en ligne (onvousrappellera.fr).',M,y);
+  return d.output('datauristring').split('base64,').pop();
+}
+
+var btn=document.getElementById('btn');
+btn.onclick=function(){
+  var x=nomChoisi(), mail=document.getElementById('mail').value.trim();
+  if(!x||!x.c){ dire('Choisis ton nom.','err'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){ dire('Indique une adresse mail valide.','err'); return; }
+  if(!document.getElementById('accord').checked){ dire('Coche la case « J’ai lu et j’accepte ».','err'); return; }
+  if(vide){ dire('Signe dans le cadre.','err'); return; }
+  btn.disabled=true; btn.textContent='Envoi en cours…'; dire('Envoi en cours, ne ferme pas la page…','att');
+  var horo=horoFR(), sig=sigData(), prenom=x.n.split(' ')[0];
+  var reg = fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action:'append',spreadsheetId:SSID,range:"'Droit image'!A:F",valueInputOption:'RAW',
+        values:[[new Date().toISOString(),horo,x.c+(x.n!==x.c?' ('+x.n+')':'')+(sel.value==='autre'?' [hors liste]':''),mail,VERSION,'droit-image.html']]})})
+    .then(function(r){ return r.json(); }).then(function(j){ if(!j||!j.updates) throw new Error('reg'); });
+  var env = chargerJsPDF().then(function(){
+    var b64=pdf(x.c,mail,sig,horo);
+    var nomF=('autorisation-image-ovr-'+x.c).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-')+'.pdf';
+    var corps='<p>Bonjour '+prenom+',</p><p>Voici ton exemplaire de l’autorisation d’utilisation de l’image pour <strong style="color:#d62828">ON VOUS RAPPELLERA</strong>, avec ta signature et son horodatage.</p><p>Horodatage : <strong>'+horo+'</strong></p><p>Merci,<br>Thierry Bismuth<br>06 10 70 30 90</p>';
+    return fetch(PDFWH,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({to:mail,cc:COPIE,subject:'ON VOUS RAPPELLERA - autorisation image signee ('+x.c+')',body:corps,filename:nomF,pdfBase64:b64})});
+  });
+  Promise.all([reg,env]).then(function(){
+    document.getElementById('okPrenom').textContent=prenom;
+    document.getElementById('okMail').textContent=mail;
+    document.getElementById('zoneForm').className='off';
+    document.getElementById('zoneOk').className='ok on';
+    window.scrollTo(0,0);
+  }).catch(function(){
+    btn.disabled=false; btn.textContent='Je signe';
+    dire('<strong>La signature n’a pas pu être enregistrée.</strong> Ta page est toujours remplie : appuie de nouveau sur « Je signe ». Si ça bloque encore, envoie un message à Thierry au <a href="https://wa.me/33610703090">06 10 70 30 90</a>.','err');
+  });
+};
+</script>
+</body>
+</html>
