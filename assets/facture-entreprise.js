@@ -40,7 +40,7 @@
       +'<div class="fe-bloc" id="fe-bloc" style="display:none">'
       +'<label for="fe-raison">Nom de l\'entreprise</label><input id="fe-raison" type="text" autocomplete="organization" placeholder="Tapez le nom, puis choisissez dans la liste">'
       +'<ul class="fe-sugg" id="fe-sugg"></ul>'
-      +'<label for="fe-siren">SIREN</label><input id="fe-siren" type="text" inputmode="numeric" maxlength="11">'
+      +'<label for="fe-siren">SIREN</label><input id="fe-siren" type="text" inputmode="numeric" maxlength="20" placeholder="SIREN (9 chiffres) ou SIRET (14 chiffres)">'
       +'<label for="fe-adresse">Adresse de facturation</label><input id="fe-adresse" type="text">'
       +'<p class="fe-note">La facture vous est envoyée par mail dès le paiement reçu.</p></div>';
     ancre.parentNode.insertBefore(w, ancre.nextSibling);
@@ -54,7 +54,8 @@
     var c=$('fe-case'); if(!c||!c.checked) return null;
     var f={raison:$('fe-raison').value.trim(), siren:$('fe-siren').value.replace(/\D/g,''), adresse:$('fe-adresse').value.trim()};
     if(!f.raison) return {erreur:'Merci d\'indiquer le nom de l\'entreprise à facturer.'};
-    if(f.siren.length!==9) return {erreur:'Merci d\'indiquer le SIREN de l\'entreprise (9 chiffres) : choisissez-la dans la liste proposée.'};
+    if(f.siren.length===14) f.siren=f.siren.slice(0,9);
+    if(f.siren.length!==9) f.siren='';
     if(!f.adresse) return {erreur:'Merci d\'indiquer l\'adresse de facturation.'};
     return f;
   }
@@ -70,6 +71,11 @@
     var o; try{ o=JSON.parse(raw); }catch(e){ return; }
     try{ localStorage.removeItem(CLE); }catch(e){}
     if(!o||!o.f||!o.a||Date.now()-o.t>3*3600*1000) return;
+    if(!o.f.siren){
+      post(MAIL,{to:'bismuththierry@gmail.com',subject:'⚠️ Facture billetterie à faire à la main (SIREN manquant) — '+o.f.raison,body:'<p>Paiement reçu, facture demandée sans SIREN valide : à émettre à la main.</p><p>'+esc(o.f.raison)+'<br>'+esc(o.f.adresse)+'<br>'+esc(o.a.seance)+' · '+esc(o.a.qty)+' place(s) · '+esc(o.a.tarif)+'<br>Acheteur : '+esc((o.a.prenom||'')+' '+(o.a.nom||''))+' — '+esc(o.a.email)+' — '+esc(o.a.portable||'')+'</p>'}).catch(function(){});
+      if(msgEl) msgEl.insertAdjacentHTML('beforeend','<br>Votre facture vous sera envoyée par mail sous 24 heures.');
+      return;
+    }
     var a=o.a, f=o.f, d=new Date(), dateStr=deux(d.getDate())+'/'+deux(d.getMonth()+1)+'/'+d.getFullYear(), an=d.getFullYear();
     var ttc=Math.round(a.pu*a.qty*100)/100, ht=Math.round(ttc/1.055*100)/100, tva=Math.round((ttc-ht)*100)/100;
     var fr=function(n){return n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});};
