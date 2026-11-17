@@ -1,5 +1,5 @@
 /* Facture entreprise sur la billetterie OVR (SAS ODYSKILLS).
-   - FE.monter(ancre, champSociete) : ajoute la case « Besoin d'une facture » + champs, sous l'élément ancre.
+   - FE.monter(ancre, champSociete) : ajoute la case « Je suis une entreprise et j'ai besoin d'une facture » + champs, sous l'élément ancre.
    - FE.lire() : null si la case n'est pas cochée ; {erreur} si incomplet ; sinon {raison, siren, adresse}.
    - FE.memoriser(achat) : garde la demande le temps du paiement Stripe.
    - FE.auRetour(msgEl) : au retour ?merci, émet la facture (numéro suivant de l'onglet Facturation), l'envoie et affiche le lien. */
@@ -36,7 +36,7 @@
   function monter(ancre, champSociete){
     if(!ancre||$('fe-case')) return; css(); socExt=champSociete||null;
     var w=document.createElement('div');
-    w.innerHTML='<label class="fe-case"><input type="checkbox" id="fe-case">Besoin d\'une facture</label>'
+    w.innerHTML='<label class="fe-case"><input type="checkbox" id="fe-case">Je suis une entreprise et j\'ai besoin d\'une facture</label>'
       +'<div class="fe-bloc" id="fe-bloc" style="display:none">'
       +'<label for="fe-raison">Nom de l\'entreprise</label><input id="fe-raison" type="text" autocomplete="organization" placeholder="Tapez le nom, puis choisissez dans la liste">'
       +'<ul class="fe-sugg" id="fe-sugg"></ul>'
