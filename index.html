@@ -327,6 +327,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .tarif.star{font-size:1.1rem;border-color:var(--accent);background:#fdf1ef}
 .tarif.star b{color:var(--accent)}
 .tarif.sans{font-size:.8rem;color:var(--gris)}
+.tarif.privilege{font-size:.8rem;color:var(--gris);align-items:flex-start;position:relative}
+.tarif.privilege small{display:block;font-size:.78rem;color:var(--gris);margin-top:2px}
+.priv-i{display:inline-block;margin-top:3px;font-size:.78rem;color:var(--accent);text-decoration:underline;cursor:pointer}
+.privpop{position:absolute;left:30px;right:0;top:100%;z-index:30;background:var(--blanc-pur);border:1px solid var(--accent);border-radius:4px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:14px 16px;font-size:.86rem;line-height:1.5;color:var(--texte);max-width:460px}
+.privpop[hidden]{display:none}
+.privpop h4{margin:0 0 8px;font-size:.98rem;color:var(--accent)}
+.privpop ul{margin:0 0 10px;padding-left:1.1rem}.privpop li{margin:3px 0}
+.privpop a{color:var(--accent)}
+.privpop .fin{margin:0;font-weight:600}
+
 .tsep{border:0;border-top:1px dashed var(--gris-clair);margin:10px 0}
 .codelien{display:inline-block;font-size:.72rem;color:var(--gris);margin-top:10px;text-decoration:underline}
 .codeinput{font-size:.8rem;padding:5px 8px;width:160px;margin-top:6px}
@@ -559,6 +569,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
           <div class="field"><label for="f-statut">Je suis</label><select id="f-statut"><option value="Demandeur d'emploi">Demandeur d'emploi</option><option value="Étudiant">Étudiant</option><option value="Autre">Autre</option></select></div>
           <div class="field" id="f-ft-wrap"><p class="petit" style="margin:.4rem 0 0">Votre statut sera vérifié à l'entrée : pensez à apporter votre justificatif.</p><input id="f-ft" type="hidden" value=""></div>
         </div>
+        <label class="tarif privilege" id="t-priv"><input type="radio" name="tarif" value="privilege"><span><b>Offre Privilège — 50&nbsp;€ TTC</b><small>Vous invitez un client ou un proche pour un moment un peu spécial&nbsp;?</small><a href="#" class="priv-i" id="priv-i" aria-expanded="false" aria-controls="priv-pop">Voir tout ce qui est inclus</a>
+          <div class="privpop" id="priv-pop" role="dialog" hidden>
+            <h4>Vous invitez vos clients ou un proche pour une occasion spéciale&nbsp;?</h4>
+            <ul>
+              <li>La place en Carré Or</li>
+              <li>Une place numérotée à son nom</li>
+              <li>Un coffret cadeau sur son siège : un livre (<a href="/livres.html?livre=reuje#bon" target="_blank" rel="noopener">Recruter est un jeu d'enfant</a> ou <a href="/livres.html?livre=tjej#bon" target="_blank" rel="noopener">Trouver un job est un jeu d'enfant</a>) et un pack souvenirs avec plein de goodies de la pièce</li>
+              <li>Un verre au bar du théâtre ou au bar partenaire à côté</li>
+            </ul>
+            <p class="fin">Faites vivre un moment d'exception à votre invité.</p>
+          </div></span></label>
         <hr class="tsep">
         <label class="refus"><input type="checkbox" id="f-accord"><span class="petit">Je souhaite que mes coordonnées soient transmises à des cabinets de recrutement et à des portails d'emploi pour accélérer mon retour à l'emploi.</span></label>
       </div>
@@ -754,6 +775,14 @@ document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('f-ft-wrap').style.display=(red && document.getElementById('f-statut').value==="Demandeur d'emploi")?'':'none'; }
   document.querySelectorAll('input[name=tarif]').forEach(function(r){ r.addEventListener('change',majReduit); });
   document.getElementById('f-statut').addEventListener('change',majReduit);
+  (function(){ var lab=document.getElementById('t-priv'), pop=document.getElementById('priv-pop'), lien=document.getElementById('priv-i'); if(!lab||!pop||!lien) return;
+    function ouvre(o){ pop.hidden=!o; lien.setAttribute('aria-expanded',o?'true':'false'); }
+    lien.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); ouvre(pop.hidden); });
+    lab.addEventListener('mouseenter',function(){ if(window.matchMedia('(hover:hover)').matches) ouvre(true); });
+    lab.addEventListener('mouseleave',function(){ if(window.matchMedia('(hover:hover)').matches) ouvre(false); });
+    lab.querySelector('input').addEventListener('change',function(){ ouvre(true); });
+    document.addEventListener('click',function(e){ if(!lab.contains(e.target)) ouvre(false); });
+  })();
   document.getElementById('f-date').addEventListener('change',modeResa);
   document.getElementById('f-code-lien').addEventListener('click',function(e){ e.preventDefault(); document.getElementById('f-code-wrap').style.display=''; this.style.display='none'; document.getElementById('f-code').focus(); });
   (function(){ var sv=document.getElementById('f-ville'); Object.keys(DATES).sort(function(a,b){return a.localeCompare(b,'fr');}).forEach(function(v){ var o=document.createElement('option'); o.textContent=v; sv.appendChild(o); });
@@ -785,7 +814,7 @@ document.addEventListener('DOMContentLoaded',function(){
            ville:g('f-ville').value, date:(g('f-date').value==='__autre'?'':g('f-date').value),
            entreprise:'', fonction:'', cadre:'', places:'',
            info:true, partenaire:g('f-part').checked};
-    var PRIX={partenaire:20, reduit:15}, LIB={partenaire:'Tarif normal', reduit:'Tarif réduit'};
+    var PRIX={partenaire:20, reduit:15, privilege:50}, LIB={partenaire:'Tarif normal', reduit:'Tarif réduit', privilege:'Offre Privilège'};
     if(enResa()){ var tf=tarifChoisi();
       p.places=String(Math.max(1,parseInt(g('f-places').value,10)||1));
       p.tarif=LIB[tf]; p.prix=PRIX[tf]; p.partenaire=g('f-accord').checked;
