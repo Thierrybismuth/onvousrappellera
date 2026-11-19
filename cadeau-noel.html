@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Votre cadeau — ON VOUS RAPPELLERA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--rouge:#d8281f;--sapin:#1f5b3a;--or:#c8913a;--noir:#161616;--gris:#6b7280;--clair:#ece6da;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{background:#fff;color:var(--noir);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.45;}
+.barre{max-width:210mm;margin:0 auto;padding:14px 16px;text-align:center;}
+.barre button{font:inherit;font-weight:600;font-size:.95rem;background:var(--rouge);color:#fff;border:0;padding:12px 20px;cursor:pointer;}
+.barre p{margin-top:8px;font-size:.85rem;color:var(--gris);}
+.page{width:210mm;height:297mm;margin:0 auto 24px;background:#fff;padding:9mm;position:relative;overflow:hidden;}
+.cadre{height:100%;border:1.2mm solid var(--rouge);outline:.4mm solid var(--or);outline-offset:-2.4mm;padding:8mm 10mm 7mm;display:flex;flex-direction:column;}
+.flocons{position:absolute;inset:0;pointer-events:none;}
+.haut{display:flex;align-items:center;gap:7mm;}
+.sapin{width:42mm;flex:none;}
+.voeux{flex:1;}
+.joyeux{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:40pt;line-height:1;color:var(--sapin);}
+.lignes{margin-top:4mm;font-size:12pt;}
+.lignes div{display:flex;align-items:flex-end;gap:3mm;margin-top:3mm;}
+.lignes span.l{flex:none;font-weight:500;}
+.lignes span.v{flex:1;border-bottom:.3mm dotted var(--noir);min-height:7mm;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:16pt;padding-left:2mm;}
+.offre{text-align:center;margin-top:3mm;}
+.offre .sur{font-size:9.5pt;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--or);}
+.offre h1{font-family:'Outfit',sans-serif;font-weight:700;font-size:30pt;letter-spacing:.04em;color:var(--rouge);line-height:1.1;margin-top:1mm;}
+.offre .base{font-size:10pt;color:var(--gris);font-style:italic;}
+.billet{margin-top:4mm;border:.5mm dashed var(--noir);padding:4mm 6mm;display:flex;align-items:center;gap:6mm;}
+.billet .txt{flex:1;font-size:11.5pt;}
+.billet .gros{font-weight:600;font-size:14pt;}
+.billet .code{font-weight:700;font-size:24pt;letter-spacing:.08em;}
+#qr{width:26mm;height:26mm;flex:none;}
+#qr img,#qr canvas{width:26mm!important;height:26mm!important;}
+.piece{display:flex;gap:6mm;margin-top:5mm;align-items:flex-start;}
+.piece img{width:66mm;height:auto;display:block;flex:none;}
+.piece .txt{font-size:10pt;}
+.piece .txt p{margin-bottom:2.2mm;}
+.piece .acc{font-weight:500;}
+.prem{margin-top:3mm;border-left:1.2mm solid var(--or);background:#fbf6ec;padding:3mm 5mm;font-size:10pt;}
+.prem .t{font-weight:600;font-size:11pt;color:var(--or);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1mm;}
+.prem ul{padding-left:4.5mm;}
+.prem li{margin:.6mm 0;}
+.ref{font-size:9.5pt;color:var(--gris);margin-top:1mm;}
+.replique{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:13pt;color:var(--sapin);text-align:center;margin-top:3mm;}
+.mot{margin-top:3mm;flex:1;min-height:30mm;border:.3mm solid var(--clair);background:#fbf8f2;padding:4mm 6mm;display:flex;flex-direction:column;}
+.mot .t{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:14pt;color:var(--rouge);}
+.mot .z{flex:1;background:repeating-linear-gradient(transparent 0 8.6mm,#d9d1c1 8.6mm 8.9mm);margin-top:2mm;}
+.bas{margin-top:4mm;display:flex;justify-content:space-between;align-items:center;font-size:9pt;color:var(--gris);}
+body.priv .mot{min-height:20mm;}
+body.priv .piece img{width:54mm;}
+body.priv .piece{margin-top:3mm;}
+@media screen and (max-width:820px){
+  .page{width:auto;height:auto;padding:10px;}
+  .cadre{padding:16px;}
+  .haut,.piece{flex-direction:column;}
+  .sapin{width:120px;margin:0 auto;}
+  .joyeux{font-size:2.4rem;text-align:center;}
+  .offre h1{font-size:1.7rem;}
+  .piece img{width:100%;}
+  .billet{flex-direction:column;text-align:center;}
+  .mot{min-height:200px;}
+  .bas{flex-direction:column;gap:4px;}
+}
+@page{size:A4;margin:0;}
+@media print{.barre{display:none;}.page{margin:0;}}
+</style>
+</head>
+<body>
+<div class="barre">
+  <button type="button" onclick="window.print()">Imprimer / enregistrer en PDF</button>
+  <p id="v-aide">Imprimez-le, écrivez votre petit mot, et offrez-le.</p>
+</div>
+
+<div class="page">
+  <svg class="flocons" viewBox="0 0 210 297" preserveAspectRatio="none" aria-hidden="true">
+    <defs><g id="f" stroke="#c9d6e3" stroke-width=".5" stroke-linecap="round"><path d="M0-3V3M-2.6-1.5 2.6 1.5M-2.6 1.5 2.6-1.5"/></g>
+    <g id="e" fill="#c8913a"><path d="M0-2.4.6-.6 2.4 0 .6.6 0 2.4-.6.6-2.4 0-.6-.6Z"/></g></defs>
+    <use href="#f" x="14" y="14"/><use href="#e" x="196" y="13"/><use href="#f" x="105" y="11"/><use href="#e" x="60" y="10"/><use href="#f" x="160" y="11"/>
+    <use href="#f" x="12" y="150"/><use href="#e" x="198" y="120"/><use href="#f" x="198" y="200"/><use href="#e" x="11" y="230"/>
+    <use href="#f" x="40" y="287"/><use href="#e" x="105" y="288"/><use href="#f" x="170" y="287"/><use href="#e" x="196" y="285"/><use href="#f" x="13" y="285"/>
+  </svg>
+  <div class="cadre">
+    <div class="haut">
+      <div id="deco"><svg class="sapin" viewBox="0 0 100 130" aria-hidden="true">
+        <path d="M50 4 54 13 64 13 56 19 59 29 50 23 41 29 44 19 36 13 46 13Z" fill="#c8913a"/>
+        <path d="M50 26 74 58H62L84 88H68L94 118H6L32 88H16L38 58H26Z" fill="#1f5b3a"/>
+        <path d="M30 62Q50 72 70 62M22 92Q50 104 78 92" fill="none" stroke="#c8913a" stroke-width="1.6" stroke-dasharray="1 3" stroke-linecap="round"/>
+        <rect x="44" y="118" width="12" height="10" fill="#6b4226"/>
+        <circle cx="44" cy="52" r="3.2" fill="#d8281f"/><circle cx="58" cy="66" r="3" fill="#c8913a"/><circle cx="36" cy="80" r="3.4" fill="#d8281f"/>
+        <circle cx="64" cy="84" r="3.4" fill="#d8281f"/><circle cx="48" cy="98" r="3" fill="#c8913a"/><circle cx="26" cy="110" r="3.4" fill="#c8913a"/>
+        <circle cx="74" cy="110" r="3.4" fill="#d8281f"/><circle cx="54" cy="44" r="2.4" fill="#fff"/>
+      </svg></div>
+      <div class="voeux">
+        <div class="joyeux" id="v-titre">Joyeux Noël</div>
+        <div class="lignes">
+          <div><span class="l">Pour</span><span class="v" id="v-pour"></span></div>
+          <div><span class="l">De la part de</span><span class="v" id="v-de"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offre">
+      <div class="sur" id="v-sur">Une soirée de théâtre rien que pour vous</div>
+      <h1>ON VOUS RAPPELLERA</h1>
+      <div class="base">La comédie du recrutement</div>
+    </div>
+
+    <div class="billet">
+      <div class="txt" id="v-billet"></div>
+      <div id="qr"></div>
+    </div>
+
+    <div class="piece">
+      <img src="assets/repliques/rep-pascal-bruno-scene.jpg" alt="Une scène de ON VOUS RAPPELLERA">
+      <div class="txt">
+        <p class="acc">Vous l'avez forcément entendu un jour : « On vous rappellera. »</p>
+        <p>Un manager toxique, un psy complètement perché, une RH à bout de souffle et un petit nouveau qui en fait des tonnes, le candidat idéal… Bienvenue dans l'entreprise. Celle où vous avez travaillé, celle où vous travaillez, celle où vous rêvez d'entrer.</p>
+        <p>Salle comble au festival d'Avignon puis dans 15 villes de France, cette comédie, écrite par un dirigeant de cabinet de recrutement, va vous faire rire, mais aussi vous faire réfléchir sur le recrutement, l'intégration et le management dans une entreprise : la vôtre.</p>
+        <p class="acc">On peut rire de tout. Même de sa recherche d'emploi.</p>
+      </div>
+    </div>
+    <div class="prem" id="prem" hidden>
+      <div class="t">Votre soirée Privilège</div>
+      <ul>
+        <li>Une place numérotée à votre nom en Carré Or (3 premiers rangs)</li>
+        <li>Un coffret cadeau sur votre siège : un livre et un pack souvenir de la pièce</li>
+        <li>Un verre au bar du théâtre ou au bar partenaire à côté</li>
+        <li>Une place à offrir à votre tour, adressée au lendemain de la représentation</li>
+      </ul>
+    </div>
+    <p class="replique" id="rep">« L'entreprise, c'est un théâtre. Ce n'est pas parce que tout n'est pas vrai, que tout est faux. »</p>
+
+    <div class="mot">
+      <div class="t">Mon petit mot</div>
+      <div class="z"></div>
+    </div>
+
+    <div class="bas">
+      <span>onvousrappellera.fr</span>
+      <span>Une comédie d'1 h 15 · vidéos et infos sur le site</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var q=new URLSearchParams(location.search);
+  function p(k,m){return (q.get(k)||'').replace(/[<>]/g,'').slice(0,m||80);}
+  function t(id,v){document.getElementById(id).textContent=v;}
+  t('v-pour',p('pour',50));
+  var occ=(q.get('occasion')||'noel').toLowerCase();
+  var cfg={
+    noel:{titre:'Joyeux Noël',de:'',vert:true},
+    santa:{titre:'Secret Santa',de:'Votre Secret Santa',vert:true},
+    anniv:{titre:'Joyeux anniversaire',de:'',vert:false}
+  }[occ]||null; if(!cfg){occ='noel';cfg={titre:'Joyeux Noël',de:'',vert:true};}
+  t('v-titre',cfg.titre);
+  if(occ==='santa'){document.getElementById('deco').innerHTML='<svg class="sapin" viewBox="0 0 100 110" aria-hidden="true"><rect x="12" y="44" width="76" height="60" fill="#d8281f"/><rect x="6" y="30" width="88" height="18" fill="#b51f17"/><rect x="44" y="30" width="12" height="74" fill="#c8913a"/><path d="M50 30C36 6 14 10 22 24c4 6 18 6 28 6zM50 30c14-24 36-20 28-6-4 6-18 6-28 6z" fill="none" stroke="#c8913a" stroke-width="5"/><text x="50" y="82" text-anchor="middle" font-family="Cormorant Garamond,serif" font-weight="700" font-size="26" fill="#fff">?</text></svg>';}
+  if(occ==='anniv'){document.getElementById('deco').innerHTML='<svg class="sapin" viewBox="0 0 100 130" aria-hidden="true"><path d="M30 70v40M58 62v48M76 74v36" stroke="#9aa3ad" stroke-width="1"/><ellipse cx="30" cy="48" rx="16" ry="21" fill="#d8281f"/><ellipse cx="58" cy="38" rx="17" ry="22" fill="#c8913a"/><ellipse cx="78" cy="54" rx="14" ry="19" fill="#161616"/><path d="M27 69h6l-3 4zM55 60h6l-3 4zM75 73h6l-3 4z" fill="#555"/><circle cx="24" cy="40" r="3" fill="#fff" opacity=".5"/><circle cx="52" cy="30" r="3" fill="#fff" opacity=".5"/><rect x="14" y="110" width="74" height="4" fill="#c8913a"/></svg>';
+    document.getElementById('v-titre').style.color='var(--rouge)';
+    document.querySelector('.flocons').innerHTML=document.querySelector('.flocons').innerHTML.replace(/href="#f"/g,'href="#e"');}
+  var deVal=p('de',50)||cfg.de; t('v-de',deVal);
+  if(q.get('privilege')==='1') {document.getElementById('prem').hidden=false; document.getElementById('rep').hidden=true; document.body.classList.add('priv');}
+  var n=parseInt(q.get('n'),10); if(!(n>=1&&n<=20)) n=1;
+  var pl=n>1?(n+' places'):'1 place';
+  var code=p('code',20).toUpperCase().replace(/[^A-Z0-9-]/g,'');
+  var b=document.getElementById('v-billet'), url='https://onvousrappellera.fr/';
+  if(code){
+    url+='?code='+encodeURIComponent(code)+'#prevenez-moi';
+    b.innerHTML='<div class="gros">'+pl+' · à la date et dans la ville de votre choix</div><div class="code"></div><div>Partout en France, jusqu\'au 31 décembre 2027. Pour réserver : scannez le QR code ou allez sur onvousrappellera.fr et saisissez ce code.</div>';
+    b.querySelector('.code').textContent=code;
+  }else{
+    var ville=p('ville',40), jour=p('jour',60), heure=p('heure',10), th=p('theatre',60), ad=p('adresse',100);
+    b.innerHTML='<div class="gros"></div><div class="l2"></div><div class="l3"></div>';
+    b.querySelector('.gros').textContent=(jour||'Date de la représentation')+(heure?(' à '+heure):'');
+    b.querySelector('.l2').textContent=(th?th+' · ':'')+(ad||ville);
+    b.querySelector('.l3').textContent=(q.get('privilege')==='1'?(n>1?n+' places Privilège':'1 place Privilège'):pl)+(p('nom',60)?(' · réservation au nom de '+p('nom',60)):'');
+    if(p('ref',30)){var r=document.createElement('div');r.className='ref';r.textContent='Référence de réservation : '+p('ref',30)+' · ce document fait office de billet';b.appendChild(r);}
+  }
+  try{ new QRCode(document.getElementById('qr'),{text:url,width:256,height:256,correctLevel:QRCode.CorrectLevel.M}); }catch(e){}
+})();
+</script>
+</body>
+</html>
