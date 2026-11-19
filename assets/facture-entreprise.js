@@ -1,5 +1,5 @@
 /* Facture entreprise sur la billetterie OVR (SAS ODYSKILLS).
-   - FE.monter(ancre, champSociete) : ajoute la case « Je suis une entreprise et j'ai besoin d'une facture » + champs, sous l'élément ancre.
+   - FE.monter(ancre, champSociete) : ajoute la case « Besoin d'une facture ? » + champs, sous l'élément ancre.
    - FE.lire() : null si la case n'est pas cochée ; {erreur} si incomplet ; sinon {raison, siren, adresse}.
    - FE.memoriser(achat) : garde la demande le temps du paiement Stripe.
    - FE.auRetour(msgEl) : au retour ?merci, émet la facture (numéro suivant de l'onglet Facturation), l'envoie et affiche le lien. */
@@ -13,9 +13,9 @@
   var socExt=null, choisi=false;
 
   function css(){ if($('fe-css')) return; var s=document.createElement('style'); s.id='fe-css';
-    s.textContent='.fe-case{display:flex;gap:.45rem;align-items:center;font-size:.8rem;color:#666;margin:.7rem 0 .2rem;cursor:pointer}'
-    +'.fe-case input{margin:0}.fe-bloc{border:1px solid #e3e3e3;border-radius:6px;padding:.7rem .8rem;margin:.4rem 0 .6rem;background:#fff;color:#222}'
-    +'.fe-bloc label{display:block;font-size:.78rem;color:#555;margin:.5rem 0 .2rem}.fe-bloc input{width:100%;box-sizing:border-box;padding:.55rem .6rem;border:1px solid #ccc;border-radius:5px;font:inherit;font-size:.9rem;background:#fff;color:#222}'
+    s.textContent='.fe-case{display:flex;gap:7px;align-items:center;justify-content:flex-start;font-size:.7rem;font-weight:400;text-transform:none;letter-spacing:0;line-height:1.5;color:#888;margin:.6rem 0 .2rem;cursor:pointer}'
+    +'.fe-case input{width:12px;height:12px;min-width:12px;padding:0;margin:0;flex:0 0 auto}.fe-bloc{border:1px solid #e3e3e3;border-radius:6px;padding:.7rem .8rem;margin:.4rem 0 .6rem;background:#fff;color:#222}'
+    +'.fe-bloc label{display:block;font-size:.78rem;font-weight:400;text-transform:none;letter-spacing:0;color:#555;margin:.5rem 0 .2rem}.fe-bloc input{width:100%;box-sizing:border-box;padding:.55rem .6rem;border:1px solid #ccc;border-radius:5px;font:inherit;font-size:.9rem;background:#fff;color:#222}'
     +'.fe-sugg{list-style:none;margin:.3rem 0 0;padding:0;border:1px solid #eee;border-radius:5px;max-height:220px;overflow:auto}.fe-sugg li{padding:.45rem .6rem;font-size:.82rem;cursor:pointer;border-bottom:1px solid #f2f2f2;line-height:1.35}'
     +'.fe-sugg li:hover{background:#f7f4ee}.fe-sugg li small{color:#777;display:block}.fe-note{font-size:.74rem;color:#777;margin:.4rem 0 0}';
     document.head.appendChild(s); }
@@ -36,7 +36,7 @@
   function monter(ancre, champSociete){
     if(!ancre||$('fe-case')) return; css(); socExt=champSociete||null;
     var w=document.createElement('div');
-    w.innerHTML='<label class="fe-case"><input type="checkbox" id="fe-case">Je suis une entreprise et j\'ai besoin d\'une facture</label>'
+    w.innerHTML='<label class="fe-case"><input type="checkbox" id="fe-case">Besoin d\'une facture&nbsp;?</label>'
       +'<div class="fe-bloc" id="fe-bloc" style="display:none">'
       +'<label for="fe-raison">Nom de l\'entreprise</label><input id="fe-raison" type="text" autocomplete="organization" placeholder="Tapez le nom, puis choisissez dans la liste">'
       +'<ul class="fe-sugg" id="fe-sugg"></ul>'
