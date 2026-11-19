@@ -512,7 +512,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 <section class="form-sec" id="prevenez-moi">
   <div class="wrap">
-    <div class="bulles2"><p class="bulle">On peut rire de tout. Même de sa recherche d'emploi.</p><p class="bulle bulle-d">Et si votre soirée pizza théâtre vous apprenait aussi comment obtenir votre prochain job&nbsp;?</p></div>
+    <div class="bulles2"><p class="bulle bulle-d">Et si votre soirée pizza théâtre vous apprenait aussi comment obtenir votre prochain job&nbsp;?</p></div>
     <span class="sec-tag">Réservations</span>
     <h2>Réservez vos billets</h2>
     <p class="lead">Choisissez votre ville et votre date, puis réservez vos places.</p>
@@ -582,6 +582,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
           </div></span></label>
         <hr class="tsep">
         <label class="refus"><input type="checkbox" id="f-accord"><span class="petit"><b>Option veille d'emploi</b> — Je suis à l'écoute d'une opportunité d'emploi, je souhaite que mes coordonnées soient transmises à des cabinets de recrutement et à des portails d'emploi.</span></label>
+      </div>
+      <label class="refus"><input type="checkbox" id="f-cadeau"><span class="petit"><b>C'est pour faire un cadeau</b> — un document à imprimer et à offrir vous sera adressé en même temps que vos places.</span></label>
+      <div id="f-cad-wrap" style="display:none;margin:.5rem 0 .8rem">
+        <label class="refus"><input type="radio" name="occasion" value="santa"><span class="petit">C'est pour un Secret Santa</span></label>
+        <label class="refus"><input type="radio" name="occasion" value="noel" checked><span class="petit">C'est un cadeau de Noël à mettre sous le sapin</span></label>
+        <label class="refus"><input type="radio" name="occasion" value="anniv"><span class="petit">C'est un cadeau d'anniversaire</span></label>
+        <div class="fgrid" style="margin-top:.5rem">
+          <div class="field"><label for="f-cad-n">Places offertes</label><select id="f-cad-n"><option value="1">1 place</option><option value="2" selected>2 places</option></select></div>
+          <div class="field"><label for="f-cad-pour">Pour (facultatif)</label><input id="f-cad-pour" type="text" maxlength="50" placeholder="Prénom de la personne"></div>
+          <div class="field" id="f-cad-de-wrap"><label for="f-cad-de">De la part de (facultatif)</label><input id="f-cad-de" type="text" maxlength="50"></div>
+        </div>
       </div>
       <a href="#" id="f-code-lien" class="codelien">Vous avez un code&nbsp;?</a>
       <div id="f-code-wrap" style="display:none"><input id="f-code" class="codeinput" type="text" placeholder="Votre code" autocomplete="off"></div>
@@ -803,7 +814,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
   var btn=document.getElementById('f-btn'), msg=document.getElementById('f-msg');
   (function(){ var q=new URLSearchParams(location.search);
-    if(q.get('merci')){ msg.className='msg ok'; msg.innerHTML='<b>Paiement reçu, merci !</b> Vos billets arrivent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.'; document.getElementById('prevenez-moi').scrollIntoView(); if(window.FE) FE.auRetour(msg); }
+    if(q.get('merci')){ msg.className='msg ok'; msg.innerHTML='<b>Paiement reçu, merci !</b> Vos billets arrivent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.'; try{ var kc=JSON.parse(localStorage.getItem('ovrCadeau')||'null'); if(kc&&kc.u&&Date.now()-kc.t<864e5){ msg.innerHTML+='<br><br>🎁 <a href="'+kc.u.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener"><b>Ouvrir votre document cadeau à imprimer et à offrir</b></a>'; } }catch(e){} document.getElementById('prevenez-moi').scrollIntoView(); if(window.FE) FE.auRetour(msg); }
     if(q.get('ville')){ var vv=q.get('ville'), sv=document.getElementById('f-ville'); if(!DATES[vv] && ['Marseille','Montpellier'].indexOf(vv)<0){ sv=null; } if(sv){ sv.value=vv; majDates(vv,''); var pm=document.getElementById('prevenez-moi'); if(pm) setTimeout(function(){ pm.scrollIntoView(); },300); } }
     if(q.get('code')){ var cw=document.getElementById('f-code-wrap'), ci=document.getElementById('f-code'), cl=document.getElementById('f-code-lien'); if(ci){ ci.value=q.get('code'); if(cw) cw.style.display=''; if(cl) cl.style.display='none'; } }
     if(q.get('seance')){ var sc=q.get('seance'), sv2=document.getElementById('f-ville'); Object.keys(DATES).forEach(function(v){ DATES[v].forEach(function(o){ if(o.c===sc && sv2){ sv2.value=v; majDates(v,o.d); var x=decoupe(o), lu=LIEUX[o.l], bt=document.getElementById('seance-top'); if(bt){ bt.innerHTML='Votre séance : <strong>'+esc(v.toUpperCase()+' · '+x.jour+' · '+x.h)+'</strong>'+(lu?'<br><span style="font-weight:500">'+esc(lu.n)+'</span>':'')+'<br><a href="#prevenez-moi" style="display:inline-block;margin-top:8px;color:#fff;text-decoration:underline;font-weight:700">Réserver mes places pour cette date &darr;</a>'; bt.hidden=false; } } }); }); }
@@ -811,6 +822,16 @@ document.addEventListener('DOMContentLoaded',function(){
     if(q.get('annule')){ msg.className='msg ko'; msg.innerHTML='Le paiement a été abandonné, rien n\'a été débité. Vous pouvez recommencer ci-dessous.'; document.getElementById('prevenez-moi').scrollIntoView(); } })();
   var g=function(i){return document.getElementById(i);};
   function show(cls,txt){ msg.className='msg '+cls; msg.innerHTML=txt; }
+  (function(){ var c=g('f-cadeau'), w=g('f-cad-wrap'); if(!c) return;
+    function maj(){ w.style.display=c.checked?'':'none'; var o=document.querySelector('input[name=occasion]:checked'); g('f-cad-de-wrap').style.display=(o&&o.value==='santa')?'none':''; }
+    function majN(){ var n=Math.max(1,parseInt(g('f-places').value,10)||1), sel=g('f-cad-n'), v=parseInt(sel.value,10)||2, h=''; for(var i=1;i<=n;i++) h+='<option value="'+i+'">'+i+' place'+(i>1?'s':'')+'</option>'; sel.innerHTML=h; sel.value=String(Math.min(v,n)); }
+    g('f-places').addEventListener('input',majN); g('f-places').addEventListener('change',majN); majN();
+    c.addEventListener('change',maj); document.querySelectorAll('input[name=occasion]').forEach(function(r){ r.addEventListener('change',maj); }); })();
+  function cadeauUrl(S,p,tf){ if(!g('f-cadeau')||!g('f-cadeau').checked) return ''; var o=document.querySelector('input[name=occasion]:checked'), x=decoupe(S), lu=LIEUX[S.l]||{}, oc=o?o.value:'noel';
+    var q=new URLSearchParams({occasion:oc, n:(g('f-cad-n')&&g('f-cad-n').value)||p.places||'1', nom:(p.prenom+' '+p.nom).trim(), ref:S.c, jour:(x.jour+(x.an?' '+x.an:'')), heure:x.h||'', theatre:lu.n||'', adresse:lu.a||p.ville});
+    var pour=g('f-cad-pour').value.trim(), de=oc==='santa'?'':g('f-cad-de').value.trim(); if(pour) q.set('pour',pour); if(de) q.set('de',de); if(tf==='privilege') q.set('privilege','1');
+    return 'https://onvousrappellera.fr/cadeau-noel.html?'+q.toString(); }
+  function lienCadeau(u){ return '<br><br>🎁 <a href="'+esc(u)+'" target="_blank" rel="noopener"><b>Ouvrir votre document cadeau à imprimer et à offrir</b></a>'; }
   btn.addEventListener('click', function(){
     var p={prenom:g('f-prenom').value.trim(), nom:g('f-nom').value.trim(),
            email:g('f-email').value.trim(), telephone:g('f-tel').value.trim(),
@@ -837,9 +858,9 @@ document.addEventListener('DOMContentLoaded',function(){
       var tfp=tarifChoisi();
       if(window.ovrOrigine) ovrOrigine(p.email,S.c,'Site onvousrappellera.fr',p.code);
       fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},
-        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,source:'grand-public'})})
+        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,source:'grand-public',cadeau:(g('f-cadeau')&&g('f-cadeau').checked)?((document.querySelector('input[name=occasion]:checked')||{}).value||'noel'):''})})
         .then(function(r){return r.json();})
-        .then(function(d){ if(d&&d.ok&&d.invite){ var lu2=LIEUX[S.l], rep=/^[a-z]{2,3}(22|26)nov$/i.test(p.code||''); show('ok','<b>'+esc(d.message)+'</b>'+(rep&&lu2?'<br><br><span style="color:#c00;font-weight:700">⚠️ Attention, le lieu a changé : ce n\'est plus le Passage vers les Étoiles.</span><br><b>Votre nouveau lieu : <u>'+esc(lu2.n)+', '+esc(lu2.a)+'</u></b>':'')); return; } if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:p.ville+' — '+p.date,qty:parseInt(p.places,10)||1,pu:PRIX[tfp],tarif:LIB[tfp],prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone}); location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
+        .then(function(d){ var cu=cadeauUrl(S,p,tfp); if(d&&d.ok&&d.invite){ if(cu){ show('ok','<b>'+esc(d.message)+'</b>'+lienCadeau(cu)); return; } var lu2=LIEUX[S.l], rep=/^[a-z]{2,3}(22|26)nov$/i.test(p.code||''); show('ok','<b>'+esc(d.message)+'</b>'+(rep&&lu2?'<br><br><span style="color:#c00;font-weight:700">⚠️ Attention, le lieu a changé : ce n\'est plus le Passage vers les Étoiles.</span><br><b>Votre nouveau lieu : <u>'+esc(lu2.n)+', '+esc(lu2.a)+'</u></b>':'')); return; } if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:p.ville+' — '+p.date,qty:parseInt(p.places,10)||1,pu:PRIX[tfp],tarif:LIB[tfp],prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone}); if(cu){ try{ localStorage.setItem('ovrCadeau',JSON.stringify({u:cu,t:Date.now()})); }catch(e){} } location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
         .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
       return;
     }
