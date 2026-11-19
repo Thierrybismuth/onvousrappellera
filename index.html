@@ -828,7 +828,7 @@ document.addEventListener('DOMContentLoaded',function(){
     g('f-places').addEventListener('input',majN); g('f-places').addEventListener('change',majN); majN();
     c.addEventListener('change',maj); document.querySelectorAll('input[name=occasion]').forEach(function(r){ r.addEventListener('change',maj); }); })();
   function cadeauUrl(S,p,tf){ if(!g('f-cadeau')||!g('f-cadeau').checked) return ''; var o=document.querySelector('input[name=occasion]:checked'), x=decoupe(S), lu=LIEUX[S.l]||{}, oc=o?o.value:'noel';
-    var q=new URLSearchParams({occasion:oc, n:(g('f-cad-n')&&g('f-cad-n').value)||p.places||'1', nom:(p.prenom+' '+p.nom).trim(), ref:S.c, jour:(x.jour+(x.an?' '+x.an:'')), heure:x.h||'', theatre:lu.n||'', adresse:lu.a||p.ville});
+    var q=new URLSearchParams({occasion:oc, n:(g('f-cad-n')&&g('f-cad-n').value)||p.places||'1', nom:(p.prenom+' '+p.nom).trim(), ref:S.c, troupe:S.tr||'', jour:(x.jour+(x.an?' '+x.an:'')), heure:x.h||'', theatre:lu.n||'', adresse:lu.a||p.ville});
     var pour=g('f-cad-pour').value.trim(), de=oc==='santa'?'':g('f-cad-de').value.trim(); if(pour) q.set('pour',pour); if(de) q.set('de',de); if(tf==='privilege') q.set('privilege','1');
     return 'https://onvousrappellera.fr/cadeau-noel.html?'+q.toString(); }
   function lienCadeau(u){ return '<br><br>🎁 <a href="'+esc(u)+'" target="_blank" rel="noopener"><b>Ouvrir votre document cadeau à imprimer et à offrir</b></a>'; }

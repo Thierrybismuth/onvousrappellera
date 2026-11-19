@@ -37,7 +37,10 @@ body{background:#fff;color:var(--noir);font-family:'Outfit',sans-serif;font-weig
 #qr{width:26mm;height:26mm;flex:none;}
 #qr img,#qr canvas{width:26mm!important;height:26mm!important;}
 .piece{display:flex;gap:6mm;margin-top:5mm;align-items:flex-start;}
-.piece img{width:66mm;height:auto;display:block;flex:none;}
+.piece .ph{position:relative;width:66mm;flex:none;margin:0;}
+.piece .ph.port{width:46mm;}
+.piece img{width:100%;height:auto;display:block;}
+.piece .ph span{position:absolute;right:1.5mm;bottom:1.5mm;background:rgba(255,255,255,.9);color:var(--rouge);font-weight:700;font-size:6.5pt;padding:.4mm 1.4mm;}
 .piece .txt{font-size:10pt;}
 .piece .txt p{margin-bottom:2.2mm;}
 .piece .acc{font-weight:500;}
@@ -52,7 +55,8 @@ body{background:#fff;color:var(--noir);font-family:'Outfit',sans-serif;font-weig
 .mot .z{flex:1;background:repeating-linear-gradient(transparent 0 8.6mm,#d9d1c1 8.6mm 8.9mm);margin-top:2mm;}
 .bas{margin-top:4mm;display:flex;justify-content:space-between;align-items:center;font-size:9pt;color:var(--gris);}
 body.priv .mot{min-height:20mm;}
-body.priv .piece img{width:54mm;}
+body.priv .piece .ph{width:54mm;}
+body.priv .piece .ph.port{width:40mm;}
 body.priv .piece{margin-top:3mm;}
 @media screen and (max-width:820px){
   .page{width:auto;height:auto;padding:10px;}
@@ -61,7 +65,7 @@ body.priv .piece{margin-top:3mm;}
   .sapin{width:120px;margin:0 auto;}
   .joyeux{font-size:2.4rem;text-align:center;}
   .offre h1{font-size:1.7rem;}
-  .piece img{width:100%;}
+  .piece .ph,.piece .ph.port{width:100%;}
   .billet{flex-direction:column;text-align:center;}
   .mot{min-height:200px;}
   .bas{flex-direction:column;gap:4px;}
@@ -116,7 +120,7 @@ body.priv .piece{margin-top:3mm;}
     </div>
 
     <div class="piece">
-      <img src="assets/repliques/rep-pascal-bruno-scene.jpg" alt="Une scène de ON VOUS RAPPELLERA">
+      <figure class="ph"><img id="v-photo" src="assets/repliques/rep-pascal-bruno-scene.jpg" alt="La troupe de ON VOUS RAPPELLERA"><span>On vous rappellera !</span></figure>
       <div class="txt">
         <p class="acc">Vous l'avez forcément entendu un jour : « On vous rappellera. »</p>
         <p>Un manager toxique, un psy complètement perché, une RH à bout de souffle et un petit nouveau qui en fait des tonnes, le candidat idéal… Bienvenue dans l'entreprise. Celle où vous avez travaillé, celle où vous travaillez, celle où vous rêvez d'entrer.</p>
@@ -183,6 +187,12 @@ body.priv .piece{margin-top:3mm;}
     b.querySelector('.l3').textContent=(q.get('privilege')==='1'?(n>1?n+' places Privilège':'1 place Privilège'):pl)+(p('nom',60)?(' · réservation au nom de '+p('nom',60)):'');
     if(p('ref',30)){var r=document.createElement('div');r.className='ref';r.textContent='Référence : '+p('ref',30)+' · ce document fait office de billet';b.appendChild(r);}
   }
+  (function(){ var r=p('ref',30).toUpperCase(), tr=p('troupe',40).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(), f='';
+    var m={TLS:'bordeaux',BOR:'bordeaux',LYO:'lyon',REN:'rennes',NAN:'nantes',MTP:'montpellier',MON:'montpellier'}[r.slice(0,3)];
+    if(m) f=m; else if(r.slice(0,3)==='PAR'){ f=/esprit/.test(tr)?'paris-esprit-d-equipe':(/honn/.test(tr)?'paris-honnetete':(/engag/.test(tr)?'paris-engagement':'')); }
+    var im=document.getElementById('v-photo');
+    im.onload=function(){ if(im.naturalHeight>im.naturalWidth) im.parentNode.classList.add('port'); };
+    if(f) im.src='assets/troupes/troupe-'+f+'.jpg'; })();
   try{ new QRCode(document.getElementById('qr'),{text:url,width:256,height:256,correctLevel:QRCode.CorrectLevel.M}); }catch(e){}
 })();
 </script>
