@@ -76,6 +76,7 @@ body.priv .piece{margin-top:3mm;}
 </head>
 <body>
 <div class="barre">
+  <p id="merci" style="display:none;color:#22622a;font-weight:600;font-size:1rem;margin-bottom:10px">Paiement reçu, merci ! Voici votre document cadeau. Vous le recevez aussi par mail.</p>
   <button type="button" onclick="window.print()">Imprimer / enregistrer en PDF</button>
   <p id="v-aide">Imprimez-le, écrivez votre petit mot, et offrez-le.</p>
 </div>
@@ -157,6 +158,7 @@ body.priv .piece{margin-top:3mm;}
   function p(k,m){return (q.get(k)||'').replace(/[<>]/g,'').slice(0,m||80);}
   function t(id,v){document.getElementById(id).textContent=v;}
   t('v-pour',p('pour',50));
+  if(q.get('merci')) document.getElementById('merci').style.display='block';
   var nn=parseInt(q.get('n'),10)||1; t('v-sur',nn===1?'Une soirée de théâtre rien que pour vous':(nn===2?'Une soirée de théâtre à deux':'Une soirée de théâtre à partager à '+nn));
   var occ=(q.get('occasion')||'noel').toLowerCase();
   var cfg={

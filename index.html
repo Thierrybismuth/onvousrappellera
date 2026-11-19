@@ -585,6 +585,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       </div>
       <label class="refus"><input type="checkbox" id="f-cadeau"><span class="petit"><b>C'est pour faire un cadeau</b> — un document à imprimer et à offrir vous sera adressé en même temps que vos places.</span></label>
       <div id="f-cad-wrap" style="display:none;margin:.5rem 0 .8rem">
+        <p class="petit">Vous préférez lui laisser choisir sa ville et sa date ? <a href="#cadeau" id="f-vers-open">Offrez plutôt un billet open &rarr;</a></p>
         <label class="refus"><input type="radio" name="occasion" value="santa"><span class="petit">C'est pour un Secret Santa</span></label>
         <label class="refus"><input type="radio" name="occasion" value="noel" checked><span class="petit">C'est un cadeau de Noël à mettre sous le sapin</span></label>
         <label class="refus"><input type="radio" name="occasion" value="anniv"><span class="petit">C'est un cadeau d'anniversaire</span></label>
@@ -615,6 +616,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
           <div class="field"><label for="c-nom">Votre nom</label><input id="c-nom" type="text" autocomplete="family-name"></div>
           <div class="field"><label for="c-email">Votre email</label><input id="c-email" type="email" autocomplete="email"></div>
           <div class="field"><label for="c-tel">Votre portable</label><input id="c-tel" type="tel" autocomplete="tel"></div>
+        </div>
+        <label class="refus"><input type="radio" name="c-occ" value="santa"><span class="petit">C'est pour un Secret Santa</span></label>
+        <label class="refus"><input type="radio" name="c-occ" value="noel" checked><span class="petit">C'est un cadeau de Noël à mettre sous le sapin</span></label>
+        <label class="refus"><input type="radio" name="c-occ" value="anniv"><span class="petit">C'est un cadeau d'anniversaire</span></label>
+        <div class="fgrid" style="margin-top:.5rem">
+          <div class="field"><label for="c-pour">Pour (facultatif)</label><input id="c-pour" type="text" maxlength="40" placeholder="Prénom de la personne"></div>
+          <div class="field" id="c-de-wrap"><label for="c-de">De la part de (facultatif)</label><input id="c-de" type="text" maxlength="40"></div>
         </div>
         <button class="btn" id="c-btn" type="button">Payer mes billets cadeaux &rarr;</button>
         <div class="msg" id="c-msg"></div>
@@ -822,6 +830,8 @@ document.addEventListener('DOMContentLoaded',function(){
     if(q.get('annule')){ msg.className='msg ko'; msg.innerHTML='Le paiement a été abandonné, rien n\'a été débité. Vous pouvez recommencer ci-dessous.'; document.getElementById('prevenez-moi').scrollIntoView(); } })();
   var g=function(i){return document.getElementById(i);};
   function show(cls,txt){ msg.className='msg '+cls; msg.innerHTML=txt; }
+  (function(){ var l=g('f-vers-open'); if(l) l.addEventListener('click',function(e){ e.preventDefault(); var dd=g('cadeau'); dd.open=true; dd.scrollIntoView({behavior:'smooth',block:'start'}); });
+    document.querySelectorAll('input[name=c-occ]').forEach(function(r){ r.addEventListener('change',function(){ g('c-de-wrap').style.display=(r.value==='santa'&&r.checked)?'none':''; }); }); })();
   (function(){ var c=g('f-cadeau'), w=g('f-cad-wrap'); if(!c) return;
     function maj(){ w.style.display=c.checked?'':'none'; var o=document.querySelector('input[name=occasion]:checked'); g('f-cad-de-wrap').style.display=(o&&o.value==='santa')?'none':''; }
     function majN(){ var n=Math.max(1,parseInt(g('f-places').value,10)||1), sel=g('f-cad-n'), v=parseInt(sel.value,10)||2, h=''; for(var i=1;i<=n;i++) h+='<option value="'+i+'">'+i+' place'+(i>1?'s':'')+'</option>'; sel.innerHTML=h; sel.value=String(Math.min(v,n)); }
@@ -1146,7 +1156,7 @@ document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
   function show(k,t){ msg.className='msg '+k; msg.innerHTML=t; }
   if(/[?&]cadeau=1/.test(location.search)){ g('cadeau').open=true; setTimeout(function(){ g('cadeau').scrollIntoView({block:'center'}); },300); }
   btn.addEventListener('click',function(){
-    var d={action:'cadeau', qty:parseInt(g('c-qty').value,10)||1, prenom:g('c-prenom').value.trim(), nom:g('c-nom').value.trim(), email:g('c-email').value.trim(), portable:g('c-tel').value.trim(), source:'grand-public'};
+    var oc=(document.querySelector('input[name=c-occ]:checked')||{}).value||'noel'; var d={action:'cadeau', occasion:oc, pour:g('c-pour').value.trim(), de:(oc==='santa'?'':g('c-de').value.trim()), qty:parseInt(g('c-qty').value,10)||1, prenom:g('c-prenom').value.trim(), nom:g('c-nom').value.trim(), email:g('c-email').value.trim(), portable:g('c-tel').value.trim(), source:'grand-public'};
     if(!d.prenom||!d.nom){ show('ko','Merci d\'indiquer votre prénom et votre nom.'); return; }
     if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(d.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
     if(!d.portable){ show('ko','Merci d\'indiquer votre portable.'); return; }
