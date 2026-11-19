@@ -185,7 +185,7 @@ body.priv .piece{margin-top:3mm;}
     b.querySelector('.gros').textContent=(jour||'Date de la représentation')+(heure?(' à '+heure):'');
     b.querySelector('.l2').textContent=(th?th+' · ':'')+(ad||ville);
     b.querySelector('.l3').textContent=(q.get('privilege')==='1'?(n>1?n+' places Privilège':'1 place Privilège'):pl)+(p('nom',60)?(' · réservation au nom de '+p('nom',60)):'');
-    if(p('ref',120)){var r=document.createElement('div');r.className='ref';r.textContent=(/,| /.test(p('ref',120).trim())?'Billets n° ':'Référence : ')+p('ref',120)+' · ce document fait office de billet';b.appendChild(r);}
+    if(p('ref',120)){var r=document.createElement('div');r.className='ref';r.textContent=(/^OVR-/i.test(p('ref',120).trim())?(/ /.test(p('ref',120).trim())?'Billets n° ':'Billet n° '):'Référence : ')+p('ref',120)+' · ce document fait office de billet';b.appendChild(r);}
   }
   (function(){ var r=p('ref',30).toUpperCase(), tr=p('troupe',40).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(), f='';
     var m={TLS:'bordeaux',BOR:'bordeaux',LYO:'lyon',REN:'rennes',NAN:'nantes',MTP:'montpellier',MON:'montpellier'}[r.slice(0,3)];
