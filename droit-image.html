@@ -65,6 +65,7 @@ button.go:disabled{background:#ddd;color:#888}
 
   <div class="card">
     <label class="chk"><input type="checkbox" id="accord"><span>J'ai lu et j'accepte cette autorisation.</span></label>
+    <p style="margin:12px 0 0"><strong>Fait le <span id="dateJour"></span></strong> <span class="note">(date et heure enregistrées au moment où tu signes)</span></p>
     <label class="f">Ma signature</label>
     <canvas id="sigpad" class="sig-pad"></canvas>
     <div class="sig-tools"><button type="button" id="sigclear">Effacer</button><span>Signe avec le doigt sur téléphone.</span></div>
@@ -78,7 +79,7 @@ button.go:disabled{background:#ddd;color:#888}
   <div class="ovr">ON VOUS RAPPELLERA</div>
   <h1>Merci <span id="okPrenom"></span>, c'est signé.</h1>
   <div class="card">
-    <p>Ton exemplaire signé et horodaté part à l'adresse <strong id="okMail"></strong>. Pense à vérifier tes spams.</p>
+    <p>Signé le <strong id="okHoro"></strong>. Ton exemplaire signé et horodaté part à l'adresse <strong id="okMail"></strong>. Pense à vérifier tes spams.</p>
     <p class="note">Une question ? Thierry Bismuth · <a href="tel:+33610703090">06 10 70 30 90</a></p>
   </div>
 </div>
@@ -92,6 +93,7 @@ var SSID = '1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg';
 var PDFWH = 'https://thierryb.app.n8n.cloud/webhook/ovr-pdf-mail';
 var COPIE = 'bismuththierry@gmail.com';
 
+document.getElementById('dateJour').textContent=new Date().toLocaleDateString('fr-FR',{timeZone:'Europe/Paris',day:'numeric',month:'long',year:'numeric'});
 var sel = document.getElementById('nom');
 NOMS.forEach(function(x,i){ var o=document.createElement('option'); o.value=String(i); o.textContent=x.n+(x.v?' ('+x.v+')':''); sel.appendChild(o); });
 var oa=document.createElement('option'); oa.value='autre'; oa.textContent='Mon nom n’est pas dans la liste'; sel.appendChild(oa);
@@ -157,7 +159,8 @@ function pdf(nomC, mail, sig, horo){
   });
   y+=4; saut(55);
   d.setFont('helvetica','normal'); d.text('Signataire : '+propre(nomC)+'  ('+mail+')',M,y); y+=5;
-  d.text("Case cochee : J'ai lu et j'accepte cette autorisation.",M,y); y+=7;
+  d.text("Case cochee : J'ai lu et j'accepte cette autorisation.",M,y); y+=6;
+  d.setFont('helvetica','bold'); d.text('Fait le '+propre(horo)+', signe en ligne.',M,y); y+=7;
   d.setFont('helvetica','bold'); d.text('Signature',M,y); y+=3;
   try{ d.addImage(sig,'PNG',M,y,70,26); }catch(e){}
   d.rect(M,y,70,26); y+=31;
@@ -203,7 +206,7 @@ btn.onclick=function(){
   });
   Promise.all([reg,env]).then(function(){
     document.getElementById('okPrenom').textContent=prenom;
-    document.getElementById('okMail').textContent=mail;
+    document.getElementById('okMail').textContent=mail; document.getElementById('okHoro').textContent=horo;
     document.getElementById('zoneForm').className='off';
     document.getElementById('zoneOk').className='ok on';
     window.scrollTo(0,0);
