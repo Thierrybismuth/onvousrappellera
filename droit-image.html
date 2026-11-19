@@ -38,6 +38,7 @@ button.go:disabled{background:#ddd;color:#888}
 <div id="zoneForm">
   <div class="ovr">ON VOUS RAPPELLERA</div>
   <h1>Autorisation d'utilisation de l'image</h1>
+  <p class="note" style="margin:-8px 0 16px">Tu as déjà signé ? Tu peux signer à nouveau : cette version remplacera la précédente.</p>
 
   <div class="card">
     <label class="f" for="nom">Je suis</label>
@@ -175,14 +176,28 @@ btn.onclick=function(){
   if(vide){ dire('Signe dans le cadre.','err'); return; }
   btn.disabled=true; btn.textContent='Envoi en cours…'; dire('Envoi en cours, ne ferme pas la page…','att');
   var horo=horoFR(), sig=sigData(), prenom=x.n.split(' ')[0];
+  var ligne=[new Date().toISOString(),horo,x.c+(x.n!==x.c?' ('+x.n+')':'')+(sel.value==='autre'?' [hors liste]':''),mail,VERSION,'droit-image.html'];
+  function norm(t){ return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim(); }
+  /* Re-signature : la nouvelle version remplace la précédente (même mail ou même personne) */
   var reg = fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({action:'append',spreadsheetId:SSID,range:"'Droit image'!A:F",valueInputOption:'RAW',
-        values:[[new Date().toISOString(),horo,x.c+(x.n!==x.c?' ('+x.n+')':'')+(sel.value==='autre'?' [hors liste]':''),mail,VERSION,'droit-image.html']]})})
-    .then(function(r){ return r.json(); }).then(function(j){ if(!j||!j.updates) throw new Error('reg'); });
+      body:JSON.stringify({action:'read',spreadsheetId:SSID,range:"'Droit image'!A2:F2000"})})
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      var rows=(j&&j.values)||[], idx=-1, m=mail.toLowerCase(), nc=norm(x.c), nn=norm(x.n);
+      for(var i=0;i<rows.length;i++){ var r=rows[i]||[];
+        if(String(r[3]||'').trim().toLowerCase()===m || (sel.value!=='autre' && (norm(r[2]).indexOf(nc)===0 || norm(r[2]).indexOf(nn)===0))){ idx=i; } }
+      if(idx<0) return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({action:'append',spreadsheetId:SSID,range:"'Droit image'!A:F",valueInputOption:'RAW',values:[ligne]})});
+      ligne[5]='droit-image.html (remplace la signature du '+String((rows[idx]||[])[1]||'').slice(0,10)+')';
+      var n=idx+2;
+      return fetch(GW,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({action:'update',spreadsheetId:SSID,range:"'Droit image'!A"+n+":F"+n,valueInputOption:'RAW',values:[ligne]})});
+    })
+    .then(function(r){ return r.json(); }).then(function(j){ if(!j||j.error) throw new Error('reg'); });
   var env = chargerJsPDF().then(function(){
     var b64=pdf(x.c,mail,sig,horo);
     var nomF=('autorisation-image-ovr-'+x.c).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-')+'.pdf';
-    var corps='<p>Bonjour '+prenom+',</p><p>Voici ton exemplaire de l’autorisation d’utilisation de l’image pour <strong style="color:#d62828">ON VOUS RAPPELLERA</strong>, avec ta signature et son horodatage.</p><p>Horodatage : <strong>'+horo+'</strong></p><p>Merci,<br>Thierry Bismuth<br>06 10 70 30 90</p>';
+    var corps='<p>Bonjour '+prenom+',</p><p>Voici ton exemplaire de l’autorisation d’utilisation de l’image pour <strong style="color:#d62828">ON VOUS RAPPELLERA</strong>, avec ta signature et son horodatage. Si tu avais déjà signé, cet exemplaire remplace le précédent.</p><p>Horodatage : <strong>'+horo+'</strong></p><p>Merci,<br>Thierry Bismuth<br>06 10 70 30 90</p>';
     return fetch(PDFWH,{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({to:mail,cc:COPIE,subject:'ON VOUS RAPPELLERA - autorisation image signee ('+x.c+')',body:corps,filename:nomF,pdfBase64:b64})});
   });
