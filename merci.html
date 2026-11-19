@@ -36,6 +36,7 @@
   </div>
   <div class="seance" id="seance"></div>
   <p class="test" id="test">Paiement de test (séance interne).</p>
+  <div class="ok" id="cadeau-ok" style="display:none"><h2>🎁 Votre document cadeau</h2><p>À imprimer et à offrir : il fait office de billet. Vous le retrouvez aussi dans le mail de vos billets.</p><p><a id="cadeau-lien" target="_blank" rel="noopener"><b>Ouvrir le document cadeau</b></a></p></div>
   <div id="fe-retour"></div>
   <div class="diner" id="diner"></div>
   <div class="share" id="share">
@@ -57,6 +58,7 @@
 <script>
 (function(){
   var q=new URLSearchParams(location.search), s=q.get('s')||'';
+  var cu=q.get('cadeau')||''; if(/^https:\/\/onvousrappellera\.fr\/cadeau-noel\.html\?/.test(cu)){ document.getElementById('cadeau-lien').href=cu; document.getElementById('cadeau-ok').style.display='block'; }
   if(q.get('test')) document.getElementById('test').style.display='block';
   if(window.FE && FE.auRetour){ try{ FE.auRetour(document.getElementById('fe-retour')); }catch(e){} }
   var BDR=(q.get('src')==='bdr'), BDRURL='https://onvousrappellera.fr/bdr-toulouse-434fac46.html';
