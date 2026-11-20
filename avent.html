@@ -61,6 +61,16 @@ table.chances td.n{text-align:right;white-space:nowrap;font-weight:600}
 .case.rate .etat{font-size:.85rem;font-weight:600;color:#999}
 .case.jour{border:2px solid var(--rouge);box-shadow:0 6px 18px rgba(216,40,31,.18);cursor:pointer;background:linear-gradient(180deg,#fff,#fff6ef)}
 .case.jour .go{margin-top:8px;font-weight:700;color:var(--rouge)}
+.case .alu{position:relative;margin-top:auto;padding-top:10px}
+.case .alu span{display:block;border-radius:8px;padding:12px 6px;text-align:center;font-size:.8rem;font-weight:700;color:#5b5b5b;letter-spacing:.02em;
+ background:repeating-linear-gradient(135deg,rgba(255,255,255,.35) 0 6px,rgba(255,255,255,0) 6px 12px),linear-gradient(135deg,#d9d9d9,#f5f5f5 40%,#b9b9b9 60%,#e6e6e6);box-shadow:inset 0 1px 2px rgba(0,0,0,.18)}
+.case.jour .alu span{color:#6b4a10;font-size:.85rem;white-space:nowrap;background:repeating-linear-gradient(135deg,rgba(255,255,255,.35) 0 6px,rgba(255,255,255,0) 6px 12px),linear-gradient(135deg,#e9c86a,#fff1c2 40%,#caa13f 60%,#f3d98a);;text-align:left;padding-left:12px;padding-right:44px;animation:pulse 1.6s ease-in-out infinite}
+.case.jour .alu .piece{position:absolute;right:6px;bottom:6px;font-size:1.5rem;animation:frotte 1.2s ease-in-out infinite;pointer-events:none}
+.case.rate .alu span{opacity:.5}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes frotte{0%,100%{transform:translate(0,0) rotate(-15deg)}50%{transform:translate(-8px,-3px) rotate(12deg)}}
+#bulle{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:10px;font-weight:600;font-size:.95rem;max-width:90vw;text-align:center;z-index:60;display:none;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.case{cursor:pointer}
 .case.fait{background:#fafaf7}
 .case.fait .etat{font-size:.88rem;font-weight:600}
 .case.gagne{background:#fff8e6;border-color:#e8c46a}
@@ -107,7 +117,7 @@ footer{border-top:1px solid #eee;padding:18px 0 40px;font-size:.85rem;color:var(
 <header class="hero">
   <div class="titre-piece">ON VOUS RAPPELLERA</div>
   <h1>Le calendrier de l'avent</h1>
-  <p class="sous">Du 1<sup>er</sup> au 24 décembre, une case à gratter par jour. Chaque jour, tu ne peux gratter que la case du jour : un jour raté ne se rattrape pas.</p>
+  <p class="sous">Du 1<sup>er</sup> au 24 décembre, une case à gratter par jour. Chaque jour, tu ne peux gratter que la case du jour : un jour raté ne se rattrape pas. <b>Touche la case dorée du jour pour la gratter.</b></p>
   <div class="regle-cle">100 % des calendriers cachent au moins un cadeau.<br>Si tu ne rates aucun jour, tu gagnes à coup sûr.</div>
 </header>
 
@@ -293,13 +303,14 @@ function dessiner(){
       var c=gag[d];
       if(c){ cls+=' fait gagne'; inner+='<div class="etat">🎁 '+esc(c.libelle)+'</div><img loading="lazy" src="'+imgCadeau(c)+'" alt="">'; }
       else { cls+=' fait'; inner+='<div class="etat">Grattée — pas de cadeau ce jour-là</div>'; }
-    } else if(d<J && S && S.inscrit){ cls+=' rate'; inner+='<div class="etat">'+(d<premier?'Passé':'Raté')+'</div><div class="pl">« '+esc(p[0])+' »</div>'; }
-    else if(d===J && H.statut==='ouvert'){ cls+=' jour'; inner+='<div class="pl">« '+esc(p[0])+' »'+(p[1]?'<em>'+esc(p[1])+'</em>':'')+'</div><div class="go">Gratte la case du jour →</div>'; }
-    else { cls+=' futur'; inner+='<div class="pl">« '+esc(p[0])+' »'+(p[1]?'<em>'+esc(p[1])+'</em>':'')+'</div>'; }
+    } else if(d<J && S && S.inscrit){ cls+=' rate'; inner+='<div class="etat">'+(d<premier?'Passé':'Raté')+'</div><div class="pl">« '+esc(p[0])+' »</div><div class="alu"><span>TROP TARD</span></div>'; }
+    else if(d===J && H.statut==='ouvert'){ cls+=' jour'; inner+='<div class="pl">« '+esc(p[0])+' »'+(p[1]?'<em>'+esc(p[1])+'</em>':'')+'</div><div class="alu"><span>Gratte-moi !</span><b class="piece">🪙</b></div>'; }
+    else { cls+=' futur'; inner+='<div class="pl">« '+esc(p[0])+' »'+(p[1]?'<em>'+esc(p[1])+'</em>':'')+'</div><div class="alu"><span>'+(d<J?'Trop tard':'À gratter le '+d)+'</span></div>'; }
     html+='<div class="'+cls+'" data-d="'+d+'"'+(d===J&&!fait&&H.statut==='ouvert'?' role="button" tabindex="0"':'')+'>'+inner+'</div>';
   }
   $('grille').innerHTML=html;
-  var cj=document.querySelector('.case.jour'); if(cj){ cj.addEventListener('click',ouvrir); cj.addEventListener('keydown',function(e){if(e.key==='Enter')ouvrir();}); }
+  [].forEach.call($('grille').querySelectorAll('.case'),function(c){ c.addEventListener('click',function(){ cliqueCase(+c.getAttribute('data-d')); }); });
+  var cj=document.querySelector('.case.jour'); if(cj){ cj.addEventListener('keydown',function(e){if(e.key==='Enter')cliqueCase(H.jour);}); }
   // bandeau joueur
   if(S&&S.inscrit){
     $('ident').style.display='none';
@@ -361,6 +372,18 @@ function lireReponse(q){
   if(d.t==='coches') return [].map.call($('q').querySelectorAll('input:checked'),function(i){return i.value;}).join(' ; ');
   if(d.t==='interim'){ var a=$('qi1').value,b=$('qi2').value; return (a||b)?('Intérim : '+(a||'—')+' ; Cabinet : '+(b||'—')):''; }
   var el=$('qr'); return el?el.value.trim():'';
+}
+var bulleT;
+function bulle(t){ var b=$('bulle'); if(!b){ b=document.createElement('div'); b.id='bulle'; document.body.appendChild(b); } b.innerHTML=t; b.style.display='block'; clearTimeout(bulleT); bulleT=setTimeout(function(){ b.style.display='none'; },3200); }
+function cliqueCase(d){
+  var g=S?S.grattes:[];
+  if(g.indexOf(d)>=0) return;
+  var J=H.statut==='ouvert'?H.jour:(H.statut==='fini'?25:0);
+  if(H.statut==='avant') return bulle('Trop tôt ! Le calendrier ouvre le 1<sup>er</sup> décembre.');
+  if(d>J) return bulle('Trop tôt ! Cette case se gratte le '+d+' décembre.');
+  if(d<J) return bulle('Trop tard ! Cette case ne se gratte plus. Celle d\'aujourd\'hui t\'attend'+(H.statut==='ouvert'?' : le '+J+' décembre.':'.'));
+  if(!S){ var e=$('email'); if(e){ $('ident').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){ e.focus(); },400); } return bulle('Entre d\'abord ton mail pour gratter ta case.'); }
+  ouvrir();
 }
 function ouvrir(){
   if(H.statut!=='ouvert'||!S) return;
