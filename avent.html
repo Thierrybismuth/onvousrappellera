@@ -170,10 +170,10 @@ footer{border-top:1px solid #eee;padding:18px 0 40px;font-size:.85rem;color:var(
     <button class="fermer" aria-label="Fermer" id="fermer">×</button>
     <div class="jt" id="p-jour"></div>
     <div class="pq" id="p-punch"></div>
-    <div id="q"></div>
-    <div class="actions" id="p-actions"><button class="btn" id="gratter">Je gratte la case du jour</button></div>
-    <div class="msg" id="p-msg"></div>
     <div id="zone"><div id="resultat"></div><canvas id="grattage"></canvas></div>
+    <div id="q"></div>
+    <div class="actions" id="p-actions"><button class="btn" id="gratter">Voir si j'ai gagné</button></div>
+    <div class="msg" id="p-msg"></div>
     <div id="apres"></div>
   </div>
 </div>
@@ -391,21 +391,25 @@ function ouvrir(){
   var p=PUNCH[H.jour-1];
   $('p-jour').textContent=H.jour+' décembre';
   $('p-punch').innerHTML='« '+esc(p[0])+' »'+(p[1]?' <span class="note">— '+esc(p[1])+'</span>':'');
-  $('p-actions').innerHTML='<button class="btn" id="gratter">Je gratte la case du jour</button>';
+  $('p-actions').innerHTML='<button class="btn" id="gratter">Voir si j\'ai gagné</button>';
   $('gratter').onclick=function(){ envoyer(false); };
-  $('p-msg').textContent=''; $('zone').style.display='none'; $('apres').style.display='none'; $('apres').innerHTML='';
+  $('p-msg').textContent=''; $('apres').style.display='none'; $('apres').innerHTML='';
+  $('q').style.display='none'; $('p-actions').style.display='none';
+  $('resultat').innerHTML='<div class="gros">🎁 ?</div><div style="margin-top:6px;font-weight:600">Réponds à la question pour voir si tu as gagné.</div>';
+  $('zone').style.display='block';
   var q=S.inscrit?S.question:null;
   if(APERCU&&S.inscrit){ var ks=['prenom','cp','portable','entreprise','poste','naissance','avecqui'], ek={9:'recrute',10:'fonction',11:'metiers',12:'enplace',13:'outils',14:'difficulte',15:'principale',16:'interim',17:'pourquoi',18:'satisf',19:'conseils',20:'question',21:'argument',22:'avantage'};
     q=H.jour>=2&&H.jour<=8?{k:ks[H.jour-2],oblig:true}:(ek[H.jour]?{k:ek[H.jour],oblig:false}:null); }
   champQuestion(q);
   $('panneau').style.display='block'; document.body.style.overflow='hidden';
+  grattage(function(){ $('q').style.display=''; $('p-actions').style.display=''; var f=$('q').querySelector('input,textarea,select'); setTimeout(function(){ ($('q').innerHTML?$('q'):$('p-actions')).scrollIntoView({behavior:'smooth',block:'center'}); if(f) f.focus(); },250); });
 }
 $('fermer').onclick=function(){ $('panneau').style.display='none'; document.body.style.overflow=''; dessiner(); };
 
 function envoyer(passer){
   if(envoi) return;
   var q=S.inscrit?S.question:null, rep=passer?'':lireReponse(q);
-  if(q&&q.oblig&&!rep){ $('p-msg').className='msg ko'; $('p-msg').textContent='Réponds à la question pour gratter.'; return; }
+  if(q&&q.oblig&&!rep){ $('p-msg').className='msg ko'; $('p-msg').textContent='Réponds à la question pour voir si tu as gagné.'; return; }
   if(q&&!q.oblig&&!rep&&!passer){ $('p-msg').className='msg ko'; $('p-msg').textContent='Réponds, ou clique sur « Passer ».'; return; }
   envoi=true; $('p-msg').className='msg ok'; $('p-msg').textContent='Un instant…';
   var fin=function(d){
@@ -430,7 +434,10 @@ function reveler(c){
   } else {
     r.innerHTML='<div class="gros">Pas de cadeau aujourd\'hui…</div><div style="margin-top:6px">'+(S.restants>0?'Ton calendrier cache encore '+S.restants+' cadeau'+(S.restants>1?'x':'')+'. Reviens demain !':'Reviens demain pour la case suivante.')+'</div>';
   }
-  $('zone').style.display='block';
+  $('zone').style.display='block'; $('zone').scrollIntoView({behavior:'smooth',block:'center'});
+  apres(c);
+}
+function grattage(fini_cb){
   var cv=$('grattage'), z=$('zone');
   setTimeout(function(){
     var w=z.clientWidth, h=z.clientHeight, dpr=window.devicePixelRatio||1;
@@ -445,7 +452,7 @@ function reveler(c){
     function pos(e){ var b=cv.getBoundingClientRect(), t=e.touches?e.touches[0]:e; return [t.clientX-b.left,t.clientY-b.top]; }
     function gratte(e){ if(!down||fini) return; e.preventDefault(); var p=pos(e); x.beginPath(); x.arc(p[0],p[1],24,0,Math.PI*2); x.fill(); if(++n%12===0) verifie(); }
     function verifie(){ var d=x.getImageData(0,0,cv.width,cv.height).data, v=0, tot=0; for(var i=3;i<d.length;i+=64){tot++; if(d[i]===0)v++;} if(v/tot>.45) finir(); }
-    function finir(){ if(fini) return; fini=true; cv.style.transition='opacity .5s'; cv.style.opacity='0'; setTimeout(function(){cv.style.display='none';cv.style.opacity='1';},500); apres(c); }
+    function finir(){ if(fini) return; fini=true; cv.style.transition='opacity .5s'; cv.style.opacity='0'; setTimeout(function(){cv.style.display='none';cv.style.opacity='1';},500); if(window._finirGrattage) window._finirGrattage(); fini_cb(); }
     cv.onpointerdown=function(e){down=true; gratte(e);}; cv.onpointermove=gratte; window.addEventListener('pointerup',function(){down=false;});
     cv.addEventListener('touchstart',function(e){down=true;gratte(e);},{passive:false}); cv.addEventListener('touchmove',gratte,{passive:false}); cv.addEventListener('touchend',function(){down=false;});
     var b=document.createElement('button'); b.className='passer'; b.textContent='Tout découvrir d\'un coup'; b.onclick=function(){ finir(); b.remove(); }; z.insertAdjacentElement('afterend',b);
@@ -453,7 +460,6 @@ function reveler(c){
   },30);
 }
 function apres(c){
-  if(window._finirGrattage) window._finirGrattage();
   var a=$('apres'), h='';
   if(c){
     h+='<p><b>'+esc(REMISE[c.remise]||'')+'</b></p>';
