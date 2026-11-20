@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le calendrier de l'avent — ON VOUS RAPPELLERA</title>
+<meta name="description" content="Du 1er au 24 décembre, gratte la case du jour et gagne des places, le livre, un dîner avec un comédien de la troupe de ta ville…">
+<meta property="og:title" content="Le calendrier de l'avent de la pièce ON VOUS RAPPELLERA">
+<meta property="og:description" content="Une case à gratter par jour, du 1er au 24 décembre. Des places, le livre, un dîner avec la troupe… Si tu ne rates aucun jour, tu gagnes à coup sûr.">
+<meta property="og:image" content="https://onvousrappellera.fr/assets/troupes/troupes-france-mosaique.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--rouge:#d8281f;--noir:#161616;--or:#c8913a;--gris:#6b7280;--clair:#f4f1ea;--trait:#e7e2d8}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1c1c1c;font:400 16px/1.5 'Outfit',-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--rouge)}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+#top{text-align:right;padding:8px 16px;font-size:13px;border-bottom:1px solid #eee}
+#top a{color:#555;text-decoration:none;margin-left:16px}
+.titre-piece{color:var(--rouge);font-weight:800;letter-spacing:.02em}
+header.hero{text-align:center;padding:28px 0 8px}
+header.hero h1{font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.1;margin:.2em 0;font-weight:800}
+header.hero .sous{font-size:1.05rem;color:#333;max-width:640px;margin:.6em auto}
+.regle-cle{display:inline-block;background:#fff4d6;border:1px solid #f0d58a;padding:8px 14px;border-radius:6px;font-weight:600;margin:6px 0}
+h2{font-size:1.35rem;margin:1.6em 0 .6em;font-weight:800}
+/* cadeaux */
+.cadeaux{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.cad{border:1px solid var(--trait);border-radius:8px;overflow:hidden;background:#fff}
+.cad img{display:block;width:100%;height:auto}
+.cad .t{padding:10px 12px;font-weight:600}
+.cad .p{padding:0 12px 12px;color:var(--gris);font-size:.9rem}
+.surprises{margin:12px 0 0;color:#333}
+table.chances{width:100%;border-collapse:collapse;margin-top:10px;font-size:.95rem}
+table.chances td,table.chances th{border-bottom:1px solid var(--trait);padding:8px 6px;text-align:left}
+table.chances th{font-weight:600;background:var(--clair)}
+table.chances td.n{text-align:right;white-space:nowrap;font-weight:600}
+/* identification */
+#ident{border:2px solid var(--rouge);border-radius:10px;padding:18px;margin:22px 0;background:#fff}
+#ident input[type=email]{width:100%;padding:12px;border:1px solid #cfc9bd;border-radius:4px;font:inherit;font-size:1rem}
+#ident label{display:flex;gap:8px;align-items:flex-start;margin:10px 0;font-size:.92rem}
+.btn{display:inline-block;background:var(--rouge);color:#fff;border:0;border-radius:4px;padding:13px 20px;font:600 1rem 'Outfit',sans-serif;cursor:pointer;text-decoration:none}
+.btn:disabled{opacity:.55}
+.btn.sec{background:#fff;color:var(--noir);border:1px solid var(--noir)}
+.msg{margin-top:8px;font-weight:600}
+.msg.ko{color:#a3231b}.msg.ok{color:#22622a}
+#moi{display:none;margin:18px 0;padding:12px 14px;background:var(--clair);border-radius:8px}
+#moi a{font-size:.85rem;color:var(--gris)}
+/* grille */
+#grille{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0 28px}
+@media(min-width:560px){#grille{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:860px){#grille{grid-template-columns:repeat(4,1fr)}}
+.case{position:relative;min-height:150px;border-radius:10px;padding:12px;border:1px solid var(--trait);background:#fff;display:flex;flex-direction:column;justify-content:flex-start}
+.case .num{font-size:1.9rem;font-weight:800;line-height:1;color:var(--rouge)}
+.case .num small{display:block;font-size:.75rem;font-weight:600;color:var(--gris);letter-spacing:.04em;text-transform:uppercase}
+.case .pl{font-size:.84rem;line-height:1.35;color:#333;margin-top:8px}
+.case .pl em{display:block;font-style:normal;color:var(--gris);font-size:.75rem;margin-top:4px}
+.case.futur{opacity:.8}
+.case.rate{background:#f3f3f3;color:#999;border-style:dashed}
+.case.rate .num{color:#aaa}
+.case.rate .etat{font-size:.85rem;font-weight:600;color:#999}
+.case.jour{border:2px solid var(--rouge);box-shadow:0 6px 18px rgba(216,40,31,.18);cursor:pointer;background:linear-gradient(180deg,#fff,#fff6ef)}
+.case.jour .go{margin-top:8px;font-weight:700;color:var(--rouge)}
+.case.fait{background:#fafaf7}
+.case.fait .etat{font-size:.88rem;font-weight:600}
+.case.gagne{background:#fff8e6;border-color:#e8c46a}
+.case.gagne img{width:100%;height:auto;border-radius:6px;margin-top:6px}
+/* panneau du jour */
+#panneau{display:none;position:fixed;inset:0;z-index:60;background:rgba(22,22,22,.55);overflow:auto;padding:16px}
+#panneau .boite{max-width:520px;margin:20px auto;background:#fff;border-radius:12px;padding:20px;position:relative}
+#panneau .fermer{position:absolute;top:8px;right:12px;background:none;border:0;font-size:1.8rem;cursor:pointer;color:#555}
+#panneau .jt{font-size:.85rem;font-weight:600;color:var(--gris);text-transform:uppercase;letter-spacing:.05em}
+#panneau .pq{font-size:1.05rem;font-style:italic;margin:.4em 0 1em}
+#q label.ql{display:block;font-weight:700;font-size:1.1rem;margin-bottom:8px}
+#q .aide{font-size:.85rem;color:var(--gris);margin:-4px 0 8px}
+#q input[type=text],#q input[type=tel],#q textarea,#q select{width:100%;padding:12px;border:1px solid #cfc9bd;border-radius:4px;font:inherit;font-size:1rem}
+#q textarea{min-height:90px}
+#q .choix{display:flex;flex-wrap:wrap;gap:8px}
+#q .choix button{flex:1 1 auto;min-width:56px;padding:11px 12px;border:1px solid #cfc9bd;background:#fff;border-radius:6px;font:inherit;cursor:pointer}
+#q .choix button.on{border-color:var(--rouge);background:#fdecea;font-weight:700}
+#q .coches label{display:flex;gap:8px;align-items:flex-start;padding:5px 0}
+#q .sous{margin-top:10px}
+.passer{display:inline-block;margin-left:12px;background:none;border:0;color:#999;font:inherit;font-size:.85rem;text-decoration:underline;cursor:pointer}
+.actions{margin-top:14px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+/* grattage */
+#zone{position:relative;margin-top:6px;border-radius:10px;overflow:hidden;min-height:220px;display:none}
+#resultat{padding:18px;text-align:center;min-height:220px;display:flex;flex-direction:column;justify-content:center;background:#fff8e6}
+#resultat img{max-width:100%;height:auto;border-radius:8px;margin:8px auto;display:block}
+#resultat .gros{font-size:1.25rem;font-weight:800}
+#grattage{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:pointer}
+#apres{display:none;margin-top:14px}
+.partage{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.partage .btn{flex:1 1 auto;text-align:center}
+.note{font-size:.85rem;color:var(--gris)}
+.troupes-diner{display:grid;grid-template-columns:1fr;gap:6px}
+details.reglement{margin:28px 0;border-top:1px solid var(--trait);padding-top:12px;font-size:.9rem;color:#333}
+details.reglement summary{cursor:pointer;font-weight:600}
+#apercu-bandeau{display:none;background:#fff4d6;text-align:center;padding:8px;font-weight:600;font-size:.9rem}
+footer{border-top:1px solid #eee;padding:18px 0 40px;font-size:.85rem;color:var(--gris);text-align:center}
+</style>
+</head>
+<body>
+<div id="top"><a href="/">La pièce</a><a href="/#prevenez-moi">Réserver mes places</a><a href="mailto:contact@onvousrappellera.fr">Contact</a></div>
+<div id="apercu-bandeau">Aperçu de la page — rien n'est enregistré, le cadeau affiché est tiré au hasard.</div>
+
+<div class="wrap">
+<header class="hero">
+  <div class="titre-piece">ON VOUS RAPPELLERA</div>
+  <h1>Le calendrier de l'avent</h1>
+  <p class="sous">Du 1<sup>er</sup> au 24 décembre, une case à gratter par jour. Chaque jour, tu ne peux gratter que la case du jour : un jour raté ne se rattrape pas.</p>
+  <div class="regle-cle">100 % des calendriers cachent au moins un cadeau.<br>Si tu ne rates aucun jour, tu gagnes à coup sûr.</div>
+</header>
+
+<section id="ident">
+  <div id="ident-form">
+    <h2 style="margin-top:0">Pour jouer, ton adresse email</h2>
+    <p id="ident-texte" style="margin-top:0">C'est ta clé : elle te permet de retrouver ton calendrier chaque jour, sur n'importe quel appareil.</p>
+    <input type="email" id="email" placeholder="ton@email.fr" autocomplete="email" inputmode="email">
+    <label id="lab-consent"><input type="checkbox" id="consent"> <span>J'ai 18 ans ou plus et j'accepte le <a href="#reglement">règlement du jeu</a>.</span></label>
+    <input id="site_web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+    <button class="btn" id="go">J'ouvre mon calendrier</button>
+    <div class="msg" id="msg"></div>
+  </div>
+</section>
+<div id="moi"></div>
+
+<div id="grille" aria-label="Les 24 cases"></div>
+
+<h2>Les cadeaux cachés dans les calendriers</h2>
+<div class="cadeaux" id="vitrine"></div>
+<p class="surprises">Et des petites surprises : l'ecocup ON VOUS RAPPELLERA, la balle antistress, l'affiche souvenir…</p>
+
+<h2>Tes chances</h2>
+<p style="margin:0">Tes cadeaux sont tirés au sort dès ton inscription. Ils tombent entre le 8 et le 24 décembre, mais tu ne sais pas quel jour : rate la case du jour, tu peux rater un cadeau.</p>
+<table class="chances">
+  <tr><th>Dans ton calendrier</th><th style="text-align:right">Chances</th></tr>
+  <tr><td>Au moins un cadeau</td><td class="n">100 %</td></tr>
+  <tr><td>Au moins deux cadeaux</td><td class="n">8 sur 10</td></tr>
+  <tr><td>Trois cadeaux (le maximum)</td><td class="n">près d'1 sur 2</td></tr>
+  <tr><td>Des places offertes (1 place, ou 2 places)</td><td class="n">1 sur 6</td></tr>
+  <tr><td>Le livre numérique de ton choix</td><td class="n">plus d'1 sur 4</td></tr>
+  <tr><td>1 place achetée = 1 place offerte, ou l'Offre Privilège au prix d'une place normale</td><td class="n">plus d'1 sur 5</td></tr>
+  <tr><td>Le pack souvenir de la pièce</td><td class="n">1 sur 6</td></tr>
+  <tr><td>Un dîner avec le comédien de ton choix, dans ta ville</td><td class="n">1 sur 12</td></tr>
+</table>
+<p class="note">Jamais deux fois le même cadeau dans un même calendrier.</p>
+
+<details class="reglement" id="reglement">
+<summary>Règlement du jeu</summary>
+<p><b>Organisateur.</b> Le jeu « Le calendrier de l'avent ON VOUS RAPPELLERA » est organisé par la Compagnie MultiPotentieL (ODYSKILLS SAS, 22 boulevard de Stalingrad, 92320 Châtillon).</p>
+<p><b>Durée et participation.</b> Du 1<sup>er</sup> au 24 décembre 2026, sur onvousrappellera.fr. Jeu gratuit et sans obligation d'achat, réservé aux personnes majeures. Une seule participation par personne : une adresse email, un calendrier.</p>
+<p><b>Déroulement.</b> Chaque jour, le joueur peut gratter uniquement la case du jour, après avoir répondu à la question du jour. Une case non grattée le jour même est perdue et ne peut pas être rattrapée. Les questions des jours 1 à 8 sont obligatoires pour gratter ; les suivantes sont facultatives.</p>
+<p><b>Cadeaux.</b> Chaque calendrier contient d'un à trois cadeaux, tirés au sort à l'inscription, placés sur des jours tirés au sort entre le 8 et le 24 décembre, jamais deux fois le même cadeau. Un cadeau n'est gagné que si sa case est grattée le jour même. Les places offertes sont valables pour une représentation de la pièce au choix, jusqu'au 31 décembre 2027, dans la limite des places disponibles. Le pack souvenir, l'ecocup, la balle antistress et l'affiche sont remis en main propre le soir de la venue au spectacle. Le livre numérique et les codes de places sont envoyés par email sous 3 jours. Le dîner avec un comédien est proposé aux joueurs situés à moins de 100 km d'une ville où joue une troupe ; il est organisé avec la troupe de cette ville, à une date convenue ensemble. Les cadeaux ne sont ni échangeables ni remboursables.</p>
+<p><b>Données personnelles.</b> Les informations données servent à faire fonctionner le jeu, à remettre les cadeaux, à informer les joueurs de l'actualité de la pièce et, pour les réponses aux questions sur le recrutement, à une étude sur les pratiques de recrutement publiée sans aucun nom. Elles ne sont ni vendues ni cédées. Chacun peut y accéder, les corriger ou les faire supprimer en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
+</details>
+</div>
+
+<div id="panneau" role="dialog" aria-modal="true">
+  <div class="boite">
+    <button class="fermer" aria-label="Fermer" id="fermer">×</button>
+    <div class="jt" id="p-jour"></div>
+    <div class="pq" id="p-punch"></div>
+    <div id="q"></div>
+    <div class="actions" id="p-actions"><button class="btn" id="gratter">Je gratte la case du jour</button></div>
+    <div class="msg" id="p-msg"></div>
+    <div id="zone"><div id="resultat"></div><canvas id="grattage"></canvas></div>
+    <div id="apres"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="titre-piece">ON VOUS RAPPELLERA</div>
+  <div>Ils ont mis le recrutement en pièce · <a href="/">onvousrappellera.fr</a> · <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a></div>
+</footer>
+
+<script>
+(function(){
+var API='https://thierryb.app.n8n.cloud/webhook/ovr-avent';
+var $=function(i){return document.getElementById(i);};
+function esc(x){return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+var LS={get:function(k){try{return localStorage.getItem(k);}catch(e){return null;}},set:function(k,v){try{localStorage.setItem(k,v);}catch(e){}},del:function(k){try{localStorage.removeItem(k);}catch(e){}}};
+
+var PUNCH=[
+ ["Tout est exagéré, mais tout est vrai.",""],
+ ["Ne m'appelle pas DRH. C'est mon métier, ce n'est pas moi.","Delphine, la RH"],
+ ["Lorsque le jeune loup veut se faire adopter par la meute…","Daniel(e), le psy"],
+ ["Le seul truc à peu près vrai dans mon CV, c'est mon numéro de portable.","Julien, le candidat"],
+ ["L'entreprise, c'est un théâtre. Ce n'est pas parce que tout n'est pas vrai, que tout est faux.","Dominique, le senior"],
+ ["Candidat, ce n'est pas un métier. Recruteur, ça l'est.","Daniel(e), le psy"],
+ ["Ce n'est pas ma date de naissance qui vous intéresse, c'est mon âge, non ?","Dominique, le senior"],
+ ["— Et ça vous tente ? Pourquoi ? — Je suis en fin de droit. J'ai faim. — Eh ben voilà ! Un moment de franche sincérité !","Delphine et Julien"],
+ ["Vous avez tellement peur de vous tromper dans votre recrutement que vous ne recrutez personne.","Julien, le candidat"],
+ ["Notre turn-over ressemble à une élection russe.","Delphine, la RH"],
+ ["Aujourd'hui, s'ils ont pas bac+5, ils savent plus ni lire ni écrire.","Pascal, le manager"],
+ ["Et comment vous m'avez eue ? Le standard a pour directive de ne pas nous passer les candidats en direct.","Delphine, la RH"],
+ ["J'ai fait une étude… Les mecs, c'est bordélique… Alors que les femmes…","Pascal, le manager"],
+ ["C'est la peur de perdre qui vous empêche de gagner.","Julien, le candidat"],
+ ["Les candidats ne croient plus aux belles promesses. C'est comme en amour : on veut des preuves !","Delphine, la RH"],
+ ["C'est tout un métier de dire bonjour. Votre bonjour n'était PAS vendeur.","Dominique, le senior"],
+ ["Ne pas avoir de recul, c'est très utile pour un canon. C'est moins efficace pour un patron.","Daniel(e), le psy"],
+ ["Il y a une sacrée différence entre un patron et un leader.","Johana, l'infirmière en reconversion"],
+ ["— Donc, on recrute les meilleurs menteurs ? — Disons qu'on recrute ceux qui savent le mieux séduire.","Johana et Pascal"],
+ ["Dans une équipe, les vieux lions sont aussi utiles que les jeunes loups.","Dominique, le senior"],
+ ["Pourquoi quelqu'un qui ferait la même chose ailleurs viendrait chez nous ? POURQUOI NOUS ? C'est ça, la vraie question !","Delphine, la RH"],
+ ["On n'a jamais gagné une partie de cartes en renversant la table.","Dominique, le senior"],
+ ["Arrêtez de chercher des gens passionnés par votre boîte. Cherchez ce qui les passionne et alimentez-le.",""],
+ ["Ne m'appelle pas candidat. Partenaire, ça me va.",""]
+];
+
+var IMG={
+ ecocup:'assets/ovr/ecocup-ovr.jpg', places1:'assets/troupes/troupes-france-mosaique.jpg', places2:'assets/troupes/troupes-france-mosaique.jpg',
+ livre:'images/livre/couverture-reuje.jpg', offre1:'assets/troupes/troupe-paris-esprit-d-equipe.jpg', privilege:'assets/troupes/troupe-paris-esprit-d-equipe.jpg',
+ pack:'assets/ovr/magnets-ovr.png', antistress:'assets/ovr/antistress-ovr.png', affiche:'assets/affiches/OVR-affiche-paris-esprit-d-equipe.jpg'
+};
+var DINER={Paris:['assets/troupes/troupe-paris-engagement.jpg','assets/troupes/troupe-paris-honnetete.jpg','assets/troupes/troupe-paris-esprit-d-equipe.jpg'],
+ Lyon:['assets/troupes/troupe-lyon.jpg'],Toulouse:['assets/troupes/troupe-bordeaux.jpg'],Bordeaux:['assets/troupes/troupe-bordeaux.jpg'],
+ Nantes:['assets/troupes/troupe-nantes.jpg'],Rennes:['assets/troupes/troupe-rennes.jpg'],Montpellier:['assets/troupes/troupe-montpellier.jpg']};
+var REMISE={venue:"Il t'est remis en main propre le soir de ta venue au spectacle.",
+ code:"Tu reçois ton code par email sous 3 jours.",livre:"Choisis ton livre ci-dessous : tu le reçois par email sous 3 jours.",
+ diner:"On te contacte sous 3 jours pour l'organiser avec la troupe."};
+
+var VITRINE=[
+ ['places2','1 ou 2 places offertes',"Pour la représentation de ton choix."],
+ ['livre','Le livre numérique de ton choix',"« Recruter est un jeu d'enfant » ou « Trouver un job est un jeu d'enfant »."],
+ ['offre1','1 place achetée = 1 place offerte',"Ou l'Offre Privilège au prix d'une place normale."],
+ ['pack','Le pack souvenir de la pièce',"Remis en main propre le soir de ta venue."],
+ ['diner','Un dîner avec le comédien de ton choix',"Dans ta ville, avec la troupe qui y joue."]
+];
+
+var Q={
+ prenom:{l:"Ton prénom ?",t:'text',ac:'given-name'},
+ cp:{l:"Ton code postal ?",t:'text',im:'numeric',ac:'postal-code',max:5},
+ portable:{l:"Ton numéro de portable ?",a:"Pour te prévenir si tu gagnes.",t:'tel',ac:'tel'},
+ entreprise:{l:"Ton entreprise actuelle ?",a:"Si tu es en recherche, écris-le simplement.",t:'text',ac:'organization'},
+ poste:{l:"Ton poste ?",t:'text',ac:'organization-title'},
+ naissance:{l:"Ta date de naissance ?",a:"Au format jj/mm/aaaa.",t:'text',im:'numeric',ph:'jj/mm/aaaa',ac:'bday'},
+ avecqui:{l:"Si tu gagnes 2 places, tu viens avec qui ?",t:'text'},
+ recrute:{l:"Il t'arrive de recruter dans ton travail ?",t:'choix',o:['Oui','Non']},
+ fonction:{l:"Ta fonction ?",t:'choix',o:['Dirigeant','RH','Opérationnel (manager qui recrute)','Autre']},
+ metiers:{l:"Le ou les métiers que tu recrutes le plus souvent ?",t:'text'},
+ enplace:{l:"Ce que tu mets en place, systématiquement ou très souvent, dès que tu dois recruter ?",t:'coches',o:['Une annonce sur mon site web',"Une annonce sur France Travail ou l'Apec",'Une annonce sur HelloWork','Une annonce sur Météojob','Une annonce sur Indeed','Une annonce sur LinkedIn','Une annonce sur autre chose','La recherche dans notre vivier interne','La recherche sur une base de CV']},
+ outils:{l:"Les 3 outils, partenaires ou moyens de recruter les plus originaux que tu utilises ?",t:'zone'},
+ difficulte:{l:"Ta difficulté à recruter, sur une échelle de 1 à 5 ?",t:'choix',o:['1','2','3','4','5']},
+ principale:{l:"Ta principale difficulté ?",t:'choix',o:['Trouver des CV qui correspondent à mes critères','Que les candidats se présentent en entretien','Trouver des profils qui me donnent envie en entretien','Les convaincre de venir chez nous']},
+ interim:{l:"Il t'arrive de passer par des intermédiaires ?",t:'interim'},
+ pourquoi:{l:"Qu'est-ce qui te décide à passer par un partenaire externe ?",t:'choix',o:["J'ai essayé en interne et je n'ai pas réussi","Je n'ai pas le temps de m'en occuper","Je n'essaie même pas"]},
+ satisf:{l:"Ta satisfaction vis-à-vis des partenaires extérieurs, de 1 à 5 ?",t:'choix',o:['1','2','3','4','5']},
+ conseils:{l:"Tes conseils à tes confrères recruteurs ?",a:"Un outil, un partenaire, une astuce : c'est ton espace d'expression.",t:'zone'},
+ question:{l:"Ta question la plus utile, ou la plus originale, en entretien ?",t:'zone'},
+ argument:{l:"L'argument original qui t'aide à convaincre les candidats ?",t:'zone'},
+ avantage:{l:"Ton avantage, c'est d'abord :",t:'choix',o:['Le salaire','Le plaisir','Le confort','Le sens']}
+};
+
+// ---------- état ----------
+var params=new URLSearchParams(location.search);
+var APERCU=params.has('apercu');
+var email=LS.get('ovr-avent-email')||'';
+var S=null; // état renvoyé par le serveur
+var envoi=false;
+
+function jourParis(){
+  var s=new Intl.DateTimeFormat('fr-CA',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()).split('-').map(Number);
+  if(s[0]===2026&&s[1]===12&&s[2]<=24) return {statut:'ouvert',jour:s[2]};
+  if(s[0]<2026||(s[0]===2026&&s[1]<12)) return {statut:'avant',jour:0};
+  return {statut:'fini',jour:0};
+}
+var H=jourParis();
+var TESTD=params.get('test_date'), TESTK=params.get('cle');
+if(TESTD&&TESTK){ H={statut:'ouvert',jour:parseInt(TESTD.slice(8),10)}; }
+if(APERCU){ var dj=parseInt(params.get('apercu'),10); H={statut:'ouvert',jour:(dj>=1&&dj<=24)?dj:1}; $('apercu-bandeau').style.display='block'; }
+
+function api(body){
+  body.email=email; body.site_web=$('site_web').value; if(TESTD&&TESTK){ body.test_date=TESTD; body.cle_test=TESTK; }
+  return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)}).then(function(r){return r.json();});
+}
+
+// ---------- vitrine ----------
+$('vitrine').innerHTML=VITRINE.map(function(v){
+  var src=v[0]==='diner'?'assets/troupes/troupes-france-mosaique.jpg':IMG[v[0]];
+  return '<div class="cad"><img loading="lazy" src="'+src+'" alt=""><div class="t">'+esc(v[1])+'</div><div class="p">'+esc(v[2])+'</div></div>';
+}).join('');
+
+// ---------- grille ----------
+function imgCadeau(c){ if(c.id==='diner'&&DINER[c.ville]) return DINER[c.ville][0]; if(c.id==='livre'&&c.choix&&/Trouver/.test(c.choix)) return 'images/livre/couverture-tjej.jpg'; return IMG[c.id]||IMG.ecocup; }
+function dessiner(){
+  var g=S?S.grattes:[], gag={}; (S?S.gagnes:[]).forEach(function(c){gag[c.jour]=c;});
+  var J=H.statut==='ouvert'?H.jour:(H.statut==='fini'?25:0), premier=g.length?Math.min.apply(null,g):99;
+  var html='';
+  for(var d=1;d<=24;d++){
+    var p=PUNCH[d-1], cls='case', inner='<div class="num"><small>Décembre</small>'+d+'</div>';
+    var fait=g.indexOf(d)>=0;
+    if(fait){
+      var c=gag[d];
+      if(c){ cls+=' fait gagne'; inner+='<div class="etat">🎁 '+esc(c.libelle)+'</div><img loading="lazy" src="'+imgCadeau(c)+'" alt="">'; }
+      else { cls+=' fait'; inner+='<div class="etat">Grattée — pas de cadeau ce jour-là</div>'; }
+    } else if(d<J && S && S.inscrit){ cls+=' rate'; inner+='<div class="etat">'+(d<premier?'Passé':'Raté')+'</div><div class="pl">« '+esc(p[0])+' »</div>'; }
+    else if(d===J && H.statut==='ouvert'){ cls+=' jour'; inner+='<div class="pl">« '+esc(p[0])+' »'+(p[1]?'<em>'+esc(p[1])+'</em>':'')+'</div><div class="go">Gratte la case du jour →</div>'; }
+    else { cls+=' futur'; inner+='<div class="pl">« '+esc(p[0])+' »'+(p[1]?'<em>'+esc(p[1])+'</em>':'')+'</div>'; }
+    html+='<div class="'+cls+'" data-d="'+d+'"'+(d===J&&!fait&&H.statut==='ouvert'?' role="button" tabindex="0"':'')+'>'+inner+'</div>';
+  }
+  $('grille').innerHTML=html;
+  var cj=document.querySelector('.case.jour'); if(cj){ cj.addEventListener('click',ouvrir); cj.addEventListener('keydown',function(e){if(e.key==='Enter')ouvrir();}); }
+  // bandeau joueur
+  if(S&&S.inscrit){
+    $('ident').style.display='none';
+    var t='<b>'+(S.prenom?esc(S.prenom)+', ton calendrier':'Ton calendrier')+'</b> · '+esc(email);
+    if(S.gagnes.length) t+='<br>Tu as déjà gagné : '+S.gagnes.map(function(c){return esc(c.libelle);}).join(', ')+'.';
+    if(S.restants>0) t+='<br>Ton calendrier cache encore '+S.restants+' cadeau'+(S.restants>1?'x':'')+'. Reviens chaque jour !';
+    else if(H.statut==='ouvert') t+='<br>Continue à gratter chaque jour : les questions nourrissent l\'étude sur le recrutement.';
+    t+='<br><a href="#" id="pas-moi">Ce n\'est pas mon calendrier</a>';
+    $('moi').innerHTML=t; $('moi').style.display='block';
+    $('pas-moi').onclick=function(e){e.preventDefault(); LS.del('ovr-avent-email'); email=''; S=null; $('ident').style.display=''; $('moi').style.display='none'; dessiner();};
+  }
+}
+
+// ---------- identification ----------
+function etatIdent(){
+  if(H.statut==='avant'){ document.querySelector('#ident h2').textContent='Ouverture le 1er décembre'; $('ident-texte').innerHTML='Le calendrier ouvre le <b>1<sup>er</sup> décembre</b>. Reviens ce jour-là pour gratter ta première case !'; $('email').style.display='none'; $('lab-consent').style.display='none'; $('go').style.display='none'; }
+  if(H.statut==='fini'){ $('ident-texte').innerHTML='Le calendrier est terminé. Entre ton email pour revoir tes cadeaux.'; $('lab-consent').style.display='none'; }
+}
+$('go').onclick=function(){
+  var e=$('email').value.trim().toLowerCase(), m=$('msg');
+  if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(e)){ m.className='msg ko'; m.textContent='Ton adresse email semble incorrecte.'; return; }
+  email=e;
+  if(APERCU){ LS.set('ovr-avent-email',e); S={inscrit:true,prenom:'',grattes:[],gagnes:[],restants:2,question:null,statut:'ouvert',jour:H.jour}; dessiner(); ouvrir(); return; }
+  $('go').disabled=true; m.className='msg ok'; m.textContent='Un instant…';
+  api({action:'etat'}).then(function(d){
+    $('go').disabled=false;
+    if(!d||d.ok===false){ m.className='msg ko'; m.textContent=(d&&d.erreur)||'Un problème est survenu. Réessaie dans un instant.'; return; }
+    if(!d.inscrit){
+      if(H.statut!=='ouvert'){ m.className='msg ko'; m.textContent='Aucun calendrier à cette adresse.'; return; }
+      if(!$('consent').checked){ m.className='msg ko'; m.textContent='Coche la case du règlement pour jouer.'; return; }
+      S={inscrit:false,prenom:'',grattes:[],gagnes:[],restants:0,question:null}; LS.set('ovr-avent-email',e); m.textContent=''; ouvrir(); return;
+    }
+    S=d; LS.set('ovr-avent-email',e); m.textContent=''; dessiner();
+    if(H.statut==='ouvert'&&S.grattes.indexOf(H.jour)<0) ouvrir();
+  }).catch(function(){ $('go').disabled=false; m.className='msg ko'; m.textContent='La connexion a échoué. Réessaie dans un instant.'; });
+};
+
+// ---------- panneau du jour ----------
+var reponse=null;
+function champQuestion(q){
+  reponse=null; if(!q){ $('q').innerHTML=''; return; }
+  var d=Q[q.k], h='<label class="ql" for="qr">'+esc(d.l)+'</label>'+(d.a?'<div class="aide">'+esc(d.a)+'</div>':'');
+  if(d.t==='text'||d.t==='tel') h+='<input id="qr" type="'+d.t+'"'+(d.im?' inputmode="'+d.im+'"':'')+(d.ac?' autocomplete="'+d.ac+'"':'')+(d.ph?' placeholder="'+d.ph+'"':'')+(d.max?' maxlength="'+d.max+'"':'')+'>';
+  else if(d.t==='zone') h+='<textarea id="qr"></textarea>';
+  else if(d.t==='choix') h+='<div class="choix">'+d.o.map(function(o){return '<button type="button" data-v="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>';
+  else if(d.t==='coches') h+='<div class="coches">'+d.o.map(function(o){return '<label><input type="checkbox" value="'+esc(o)+'"> '+esc(o)+'</label>';}).join('')+'</div>';
+  else if(d.t==='interim'){ var f=['Jamais','1 fois par an','5 fois par an','Plus de 10 fois par an'];
+    h+='<div class="sous">Intérim</div><select id="qi1"><option value="">—</option>'+f.map(function(o){return '<option>'+o+'</option>';}).join('')+'</select>'+
+       '<div class="sous">Cabinet ou consultant en recrutement</div><select id="qi2"><option value="">—</option>'+f.map(function(o){return '<option>'+o+'</option>';}).join('')+'</select>'; }
+  $('q').innerHTML=h;
+  [].forEach.call($('q').querySelectorAll('.choix button'),function(b){ b.onclick=function(){ [].forEach.call($('q').querySelectorAll('.choix button'),function(x){x.classList.remove('on');}); b.classList.add('on'); reponse=b.getAttribute('data-v'); }; });
+  if(!q.oblig) $('p-actions').insertAdjacentHTML('beforeend','<button type="button" class="passer" id="passer">Passer</button>');
+  var p=$('passer'); if(p) p.onclick=function(){ envoyer(true); };
+}
+function lireReponse(q){
+  if(!q) return '';
+  var d=Q[q.k];
+  if(d.t==='choix') return reponse||'';
+  if(d.t==='coches') return [].map.call($('q').querySelectorAll('input:checked'),function(i){return i.value;}).join(' ; ');
+  if(d.t==='interim'){ var a=$('qi1').value,b=$('qi2').value; return (a||b)?('Intérim : '+(a||'—')+' ; Cabinet : '+(b||'—')):''; }
+  var el=$('qr'); return el?el.value.trim():'';
+}
+function ouvrir(){
+  if(H.statut!=='ouvert'||!S) return;
+  if(S.grattes.indexOf(H.jour)>=0) return;
+  var p=PUNCH[H.jour-1];
+  $('p-jour').textContent=H.jour+' décembre';
+  $('p-punch').innerHTML='« '+esc(p[0])+' »'+(p[1]?' <span class="note">— '+esc(p[1])+'</span>':'');
+  $('p-actions').innerHTML='<button class="btn" id="gratter">Je gratte la case du jour</button>';
+  $('gratter').onclick=function(){ envoyer(false); };
+  $('p-msg').textContent=''; $('zone').style.display='none'; $('apres').style.display='none'; $('apres').innerHTML='';
+  var q=S.inscrit?S.question:null;
+  if(APERCU&&S.inscrit){ var ks=['prenom','cp','portable','entreprise','poste','naissance','avecqui'], ek={9:'recrute',10:'fonction',11:'metiers',12:'enplace',13:'outils',14:'difficulte',15:'principale',16:'interim',17:'pourquoi',18:'satisf',19:'conseils',20:'question',21:'argument',22:'avantage'};
+    q=H.jour>=2&&H.jour<=8?{k:ks[H.jour-2],oblig:true}:(ek[H.jour]?{k:ek[H.jour],oblig:false}:null); }
+  champQuestion(q);
+  $('panneau').style.display='block'; document.body.style.overflow='hidden';
+}
+$('fermer').onclick=function(){ $('panneau').style.display='none'; document.body.style.overflow=''; dessiner(); };
+
+function envoyer(passer){
+  if(envoi) return;
+  var q=S.inscrit?S.question:null, rep=passer?'':lireReponse(q);
+  if(q&&q.oblig&&!rep){ $('p-msg').className='msg ko'; $('p-msg').textContent='Réponds à la question pour gratter.'; return; }
+  if(q&&!q.oblig&&!rep&&!passer){ $('p-msg').className='msg ko'; $('p-msg').textContent='Réponds, ou clique sur « Passer ».'; return; }
+  envoi=true; $('p-msg').className='msg ok'; $('p-msg').textContent='Un instant…';
+  var fin=function(d){
+    envoi=false;
+    if(!d||d.ok===false){ $('p-msg').className='msg ko'; $('p-msg').textContent=(d&&d.erreur)||'Un problème est survenu. Réessaie.'; if(d&&d.deja){S=d;} return; }
+    S=d; $('p-msg').textContent=''; $('q').innerHTML=''; $('p-actions').innerHTML='';
+    reveler(d.resultat?d.resultat.cadeau:null);
+  };
+  if(APERCU){ var ids=[null,null,'ecocup','places2','livre','privilege','pack','diner','antistress'], id=ids[Math.floor(Math.random()*ids.length)];
+    var c=id?{jour:H.jour,id:id,libelle:{ecocup:"L'ecocup ON VOUS RAPPELLERA",places2:'2 places offertes pour la pièce',livre:'Le livre numérique de ton choix',privilege:"L'Offre Privilège au prix d'une place normale",pack:'Le pack souvenir de la pièce',diner:'Un dîner avec le comédien de ton choix à Paris',antistress:'La balle antistress ON VOUS RAPPELLERA'}[id],remise:{ecocup:'venue',places2:'code',livre:'livre',privilege:'code',pack:'venue',diner:'diner',antistress:'venue'}[id],ville:id==='diner'?'Paris':null}:null;
+    setTimeout(function(){ var g=S.grattes.concat([H.jour]), gg=S.gagnes.concat(c?[c]:[]); fin({ok:true,inscrit:true,prenom:S.prenom,grattes:g,gagnes:gg,restants:Math.max(0,S.restants-(c?1:0)),resultat:{cadeau:c}}); },400); return; }
+  api({action:'jouer',reponse:rep,passer:!!passer,consent:$('consent').checked}).then(fin).catch(function(){ envoi=false; $('p-msg').className='msg ko'; $('p-msg').textContent='La connexion a échoué. Réessaie dans un instant.'; });
+}
+
+// ---------- grattage ----------
+function reveler(c){
+  var r=$('resultat');
+  if(c){
+    var imgs=(c.id==='diner'&&DINER[c.ville])?DINER[c.ville]:[imgCadeau(c)];
+    r.innerHTML='<div class="gros">🎉 Tu as gagné !</div><div style="font-weight:700;margin-top:4px">'+esc(c.libelle)+'</div>'+
+      '<div class="troupes-diner">'+imgs.map(function(s){return '<img src="'+s+'" alt="">';}).join('')+'</div>';
+  } else {
+    r.innerHTML='<div class="gros">Pas de cadeau aujourd\'hui…</div><div style="margin-top:6px">'+(S.restants>0?'Ton calendrier cache encore '+S.restants+' cadeau'+(S.restants>1?'x':'')+'. Reviens demain !':'Reviens demain pour la case suivante.')+'</div>';
+  }
+  $('zone').style.display='block';
+  var cv=$('grattage'), z=$('zone');
+  setTimeout(function(){
+    var w=z.clientWidth, h=z.clientHeight, dpr=window.devicePixelRatio||1;
+    cv.width=w*dpr; cv.height=h*dpr; cv.style.display='block';
+    var x=cv.getContext('2d',{willReadFrequently:true}); x.scale(dpr,dpr);
+    var gr=x.createLinearGradient(0,0,w,h); gr.addColorStop(0,'#d9b45c'); gr.addColorStop(.5,'#f3dc95'); gr.addColorStop(1,'#c8913a');
+    x.fillStyle=gr; x.fillRect(0,0,w,h);
+    x.fillStyle='#7a5418'; x.font='700 20px Outfit, sans-serif'; x.textAlign='center'; x.fillText('Gratte ici avec ton doigt',w/2,h/2-6);
+    x.font='400 14px Outfit, sans-serif'; x.fillText(H.jour+' décembre',w/2,h/2+18);
+    x.globalCompositeOperation='destination-out';
+    var down=false, n=0, fini=false;
+    function pos(e){ var b=cv.getBoundingClientRect(), t=e.touches?e.touches[0]:e; return [t.clientX-b.left,t.clientY-b.top]; }
+    function gratte(e){ if(!down||fini) return; e.preventDefault(); var p=pos(e); x.beginPath(); x.arc(p[0],p[1],24,0,Math.PI*2); x.fill(); if(++n%12===0) verifie(); }
+    function verifie(){ var d=x.getImageData(0,0,cv.width,cv.height).data, v=0, tot=0; for(var i=3;i<d.length;i+=64){tot++; if(d[i]===0)v++;} if(v/tot>.45) finir(); }
+    function finir(){ if(fini) return; fini=true; cv.style.transition='opacity .5s'; cv.style.opacity='0'; setTimeout(function(){cv.style.display='none';cv.style.opacity='1';},500); apres(c); }
+    cv.onpointerdown=function(e){down=true; gratte(e);}; cv.onpointermove=gratte; window.addEventListener('pointerup',function(){down=false;});
+    cv.addEventListener('touchstart',function(e){down=true;gratte(e);},{passive:false}); cv.addEventListener('touchmove',gratte,{passive:false}); cv.addEventListener('touchend',function(){down=false;});
+    var b=document.createElement('button'); b.className='passer'; b.textContent='Tout découvrir d\'un coup'; b.onclick=function(){ finir(); b.remove(); }; z.insertAdjacentElement('afterend',b);
+    window._finirGrattage=function(){ if(b.parentNode) b.remove(); };
+  },30);
+}
+function apres(c){
+  if(window._finirGrattage) window._finirGrattage();
+  var a=$('apres'), h='';
+  if(c){
+    h+='<p><b>'+esc(REMISE[c.remise]||'')+'</b></p>';
+    if(c.id==='livre'&&!c.choix) h+='<div class="partage" id="livres"><button class="btn sec" data-l="Recruter est un jeu d\'enfant">Recruter est un jeu d\'enfant</button><button class="btn sec" data-l="Trouver un job est un jeu d\'enfant">Trouver un job est un jeu d\'enfant</button></div><div class="msg" id="l-msg"></div>';
+    var txt='Je viens de gagner '+c.libelle.charAt(0).toLowerCase()+c.libelle.slice(1)+' de la pièce ON VOUS RAPPELLERA ! Toi aussi, joue au calendrier de l\'avent et gagne des places, le livre, un dîner avec la troupe… https://onvousrappellera.fr/avent.html #onvousrappellera';
+    h+='<p style="margin-bottom:4px"><b>Partage ton cadeau et tague-nous</b> : @onvousrappellera.fr sur Instagram, « On vous rappellera » sur LinkedIn.</p>'+
+      '<div class="partage"><a class="btn" target="_blank" rel="noopener" href="https://www.linkedin.com/feed/?shareActive=true&text='+encodeURIComponent(txt)+'">Partager sur LinkedIn</a>'+
+      '<button class="btn" id="insta">Partager sur Instagram</button></div><div class="note" id="i-msg"></div>';
+    a.setAttribute('data-txt',txt);
+  } else h+='<p class="note">À demain pour la case suivante !</p>';
+  h+='<div class="actions"><button class="btn sec" id="ok">Revenir au calendrier</button></div>';
+  a.innerHTML=h; a.style.display='block';
+  $('ok').onclick=function(){ $('fermer').click(); };
+  var ib=$('insta'); if(ib) ib.onclick=function(){
+    var t=a.getAttribute('data-txt');
+    var ok=function(){ $('i-msg').textContent='Texte copié : colle-le dans ta story ou ton post, avec la photo de ton cadeau, et tague @onvousrappellera.fr.'; setTimeout(function(){ location.href='https://www.instagram.com/onvousrappellera.fr/'; },1800); };
+    if(navigator.clipboard) navigator.clipboard.writeText(t).then(ok,ok); else ok();
+  };
+  var lv=$('livres'); if(lv) [].forEach.call(lv.querySelectorAll('button'),function(b){ b.onclick=function(){
+    var ch=b.getAttribute('data-l');
+    if(APERCU){ $('l-msg').className='msg ok'; $('l-msg').textContent='C\'est noté : « '+ch+' ».'; return; }
+    api({action:'choix',choix:ch}).then(function(d){ if(d&&d.ok!==false){ S=d; lv.style.display='none'; $('l-msg').className='msg ok'; $('l-msg').textContent='C\'est noté : « '+ch+' ». Tu le reçois par email sous 3 jours.'; } else { $('l-msg').className='msg ko'; $('l-msg').textContent=(d&&d.erreur)||'Réessaie.'; } });
+  }; });
+}
+
+// ---------- démarrage ----------
+etatIdent();
+dessiner();
+if(email && !APERCU){
+  $('email').value=email;
+  api({action:'etat'}).then(function(d){ if(d&&d.ok!==false&&d.inscrit){ S=d; dessiner(); if(H.statut==='ouvert'&&S.grattes.indexOf(H.jour)<0) ouvrir(); } }).catch(function(){});
+}
+})();
+</script>
+</body>
+</html>
