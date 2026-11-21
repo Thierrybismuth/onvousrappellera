@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded',function(){ if(window.FE) FE.monter
       ordre.sort(function(a,b){ return soirs[a].iso<soirs[b].iso?-1:1; });
       V[ville]={soirs:ordre.map(function(k){
         var x=soirs[k]; x.s.sort(function(a,b){ return enMinutes(a.h)-enMinutes(b.h); });
-        /* Conférence : une heure avant la 1re séance de la soirée ; Toulouse (Le 9, apéro et dîner dès 19h) à 18h. */
+        /* Conférence : une heure avant la 1re séance de la soirée ; Toulouse (Le 9, présentation des entreprises 19h, dîner 19h30) à 18h. */
         x.c = (x.lieu==='LE9') ? '18h' : enHeure(enMinutes(x.s[0].h)-60);
         var L=LIEUX[x.lieu]||{n:'',a:''}; x.nom=L.n; x.adr=L.a;
         return x; })};
