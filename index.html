@@ -1294,13 +1294,9 @@ window.PROP_LIVE=true;
   setTimeout(function(){ sd.value=p[1]; fire(sd);  },0);
  });
 })();
-/* Une couleur franche par ville pour le bloc de la troupe */
+/* Bandeau de la troupe : fond blanc pour toutes les villes */
 (function(){
- var C={Bordeaux:['#8b1538','#f3d9e1'],Paris:['#1d4ed8','#dbe6fd'],Toulouse:['#e0337a','#fcdbe8'],Rennes:['#15803d','#d6f0df'],Lyon:['#ea6a0c','#fde3cc']};
- var css='';
- Object.keys(C).forEach(function(v){ var k=v.toLowerCase(); var s='#f-info details.vd[data-c="'+k+'"] '; css+=s+'.vtz,'+s+'.vcarte{background:'+C[v][0]+'!important;border-left:0!important;color:#fff!important}'+s+'.vtz *,'+s+'.vcarte *{color:#fff!important}'+s+'.vtz a,'+s+'.vcarte a{color:#fff!important;text-decoration:underline}'+s+'.vcarte{background:transparent!important}'; });
- var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
- document.querySelectorAll('#f-info details.vd').forEach(function(d){ var sm=d.querySelector('summary'); var n=(sm&&sm.firstChild&&sm.firstChild.nodeType===3)?sm.firstChild.nodeValue.trim():''; if(C[n]) d.setAttribute('data-c',n.toLowerCase()); });
+ var st=document.createElement('style'); st.textContent='#f-info details.vd .vtz{background:#fff!important;border:1px solid #e5e5e5!important;color:#161616!important}#f-info details.vd .vtz *{color:#161616!important}#f-info details.vd .vtz a{color:#c8102e!important}'; document.head.appendChild(st);
 })();
 /* D'abord le tarif, ensuite les champs qui dépendent du tarif */
 (function(){
