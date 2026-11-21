@@ -574,7 +574,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <div class="tarifs">
         <label class="tarif star"><input type="radio" name="tarif" value="partenaire" checked><span><b>Tarif normal — 20&nbsp;€</b></span></label>
         <label class="tarif"><input type="radio" name="tarif" value="reduit"><span id="t-red-txt"><b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d'emploi…) · justificatif à présenter à l'entrée</span></label>
-        <p id="red-accord" class="petit" style="display:none;margin:.2rem 0 .6rem 1.8rem;color:#161616">✔ J’autorise que mes informations soient partagées avec des acteurs susceptibles d’accélérer mon retour à l’emploi.</p>
+        <p id="red-accord" style="display:none;margin:.1rem 0 .6rem 1.8rem;color:#444;font-size:.78rem;line-height:1.4">✔ J’autorise que mes informations soient partagées avec des acteurs susceptibles d’accélérer mon retour à l’emploi.</p>
         <label class="tarif" id="t-ent" style="display:none"><input type="radio" name="tarif" value="entreprise"><span><b>Mon entreprise recrute — 10 places, 200&nbsp;€</b> · <span id="t-ent-txt"></span> <b id="t-ent-slots" style="color:var(--accent)"></b></span></label>
         <div id="f-ent-wrap" class="fgrid" style="display:none;margin-top:.6rem">
           <div class="field"><label for="f-ent">Entreprise</label><input id="f-ent" type="text" autocomplete="organization"></div>
@@ -1202,7 +1202,7 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
   g('t-ent').style.display=e?'':'none';
   if(e){
    g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Les entreprises qui recrutent se présentent. Les spectateurs en recherche d’emploi viennent assister aux présentations.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
-   g('t-red-txt').innerHTML='<b>Je cherche un emploi — 15&nbsp;€</b> · rendez-vous à '+e.ent+' pour assister aux présentations des entreprises qui recrutent, puis la pièce à '+e.piece+' · justificatif à présenter à l’entrée';
+   g('t-red-txt').innerHTML='<b>Je cherche un emploi — 15&nbsp;€</b><br>Rendez-vous à '+e.ent+' pour assister aux présentations des entreprises qui recrutent, puis la pièce à '+e.piece+'.';
    g('t-ent-txt').textContent='5 minutes sur scène à '+e.ent+' pour présenter votre entreprise et vos postes, et 10 places pour votre équipe.';
    var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?'Il reste au moins une des 5 places.':'Les 5 places sont déjà prises.';
   } else {
@@ -1211,9 +1211,11 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
   }
   var t=(document.querySelector('input[name=tarif]:checked')||{}).value;
   g('red-accord').style.display=(t==='reduit'&&e)?'':'none';
-  if(t==='reduit'&&e) g('f-accord').checked=true;
+  var veille=g('f-accord').closest('label'); veille.style.display=e?'none':'';
+  if(e) g('f-accord').checked=(t==='reduit');
   g('f-ent-wrap').style.display=t==='entreprise'?'':'none';
-  g('f-red-wrap').style.display=(t==='reduit')?'':'none';
+  g('f-red-wrap').style.display=(t==='reduit'&&!e)?'':'none';
+  if(t==='reduit'&&e) g('f-statut').value="Demandeur d'emploi";
   var pl=g('f-places'); if(t==='entreprise'){ pl.value=10; pl.disabled=true; } else pl.disabled=false;
  }
  document.addEventListener('change',function(ev){ var x=ev.target; if(x && (x.id==='f-date'||x.id==='f-ville'||x.name==='tarif')) setTimeout(maj,0); });
