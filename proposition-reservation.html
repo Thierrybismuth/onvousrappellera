@@ -1204,7 +1204,7 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
    g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Les entreprises qui recrutent se présentent. Les spectateurs en recherche d’emploi viennent assister aux présentations.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
    g('t-red-txt').innerHTML='<b>Je cherche un emploi — 15&nbsp;€</b> · rendez-vous à '+e.ent+' pour assister aux présentations des entreprises qui recrutent, puis la pièce à '+e.piece+' · justificatif à présenter à l’entrée';
    g('t-ent-txt').textContent='5 minutes sur scène à '+e.ent+' pour présenter votre entreprise et vos postes, et 10 places pour votre équipe.';
-   var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?('Encore '+l+' créneau'+(l>1?'x':'')+' sur 5'):'Complet pour cette soirée';
+   var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?'Il reste au moins une des 5 places.':'Les 5 places sont déjà prises.';
   } else {
    g('t-red-txt').innerHTML='<b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d’emploi…) · justificatif à présenter à l’entrée';
    var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x&&x.checked){ document.querySelector('input[name=tarif][value=partenaire]').checked=true; }
