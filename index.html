@@ -251,9 +251,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   .perso p{font-size:.86rem;color:var(--gris);line-height:1.7;}
 
   .punchlines{display:flex;align-items:flex-start;gap:14px;margin-top:2rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:10px;scrollbar-width:thin;}
-.punchlines .punch{flex:0 0 82%;max-width:340px;scroll-snap-align:start;}
+.punchlines .punch{flex:0 0 41%;max-width:170px;scroll-snap-align:start;padding:.75rem .8rem;}
+.punchlines .punch p{font-size:.85rem;}
+.punchlines .punch .who{font-size:.6rem;}
 .punchlines .pimg{display:flex;justify-content:center;background:#111;}
-.punchlines .pimg img{width:auto;max-width:100%;max-height:300px;}
+.punchlines .pimg img{width:auto;max-width:100%;max-height:150px;}
 .rslide{position:relative;}
 .rnav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:1px solid var(--marine);background:#fff;color:var(--marine);font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15);}
 .rprev{left:-6px;} .rnext{right:-6px;}
@@ -436,25 +438,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <p>Un manager toxique, un psy complètement perché, une RH à bout de souffle et un petit nouveau qui en fait des tonnes, le candidat idéal… Bienvenue dans l'entreprise. Celle où vous avez travaillé, celle où vous travaillez, celle où vous rêvez d'entrer.</p>
       <p class="chute">Salle comble au festival d'Avignon puis dans 15 villes de France, cette comédie, écrite par un dirigeant de cabinet de recrutement, va vous faire rire, mais aussi vous faire réfléchir sur le recrutement, l'intégration et le management dans une entreprise : la vôtre.</p>
     </div>
-    <div class="badges">
-      <span class="badge">50 comédiens</span>
-      <span class="badge">8 troupes</span>
-      <span class="badge">10 villes</span>
-      <span class="badge">1h15 de comédie</span>
-      <span class="badge">Dès décembre 2026</span>
-    </div>
     <div class="vgal" id="vgal" aria-label="Vidéos de la pièce">
       <div class="vg-main" id="vg-main"></div>
       <div class="vg-slide"><button class="vg-nav" type="button" data-d="-1" aria-label="Vidéos précédentes">&lsaquo;</button><div class="vg-grid" id="vg-grid"></div><button class="vg-nav" type="button" data-d="1" aria-label="Vidéos suivantes">&rsaquo;</button></div>
     </div>
-    <style>/* 09/11 : vignettes en une seule ligne défilante sous la vidéo principale, pour ne pas dépasser sa hauteur */
-    #vgal{flex-direction:column;align-items:center}
-    #vgal .vg-slide{position:relative;width:100%;max-width:880px}
-    #vgal .vg-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 10px;width:100%;scrollbar-width:thin}
-    #vgal .vg-th{flex:0 0 160px;scroll-snap-align:start}
-    #vgal .vg-nav{position:absolute;top:calc(50% - 26px);z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:#d51e29;color:#fff;font-size:28px;line-height:36px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25)}
-    #vgal .vg-nav[data-d="-1"]{left:-6px}#vgal .vg-nav[data-d="1"]{right:-6px}
-    @media(max-width:760px){#vgal{align-items:center}#vgal .vg-grid{display:flex}#vgal .vg-th{flex-basis:44%}#vgal .vg-nav{display:none}}
+    <style>/* 21/11 : teaser plus petit, vignettes à côté (ordinateur) ; dessous en bande défilante (téléphone) */
+    #vgal{flex-direction:row;align-items:flex-start;justify-content:center;gap:18px;max-width:960px}
+    #vgal .vg-main{flex:0 0 260px;max-width:260px}
+    #vgal .vg-slide{position:relative;flex:1;min-width:0}
+    #vgal .vg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-height:462px;overflow-y:auto;padding:2px 6px 2px 2px;scrollbar-width:thin}
+    #vgal .vg-nav{display:none}
+    @media(max-width:760px){#vgal{flex-direction:column;align-items:center}#vgal .vg-main{flex:none;width:72%;max-width:260px}#vgal .vg-slide{width:100%}#vgal .vg-grid{display:flex;max-height:none;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory}#vgal .vg-th{flex:0 0 40%;scroll-snap-align:start}}
     </style>
     <div class="vg-box" id="vg-box" role="dialog" aria-modal="true" aria-label="Lecture de la vidéo"><button class="vg-x" type="button" aria-label="Fermer">&times;</button><video controls playsinline preload="none"></video></div>
     <script>
@@ -515,7 +509,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 <section class="form-sec" id="prevenez-moi">
   <div class="wrap">
-    <div class="bulles2"><p class="bulle bulle-d">Et si votre soirée pizza théâtre vous apprenait aussi comment obtenir votre prochain job&nbsp;?</p></div>
     <span class="sec-tag">Réservations</span>
     <h2>Réservez vos billets</h2>
     <p class="lead">Choisissez votre ville et votre date, puis réservez vos places.</p>
@@ -641,13 +634,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   <div class="wrap">
     <span class="sec-tag">Elle revient</span>
     <h2>Après le Festival d'Avignon, la pièce repart en tournée</h2>
-    <p class="lead"><strong>60 représentations, 15 villes, 3 000 spectateurs.</strong> Créée au Festival OFF d'Avignon en 2022, jouée depuis devant le grand public comme dans les entreprises — La Poste, Orange, Veolia, Schlumberger, Safran. Elle revient en 2027 avec <strong>des troupes résidentes</strong> dans <strong>8</strong> des plus grandes villes de France. Dès janvier, chaque troupe joue une fois par semaine devant le grand public, et vient aussi jouer dans les entreprises.</p>
+    <p class="lead"><strong>60 représentations, 15 villes, 3 000 spectateurs.</strong> Créée au Festival OFF d'Avignon en 2022, jouée depuis devant le grand public comme dans les entreprises — La Poste, Orange, Veolia, Schlumberger, Safran. Elle revient en 2027 avec <strong>des troupes résidentes</strong> dans <strong>8</strong> des plus grandes villes de France. Dès janvier, chaque troupe joue plusieurs fois par mois devant le grand public, et vient aussi jouer dans les entreprises.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="bulles2"><p class="bulle"><b>Recruteur&nbsp;?</b> La seule sortie théâtre qu'on peut passer en frais</p><p class="bulle bulle-d"><b>Demandeur d'emploi&nbsp;?</b> Un tarif spécial vous est réservé</p></div>
 
   </div>
 </section>
@@ -667,7 +659,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-julien-clarence.jpg" alt="Julien, sur scène"></figure><p>« C'est la peur de perdre qui vous empêche de gagner. »</p><div class="who">Julien, le candidat</div></div>
       <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/ovr/johanna.jpg" alt="Johana, sur scène"></figure><p>« — Donc, on recrute les meilleurs menteurs ? — Disons qu'on recrute ceux qui savent le mieux séduire. »</p><div class="who">Johana &amp; Pascal</div></div>
       <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1xhqcbc6mGTd6mOPkOzunXX6eDR9UshDw&sz=w1000" alt="On Vous Rappellera, Paris 2026"></figure><p>« C'est tout un métier de dire bonjour. Votre bonjour n'était PAS vendeur. »</p><div class="who">Dominique, le senior</div></div>
-      <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1G0lfSIa_DlE0P4KIUbhpCs8FHa7bUQKX&sz=w1000" alt="On Vous Rappellera, Paris 2026"></figure><p>« L'entreprise, c'est un théâtre. Ce n'est pas parce que tout n'est pas vrai, que tout est faux. »</p><div class="who">Dominique, le senior</div></div>
     </div><button type="button" class="rnav rnext" aria-label="Réplique suivante">&#8250;</button></div>
   </div>
 </section>
