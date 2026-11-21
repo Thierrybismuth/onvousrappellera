@@ -531,7 +531,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <p style="background:#fff3bf;border:1px dashed #c9a400;padding:8px 12px;font-size:.85rem;margin:0 0 1rem">Proposition, pour validation : rien n’est enregistré, aucun paiement.</p>
     <span class="sec-tag">Réservations</span>
     <h2>Réservez vos billets</h2>
-    <p class="lead">Choisissez votre séance, puis réservez vos places.</p><style>#f-seance{width:100%!important;max-width:100%!important}#prevenez-moi .fgrid>.field{min-width:0}#f-info a.vdate,#f-info .vmh,#f-info .vjour,#f-info .vcarte>strong,#f-info .vcarte>span{display:none!important}.photonote,#f-cad-wrap,.fe-case{display:none!important}#prevenez-moi .tarif.star,#prevenez-moi .tarif.privilege{font-size:.88rem!important;border-color:transparent!important;background:transparent!important;color:inherit!important}#prevenez-moi .tarif.star b{color:inherit!important}#prevenez-moi .tarif.privilege small{font-size:.88rem!important;color:inherit!important;display:block!important}#prevenez-moi .priv-i{display:block!important}#prevenez-moi .tarif:has(input:checked){border-color:var(--accent)!important;background:#fdf1ef!important}#f-info details.vd .vgrp.vtz,#f-info details.vd .vgrp,#f-info .vmedia{display:block!important;grid-template:none!important;grid-template-columns:1fr!important;width:auto!important;max-width:100%!important;min-width:0!important}#f-info details.vd,#f-info .vbody{min-width:0!important;max-width:100%!important;overflow:hidden}#f-info .vgal{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:auto!important;max-width:100%!important;min-width:0!important;overflow-x:auto;gap:8px;align-items:flex-start;padding-bottom:6px}#f-info .vgal-r{display:contents!important}#f-info .vgal-c{flex:0 0 auto!important;width:auto!important}#f-info .vgal-c img{height:150px!important;width:auto!important;max-width:none!important}</style>
+    <p class="lead">Choisissez votre séance, puis réservez vos places.</p><style>#f-seance{width:100%!important;max-width:100%!important}#f-date-wrap{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}#prevenez-moi .fgrid>.field{min-width:0}#f-info a.vdate,#f-info .vmh,#f-info .vjour,#f-info .vcarte>strong,#f-info .vcarte>span{display:none!important}.photonote,#f-cad-wrap,.fe-case{display:none!important}#prevenez-moi .tarif.star,#prevenez-moi .tarif.privilege{font-size:.88rem!important;border-color:transparent!important;background:transparent!important;color:inherit!important}#prevenez-moi .tarif.star b{color:inherit!important}#prevenez-moi .tarif.privilege small{font-size:.88rem!important;color:inherit!important;display:block!important}#prevenez-moi .priv-i{display:block!important}#prevenez-moi .tarif:has(input:checked){border-color:var(--accent)!important;background:#fdf1ef!important}#f-info details.vd .vgrp.vtz,#f-info details.vd .vgrp,#f-info .vmedia{display:block!important;grid-template:none!important;grid-template-columns:1fr!important;width:auto!important;max-width:100%!important;min-width:0!important}#f-info details.vd,#f-info .vbody{min-width:0!important;max-width:100%!important;overflow:hidden}#f-info .vgal{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:auto!important;max-width:100%!important;min-width:0!important;overflow-x:auto;gap:8px;align-items:flex-start;padding-bottom:6px}#f-info .vgal-r{display:contents!important}#f-info .vgal-c{flex:0 0 auto!important;width:auto!important}#f-info .vgal-c img{height:150px!important;width:auto!important;max-width:none!important}</style>
 
     <div class="fgrid">
       <div class="field full"><label for="f-ville">Votre ville</label>
@@ -1252,8 +1252,18 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
   var pl=g('f-places'); if(t==='entreprise'){ pl.value=10; pl.disabled=true; } else pl.disabled=false;
  }
  document.addEventListener('change',function(ev){ var x=ev.target; if(x && (x.id==='f-date'||x.id==='f-ville'||x.name==='tarif')) setTimeout(maj,0); });
- g('f-btn').addEventListener('click',function(ev){ ev.stopImmediatePropagation(); ev.preventDefault(); var m=g('f-msg'); m.style.display='block'; if(g('f-resa').style.display!=='none' && !document.querySelector('input[name=tarif]:checked')){ m.className='msg ko'; m.innerHTML='Merci de choisir votre tarif.'; return; } m.className='msg ok'; m.innerHTML='Proposition : le paiement n’est pas branché sur cette page.'; },true);
- (function(){ var r=g('f-red-wrap'); r.parentNode.insertBefore(g('red-accord'), r); var pv=g('t-priv'); pv.after(g('t-ent')); g('t-ent').after(g('f-ent-wrap')); var cd=g('f-cadeau'); if(cd) cd.closest('label').style.display='none'; })();
+ g('f-btn').addEventListener('click',function(ev){ var m=g('f-msg'); var enR=g('f-resa').style.display!=='none'; var sel=document.querySelector('input[name=tarif]:checked');
+  if(enR && !sel){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Merci de choisir votre tarif.'; return; }
+  if(!window.PROP_LIVE){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ok'; m.innerHTML='Proposition : le paiement n’est pas branché sur cette page.'; return; }
+  if(enR && sel.value==='entreprise'){ /* 10 places au tarif normal = 200 € ; l'entreprise et ses postes sont notés dans l'onglet « Pitch entreprises » */
+   var s=seance(); var ent=(g('fe-raison')&&g('fe-raison').value.trim())||''; var po=g('f-poste').value.trim();
+   if(!ent||!po){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Merci d’indiquer le nom de l’entreprise et le ou les postes à présenter.'; return; }
+   var fe=window.FE?FE.lire():null; if(!(fe&&fe.erreur)&&g('f-prenom').value.trim()&&g('f-tel').value.trim()) try{ fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Pitch entreprises'!A1:I1",values:[[(s&&s.d)||'',g('f-ville').value,ent,(g('f-prenom').value+' '+g('f-nom').value).trim(),g('f-email').value.trim(),po,'réservation en cours (site)',new Date().toLocaleString('fr-FR'),'']]})}).catch(function(){}); }catch(e){}
+   document.querySelector('input[name=tarif][value=partenaire]').checked=true; g('f-places').disabled=false; g('f-places').value=10;
+   setTimeout(function(){ var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x){ x.checked=true; g('f-places').disabled=true; } },50);
+  }
+ },true);
+ (function(){ var r=g('f-red-wrap'); r.parentNode.insertBefore(g('red-accord'), r); var pv=g('t-priv'); pv.after(g('t-ent')); g('t-ent').after(g('f-ent-wrap')); var cd=g('f-cadeau'); if(cd && !window.PROP_LIVE) cd.closest('label').style.display='none'; })();
  maj();
 })();
 /* Un seul menu : Ville — date — heure — troupe — formule */
@@ -1276,13 +1286,13 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
   });
  });
  var au=document.createElement('option'); au.value='__ville'; au.textContent='Ma ville n’est pas dans la liste — être prévenu'; ss.appendChild(au);
- vw.style.display='none'; g('f-date-wrap').style.setProperty('display','none','important');
+ vw.style.display='none'; 
  function fire(el){ el.dispatchEvent(new Event('change',{bubbles:true})); }
  ss.addEventListener('change',function(){
   if(ss.value==='__ville'){ vw.style.display=''; sv.value=''; fire(sv); return; }
   vw.style.display='none'; if(!ss.value){ sv.value=''; fire(sv); return; }
   var p=ss.value.split('|'); sv.value=p[0]; fire(sv);
-  setTimeout(function(){ sd.value=p[1]; fire(sd); g('f-date-wrap').style.setProperty('display','none','important'); },0);
+  setTimeout(function(){ sd.value=p[1]; fire(sd);  },0);
  });
 })();
 /* Une couleur franche par ville pour le bloc de la troupe */

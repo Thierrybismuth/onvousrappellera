@@ -529,7 +529,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
   <div class="wrap">
     <span class="sec-tag">Réservations</span>
     <h2>Réservez vos billets</h2>
-    <p class="lead">Choisissez votre ville et votre date, puis réservez vos places.</p>
+    <p class="lead">Choisissez votre séance, puis réservez vos places.</p><style>#f-seance{width:100%!important;max-width:100%!important}#f-date-wrap{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}#prevenez-moi .fgrid>.field{min-width:0}#f-info a.vdate,#f-info .vmh,#f-info .vjour,#f-info .vcarte>strong,#f-info .vcarte>span{display:none!important}.fe-case{display:none!important}#prevenez-moi .tarif.star,#prevenez-moi .tarif.privilege{font-size:.88rem!important;border-color:transparent!important;background:transparent!important;color:inherit!important}#prevenez-moi .tarif.star b{color:inherit!important}#prevenez-moi .tarif.privilege small{font-size:.88rem!important;color:inherit!important;display:block!important}#prevenez-moi .priv-i{display:block!important}#prevenez-moi .tarif:has(input:checked){border-color:var(--accent)!important;background:#fdf1ef!important}#f-info details.vd .vgrp.vtz,#f-info details.vd .vgrp,#f-info .vmedia{display:block!important;grid-template:none!important;grid-template-columns:1fr!important;width:auto!important;max-width:100%!important;min-width:0!important}#f-info details.vd,#f-info .vbody{min-width:0!important;max-width:100%!important;overflow:hidden}#f-info .vgal{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:auto!important;max-width:100%!important;min-width:0!important;overflow-x:auto;gap:8px;align-items:flex-start;padding-bottom:6px}#f-info .vgal-r{display:contents!important}#f-info .vgal-c{flex:0 0 auto!important;width:auto!important}#f-info .vgal-c img{height:150px!important;width:auto!important;max-width:none!important}</style>
 
     <div class="fgrid">
       <div class="field full"><label for="f-ville">Votre ville</label>
@@ -569,6 +569,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <div class="field full" id="f-date-wrap" style="display:none"><label for="f-date">Date et horaire</label>
         <select id="f-date"></select>
       </div>
+      <div class="field full" id="soiree" style="display:none"><div style="background:#fff;border-left:4px solid var(--accent);padding:16px 18px;margin:.4rem 0">
+        <h3 style="margin:0 0 .5rem;font-family:'Cormorant Garamond',serif;font-size:1.35rem">Une soirée pas comme les autres</h3>
+        <p class="petit" style="margin:0 0 .5rem;color:#2b2b2b"><b>ON VOUS RAPPELLERA</b> est une comédie : vous allez rire, et elle va vous faire réfléchir. Comme elle parle d’emploi et qu’elle est écrite par un recruteur, elle a aussi vocation à vous aider à trouver un emploi… ou à recruter.</p>
+        <div id="soiree-prog" class="petit" style="color:#2b2b2b"></div>
+      </div></div>
       <div class="field resa-only"><label for="f-prenom">Prénom</label><input id="f-prenom" type="text" autocomplete="given-name" required></div>
       <div class="field resa-only"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
       <div class="field full" id="f-email-wrap"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
@@ -577,8 +582,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <div id="f-resa" style="display:none">
       <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
       <div class="tarifs">
-        <label class="tarif star"><input type="radio" name="tarif" value="partenaire" checked><span><b>Tarif normal — 20&nbsp;€</b></span></label>
-        <label class="tarif"><input type="radio" name="tarif" value="reduit"><span><b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d'emploi…) · justificatif à présenter à l'entrée</span></label>
+        <label class="tarif star"><input type="radio" name="tarif" value="partenaire"><span id="t-norm-txt"><b>Tarif normal — 20&nbsp;€</b></span></label>
+        <label class="tarif"><input type="radio" name="tarif" value="reduit"><span id="t-red-txt"><b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d'emploi…) · justificatif à présenter à l'entrée</span></label>
+        <p id="red-accord" style="display:none;margin:.1rem 0 .6rem 1.8rem;color:#444;font-size:.78rem;line-height:1.4">✔ J’autorise que mes informations soient partagées avec des acteurs susceptibles d’accélérer mon retour à l’emploi.</p>
+        <label class="tarif" id="t-ent" style="display:none"><input type="radio" name="tarif" value="entreprise"><span><b>Mon entreprise recrute — 10 places, 200&nbsp;€</b><span id="t-ent-txt"></span> <b id="t-ent-slots" style="color:var(--accent)"></b></span></label>
+        <div id="f-ent-wrap" class="fgrid" style="display:none;margin-top:.6rem">
+          <div class="field" style="grid-column:1/-1"><label for="f-poste">Poste(s) à présenter</label><input id="f-poste" type="text" placeholder="ex. commercial terrain, comptable"></div>
+          <div id="f-ent-fact" style="grid-column:1/-1"></div>
+        </div>
         <div id="f-red-wrap" class="fgrid" style="display:none;margin-top:.6rem">
           <div class="field"><label for="f-statut">Je suis</label><select id="f-statut"><option value="Demandeur d'emploi">Demandeur d'emploi</option><option value="Étudiant">Étudiant</option><option value="Autre">Autre</option></select></div>
           <div class="field" id="f-ft-wrap"><p class="petit" style="margin:.4rem 0 0">Votre statut sera vérifié à l'entrée : pensez à apporter votre justificatif.</p><input id="f-ft" type="hidden" value=""></div>
@@ -706,7 +717,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('vclose').addEventListener('click',fermerVideo);
   vbox.addEventListener('click',function(e){ if(e.target===vbox) fermerVideo(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
-  var DATES={
+  var DATES=window.DATES_PROP={
     "Paris":[{d:"2 décembre 2026 · 19h",t:"Séance de 19h",l:"T1",c:"PAR-1202-19",tr:"Engagement"},{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T1",c:"PAR-1209-19",tr:"Honnêteté"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T5",c:"PAR-1212-2130",tr:"Esprit d'équipe"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T5",c:"PAR-1218-1930",tr:"Esprit d'équipe"}],
     "Toulouse":[{d:"2 décembre 2026 · 21h",t:"Séance de 21h — apéro et dîner dès 19h",l:"T2",c:"TLS-1203"}],
     "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T3",c:"REN-1209-20"}],
@@ -1200,6 +1211,117 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
   ul.classList.add('avec-photos');
  }).catch(function(){});
 })();
+</script>
+<script>
+window.PROP_LIVE=true;
+/* Proposition : soirées avec présentation des entreprises qui recrutent (5 entreprises, 5 minutes chacune) */
+(function(){
+ var EMP={"PAR-1209-19":{ent:"18h",piece:"19h",bar:"Un bar, juste à côté du théâtre, permet de prolonger les échanges."},
+  "TLS-1203":{ent:"19h",diner:"19h30",piece:"21h",bar:"Le bar reste ouvert pour prolonger les échanges."},
+  "REN-1209-20":{ent:"19h",piece:"20h",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "BOR-1210-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "BOR-1217-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "LYO-1216-19":{ent:"18h",piece:"19h",bar:"Un bar est ouvert pour prolonger les échanges."}};
+ var PRIS={}; /* créneaux déjà pris par séance : à brancher sur les réservations */
+ function g(i){return document.getElementById(i);}
+ function seance(){ var v=g('f-ville').value, d=g('f-date').value; return ((window.DATES_PROP||{})[v]||[]).filter(function(o){return o.d===d;})[0]; }
+ function maj(){
+  var s=seance(), e=s&&EMP[s.c];
+  g('soiree').style.display=e?'':'none';
+  g('t-ent').style.display=e?'':'none';
+  if(e){
+   g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Les entreprises qui recrutent se présentent. Les spectateurs en recherche d’emploi viennent assister aux présentations.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — Dîner sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
+   g('t-norm-txt').innerHTML='<b>Tarif normal — 20&nbsp;€</b><br>Arrivée à partir de <b>'+e.ent+'</b>, et au plus tard à <b>'+e.piece+'</b> pour le lever de rideau.';
+   g('t-red-txt').innerHTML='<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.ent+'</b> pour assister aux présentations des entreprises qui recrutent.';
+   g('t-ent-txt').innerHTML='<br>Je réserve 10 places et je présente mes offres d’emploi sur scène à <b>'+e.ent+'</b>. ';
+   var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?'Il reste au moins une des 5 places.':'Les 5 places sont déjà prises.';
+  } else {
+   g('t-norm-txt').innerHTML='<b>Tarif normal — 20&nbsp;€</b>';
+   g('t-red-txt').innerHTML='<b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d’emploi…) · justificatif à présenter à l’entrée';
+   var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x&&x.checked){ document.querySelector('input[name=tarif][value=partenaire]').checked=true; }
+  }
+  var t=(document.querySelector('input[name=tarif]:checked')||{}).value;
+  g('red-accord').style.display=(t==='reduit'&&e)?'':'none';
+  var veille=g('f-accord').closest('label'); veille.style.display=e?'none':'';
+  if(e) g('f-accord').checked=(t==='reduit');
+  g('f-ent-wrap').style.display=t==='entreprise'?'':'none';
+  g('f-red-wrap').style.display=(t==='reduit'&&!e)?'':'none';
+  if(t==='reduit'&&e) g('f-statut').value="Demandeur d'emploi";
+  var fc=g('fe-case'); if(fc){ var fw=fc.closest('label').parentNode; if(t==='entreprise'){ if(fw.parentNode!==g('f-ent-fact')) g('f-ent-fact').appendChild(fw); fc.checked=true; g('fe-bloc').style.display=''; } else { if(fw.parentNode!==g('fe-ancre').parentNode) g('fe-ancre').after(fw); fc.checked=false; g('fe-bloc').style.display='none'; } }
+  var pl=g('f-places'); if(t==='entreprise'){ pl.value=10; pl.disabled=true; } else pl.disabled=false;
+ }
+ document.addEventListener('change',function(ev){ var x=ev.target; if(x && (x.id==='f-date'||x.id==='f-ville'||x.name==='tarif')) setTimeout(maj,0); });
+ g('f-btn').addEventListener('click',function(ev){ var m=g('f-msg'); var enR=g('f-resa').style.display!=='none'; var sel=document.querySelector('input[name=tarif]:checked');
+  if(enR && !sel){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Merci de choisir votre tarif.'; return; }
+  if(!window.PROP_LIVE){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ok'; m.innerHTML='Proposition : le paiement n’est pas branché sur cette page.'; return; }
+  if(enR && sel.value==='entreprise'){ /* 10 places au tarif normal = 200 € ; l'entreprise et ses postes sont notés dans l'onglet « Pitch entreprises » */
+   var s=seance(); var ent=(g('fe-raison')&&g('fe-raison').value.trim())||''; var po=g('f-poste').value.trim();
+   if(!ent||!po){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Merci d’indiquer le nom de l’entreprise et le ou les postes à présenter.'; return; }
+   var fe=window.FE?FE.lire():null; if(!(fe&&fe.erreur)&&g('f-prenom').value.trim()&&g('f-tel').value.trim()) try{ fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Pitch entreprises'!A1:I1",values:[[(s&&s.d)||'',g('f-ville').value,ent,(g('f-prenom').value+' '+g('f-nom').value).trim(),g('f-email').value.trim(),po,'réservation en cours (site)',new Date().toLocaleString('fr-FR'),'']]})}).catch(function(){}); }catch(e){}
+   document.querySelector('input[name=tarif][value=partenaire]').checked=true; g('f-places').disabled=false; g('f-places').value=10;
+   setTimeout(function(){ var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x){ x.checked=true; g('f-places').disabled=true; } },50);
+  }
+ },true);
+ (function(){ var r=g('f-red-wrap'); r.parentNode.insertBefore(g('red-accord'), r); var pv=g('t-priv'); pv.after(g('t-ent')); g('t-ent').after(g('f-ent-wrap')); var cd=g('f-cadeau'); if(cd && !window.PROP_LIVE) cd.closest('label').style.display='none'; })();
+ maj();
+})();
+/* Un seul menu : Ville — date — heure — troupe — formule */
+(function menu(){ if(!window.DATES_PROP||!Object.keys(window.DATES_PROP).length){ return setTimeout(menu,100); }
+ var EMPC=["PAR-1209-19","TLS-1203","REN-1209-20","BOR-1210-1830","BOR-1217-1830","LYO-1216-19"];
+ var JR=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],MO={janvier:0,'février':1,mars:2,avril:3,mai:4,juin:5,juillet:6,'août':7,septembre:8,octobre:9,novembre:10,'décembre':11};
+ function g(i){return document.getElementById(i);}
+ var D=window.DATES_PROP||{}, sv=g('f-ville'), sd=g('f-date');
+ var wrap=document.createElement('div'); wrap.className='field full';
+ wrap.innerHTML='<label for="f-seance">Votre séance</label><select id="f-seance"><option value="">— Choisissez votre séance —</option></select>';
+ var vw=sv.closest('.field'); vw.parentNode.insertBefore(wrap,vw);
+ var ss=g('f-seance');
+ Object.keys(D).sort(function(a,b){return a.localeCompare(b,'fr');}).forEach(function(v){
+  D[v].forEach(function(o){
+   var m=o.d.match(/^(\d+)\s+(\S+)\s+(\d{4})\s*·\s*(.+)$/), jour='', h='';
+   if(m){ var dt=new Date(+m[3],MO[m[2]],+m[1]); jour=JR[dt.getDay()]+' '+m[1]+' '+m[2]; h=m[4]; } else jour=o.d;
+   var tr=o.tr?('Troupe '+o.tr):('Troupe de '+v);
+   var f=EMPC.indexOf(o.c)>=0?'Pièce + présentation d’employeurs':'Pièce';
+   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=v+' — '+jour+' — '+h+' — '+tr+' — '+f; ss.appendChild(op);
+  });
+ });
+ var au=document.createElement('option'); au.value='__ville'; au.textContent='Ma ville n’est pas dans la liste — être prévenu'; ss.appendChild(au);
+ vw.style.display='none'; 
+ function fire(el){ el.dispatchEvent(new Event('change',{bubbles:true})); }
+ ss.addEventListener('change',function(){
+  if(ss.value==='__ville'){ vw.style.display=''; sv.value=''; fire(sv); return; }
+  vw.style.display='none'; if(!ss.value){ sv.value=''; fire(sv); return; }
+  var p=ss.value.split('|'); sv.value=p[0]; fire(sv);
+  setTimeout(function(){ sd.value=p[1]; fire(sd);  },0);
+ });
+})();
+/* Une couleur franche par ville pour le bloc de la troupe */
+(function(){
+ var C={Bordeaux:['#8b1538','#f3d9e1'],Paris:['#1d4ed8','#dbe6fd'],Toulouse:['#e0337a','#fcdbe8'],Rennes:['#15803d','#d6f0df'],Lyon:['#ea6a0c','#fde3cc']};
+ var css='';
+ Object.keys(C).forEach(function(v){ var k=v.toLowerCase(); var s='#f-info details.vd[data-c="'+k+'"] '; css+=s+'.vtz,'+s+'.vcarte{background:'+C[v][0]+'!important;border-left:0!important;color:#fff!important}'+s+'.vtz *,'+s+'.vcarte *{color:#fff!important}'+s+'.vtz a,'+s+'.vcarte a{color:#fff!important;text-decoration:underline}'+s+'.vcarte{background:transparent!important}'; });
+ var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
+ document.querySelectorAll('#f-info details.vd').forEach(function(d){ var sm=d.querySelector('summary'); var n=(sm&&sm.firstChild&&sm.firstChild.nodeType===3)?sm.firstChild.nodeValue.trim():''; if(C[n]) d.setAttribute('data-c',n.toLowerCase()); });
+})();
+/* D'abord le tarif, ensuite les champs qui dépendent du tarif */
+(function(){
+ function g(i){return document.getElementById(i);}
+ var tf=document.querySelector('#f-resa .tarifs'), first=document.querySelector('#prevenez-moi .fgrid .resa-only');
+ if(!tf||!first) return;
+ var box=document.createElement('div'); box.id='tarif-d-abord'; box.style.gridColumn='1/-1'; box.innerHTML='<label style="display:block;margin:.4rem 0">Votre tarif</label>'; first.parentNode.insertBefore(box,first); box.appendChild(tf);
+ function vis(){
+  var date=g('f-resa').style.display!=='none', t=document.querySelector('input[name=tarif]:checked');
+  box.style.display=date?'':'none';
+  var on=date&&!!t;
+  document.querySelectorAll('#prevenez-moi .resa-only').forEach(function(x){ x.style.display=on?'':'none'; });
+  g('f-email-wrap').style.display=on?'':(date?'none':g('f-email-wrap').style.display);
+  var pw=g('f-places')&&g('f-places').closest('.fgrid'); if(pw) pw.style.display=(on&&t.value!=='entreprise')?'':'none';
+  g('f-btn').style.display=(on||!date)?g('f-btn').style.display:'none'; if(on) g('f-btn').style.display='';
+ }
+ document.addEventListener('change',function(){ setTimeout(vis,5); });
+ setInterval(vis,700);
+ vis();
+})();
+
 </script>
 </body>
 </html>
