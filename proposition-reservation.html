@@ -1188,7 +1188,7 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
 /* Proposition : soirées avec présentation des entreprises qui recrutent (5 entreprises, 5 minutes chacune) */
 (function(){
  var EMP={"PAR-1209-19":{ent:"18h",piece:"19h",bar:"Un bar, juste à côté du théâtre, permet de prolonger les échanges."},
-  "TLS-1203":{diner:"19h",ent:"20h",piece:"21h",bar:"Le bar reste ouvert pour prolonger les échanges."},
+  "TLS-1203":{ent:"19h",diner:"19h30",piece:"21h",bar:"Le bar reste ouvert pour prolonger les échanges."},
   "REN-1209-20":{ent:"19h",piece:"20h",bar:"Un bar est ouvert pour prolonger les échanges."},
   "BOR-1210-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
   "BOR-1217-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
@@ -1201,7 +1201,7 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
   g('soiree').style.display=e?'':'none';
   g('t-ent').style.display=e?'':'none';
   if(e){
-   g('soiree-prog').innerHTML=(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — Dîner sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Les entreprises qui recrutent se présentent. Les spectateurs en recherche d’emploi viennent assister aux présentations.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
+   g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Les entreprises qui recrutent se présentent. Les spectateurs en recherche d’emploi viennent assister aux présentations.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — Dîner sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
    g('t-red-txt').innerHTML='<b>Je cherche un emploi — 15&nbsp;€</b><br>Rendez-vous à '+e.ent+' pour assister aux présentations des entreprises qui recrutent, puis la pièce à '+e.piece+'.';
    g('t-ent-txt').textContent='5 minutes sur scène à '+e.ent+' pour présenter votre entreprise et vos postes, et 10 places pour votre équipe.';
    var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?'Il reste au moins une des 5 places.':'Les 5 places sont déjà prises.';
