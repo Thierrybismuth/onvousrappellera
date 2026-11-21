@@ -363,6 +363,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .recit{max-width:680px;margin:1.6rem auto 0;text-align:left;opacity:0;animation:fadeUp .6s .45s forwards}
 .recit p{font-size:1rem;color:#2b2b2b;margin:0 0 .75rem;line-height:1.6}
 .recit .pitch-txt{text-align:justify}
+.recit .annonce{text-align:center;text-wrap:balance}
+.recit .annonce span{display:block}
+@media(min-width:900px){.recit .annonce{white-space:nowrap;width:max-content;position:relative;left:50%;transform:translateX(-50%)}}
 .recit strong{color:var(--texte);font-weight:600}
 .recit .chute{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--marine);margin-top:1.2rem;font-style:italic}
 .persos-pitch{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
@@ -437,7 +440,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <div class="baseline">Ils ont mis le recrutement en pièce</div>
     <div class="cta-row" style="margin-top:1.2rem"><a href="#prevenez-moi">Réserver mes places</a></div>
     <div class="recit">
-      <p><em><b>ODYSSÉE BUREAUTIQUE</b> recrute commercial terrain. Vous êtes bac +5, pas trop jeune, pas trop vieux&nbsp;?<br>Venez vendre nos ramettes, stylos et imprimantes. (Ah oui… le patron préférerait une fille.)</em></p>
+      <p class="annonce"><em><span><b>ODYSSÉE BUREAUTIQUE</b> recrute commercial terrain. Vous êtes bac&nbsp;+5, pas trop jeune, pas trop vieux&nbsp;?</span><span>Venez vendre nos ramettes, stylos et imprimantes. (Ah&nbsp;oui… le patron préférerait une fille.)</span></em></p>
       <p>Bienvenue chez <b>ODYSSÉE BUREAUTIQUE</b>&nbsp;:</p>
       <ul class="persos-pitch"><li>son manager à foutre en taule</li><li>sa DRH au bord de la crise de nerfs</li><li>son petit nouveau qui en fait des tonnes</li><li>le candidat trop vieux pour le poste</li><li>le candidat idéal qui se fout de tout le monde</li><li>le psy barjot… Qu'est-ce qu'il fout là&nbsp;?</li></ul>
       <p class="bulle" style="margin:0 auto 1.6rem;max-width:none">Vous les connaissez tous.<br>On a juste changé leurs noms.</p>
