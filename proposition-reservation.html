@@ -519,7 +519,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <p style="background:#fff3bf;border:1px dashed #c9a400;padding:8px 12px;font-size:.85rem;margin:0 0 1rem">Proposition, pour validation : rien n’est enregistré, aucun paiement.</p>
     <span class="sec-tag">Réservations</span>
     <h2>Réservez vos billets</h2>
-    <p class="lead">Choisissez votre ville et votre date, puis réservez vos places.</p>
+    <p class="lead">Choisissez votre séance, puis réservez vos places.</p><style>#f-info .vdates{display:none!important}</style>
 
     <div class="fgrid">
       <div class="field full"><label for="f-ville">Votre ville</label>
@@ -1222,6 +1222,35 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
  g('f-btn').addEventListener('click',function(ev){ ev.stopImmediatePropagation(); ev.preventDefault(); var m=g('f-msg'); m.className='msg ok'; m.style.display='block'; m.innerHTML='Proposition : le paiement n’est pas branché sur cette page.'; },true);
  (function(){ var r=g('f-red-wrap'); r.parentNode.insertBefore(g('red-accord'), r); r.after(g('t-ent')); g('t-ent').after(g('f-ent-wrap')); })();
  maj();
+})();
+/* Un seul menu : Ville — date — heure — troupe — formule */
+(function menu(){ if(!window.DATES_PROP||!Object.keys(window.DATES_PROP).length){ return setTimeout(menu,100); }
+ var EMPC=["PAR-1209-19","TLS-1203","REN-1209-20","BOR-1210-1830","BOR-1217-1830","LYO-1216-19"];
+ var JR=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],MO={janvier:0,'février':1,mars:2,avril:3,mai:4,juin:5,juillet:6,'août':7,septembre:8,octobre:9,novembre:10,'décembre':11};
+ function g(i){return document.getElementById(i);}
+ var D=window.DATES_PROP||{}, sv=g('f-ville'), sd=g('f-date');
+ var wrap=document.createElement('div'); wrap.className='field full';
+ wrap.innerHTML='<label for="f-seance">Votre séance</label><select id="f-seance"><option value="">— Choisissez votre séance —</option></select>';
+ var vw=sv.closest('.field'); vw.parentNode.insertBefore(wrap,vw);
+ var ss=g('f-seance');
+ Object.keys(D).sort(function(a,b){return a.localeCompare(b,'fr');}).forEach(function(v){
+  D[v].forEach(function(o){
+   var m=o.d.match(/^(\d+)\s+(\S+)\s+(\d{4})\s*·\s*(.+)$/), jour='', h='';
+   if(m){ var dt=new Date(+m[3],MO[m[2]],+m[1]); jour=JR[dt.getDay()]+' '+m[1]+' '+m[2]; h=m[4]; } else jour=o.d;
+   var tr=o.tr?('Troupe '+o.tr):('Troupe de '+v);
+   var f=EMPC.indexOf(o.c)>=0?'Pièce + présentation d’employeurs':'Pièce';
+   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=v+' — '+jour+' — '+h+' — '+tr+' — '+f; ss.appendChild(op);
+  });
+ });
+ var au=document.createElement('option'); au.value='__ville'; au.textContent='Ma ville n’est pas dans la liste — être prévenu'; ss.appendChild(au);
+ vw.style.display='none'; g('f-date-wrap').style.setProperty('display','none','important');
+ function fire(el){ el.dispatchEvent(new Event('change',{bubbles:true})); }
+ ss.addEventListener('change',function(){
+  if(ss.value==='__ville'){ vw.style.display=''; sv.value=''; fire(sv); return; }
+  vw.style.display='none'; if(!ss.value){ sv.value=''; fire(sv); return; }
+  var p=ss.value.split('|'); sv.value=p[0]; fire(sv);
+  setTimeout(function(){ sd.value=p[1]; fire(sd); g('f-date-wrap').style.setProperty('display','none','important'); },0);
+ });
 })();
 
 </script>
