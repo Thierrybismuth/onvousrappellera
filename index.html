@@ -370,6 +370,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .recit .chute{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--marine);margin-top:1.2rem;font-style:italic}
 .persos-pitch{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .persos-pitch li{font-size:.92rem;color:var(--texte);line-height:1.35;background:#fff;border:1px solid var(--gris-clair);border-left:3px solid var(--accent);padding:7px 12px}
+.persos-pitch.avec-photos{display:block}
+.persos-pitch.avec-photos li{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid var(--gris-clair);border-left:3px solid var(--accent);padding:10px 12px;margin:0 0 8px}
+.persos-pitch .pp-role{flex:0 0 190px;font-weight:600;color:var(--texte);font-size:.92rem;line-height:1.35;align-self:center}
+.persos-pitch .pp-cast{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;min-width:0;flex:1;scrollbar-width:thin}
+.persos-pitch .pp-c{flex:0 0 74px;text-align:center;font-size:.66rem;line-height:1.25;color:#444}
+.persos-pitch .pp-c img{display:block;width:74px;height:98px;object-fit:contain;background:#111;border-radius:3px;margin:0 auto 3px}
+.persos-pitch .pp-c b{display:block;color:#161616;font-weight:600}
+@media(max-width:640px){.persos-pitch.avec-photos li{flex-direction:column;gap:8px}.persos-pitch .pp-role{flex:none;align-self:auto}.persos-pitch .pp-cast{width:100%}}
+
 .hero .sub,p.lead,.eco,ul.liste{max-width:820px}
 .video-box{max-width:1000px}
 .affiche{max-width:560px}
@@ -1172,6 +1181,27 @@ document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
 window.ovrOrigine=function(email,seance,source,code){try{var q=new URLSearchParams(location.search);
 fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Origines réservations'!A:H",valueInputOption:'RAW',
 values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(email||'').trim().toLowerCase(),seance||'',source,String(code||'').toUpperCase(),q.get('src')||q.get('utm_campaign')||'',location.pathname+location.search,document.referrer||'']]})}).catch(function(){});}catch(e){}};
+</script>
+
+<script>
+/* Pitch : sous chaque personnage, les comédiens qui le jouent (photos + « X est Pascal à Paris ») */
+(function(){
+ var ul=document.querySelector('.persos-pitch'); if(!ul||!window.fetch) return;
+ var R=[{t:"son manager à foutre en taule",k:"pascal"},{t:"sa DRH au bord de la crise de nerfs",k:"delphine"},{t:"son petit nouveau qui en fait des tonnes",k:"johana"},{t:"le candidat trop vieux pour le poste",k:"dominique"},{t:"le candidat idéal qui se fout de tout le monde",k:"julien"},{t:"le psy barjot… Qu'est-ce qu'il fout là&nbsp;?",k:"daniel"}];
+ function fam(n){ n=(n||'').toLowerCase().trim(); if(/^pascal/.test(n))return 'pascal'; if(/^delphine/.test(n))return 'delphine'; if(/^johana/.test(n))return 'johana'; if(/^dominique/.test(n))return 'dominique'; if(/^juli/.test(n))return 'julien'; if(/^daniel/.test(n))return 'daniel'; return ''; }
+ function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+ fetch('/assets/cv-comediens.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){
+  var L=(d&&d.comediens)||[], B={}; R.forEach(function(r){B[r.k]=[];});
+  var dbl={}; /* troupes où deux comédiens tiennent psy + senior : le 1er en psy, le 2e en senior */
+  L.forEach(function(c){ if(!c.portrait||!c.personnage) return; var tr=(c.ville||'')+'|'+(c.troupe||''), p=c.personnage.split('+').map(function(s){return s.trim();});
+   var f0=fam(p[0]), f1=fam(p[1]||''), role=f0, nom=p[0];
+   if(f0==='daniel'&&f1==='dominique'){ dbl[tr]=(dbl[tr]||0)+1; if(dbl[tr]===2){ role='dominique'; nom='Dominique'; } }
+   if(!B[role]) return; var im=String(c.portrait), id=(im.match(/\/d\/([A-Za-z0-9_-]{15,})/)||im.match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; if(id) im='https://drive.google.com/thumbnail?id='+id+'&sz=w400'; if(/^anne ?dupuy$/i.test((c.prenom+' '+c.nom).trim())) im='/assets/comediens/anne-dupuy-bloquee.jpg'; B[role].push({n:c.prenom+' '+c.nom,img:im,p:nom,v:(c.ville||'')});
+  });
+  ul.innerHTML=R.map(function(r){ var cs=B[r.k]; return '<li><span class="pp-role">'+r.t+'</span><span class="pp-cast">'+cs.map(function(c){return '<span class="pp-c"><img loading="lazy" onerror="this.parentNode.style.display=\'none\'" src="'+esc(c.img)+'" alt="'+esc(c.n)+'"><b>'+esc(c.n)+'</b>est '+esc(c.p)+' à '+esc(c.v)+'</span>';}).join('')+'</span></li>'; }).join('');
+  ul.classList.add('avec-photos');
+ }).catch(function(){});
+})();
 </script>
 </body>
 </html>
