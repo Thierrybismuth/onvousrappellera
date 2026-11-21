@@ -575,7 +575,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <div id="f-resa" style="display:none">
       <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
       <div class="tarifs">
-        <label class="tarif star"><input type="radio" name="tarif" value="partenaire" checked><span id="t-norm-txt"><b>Tarif normal — 20&nbsp;€</b></span></label>
+        <label class="tarif star"><input type="radio" name="tarif" value="partenaire"><span id="t-norm-txt"><b>Tarif normal — 20&nbsp;€</b></span></label>
         <label class="tarif"><input type="radio" name="tarif" value="reduit"><span id="t-red-txt"><b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d'emploi…) · justificatif à présenter à l'entrée</span></label>
         <p id="red-accord" style="display:none;margin:.1rem 0 .6rem 1.8rem;color:#444;font-size:.78rem;line-height:1.4">✔ J’autorise que mes informations soient partagées avec des acteurs susceptibles d’accélérer mon retour à l’emploi.</p>
         <label class="tarif" id="t-ent" style="display:none"><input type="radio" name="tarif" value="entreprise"><span><b>Mon entreprise recrute — 10 places, 200&nbsp;€</b><span id="t-ent-txt"></span> <b id="t-ent-slots" style="color:var(--accent)"></b></span></label>
@@ -1224,7 +1224,7 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
   var pl=g('f-places'); if(t==='entreprise'){ pl.value=10; pl.disabled=true; } else pl.disabled=false;
  }
  document.addEventListener('change',function(ev){ var x=ev.target; if(x && (x.id==='f-date'||x.id==='f-ville'||x.name==='tarif')) setTimeout(maj,0); });
- g('f-btn').addEventListener('click',function(ev){ ev.stopImmediatePropagation(); ev.preventDefault(); var m=g('f-msg'); m.className='msg ok'; m.style.display='block'; m.innerHTML='Proposition : le paiement n’est pas branché sur cette page.'; },true);
+ g('f-btn').addEventListener('click',function(ev){ ev.stopImmediatePropagation(); ev.preventDefault(); var m=g('f-msg'); m.style.display='block'; if(g('f-resa').style.display!=='none' && !document.querySelector('input[name=tarif]:checked')){ m.className='msg ko'; m.innerHTML='Merci de choisir votre tarif.'; return; } m.className='msg ok'; m.innerHTML='Proposition : le paiement n’est pas branché sur cette page.'; },true);
  (function(){ var r=g('f-red-wrap'); r.parentNode.insertBefore(g('red-accord'), r); var pv=g('t-priv'); pv.after(g('t-ent')); g('t-ent').after(g('f-ent-wrap')); var cd=g('f-cadeau'); if(cd) cd.closest('label').style.display='none'; })();
  maj();
 })();
