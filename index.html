@@ -1289,12 +1289,25 @@ window.PROP_LIVE=true;
  var au=document.createElement('option'); au.value='__ville'; au.textContent='Ma ville n’est pas dans la liste — être prévenu'; ss.appendChild(au);
  vw.style.display='none'; 
  function fire(el){ el.dispatchEvent(new Event('change',{bubbles:true})); }
+ /* Lien par troupe (?troupe=), par séance (?seance=) ou par ville (?ville=) : le menu ne propose que les séances concernées */
+ var TOUT=[].slice.call(ss.options), q=new URLSearchParams(location.search), garde=null, choix='';
+ var nz=function(t){ return (t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]+/g,'').replace(/^(de|la|le)/,''); };
+ if(q.get('troupe')){ var tq=nz(q.get('troupe')).replace(/^espritequipe$/,'espritdequipe'); garde={}; Object.keys(D).forEach(function(v){ D[v].forEach(function(o){ var n=nz(o.tr).replace(/^espritequipe$/,'espritdequipe'); if(o.tr && (n===tq || n.replace('de','')===tq.replace('de',''))) garde[v+'|'+o.d]=1; }); }); }
+ else if(q.get('seance')){ garde={}; Object.keys(D).forEach(function(v){ D[v].forEach(function(o){ if(o.c===q.get('seance')) garde[v+'|'+o.d]=1; }); }); }
+ else if(q.get('ville') && D[q.get('ville')]){ garde={}; D[q.get('ville')].forEach(function(o){ garde[q.get('ville')+'|'+o.d]=1; }); }
+ if(garde && Object.keys(garde).length){
+  TOUT.forEach(function(op){ if(op.value && op.value!=='__ville' && !garde[op.value]) op.remove(); });
+  var ks=Object.keys(garde); if(ks.length===1) choix=ks[0];
+  var vt=document.createElement('option'); vt.value='__tout'; vt.textContent='Voir toutes les autres séances'; ss.appendChild(vt);
+ }
  ss.addEventListener('change',function(){
+  if(ss.value==='__tout'){ ss.innerHTML=''; TOUT.forEach(function(op){ ss.appendChild(op); }); ss.value=''; return; }
   if(ss.value==='__ville'){ vw.style.display=''; sv.value=''; fire(sv); return; }
   vw.style.display='none'; if(!ss.value){ sv.value=''; fire(sv); return; }
   var p=ss.value.split('|'); sv.value=p[0]; fire(sv);
   setTimeout(function(){ sd.value=p[1]; fire(sd);  },0);
  });
+ if(choix){ ss.value=choix; setTimeout(function(){ fire(ss); },50); }
 })();
 /* Bandeau de la troupe : fond blanc pour toutes les villes */
 (function(){
