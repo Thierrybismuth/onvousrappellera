@@ -265,12 +265,20 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   var VILLES=['Paris','Bordeaux','Lyon','Toulouse','Nantes','Rennes','Montpellier','Marseille','Lille'];
   // Copie de secours : les dates sont relues sur la page grand public à chaque ouverture.
   var DATES={
-    "Paris":[{d:"2 décembre 2026 · 19h",t:"Séance de 19h",l:"T1"},{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T1"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T5"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T5"}],
-    "Toulouse":[{d:"2 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T2"}],
-    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T3"}],
-    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4"}],
-    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"T6"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"T6"}]
-  };
+    "Paris":[{d:"2 décembre 2026 · 19h",t:"Séance de 19h",l:"T1",c:"PAR-1202-19",tr:"Engagement"},{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T1",c:"PAR-1209-19",tr:"Honnêteté"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T5",c:"PAR-1212-2130",tr:"Esprit d'équipe"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T5",c:"PAR-1218-1930",tr:"Esprit d'équipe"}],
+    "Toulouse":[{d:"2 décembre 2026 · 20h30",t:"Séance de 20h30 — présentation des entreprises 18h, dîner 19h",l:"T2",c:"TLS-1203"}],
+    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T3",c:"REN-1209-20"}],
+    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4",c:"BOR-1217-2030"}],
+    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"T6",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"T6",c:"LYO-1216-21"}]
+  }
+  var EMP={"PAR-1209-19":{ent:"18h",piece:"19h",bar:"Un bar, juste à côté du théâtre, permet de prolonger les échanges."},
+  "TLS-1203":{ent:"18h",diner:"19h",piece:"20h30",bar:"Le bar reste ouvert pour prolonger les échanges."},
+  "REN-1209-20":{ent:"19h",piece:"20h",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "BOR-1210-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "BOR-1217-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "LYO-1216-19":{ent:"18h",piece:"19h",bar:"Un bar est ouvert pour prolonger les échanges."}};
+  function filtre(){ Object.keys(DATES).forEach(function(v){ DATES[v]=(DATES[v]||[]).filter(function(o){return o.c&&EMP[o.c];}).map(function(o){ var e=EMP[o.c]; o.sub='Vos 5 minutes à '+e.ent+' · pièce à '+e.piece; return o; }); }); }
+  filtre();
   var LIEUX={"T1":{n:"Théâtre Clavel"},"T2":{n:"Cabaret Le 9"},"T3":{n:"La Comédie de Rennes"},"T4":{n:"Théâtre Artisse"},"T5":{n:"Théâtre Montmartre Galabru"},"T6":{n:"Le Croiseur"}};
   var GW='https://thierryb.app.n8n.cloud/webhook/sheets-gateway', SS='1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg', TAB="'Soirées franchise'";
   var MAIL='https://thierryb.app.n8n.cloud/webhook/send-email-unitaire';
@@ -289,7 +297,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
         L.forEach(function(o){ var lieu=(LIEUX[o.l]||{}).n||'', parts=o.d.split(' · ');
           vus[parts[0]]=(vus[parts[0]]||0)+1; var dernier=jours[parts[0]]>1&&vus[parts[0]]===jours[parts[0]];
           var e=etat(v,o.d), note=e==='pris'?'Ce secteur est déjà pris par une autre enseigne ce soir-là. Choisissez une autre soirée dans cette ville, ou une autre ville.':(e==='complet'?'Complet ce soir-là.':(e==='pause'?'Non réservable pour l\'instant.':''));
-          html+='<div class="ville'+(e?' pris':'')+'"><label><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'>'+esc(v)+'<span class="v-dates"><span>'+esc(parts[0])+'</span>'+((parts[1]||lieu)?'<span class="v-sub">'+esc([parts[1],lieu].filter(Boolean).join(' — '))+'</span>':'')+'</span></label>'+(note?'<p class="pris-note">'+note+'</p>':'')+(dernier?'<p class="seance-note">'+jours[parts[0]]+' séances le même soir&nbsp;: cochez celle qui vous convient.</p>':'')+'</div>';
+          html+='<div class="ville'+(e?' pris':'')+'"><label><input type="checkbox" class="cd" data-v="'+esc(v)+'" value="'+esc(o.d)+'"'+(e?' disabled':'')+'>'+esc(v)+'<span class="v-dates"><span>'+esc(parts[0])+'</span>'+((parts[1]||lieu)?'<span class="v-sub">'+esc([o.sub||parts[1],lieu].filter(Boolean).join(' — '))+'</span>':'')+'</span></label>'+(note?'<p class="pris-note">'+note+'</p>':'')+(dernier?'<p class="seance-note">'+jours[parts[0]]+' séances le même soir&nbsp;: cochez celle qui vous convient.</p>':'')+'</div>';
         });
       } else {
         html+='<div class="ville"><label><input type="checkbox" class="cv" value="'+esc(v)+'" data-i="'+i+'">'+esc(v)+'<span class="v-dates"><span>Date à venir</span></span></label></div>';
@@ -334,8 +342,10 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
   g('f-nb').addEventListener('change',rerendre);
   // Relecture des dates à jour sur la page grand public (une seule source).
   fetch('/?v='+Date.now()).then(function(r){return r.text();}).then(function(h){
-    var m=h.match(/var DATES=(\{[\s\S]*?\n  \});/), n=h.match(/var LIEUX=(\{[\s\S]*?\n  \});/);
+    var m=h.match(/var DATES=(?:window\.DATES_PROP=)?(\{[\s\S]*?\n  \});/), em=h.match(/var EMP=(\{[\s\S]*?\}\});/), n=h.match(/var LIEUX=(\{[\s\S]*?\n  \});/);
+    if(em){ var E=(new Function('return '+em[1]))(); if(E&&typeof E==='object') EMP=E; }
     if(m){ var D=(new Function('return '+m[1]))(); if(D&&typeof D==='object'){ DATES=D; } }
+    filtre();
     if(n){ var Lx=(new Function('return '+n[1]))(); if(Lx) LIEUX=Lx; }
     rerendre();
   }).catch(function(){});
