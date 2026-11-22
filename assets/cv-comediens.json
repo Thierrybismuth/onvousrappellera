@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-22T20:43:48.929Z",
+ "maj": "2026-11-22T07:45:44.930468Z",
  "comediens": [
   {
    "prenom": "Brigitte",
@@ -293,24 +293,13 @@
   },
   {
    "prenom": "Nicolas",
-   "nom": "Miraillie",
+   "nom": "Mirallié",
    "ville": "Nantes",
    "troupe": "",
    "portrait": "https://drive.google.com/file/d/1twxPQhUsLgOfGXqe2HTp8yaZwjRWG_s2/view",
    "photos": [
     "https://drive.google.com/file/d/1twxPQhUsLgOfGXqe2HTp8yaZwjRWG_s2/view"
    ],
-   "personnage": "",
-   "parcours": [],
-   "videos": []
-  },
-  {
-   "prenom": "Nicolas",
-   "nom": "Mirallié",
-   "ville": "Nantes",
-   "troupe": "",
-   "portrait": "",
-   "photos": [],
    "personnage": "Julien",
    "parcours": [],
    "videos": []
@@ -437,10 +426,9 @@
    "nom": "De Laquintane",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1wye3vrrkluh.jpg?v=1791210838923",
+   "portrait": "https://drive.google.com/file/d/17gzO-du16SkFdcebsUkMK14BKv1OZbyK/view",
    "photos": [
-    "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1wye3vrrkluh.jpg?v=1791210838923",
-    "https://onvousrappellera.fr/assets/comediens/caroline-de-laquintane-1ojgfym7jbjh.jpg?v=1791210838923"
+    "https://drive.google.com/file/d/17gzO-du16SkFdcebsUkMK14BKv1OZbyK/view"
    ],
    "personnage": "Delphine",
    "parcours": [],
@@ -494,11 +482,9 @@
    "nom": "Cony",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/fanny-cony-1wuflckeyhec.jpg?v=1791483185041",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/fanny-cony.jpg?v=20261122",
    "photos": [
-    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1wuflckeyhec.jpg?v=1791483185041",
-    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1te1unpqjgks.jpg?v=1791483185041",
-    "https://onvousrappellera.fr/assets/comediens/fanny-cony-1sbrrxciyov3.jpg?v=1791483185041"
+    "https://onvousrappellera.fr/assets/comediens/fanny-cony.jpg?v=20261122"
    ],
    "personnage": "Johana",
    "parcours": [],
@@ -565,9 +551,9 @@
    "nom": "Cauvé",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/melanie-cauve-19go0vdxfq8q.jpg?v=1791486237829",
+   "portrait": "https://drive.google.com/file/d/1pkBBCEOg7jAP-lSoFSwfjgfUxqoJgiB0/view",
    "photos": [
-    "https://onvousrappellera.fr/assets/comediens/melanie-cauve-19go0vdxfq8q.jpg?v=1791486237829"
+    "https://drive.google.com/file/d/1pkBBCEOg7jAP-lSoFSwfjgfUxqoJgiB0/view"
    ],
    "personnage": "Pascale",
    "parcours": [],
@@ -607,10 +593,9 @@
    "nom": "Codani",
    "ville": "Paris",
    "troupe": "Honnêteté",
-   "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-codani-1myi3ygxjoxi.jpg?v=1791176499089",
+   "portrait": "https://onvousrappellera.fr/assets/comediens/nathalie-codani.jpg?v=20261122",
    "photos": [
-    "https://onvousrappellera.fr/assets/comediens/nathalie-codani-1myi3ygxjoxi.jpg?v=1791176499089",
-    "https://onvousrappellera.fr/assets/comediens/nathalie-codani-185fvd5mlxeq.jpg?v=1791176499089"
+    "https://onvousrappellera.fr/assets/comediens/nathalie-codani.jpg?v=20261122"
    ],
    "personnage": "Danielle + Dominique",
    "parcours": [],
