@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ON VOUS RAPPELLERA — La comédie du recrutement, dans 10 villes dès décembre</title>
+<meta name="description" content="Une comédie sur le recrutement, en tournée dans les grandes villes de France à partir de décembre 2026. Créée au Festival OFF d'Avignon, jouée 60 fois devant 3 000 spectateurs.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth;}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  :root { --blanc:#f7f4ee; --blanc-pur:#ffffff; --marine:#161616; --accent:#d8281f; --or:#c8913a; --gris:#6b7280; --gris-clair:#e7e2d8; --texte:#1c1c1c; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--blanc);color:var(--texte);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  .wrap{max-width:960px;margin:0 auto;padding:0 6%;}
+
+  .hero{padding:52px 0 48px;text-align:center;border-bottom:1px solid var(--gris-clair);}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.8rem;font-size:.7rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;opacity:0;animation:fadeUp .6s .1s forwards;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4.4rem);font-weight:700;line-height:1.05;letter-spacing:.02em;color:var(--marine);opacity:0;animation:fadeUp .6s .2s forwards;}
+  .hero .baseline{margin-top:.7rem;font-size:.82rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);opacity:0;animation:fadeUp .6s .3s forwards;}
+  .hero .sub{margin:1.6rem auto 0;font-size:1rem;color:var(--gris);max-width:640px;opacity:0;animation:fadeUp .6s .45s forwards;}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:1.6rem;opacity:0;animation:fadeUp .6s .55s forwards;}
+  .badge{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--marine);border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:8px 16px;border-radius:2px;}
+
+  .affiche{margin:2.2rem auto 0;max-width:440px;opacity:0;animation:fadeUp .6s .6s forwards;}
+  .affiche img{display:block;width:100%;border:1px solid var(--gris-clair);box-shadow:0 16px 44px rgba(22,22,22,.18);}
+  .affiche .leg{margin-top:.7rem;font-size:.74rem;color:var(--gris);font-style:italic;}
+
+  .video-box{margin:2rem auto 0;position:relative;width:100%;max-width:760px;aspect-ratio:16/9;background:#000;border:1px solid var(--gris-clair);box-shadow:0 14px 40px rgba(22,22,22,.14);}
+  .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  section{padding:54px 0;border-bottom:1px solid var(--gris-clair);}
+  .sec-tag{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:1.1rem;display:block;}
+  h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.15;margin-bottom:1.3rem;color:var(--marine);}
+  p.lead{color:var(--gris);font-size:.97rem;max-width:680px;margin-bottom:1rem;}
+  p.lead strong{color:var(--texte);font-weight:500;}
+
+  .variantes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--gris-clair);margin-top:2rem;}
+  .var{background:var(--blanc-pur);padding:1.8rem;border-top:2px solid transparent;transition:border-color .3s;}
+  .var:hover{border-color:var(--accent);}
+  .var h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--marine);margin-bottom:.5rem;}
+  .var p{font-size:.88rem;color:var(--gris);line-height:1.7;}
+  .var p em{color:var(--texte);font-style:italic;font-weight:400;}
+
+  .villes{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.8rem;}
+  .ville{font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:11px 20px;border-radius:2px;}
+
+  .quoteband{background:var(--marine);color:#fff;text-align:center;padding:60px 0;border-bottom:none;}
+  .quoteband blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3.4vw,2.5rem);font-weight:600;font-style:italic;line-height:1.3;max-width:760px;margin:0 auto;}
+  .quoteband .who{margin-top:1.1rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);}
+
+  .perso-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:2rem;}
+  .conf-grid{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-top:1.6rem;-webkit-overflow-scrolling:touch;}
+  .conf{position:relative;flex:0 0 148px;padding:0;border:1px solid var(--gris-clair);background:#161616;cursor:pointer;overflow:hidden;}
+  .conf img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;opacity:.88;transition:opacity .25s;}
+  .conf:hover img{opacity:1;}
+  .conf .play{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:rgba(216,40,31,.92);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;padding-left:3px;}
+  .conf .cname{position:absolute;left:0;right:0;bottom:0;padding:7px 8px;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;font-size:.76rem;font-weight:500;text-align:left;}
+  .vbox{position:fixed;inset:0;background:rgba(10,10,10,.94);z-index:9999;display:none;align-items:center;justify-content:center;padding:54px 14px 14px;}
+  .vbox.on{display:flex;}
+  .vbox .vinner{position:relative;width:min(92vw,420px);aspect-ratio:9/16;max-height:84vh;background:#000;}
+  .vbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .vclose{position:absolute;top:-46px;right:-4px;background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer;padding:4px 10px;}
+  .vtitre{position:absolute;top:-42px;left:0;color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;}
+  .pimgs{margin:0 0 14px;}
+  .pimgs.multi{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .pimgs.multi .pimg:first-child{grid-column:1/-1;}
+  .pimg{margin:0;border:1px solid var(--gris-clair);background:var(--gris-clair);}
+  .pimg img{display:block;width:100%;height:auto;}
+  .perso{background:var(--blanc-pur);border:1px solid var(--gris-clair);}
+  .perso img{display:block;width:100%;height:220px;object-fit:cover;}
+
+  .vlist{margin-top:1.8rem;border-top:1px solid var(--gris-clair);}
+  .vbloc-t{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--accent);}
+  .vbloc-t:first-child{margin-top:0;}
+  .vd{border-bottom:1px solid var(--gris-clair);background:var(--blanc-pur);}
+  .vd summary{list-style:none;cursor:pointer;padding:15px 18px;font-size:.86rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);display:flex;align-items:center;gap:10px;}
+  .vd summary::-webkit-details-marker{display:none;}
+  .vd summary::after{content:"+";margin-left:auto;font-size:1.2rem;color:var(--accent);}
+  .vd[open] summary::after{content:"\2212";}
+  .vd.vd-off summary{cursor:default;}
+  .vd.vd-off summary::after{content:none;}
+  .f-autreville{display:block;margin-top:10px;background:none;border:1px solid var(--accent);color:var(--accent);font:500 .9rem 'Outfit',sans-serif;padding:10px 14px;border-radius:2px;cursor:pointer;text-align:left;}
+  .vd .vnl{margin-left:auto;background:none;border:1px solid var(--accent);color:var(--accent);font:500 .7rem 'Outfit',sans-serif;letter-spacing:.04em;text-transform:none;padding:6px 10px;border-radius:2px;cursor:pointer;white-space:nowrap;}
+  @media(max-width:640px){.vd.vd-off summary{flex-wrap:wrap;}.vd .vnl{margin-left:0;}}
+  .vd summary em{font-style:normal;font-size:.66rem;letter-spacing:.08em;text-transform:none;color:var(--accent);}
+  .vbody{padding:0 18px 16px;}
+  .vtroupe img,.vcv-p{cursor:zoom-in;}
+  #ovr-zoom{position:fixed;inset:0;z-index:9999;background:rgba(255,255,255,.97);display:none;align-items:center;justify-content:center;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 44px) 12px calc(env(safe-area-inset-bottom,0px) + 16px);cursor:zoom-out;}
+  #ovr-zoom.on{display:flex;}
+  .vcv-w{position:relative;display:block;}
+  .vmedia .vcv-c,.vgrp .vcv-c,.vcv-c{width:auto!important;max-width:100%;}
+  .vcv-ph{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+  .vcv-ph .vcv-p{width:124px;height:auto;margin:0 0 6px;}
+  @media(max-width:520px){.vcv-ph .vcv-p{width:100px;}}
+  .vcv-nb{position:absolute;right:4px;bottom:10px;background:rgba(255,255,255,.92);color:var(--marine);font-size:.62rem;font-weight:600;padding:1px 6px;border-radius:9px;pointer-events:none;}
+  #ovr-zoom .zz{position:absolute;top:50%;transform:translateY(-50%);border:0;background:rgba(255,255,255,.85);font-size:2.4rem;line-height:1;width:44px;height:64px;color:var(--marine);cursor:pointer;border-radius:6px;}
+  #ovr-zoom .zg{left:6px;} #ovr-zoom .zd{right:6px;}
+  #ovr-zoom .zn{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);left:0;right:0;text-align:center;font-size:.8rem;color:var(--gris);}
+  .vgrp .vtrp{display:none;}
+  .vgrp .vcv{flex-wrap:wrap;overflow:visible;}
+  .vbody .vmedia{display:block;}
+  .vbody .vmedia::after{content:"";display:table;clear:both;}
+  .vbody .vmedia .vtroupe{float:left;width:50%;max-width:320px;margin:0 10px 10px 0;}
+  .vbody .vmedia .vcv{display:block;}
+  .vbody .vmedia .vcv-c{display:inline-block;vertical-align:top;margin:0 8px 10px 0;}
+  #ovr-zoom img{max-width:100%;max-height:calc(100% - 40px);width:auto;height:auto;object-fit:contain;box-shadow:0 4px 24px rgba(0,0,0,.15);}
+  #ovr-zoom p{margin:10px 0 0;font-size:.9rem;color:var(--marine);text-align:center;}
+  #ovr-zoom button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 8px);right:12px;border:0;background:none;font-size:1.8rem;line-height:1;color:var(--marine);cursor:pointer;}
+  .vautres{margin-top:14px;border-top:1px solid var(--gris-clair);padding-top:8px;}
+  .vautres>summary{cursor:pointer;font-size:.85rem;color:var(--gris);}
+  .vd .vautres>summary::after{content:"+";}
+  .vd .vautres[open]>summary::after{content:"\2212";}
+  .vgrp{margin-top:16px;padding-top:12px;border-top:1px solid var(--gris-clair);}
+  .vgrp-t{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marine);font-weight:600;margin:0 0 8px;}
+  .vmedia{display:flex;gap:10px;align-items:flex-start;}
+  .vmedia .vtroupe{flex:0 0 50%;max-width:320px;margin:0;}
+  .vmedia .vtroupe figcaption{display:none;}
+  .vmedia .vcv{flex:1;flex-wrap:wrap;overflow:visible;margin:0;gap:8px;}
+  .vmedia .vcv-c{width:124px;}
+  .vmedia .vcv-n{font-size:.78rem;}
+  .vmedia .vcv-r{font-size:.72rem;}
+  .vgrp .vcv-c{width:124px;}
+  .vgrp .vcv-n{font-size:.78rem;}
+  .vgrp .vcv-r{font-size:.72rem;}
+  .vcv{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:12px;overflow-x:auto;margin:4px 0 18px;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
+  .vcv-c{flex:0 0 auto;width:104px;text-align:center;}
+  .vcv-p{display:block;width:100%;height:auto;margin:0 0 6px;}
+  .vcv-n{font-weight:600;font-size:.8rem;line-height:1.25;color:var(--marine);margin:0 0 2px;}
+  .vcv-r{font-size:.74rem;line-height:1.25;color:var(--accent);margin:0 0 4px;}
+  .vtrp{font-size:.82rem;color:var(--marine);margin:-2px 0 14px;}
+  .vgrp{margin-top:14px;}
+  .vgrp-t{font-size:.72rem;color:var(--gris);letter-spacing:.04em;margin:0 0 6px;}
+  .vcv-c ul{margin:0 0 6px;padding-left:1em;font-size:.72rem;line-height:1.35;text-align:left;}
+  .vcv-v{display:flex;flex-wrap:wrap;gap:8px;font-size:.8rem;}
+  .vcv-v a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+  .vtroupe{margin:2px 0 14px;}
+  .vtroupe img{display:block;width:100%;max-width:900px;height:auto;}
+  .vtroupe figcaption{font-size:.72rem;color:var(--gris);margin-top:6px;letter-spacing:.04em;}
+  .vdate{display:flex;flex-direction:column;gap:2px;border-left:3px solid var(--accent);background:#fdeceb;padding:10px 14px;margin-bottom:8px;}
+  a.vdate{text-decoration:none;cursor:pointer;transition:background .2s;}
+  a.vdate:hover,a.vdate:focus{background:#f9d6d3;}
+  .vdate b{font-size:.74rem;color:var(--accent);font-weight:500;margin-top:4px;}
+  .vdate.vplein{background:#f1efea;border-left-color:#9a9a9a;}
+  .vdate.vplein b{color:#6b7280;font-weight:600;}
+  .vdate strong{font-size:1rem;color:var(--marine);font-weight:500;}
+  .vdate span{font-size:.74rem;color:var(--gris);}
+  /* Encadré unique date + lieu + troupe */
+  .vcarte{background:#fdeceb;border-left:3px solid var(--accent);padding:12px 14px;margin-bottom:12px;}
+  .vcarte.vplein{background:#f1efea;border-left-color:#9a9a9a;}
+  .vcarte .vdate{background:none!important;border:0;padding:0;margin:0;}
+  .vcarte .vlieu{margin:8px 0 0;color:var(--marine);}
+  .vcarte .vlieu a{color:var(--marine);}
+  .vcarte .vtrp{margin:6px 0 0;font-size:.82rem;color:var(--marine);}
+  .vtbtn{display:inline-block;margin-top:10px;font:inherit;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--marine);background:var(--blanc-pur);border:1px solid var(--marine);padding:7px 14px;cursor:pointer;border-radius:2px;}
+  .vtbtn:hover{background:var(--marine);color:var(--blanc-pur);}
+  .vtsolo{margin:0 0 12px;}
+  .vbody.vtz .vcarte .vtbtn{display:none;}
+  .vgrp.vtz:has(.vcarte) .vtsolo{display:none;}
+  .vdates + .vtsolo{margin:-2px 0 14px;}
+  .vap{padding-top:28px;}
+  .vap-g{display:grid;gap:18px;padding:0!important;margin-top:14px;}
+  @media(min-width:820px){.vap-g{grid-template-columns:1fr 1fr;}}
+  #avant-premieres .vgrp{border:2px solid var(--accent);background:var(--blanc-pur);padding:16px;margin:0;}
+  #avant-premieres .vgrp:not(:has(.vdates)){display:none;}
+  #avant-premieres .vgrp-t{font-size:1rem;letter-spacing:.08em;color:var(--marine);font-weight:700;margin:0 0 10px;}
+  #avant-premieres .vcarte .vdate strong{font-size:1.45rem;font-weight:600;}
+  #avant-premieres .vcarte .vdate span{font-size:.85rem;}
+  #avant-premieres .vtbtn,#avant-premieres .vtmini,#avant-premieres .vtsolo{display:none!important;}
+  #avant-premieres .vcad,#avant-premieres .vprev{grid-column:1/-1;font-size:.95rem;}
+  .vtmini{display:inline-block;vertical-align:middle;width:110px;height:auto;margin:10px 12px 0 0;cursor:pointer;border:1px solid var(--gris-clair);}
+  .vtmini + .vtbtn{vertical-align:middle;}
+  .vbody.vtz .vcarte .vtmini,.vtopen .vtmini{display:none;}
+  /* « Choisir cette date » en gros bouton (05/10) */
+  .vdate b{display:inline-block;align-self:flex-start;font-size:1.05rem!important;font-weight:700!important;color:#fff!important;background:var(--accent);padding:9px 18px;border-radius:3px;margin-top:10px!important;letter-spacing:.02em;}
+  a.vdate:hover b{filter:brightness(.9);}
+  .vdate.vplein b{background:#9a9a9a;}
+  /* Troupe toujours visible, à droite des dates (05/10) */
+  .vtsolo,.vtbtn,.vtmini{display:none!important;}
+  .vtz:has(> .vmedia, > .vcv){background:#fdeceb;border-left:3px solid var(--accent);padding:14px;margin-bottom:14px;}
+  .vtz:has(> .vmedia, > .vcv) .vcarte{background:transparent;border-left:0;padding:0 0 10px;margin:0 0 10px;border-bottom:1px dashed rgba(0,0,0,.15);}
+  .vtz:has(> .vmedia, > .vcv) .vcarte:last-child{border-bottom:0;margin-bottom:0;}
+  .vtz .vmedia{display:flex;gap:12px;align-items:flex-start;margin:0;}
+  .vtz .vmedia .vtroupe,.vbody.vtz .vmedia .vtroupe{float:none;flex:0 0 50%;width:auto;max-width:none;margin:0;}
+  .vtz .vmedia .vcv,.vtz > .vcv{flex:1;display:flex;flex-wrap:wrap;gap:8px;margin:0;overflow:visible;}
+  .vtz .vcv-c,.vtz .vmedia .vcv-c{width:92px!important;margin:0!important;display:block!important;}
+  .vtz .vcv-ph{position:relative;display:flex;gap:4px;justify-content:center;}
+  .vtz .vcv-ph .vcv-p{width:auto!important;height:150px!important;max-width:none!important;margin:0!important;cursor:zoom-in;}
+  @media(max-width:759px){.vtz .vcv-c,.vtz .vmedia .vcv-c{width:100%!important;}.vtz .vcv-ph .vcv-p{height:auto!important;max-height:170px!important;max-width:32%!important;}}
+  
+  .vtz .vcv-nb{bottom:8px;}
+  @media(min-width:760px){
+    .vtz:has(> .vmedia, > .vcv){display:grid;grid-template-columns:minmax(230px,300px) 1fr;grid-template-areas:"t t" "d m" "c c" "p p";column-gap:22px;row-gap:14px;align-items:start;}
+    .vtz:has(> .vmedia, > .vcv) > *{grid-area:p;}
+    .vtz:has(> .vmedia, > .vcv) > .vgrp-t{grid-area:t;margin:0;}
+    .vtz:has(> .vmedia, > .vcv) > .vdates,.vtz:has(> .vmedia, > .vcv) > .vavenir{grid-area:d;}
+    .vtz:has(> .vmedia, > .vcv) > .vmedia{display:contents;}
+    .vtz:has(> .vmedia, > .vcv) .vtroupe,.vbody.vtz:has(> .vmedia) .vmedia .vtroupe{grid-area:m;width:100%;max-width:620px;margin:0;}
+    .vtz:has(> .vmedia, > .vcv) .vtroupe img{width:auto;max-width:100%;max-height:440px;}
+    .vtz:has(> .vmedia, > .vcv) .vcv{grid-area:c;gap:12px;}
+    .vtz:has(> .vmedia, > .vcv) .vcv-c,.vtz .vmedia .vcv-c{width:auto!important;}
+  }
+  @media(max-width:759px){.vtz .vmedia{display:block;}.vtz .vmedia .vtroupe,.vbody.vtz .vmedia .vtroupe{width:100%;margin:12px 0 10px;}.vtz .vcv-c,.vtz .vmedia .vcv-c{width:100%!important;}}
+  .vtz:not(:has(.vmedia,.vcv,.vtroupe)) .vtbtn{display:none;}
+  .vlieu{font-size:.82rem;color:var(--marine);margin:-4px 0 12px 17px;line-height:1.45;}
+  /* Plusieurs séances au même lieu : une seule carte, horaires en petits boutons (08/10) */
+  .vmulti .vmh{margin:0 0 8px;font-size:.95rem;font-weight:700;color:var(--marine);}
+  .vjour{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:7px 0;border-top:1px dashed rgba(0,0,0,.15);}
+  .vjour:first-of-type{border-top:0;}
+  .vj{flex:0 0 auto;min-width:10.5em;white-space:nowrap;line-height:1.2;font-size:.95rem;color:var(--marine);font-weight:600;}
+  .vhs{display:flex;flex-wrap:wrap;gap:6px;}
+  .vcarte a.vdate.vh,.vcarte span.vdate.vh{display:inline-flex;flex-direction:column;align-items:center;background:var(--accent)!important;color:#fff;font-weight:700;font-size:1rem;padding:7px 14px;border-radius:3px;text-decoration:none;line-height:1.15;}
+  .vcarte a.vdate.vh:hover{filter:brightness(.9);}
+  .vcarte span.vdate.vh{background:#9a9a9a!important;cursor:default;}
+  .vdate.vh small{font-size:.66rem;font-weight:500;}
+  .vmulti .vlieu{margin-top:10px;}
+  .vlieu a{color:var(--accent);text-decoration:underline;}
+  .vavenir{font-size:.9rem;color:var(--gris);font-style:italic;margin:0 0 8px;}
+  .vcad{font-size:.8rem;color:var(--gris);margin:4px 0 8px;}
+  .vprev{font-size:.78rem;color:var(--accent);text-decoration:underline;}
+  /* Infos de la ville choisie dans le formulaire (07/10) */
+  #f-info .vlist{margin:0;border:0;}
+  #f-info .vbloc-t,#f-info details.vd > summary,#f-info .vprev,#f-info .vnl{display:none!important;}
+  #f-info details.vd{display:none;border:0;background:none;}
+  #f-info details.vd.vd-on{display:block;}
+  #f-info .vbody{padding:0;}
+  /* Formulaire : dates à gauche d'abord, photos compactes à droite (07/10) */
+  #f-info .vtz:has(> .vmedia, > .vcv){display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);grid-template-areas:none!important;column-gap:18px;row-gap:4px;align-items:start;padding:12px!important;}
+  #f-info .vtz:has(> .vmedia, > .vcv) > *{grid-column:1!important;grid-area:auto!important;}
+  #f-info .vtz:has(> .vmedia, > .vcv) > .vmedia,#f-info .vtz:has(> .vmedia, > .vcv) > .vcv{grid-column:2!important;grid-row:1 / span 8!important;}
+  #f-info .vtz .vmedia{display:flex!important;flex-wrap:wrap;gap:6px;align-items:flex-start;align-content:flex-start;margin:0;}
+  #f-info .vtz .vtroupe,#f-info .vbody.vtz .vmedia .vtroupe{flex:0 0 auto!important;width:auto!important;max-width:100%!important;margin:0!important;grid-area:auto!important;}
+  #f-info .vtz .vtroupe img{height:110px!important;width:auto!important;max-width:100%!important;max-height:none!important;cursor:zoom-in;}
+  #f-info .vtz .vtroupe figcaption{display:none;}
+  #f-info .vtz .vcv{display:flex!important;flex-wrap:wrap;gap:6px!important;flex:1 1 100%;margin:0!important;grid-area:auto!important;}
+  #f-info .vtz .vcv-c,#f-info .vtz .vmedia .vcv-c{width:58px!important;margin:0!important;}
+  #f-info .vtz .vcv-ph .vcv-p{height:66px!important;width:auto!important;max-width:100%!important;object-fit:contain;}
+  #f-info .vtz .vcv-ph .vcv-p:not(:first-child){display:none!important;}
+  #f-info .vtz .vcv-n{font-size:.6rem;line-height:1.2;margin:2px 0 0;}
+  #f-info .vtz .vcv-r{font-size:.56rem;line-height:1.2;margin:0;}
+  #f-info .vtz .vcv ul,#f-info .vtz .vcv-v{display:none;}
+  @media(max-width:640px){#f-info .vtz:has(> .vmedia, > .vcv){grid-template-columns:1fr;}
+    #f-info .vtz:has(> .vmedia, > .vcv) > .vmedia,#f-info .vtz:has(> .vmedia, > .vcv) > .vcv{grid-column:1!important;grid-row:auto!important;}
+    #f-info .vtz .vtroupe img{height:90px!important;}}
+  .pcap{margin:0;padding:5px 8px 6px;font-size:.66rem;line-height:1.4;color:var(--gris);background:var(--blanc-pur);font-style:italic;}
+  .perso .pimg img{height:auto;object-fit:initial;}
+  .perso .pbody{padding:1.4rem 1.5rem 1.6rem;}
+  .perso h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--marine);margin-bottom:.3rem;}
+  .perso .ptag{font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;display:block;}
+  .perso p{font-size:.86rem;color:var(--gris);line-height:1.7;}
+
+  .punchlines{display:flex;align-items:flex-start;gap:14px;margin-top:2rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:10px;scrollbar-width:thin;}
+.punchlines .punch{flex:0 0 41%;max-width:170px;scroll-snap-align:start;padding:.75rem .8rem;}
+.punchlines .punch p{font-size:.85rem;}
+.punchlines .punch .who{font-size:.6rem;}
+.punchlines .pimg{display:flex;justify-content:center;background:#111;}
+.punchlines .pimg img{width:auto;max-width:100%;max-height:150px;}
+.rslide{position:relative;}
+.rnav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:1px solid var(--marine);background:#fff;color:var(--marine);font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15);}
+.rprev{left:-6px;} .rnext{right:-6px;}
+  .punch{background:var(--blanc-pur);border-left:3px solid var(--accent);padding:1.5rem 1.6rem;}
+  .punch p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;font-style:italic;color:var(--marine);line-height:1.35;}
+  .punch .who{margin-top:.7rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);font-style:normal;font-family:'Outfit',sans-serif;font-weight:500;}
+
+  .galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:2rem;}
+  .galerie img{display:block;width:100%;height:230px;object-fit:cover;border:1px solid var(--gris-clair);background:var(--blanc-pur);}
+  @media(max-width:640px){.galerie{grid-template-columns:repeat(2,1fr);}.galerie img{height:150px;}}
+
+  .agenda{background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:2rem;margin-top:2rem;}
+  .agenda h3{font-size:1rem;font-weight:600;color:var(--marine);margin-bottom:.6rem;}
+  .agenda p{font-size:.9rem;color:var(--gris);}
+
+  .contact-final{padding:52px 0 70px;text-align:center;border-bottom:none;}
+  .contact-final h2{margin-bottom:.8rem;}
+  .contact-final p{color:var(--gris);font-size:.92rem;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:1.6rem;}
+  .cta-row a{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:14px 26px;text-decoration:none;border-radius:2px;}
+  .cta-row a.sombre{background:var(--marine);}
+  .liens{margin-top:1.6rem;font-size:.86rem;}
+  .liens a{color:var(--texte);text-decoration:underline;}
+  .autrement{background:var(--blanc-pur);border:1px solid var(--gris-clair);border-left:3px solid var(--or);padding:1.9rem 2rem;margin-top:2rem;}
+  .autrement h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--marine);margin-bottom:1rem;}
+  .autrement ul{list-style:none;display:grid;gap:1rem;}
+  .autrement li{font-size:.9rem;color:var(--gris);line-height:1.7;padding-left:1.1rem;position:relative;}
+  .autrement li::before{content:"";position:absolute;left:0;top:.7rem;width:5px;height:5px;background:var(--accent);}
+  .autrement li b{color:var(--texte);font-weight:500;}
+
+  .form-sec{background:var(--blanc-pur);}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:720px;margin-top:1.6rem;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);}
+  input,select{background:var(--blanc);border:1px solid var(--gris-clair);color:var(--texte);font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:300;padding:12px 14px;border-radius:2px;outline:none;transition:border-color .25s;width:100%;}
+  input:focus,select:focus{border-color:var(--accent);}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:15px 30px;border:none;border-radius:2px;cursor:pointer;margin-top:1.6rem;transition:background .25s;}
+  .btn:hover{background:#b8211a;}
+  .btn[disabled]{opacity:.55;cursor:default;}
+  .note{font-size:.82rem;color:var(--gris);margin-top:1rem;font-style:italic;}
+  .repets{border-top:1px solid var(--gris-clair)}
+.fac{color:var(--gris);font-size:.72rem;font-weight:400;}
+.refus{display:flex;gap:7px;align-items:center;font-size:.7rem;line-height:1.5;font-weight:400;color:var(--gris);margin:6px 0 0;cursor:pointer}
+.refus input{width:12px;height:12px;margin:0;flex-shrink:0}
+.sous{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--marine);margin:2.4rem 0 .5rem}
+.retour{background:var(--blanc-pur)}
+.cafet{padding:34px 0}
+.cafet-box{background:var(--blanc-pur);border-left:3px solid var(--or);padding:22px 24px}
+.cafet-box .sous{margin:.3rem 0 .6rem}
+.cafet-box .lead{margin-bottom:.7rem}
+.early{background:#fdeceb;border-left:3px solid var(--accent);padding:12px 15px;margin:14px 0 0;font-size:.9rem;line-height:1.55;}
+.mention-part{font-size:.7rem;line-height:1.5;color:var(--gris);background:none;border:0;border-top:1px solid var(--gris-clair);padding:12px 0 0;margin:1.6rem 0 0;}
+.optin{display:flex;gap:11px;align-items:flex-start;background:var(--blanc-pur);border:1px solid var(--gris-clair);padding:14px;margin:0 0 12px;font-size:.85rem;line-height:1.55;cursor:pointer;}
+.optin input{width:19px;height:19px;margin:2px 0 0;flex-shrink:0;}
+.tarifs{max-width:720px;margin-top:1.4rem;border:1px solid var(--gris-clair);background:var(--blanc-pur);padding:16px 18px;border-radius:2px}
+.refus .petit{font-size:.68rem;line-height:1.45;text-transform:none;letter-spacing:0;font-weight:400;color:var(--gris);}
+.bulle{position:relative;display:block;width:fit-content;max-width:440px;margin:0 auto 2.2rem;background:#ffe45c;border:2px solid #161616;border-radius:46px;padding:14px 24px;text-align:center;font-family:'Outfit',sans-serif;font-size:clamp(.98rem,3.2vw,1.15rem);font-weight:600;line-height:1.3;color:#161616;}
+.bulle b{display:block;font-weight:800;}
+.bulle::before{content:"";position:absolute;left:34px;bottom:-16px;border-left:12px solid transparent;border-right:12px solid transparent;border-top:16px solid #161616;transform:skewX(-25deg);}
+.bulle::after{content:"";position:absolute;left:36px;bottom:-12px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:13px solid #ffe45c;transform:skewX(-25deg);}
+.bulles2{display:flex;flex-wrap:nowrap;gap:12px;justify-content:center;align-items:flex-start;margin:0 auto 2.2rem;}
+.bulles2 .bulle{margin:0;flex:1 1 0;max-width:320px;}
+@media(max-width:520px){.bulles2 .bulle{font-size:.86rem;padding:12px 12px;border-radius:30px;}}
+.bulles2 .bulle-d::before{left:auto;right:34px;transform:skewX(25deg);}
+.bulles2 .bulle-d::after{left:auto;right:36px;transform:skewX(25deg);}
+.tclause{font-size:.8rem;line-height:1.55;color:var(--texte);margin:0 0 12px}
+.photonote{font-size:.7rem;line-height:1.45;color:#777;margin:.6rem 0 0}
+.tarif{text-transform:none;letter-spacing:normal;font-weight:400;color:var(--texte);display:flex;gap:10px;align-items:flex-start;font-size:.88rem;line-height:1.45;padding:9px 10px;margin:6px 0;cursor:pointer;border:1px solid transparent;border-radius:2px}
+.tarif input{width:18px;height:18px;padding:0;margin:3px 0 0;flex-shrink:0}
+.tarif.star{font-size:1.1rem;border-color:var(--accent);background:#fdf1ef}
+.tarif.star b{color:var(--accent)}
+.tarif.sans{font-size:.8rem;color:var(--gris)}
+.tarif.privilege{font-size:.8rem;color:var(--gris);align-items:flex-start;position:relative}
+.tarif.privilege small{display:block;font-size:.78rem;color:var(--gris);margin-top:2px}
+.priv-i{display:inline-block;margin-top:3px;font-size:.78rem;color:var(--accent);text-decoration:underline;cursor:pointer}
+.privpop{position:absolute;left:30px;right:0;top:100%;z-index:30;background:var(--blanc-pur);border:1px solid var(--accent);border-radius:4px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:14px 16px;font-size:.86rem;line-height:1.5;color:var(--texte);max-width:460px}
+.privpop[hidden]{display:none}
+.privpop h4{margin:0 0 8px;font-size:.98rem;color:var(--accent)}
+.privpop ul{margin:0 0 10px;padding-left:1.1rem}.privpop li{margin:3px 0}
+.privpop a{color:var(--accent)}
+.privpop .fin{margin:0;font-weight:600}
+
+.tsep{border:0;border-top:1px dashed var(--gris-clair);margin:10px 0}
+.codelien{display:inline-block;font-size:.72rem;color:var(--gris);margin-top:10px;text-decoration:underline}
+.codeinput{font-size:.8rem;padding:5px 8px;width:160px;margin-top:6px}
+.msg{margin-top:1.2rem;font-size:.92rem;font-weight:500;display:none;padding:14px 16px;border-radius:2px;}
+  .msg.ok{display:block;background:#eef7ee;border:1px solid #bcd9bc;color:#22622a;}
+  .msg.ko{display:block;background:#fdeceb;border:1px solid #f0bcb8;color:#a3231b;}
+  .cadeau{margin-top:1.4rem;border-top:1px dashed var(--gris-clair);padding-top:1rem;}
+  .cadeau summary{cursor:pointer;font-weight:500;color:var(--accent);list-style:none;font-size:.95rem;}
+  .cadeau summary::-webkit-details-marker{display:none;}
+  .cadeau .cbody{margin-top:.8rem;}
+  .cadeau .cbody p{font-size:.9rem;margin-bottom:.6rem;}
+  .early{background:var(--marine);color:#fff;padding:1.7rem 1.8rem;margin-top:1.8rem;border-left:3px solid var(--or);}
+  .early h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;margin-bottom:.5rem;color:#fff;}
+  .early p{font-size:.9rem;color:#e4e0d6;line-height:1.7;}
+  .early p strong{color:var(--or);font-weight:600;}
+  @media(max-width:640px){.fgrid{grid-template-columns:1fr;}}
+</style>
+<link rel="canonical" href="https://onvousrappellera.fr/">
+<style id="ovr-large">
+/* Mise en page élargie pour grands écrans (sans effet sur téléphone) */
+.wrap{max-width:1200px}
+.recit{max-width:680px;margin:1.6rem auto 0;text-align:left;opacity:0;animation:fadeUp .6s .45s forwards}
+.recit p{font-size:1rem;color:#2b2b2b;margin:0 0 .75rem;line-height:1.6}
+.recit .pitch-txt{text-align:justify}
+.recit .annonce{text-align:center;text-wrap:balance}
+.recit .annonce span{display:block}
+@media(min-width:900px){.recit .annonce{white-space:nowrap;width:max-content;position:relative;left:50%;transform:translateX(-50%)}}
+.recit strong{color:var(--texte);font-weight:600}
+.recit .chute{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--marine);margin-top:1.2rem;font-style:italic}
+.persos-pitch{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.persos-pitch li{font-size:.92rem;color:var(--texte);line-height:1.35;background:#fff;border:1px solid var(--gris-clair);border-left:3px solid var(--accent);padding:7px 12px}
+.persos-pitch.avec-photos{display:block}
+.persos-pitch.avec-photos li{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid var(--gris-clair);border-left:3px solid var(--accent);padding:10px 12px;margin:0 0 8px}
+.persos-pitch .pp-role{flex:0 0 190px;font-weight:600;color:var(--texte);font-size:.92rem;line-height:1.35;align-self:center}
+.persos-pitch .pp-cast{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;min-width:0;flex:1;scrollbar-width:thin}
+.persos-pitch .pp-c{flex:0 0 74px;text-align:center;font-size:.66rem;line-height:1.25;color:#444}
+.persos-pitch .pp-c img{display:block;width:74px;height:98px;object-fit:contain;background:#111;border-radius:3px;margin:0 auto 3px}
+.persos-pitch .pp-c b{display:block;color:#161616;font-weight:600}
+@media(max-width:640px){.persos-pitch.avec-photos li{flex-direction:column;gap:8px}.persos-pitch .pp-role{flex:none;align-self:auto}.persos-pitch .pp-cast{width:100%}}
+
+.hero .sub,p.lead,.eco,ul.liste{max-width:820px}
+.video-box{max-width:1000px}
+.affiche{max-width:560px}
+.quoteband blockquote{max-width:960px}
+.assur,.combo{max-width:1100px}
+.perso-bio{max-width:1000px}
+</style>
+<style>.vgal{display:flex;gap:16px;align-items:flex-start;margin:2rem auto 0;width:100%}.vg-main{flex:0 0 400px;max-width:400px}.vg-main video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#fff;border:1px solid #ddd;box-shadow:0 14px 40px rgba(22,22,22,.14)}.vg-grid{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.vg-th{position:relative;aspect-ratio:1/1;padding:0;border:1px solid #ddd;background:#fff center/cover no-repeat;cursor:pointer;box-shadow:0 6px 18px rgba(22,22,22,.12)}.vg-th:after{content:"";position:absolute;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#d51e29 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 6l10 6-10 6z'/%3E%3C/svg%3E") center/26px no-repeat;box-shadow:0 4px 12px rgba(0,0,0,.25)}.vg-th span{position:absolute;left:0;right:0;bottom:0;padding:6px 8px;background:rgba(255,255,255,.92);color:#161616;font-size:13px;font-weight:600;text-align:left}.vg-box{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}.vg-box.on{display:flex}.vg-box video{max-height:90vh;max-width:100%;height:auto;background:#000}.vg-x{position:absolute;top:12px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#d51e29;color:#fff;font-size:28px;line-height:40px;cursor:pointer}@media(max-width:760px){.vgal{flex-direction:column;align-items:center}.vg-main{flex:none;width:100%}.vg-grid{width:100%;grid-template-columns:repeat(2,1fr)}}.vgal.seule{justify-content:center}</style>
+</head>
+<body>
+<div id="ovr-topmenu" style="background:#fff;text-align:right;padding:8px 16px;font:500 12.5px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.02em;border-bottom:1px solid #eee"><a href="/" style="color:#161616;font-weight:600;text-decoration:none;margin-left:18px">Grand public</a><a href="/entreprises.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Conventions d'entreprises</a><a href="/franchise.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Développement d'enseigne</a><a href="/livres.html" style="color:#777;text-decoration:none;margin-left:18px;white-space:nowrap">Les livres</a><a href="/casting.html" style="color:#777;text-decoration:none;margin-left:18px;font-size:10.5px;opacity:.8">Casting</a><a href="mailto:contact@onvousrappellera.fr" style="color:#d51e29;text-decoration:none;margin-left:18px;white-space:nowrap">✉ <span class="ct-long">contact@onvousrappellera.fr</span><span class="ct-short">Contact</span></a><style>.ct-short{display:none}@media(max-width:700px){.ct-long{display:none}.ct-short{display:inline}}</style><button type="button" id="nlx-btn" aria-expanded="false" aria-controls="nlx-box">Recevoir les actus de la pièce</button></div><style id="ovr-topmenu-mobile">@media(max-width:700px){#ovr-topmenu{display:grid!important;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px!important;text-align:center!important;line-height:1.3!important}#ovr-topmenu a{display:flex;align-items:center;justify-content:center;margin:0!important;white-space:normal!important;padding:9px 6px;border:1px solid #e3e3e3;border-radius:6px;font-size:13.5px!important;opacity:1!important;color:#444!important;min-height:40px;box-sizing:border-box}#ovr-topmenu a[href="/casting.html"]{font-size:12.5px!important}#ovr-topmenu a[style*="font-weight:600"]{color:#161616!important;border-color:#161616;font-weight:700!important}#ovr-topmenu #nlx-btn{grid-column:1/-1;display:block;width:100%;margin:2px 0 0!important;padding:11px 12px;font-size:14px}}</style>
+<div id="nlx-box" hidden>
+  <p class="nlx-t">Les actualités de la pièce, et la date dans votre ville dès qu'elle est fixée.</p>
+  <select id="nlx-ville" aria-label="Votre ville"><option value="">— Votre ville —</option><option>Paris</option><option>Lyon</option><option>Marseille</option><option>Toulouse</option><option>Lille</option><option>Bordeaux</option><option>Nantes</option><option>Rennes</option><option>Montpellier</option><option>Nice</option><option>Strasbourg</option><option>Grenoble</option><option>Rouen</option><option>Toulon</option><option>Saint-Étienne</option><option>Tours</option><option>Clermont-Ferrand</option><option>Nancy</option><option>Reims</option><option>Angers</option><option value="Autre ville">Une autre ville</option></select>
+  <input id="nlx-autre" type="text" placeholder="Laquelle ?" aria-label="Votre ville" style="display:none">
+  <input id="nlx-email" type="email" placeholder="Votre email" autocomplete="email" aria-label="Votre email">
+  <input id="nlx-site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+  <button type="button" id="nlx-go">Je m'inscris &rarr;</button>
+  <div id="nlx-msg"></div>
+</div>
+<style>
+#ovr-topmenu{position:relative}
+#nlx-btn{margin-left:18px;background:#d8281f;color:#fff;border:0;border-radius:2px;padding:6px 12px;font:600 12px/1.3 -apple-system,Segoe UI,Roboto,sans-serif;cursor:pointer}
+#nlx-box{position:absolute;right:16px;top:44px;z-index:50;width:320px;max-width:calc(100% - 32px);background:#fff;border:1px solid #e7e2d8;box-shadow:0 12px 32px rgba(22,22,22,.18);padding:16px;display:flex;flex-direction:column;gap:10px;font-family:'Outfit',sans-serif}
+#nlx-box[hidden]{display:none}
+#nlx-box .nlx-t{font-size:.9rem;line-height:1.45;color:#1c1c1c}
+#nlx-box select,#nlx-box input{width:100%;border:1px solid #cfc9bd;padding:10px 12px;font:300 .95rem 'Outfit',sans-serif;background:#fff;border-radius:2px}
+#nlx-go{background:#d8281f;color:#fff;border:0;padding:12px;font:600 .8rem 'Outfit',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px}
+#nlx-go:disabled{opacity:.6}
+#nlx-msg{font-size:.88rem;font-weight:500}
+#nlx-msg.ok{color:#22622a}#nlx-msg.ko{color:#a3231b}
+@media(max-width:640px){#ovr-topmenu{text-align:center;line-height:2.2}#nlx-btn{display:block;margin:6px auto 0}#nlx-box{left:16px;right:16px;width:auto;max-width:none;top:auto}}
+</style>
+<script>
+(function(){
+  var g=function(i){return document.getElementById(i);}, box=g('nlx-box'), b=g('nlx-btn'), go=g('nlx-go'), m=g('nlx-msg');
+  function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function say(c,t){m.className=c;m.innerHTML=t;}
+  window.ovrNL=function(ville){ var sv=g('nlx-ville'); sv.value=ville; if(sv.value!==ville){ sv.value='Autre ville'; g('nlx-autre').value=ville; }
+    g('nlx-autre').style.display=sv.value==='Autre ville'?'':'none';
+    box.hidden=false; b.setAttribute('aria-expanded','true'); window.scrollTo({top:0,behavior:'smooth'}); setTimeout(function(){ g('nlx-email').focus({preventScroll:true}); },400); };
+  b.addEventListener('click',function(){ box.hidden=!box.hidden; b.setAttribute('aria-expanded',String(!box.hidden)); if(!box.hidden) g('nlx-ville').focus(); });
+  g('nlx-ville').addEventListener('change',function(){ g('nlx-autre').style.display=this.value==='Autre ville'?'':'none'; });
+  go.addEventListener('click',function(){
+    var v=g('nlx-ville').value, e=g('nlx-email').value.trim(), a=g('nlx-autre').value.trim(), src=new URLSearchParams(location.search).get('src');
+    if(!v){ say('ko','Merci de choisir votre ville.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(e)){ say('ko','Votre adresse email semble incorrecte.'); return; }
+    go.disabled=true; say('ok','Envoi en cours…');
+    fetch('https://thierryb.app.n8n.cloud/webhook/ovr-newsletter',{method:'POST',headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({email:e, ville:v, autre_ville:a, site_web:g('nlx-site').value, source:'accueil — bouton newsletter'+(src?' ('+src+')':'')})})
+      .then(function(r){return r.json();})
+      .then(function(d){ if(d&&d.ok){ ['nlx-ville','nlx-autre','nlx-email','nlx-go'].forEach(function(i){g(i).style.display='none';}); box.querySelector('.nlx-t').style.display='none';
+          say('ok','C\'est noté ! Vous recevrez les actualités de la pièce, et la date à <b>'+esc(v==='Autre ville'?(a||'votre ville'):v)+'</b> dès qu\'elle est fixée. Un email de confirmation vient de vous être envoyé.'); }
+        else { say('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); go.disabled=false; } })
+      .catch(function(){ say('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); go.disabled=false; });
+  });
+})();
+</script>
+
+<a id="avent-bandeau" href="/avent.html" hidden style="display:block;background:#161616;color:#fff;text-align:center;padding:12px 16px;font:600 15px/1.45 Poppins,Arial,sans-serif;text-decoration:none">🎄 Le calendrier de l'avent est ouvert ! Gratte ta case du jour et gagne des places, le livre, un dîner avec la troupe… <span style="color:#f3dc95;white-space:nowrap">Je joue →</span></a>
+<script>(function(){try{var d=new Intl.DateTimeFormat('fr-CA',{timeZone:'Europe/Paris'}).format(new Date());if((d>='2026-12-01'&&d<='2026-12-24')||/[?&]avent=1/.test(location.search)){document.getElementById('avent-bandeau').hidden=false;}}catch(e){}})();</script>
+<style>#avent-bandeau[hidden]{display:none!important}</style>
+<div id="seance-top" hidden style="background:#d8281f;color:#fff;text-align:center;padding:14px 16px;font:600 15px/1.45 Poppins,Arial,sans-serif"></div>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">La Compagnie MultiPotentieL présente</div>
+    <h1>ON VOUS RAPPELLERA</h1>
+    <div class="baseline">Ils ont mis le recrutement en pièce</div>
+    <div class="cta-row" style="margin-top:1.2rem"><a href="#prevenez-moi">Réserver mes places</a></div>
+    <div class="voc">
+      <p class="voc-t">Une comédie qui parle d'entreprise et d'emploi, c'est déjà rare.<br><b>Celle-ci a trois vocations.</b></p>
+      <div class="voc-i"><span class="voc-n">1</span><div><h3>Vous faire rire et passer une belle soirée</h3><p>C'est pour cela qu'elle a cartonné au Festival d'Avignon, puis dans 15 villes de France.</p></div></div>
+      <div class="voc-i"><span class="voc-n">2</span><div><h3>Faire réfléchir sur l'entreprise, le recrutement et l'emploi</h3><p>Écrite par un professionnel du recrutement et multi-entrepreneur, cette comédie est truffée de conseils, que vous soyez côté recruteur, côté candidat, côté manager ou patron.</p></div></div>
+      <div class="voc-i"><span class="voc-n">3</span><div><h3>Vous cherchez un emploi&nbsp;? Vous êtes une entreprise qui recrute&nbsp;?</h3><p>Une heure avant le lever de rideau, 5 entreprises montent sur scène pour présenter les postes qu'elles ont à pourvoir dans votre ville. Les spectateurs en recherche d'emploi peuvent donc venir 1&nbsp;h avant le lever de rideau pour assister à ces présentations. Après la pièce, direction le bar pour poursuivre les échanges et fixer des rendez-vous&nbsp;😀</p></div></div>
+    </div>
+    <div class="recit">
+      <p class="annonce"><em><span><b>ODYSSÉE BUREAUTIQUE</b> recrute commercial terrain. Vous êtes bac&nbsp;+5, pas trop jeune, pas trop vieux&nbsp;?</span><span>Venez vendre nos ramettes, stylos et imprimantes. (Ah&nbsp;oui… le patron préférerait une fille.)</span></em></p>
+      <p>Bienvenue chez <b>ODYSSÉE BUREAUTIQUE</b>&nbsp;:</p>
+      <ul class="persos-pitch"><li>son manager à foutre en taule</li><li>sa DRH au bord de la crise de nerfs</li><li>son petit nouveau qui en fait des tonnes</li><li>le candidat trop vieux pour le poste</li><li>le candidat idéal qui se fout de tout le monde</li><li>le psy barjot… Qu'est-ce qu'il fout là&nbsp;?</li></ul>
+      <p class="bulle" style="margin:0 auto 1.2rem;max-width:none">Vous les connaissez tous.<br>On a juste changé leurs noms.</p>
+      <p class="cast-t">Ils les jouent</p>
+      <div class="cast-strip" id="cast-strip"></div>
+    </div>
+    <style>
+    .voc{max-width:680px;margin:1.8rem auto 0;text-align:left}
+    .voc-t{text-align:center;font-size:1.08rem;line-height:1.5;margin:0 0 1rem;color:#1c1c1c}
+    .voc-t b{color:var(--accent)}
+    .voc-i{display:flex;gap:14px;align-items:flex-start;background:#fff;border-left:3px solid var(--accent);padding:12px 14px;margin:0 0 10px}
+    .voc-n{flex:0 0 34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:700;font-size:1.05rem}
+    .voc-i h3{margin:0 0 4px;font-size:1rem;line-height:1.3;color:#161616}
+    .voc-i p{margin:0;font-size:.95rem;line-height:1.55;color:#2b2b2b}
+    .cast-t{text-align:center;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:.4rem 0 .5rem}
+    .cast-strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+    .cast-strip .cs{flex:0 0 64px;text-align:center;font-size:.62rem;line-height:1.2;color:#444}
+    .cast-strip .cs img{display:block;width:64px;height:84px;object-fit:contain;background:#111;margin:0 auto 3px}
+    .cast-strip .cs b{display:block;color:#161616;font-weight:600}
+    </style>
+    <div class="vgal" id="vgal" aria-label="Vidéos de la pièce">
+      <div class="vg-main" id="vg-main"></div>
+      <div class="vg-slide"><button class="vg-nav" type="button" data-d="-1" aria-label="Vidéos précédentes">&lsaquo;</button><div class="vg-grid" id="vg-grid"></div><button class="vg-nav" type="button" data-d="1" aria-label="Vidéos suivantes">&rsaquo;</button></div>
+    </div>
+    <style>/* 21/11 : teaser plus petit, vignettes à côté (ordinateur) ; dessous en bande défilante (téléphone) */
+    #vgal{flex-direction:row;align-items:flex-start;justify-content:center;gap:18px;max-width:960px}
+    #vgal .vg-main{flex:0 0 260px;max-width:260px}
+    #vgal .vg-slide{position:relative;flex:1;min-width:0}
+    #vgal .vg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-height:462px;overflow-y:auto;padding:2px 6px 2px 2px;scrollbar-width:thin}
+    #vgal .vg-nav{display:none}
+    @media(max-width:760px){#vgal{flex-direction:column;align-items:center}#vgal .vg-main{flex:none;width:72%;max-width:260px}#vgal .vg-slide{width:100%}#vgal .vg-grid{display:flex;max-height:none;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory}#vgal .vg-th{flex:0 0 40%;scroll-snap-align:start}}
+    </style>
+    <div class="vg-box" id="vg-box" role="dialog" aria-modal="true" aria-label="Lecture de la vidéo"><button class="vg-x" type="button" aria-label="Fermer">&times;</button><video controls playsinline preload="none"></video></div>
+    <script>
+    /* Galerie vidéo — la 1re s'affiche en grand, les suivantes en vignettes. Pour en ajouter une : une ligne de plus, dans l'ordre d'affichage */
+    var VIDEOS=[
+      {src:"/assets/video/ovr-teaser-2026-officiel.mp4?v=20261119", poster:"/assets/video/ovr-teaser-2026-officiel.jpg?v=20261119", titre:"Teaser ON VOUS RAPPELLERA"},
+      {src:"/assets/insta/paris-repetitions/reel.mp4?v=20261108b", poster:"/assets/insta/paris-repetitions/reel.jpg", titre:"Les troupes de Paris en répétition"},
+      {src:"/assets/video/troupes/esprit-equipe-shooting.mp4?v=20261108", poster:"/assets/video/troupes/esprit-equipe-shooting.jpg", titre:"Jour de shooting — Esprit d'équipe"},
+      {src:"/assets/video/promo/v35-netflix-nantes.mp4", poster:"/assets/video/promo/v35-netflix-nantes.jpg", titre:"Vous habitez Nantes ?", des:"2026-11-30T17:00:00+01:00"},
+      {src:"/assets/video/promo/v34-resolutions-2027.mp4", poster:"/assets/video/promo/v34-resolutions-2027.jpg", titre:"En 2027, vous changez de job ?", des:"2026-11-29T17:00:00+01:00"},
+      {src:"/assets/video/promo/v33-netflix-lyon.mp4", poster:"/assets/video/promo/v33-netflix-lyon.jpg", titre:"Vous habitez Lyon ?", des:"2026-11-28T17:00:00+01:00"},
+      {src:"/assets/video/promo/v32-netflix-paris.mp4", poster:"/assets/video/promo/v32-netflix-paris.jpg", titre:"Vous habitez Paris ?", des:"2026-11-27T17:00:00+01:00"},
+      {src:"/assets/video/promo/v31-netflix-bordeaux.mp4", poster:"/assets/video/promo/v31-netflix-bordeaux.jpg", titre:"Vous habitez Bordeaux ?", des:"2026-11-26T17:00:00+01:00"},
+      {src:"/assets/video/promo/v30-vous-craquez.mp4", poster:"/assets/video/promo/v30-vous-craquez.jpg", titre:"Vous craquez pour elle (ou pour lui) ?", des:"2026-11-25T17:00:00+01:00"},
+      {src:"/assets/video/promo/v29-netflix-rennes.mp4", poster:"/assets/video/promo/v29-netflix-rennes.jpg", titre:"Vous habitez Rennes ?", des:"2026-11-24T17:00:00+01:00"},
+      {src:"/assets/video/promo/v28-secret-santa.mp4", poster:"/assets/video/promo/v28-secret-santa.jpg", titre:"Un Secret Santa ?", des:"2026-11-23T17:00:00+01:00"},
+      {src:"/assets/video/promo/v27-netflix-toulouse.mp4", poster:"/assets/video/promo/v27-netflix-toulouse.jpg", titre:"Vous habitez Toulouse ?", des:"2026-11-22T17:00:00+01:00"},
+      {src:"/assets/video/promo/v26-cadeau-noel.mp4", poster:"/assets/video/promo/v26-cadeau-noel.jpg", titre:"Offrez un moment", des:"2026-11-21T17:00:00+01:00"},
+      {src:"/assets/video/promo/v24-les-livres.mp4?v=20261108", poster:"/assets/video/promo/v24-les-livres.jpg?v=20261108", titre:"Les deux livres", des:"2026-11-30T08:30:00+01:00"},
+      {src:"/assets/video/promo/v22-avec-qui-vous-venez.mp4?v=20261108", poster:"/assets/video/promo/v22-avec-qui-vous-venez.jpg", titre:"Avec qui vous venez ?", des:"2026-11-28T08:30:00+01:00"},
+      {src:"/assets/video/promo/v21-on-tombe-le-masque.mp4?v=20261108", poster:"/assets/video/promo/v21-on-tombe-le-masque.jpg?v=3", titre:"On tombe le masque", des:"2026-11-26T08:30:00+01:00"},
+      {src:"/assets/video/promo/v20-autre-cote-du-bureau.mp4?v=20261108", poster:"/assets/video/promo/v20-autre-cote-du-bureau.jpg?v=3", titre:"De l'autre côté du bureau", des:"2026-11-24T08:30:00+01:00"},
+      {src:"/assets/video/promo/v19-cadeau-ados.mp4?v=20261108", poster:"/assets/video/promo/v19-cadeau-ados.jpg", titre:"Un cadeau pour vos ados", des:"2026-11-20T08:30:00+01:00"},
+      {src:"/assets/video/promo/v18-vous-cherchez-un-job.mp4?v=20261108", poster:"/assets/video/promo/v18-vous-cherchez-un-job.jpg", titre:"Vous cherchez un job ?", des:"2026-11-14T08:30:00+01:00"},
+      {src:"/assets/video/promo/v17-cadeau-noel.mp4?v=20261108", poster:"/assets/video/promo/v17-cadeau-noel.jpg", titre:"Un cadeau pour Noël", des:"2026-11-10T08:30:00+01:00"},
+      {src:"/assets/video/promo/v16-offrez-la-a-un-recruteur.mp4?v=20261108", poster:"/assets/video/promo/v16-offrez-la-a-un-recruteur.jpg", titre:"Offrez-la à un recruteur", des:"2026-11-06T08:30:00+01:00"},
+      {src:"/assets/video/promo/v15-delphine.mp4?v=20261108", poster:"/assets/video/promo/v15-delphine.jpg", titre:"Delphine", des:"2026-10-31T08:30:00+01:00"},
+      {src:"/assets/video/promo/v13-trouver-un-job.mp4?v=20261108", poster:"/assets/video/promo/v13-trouver-un-job.jpg", titre:"Trouver un job", des:"2026-10-25T08:30:00+01:00"},
+      {src:"/assets/video/promo/v14-pascal.mp4?v=20261108", poster:"/assets/video/promo/v14-pascal.jpg", titre:"Pascal", des:"2026-10-19T08:30:00+02:00"}
+    ];
+    /* Toutes les vidéos de la page visibles d emblée (19/10) */
+    (function(){
+      var main=document.getElementById('vg-main'), grid=document.getElementById('vg-grid'), box=document.getElementById('vg-box'), lv=box.querySelector('video');
+      var v0=VIDEOS[0];
+      main.innerHTML='<video controls playsinline preload="metadata" poster="'+v0.poster+'" title="'+v0.titre+'"><source src="'+v0.src+'" type="video/mp4">Votre navigateur ne lit pas cette vidéo : <a href="'+v0.src+'">ouvrir la vidéo</a>.</video>';
+      /* 19/10 : à la fin d'une vidéo, la suivante de la galerie s'enchaîne */
+      var cur=0;
+      function joue(i){ var v=VIDEOS[i]; if(!v) return; cur=i; main.querySelector('video').pause(); lv.poster=v.poster; lv.src=v.src; box.classList.add('on'); var pr=lv.play(); if(pr&&pr.catch) pr.catch(function(){}); }
+      main.querySelector('video').addEventListener('ended',function(){ joue(1); });
+      lv.addEventListener('ended',function(){ if(box.classList.contains('on') && cur>0 && cur<VIDEOS.length-1 && lv.currentSrc.indexOf(VIDEOS[cur].src)>=0) joue(cur+1); });
+      VIDEOS.slice(1).forEach(function(v){
+        var b=document.createElement('button'); b.type='button'; b.className='vg-th';
+        b.style.backgroundImage='url('+v.poster+')'; b.setAttribute('aria-label','Voir la vidéo : '+v.titre);
+        b.innerHTML='<span>'+v.titre+'</span>';
+        b.addEventListener('click',function(){ joue(VIDEOS.indexOf(v)); });
+        grid.appendChild(b);
+      });
+      document.querySelectorAll('#vgal .vg-nav').forEach(function(n){ n.addEventListener('click',function(){ grid.scrollBy({left:(+n.dataset.d)*grid.clientWidth*0.8,behavior:'smooth'}); }); });
+      if(VIDEOS.length<2){ grid.parentNode.style.display='none'; document.getElementById('vgal').classList.add('seule'); }
+      function fermer(){ lv.pause(); lv.removeAttribute('src'); lv.load(); box.classList.remove('on'); }
+      box.querySelector('.vg-x').addEventListener('click',fermer);
+      box.addEventListener('click',function(e){ if(e.target===box) fermer(); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&box.classList.contains('on')) fermer(); });
+    })();
+    </script>
+  </div>
+</header>
+
+<section class="form-sec" id="prevenez-moi">
+  <div class="wrap">
+    <span class="sec-tag">Réservations</span>
+    <h2>Réservez vos billets</h2>
+    <p class="lead">Choisissez votre séance, puis réservez vos places.</p><style>#f-seance{width:100%!important;max-width:100%!important}#f-date-wrap{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}#prevenez-moi .fgrid>.field{min-width:0}#f-info a.vdate,#f-info .vmh,#f-info .vjour,#f-info .vcarte>strong,#f-info .vcarte>span{display:none!important}.fe-case{display:none!important}#prevenez-moi .tarif.star,#prevenez-moi .tarif.privilege{font-size:.88rem!important;border-color:transparent!important;background:transparent!important;color:inherit!important}#prevenez-moi .tarif.star b{color:inherit!important}#prevenez-moi .tarif.privilege small{font-size:.88rem!important;color:inherit!important;display:block!important}#prevenez-moi .priv-i{display:block!important}#prevenez-moi .tarif:has(input:checked){border-color:var(--accent)!important;background:#fdf1ef!important}#f-info details.vd .vgrp.vtz,#f-info details.vd .vgrp,#f-info .vmedia{display:block!important;grid-template:none!important;grid-template-columns:1fr!important;width:auto!important;max-width:100%!important;min-width:0!important}#f-info details.vd,#f-info .vbody{min-width:0!important;max-width:100%!important;overflow:hidden}#f-info .vgal{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:auto!important;max-width:100%!important;min-width:0!important;overflow-x:auto;gap:8px;align-items:flex-start;padding-bottom:6px}#f-info .vgal-r{display:contents!important}#f-info .vgal-c{flex:0 0 auto!important;width:auto!important}#f-info .vgal-c img{height:150px!important;width:auto!important;max-width:none!important}</style>
+
+    <div class="fgrid">
+      <div class="field full"><label for="f-ville">Votre ville</label>
+        <select id="f-ville" required>
+          <option value="">— Choisissez votre ville —</option>
+        </select>
+      </div>
+      <div class="field full" id="f-info">
+    <div class="vlist">
+      <h3 class="vbloc-t">Nos troupes résidentes</h3>
+      <details class="vd" data-cvville="-"><summary>Paris<em>4 dates</em></summary><div class="vbody" id="vparis"><div class="vgrp" data-cvville="Paris" data-troupe="Engagement"><div class="vdates" data-ville="Paris" data-codes="tr:Engagement"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-engagement.jpg?v=20261107" alt="La troupe Engagement, à Paris" loading="lazy"><figcaption>La troupe Engagement</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Honnêteté"><div class="vdates" data-ville="Paris" data-codes="tr:Honnêteté"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-honnetete.jpg?v=20261115" alt="La troupe Honnêteté, à Paris" loading="lazy"><figcaption>La troupe Honnêteté</figcaption></figure></div><!--/vgrp--><div class="vgrp" data-cvville="Paris" data-troupe="Esprit d'équipe"><div class="vdates" data-ville="Paris" data-codes="tr:Esprit d'équipe"></div><figure class="vtroupe"><img src="assets/troupes/troupe-paris-esprit-d-equipe.jpg?v=1792436852950" alt="La troupe Esprit d'équipe, à Paris" loading="lazy"><figcaption>La troupe Esprit d'équipe</figcaption></figure></div><!--/vgrp--><a class="vprev" href="#prevenez-moi" data-ville="Paris">Être prévenu pour Paris &rarr;</a></div></details>
+      <details class="vd"><summary>Bordeaux<em>4 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Bordeaux"></div><figure class="vtroupe"><img src="assets/troupes/troupe-bordeaux.jpg?v=3" alt="La troupe de Bordeaux" loading="lazy"><figcaption>La troupe de Bordeaux — la même troupe joue aussi à Toulouse</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Bordeaux">Être prévenu pour Bordeaux &rarr;</a></div></details>
+      <details class="vd"><summary>Lyon<em>2 séances</em></summary><div class="vbody"><div class="vdates" data-ville="Lyon"></div><a class="vprev" href="#prevenez-moi" data-ville="Lyon">Être prévenu pour Lyon &rarr;</a></div></details>
+      <details class="vd"><summary>Nantes<em>Date à venir</em></summary><div class="vbody"><div class="vdates" data-ville="Nantes"></div><figure class="vtroupe" style="display:flex;flex-wrap:wrap;gap:6px"><img src="assets/troupes/troupe-nantes.jpg?v=1" alt="La troupe de Nantes" loading="lazy" data-ph="[&quot;assets/troupes/troupe-nantes.jpg?v=1&quot;,&quot;assets/troupes/troupe-nantes-2.jpg?v=1&quot;]" data-i="0" style="flex:1 1 45%;min-width:0"><img src="assets/troupes/troupe-nantes-2.jpg?v=1" alt="La troupe de Nantes" loading="lazy" data-ph="[&quot;assets/troupes/troupe-nantes.jpg?v=1&quot;,&quot;assets/troupes/troupe-nantes-2.jpg?v=1&quot;]" data-i="1" style="flex:1 1 45%;min-width:0"><figcaption style="flex-basis:100%">La troupe de Nantes</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Nantes">Être prévenu pour Nantes &rarr;</a></div></details>
+      <details class="vd"><summary>Toulouse<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Toulouse"></div><figure class="vtroupe"><img src="assets/troupes/troupe-bordeaux.jpg?v=3" alt="La troupe qui joue à Toulouse" loading="lazy"><figcaption>La troupe qui joue à Toulouse — la même troupe joue aussi à Bordeaux</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Toulouse">Être prévenu pour Toulouse &rarr;</a></div></details>
+      <details class="vd"><summary>Rennes<em>1 date</em></summary><div class="vbody"><div class="vdates" data-ville="Rennes"></div><figure class="vtroupe"><img src="assets/troupes/troupe-rennes.jpg?v=1791987028517" alt="La troupe de Rennes" loading="lazy"><figcaption>La troupe de Rennes</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Rennes">Être prévenu pour Rennes &rarr;</a></div></details>
+      <details class="vd"><summary>Montpellier<em>Dès janvier 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir.</p><figure class="vtroupe"><img src="assets/troupes/troupe-montpellier.jpg?v=1792701828929" alt="La troupe de Montpellier" loading="lazy"><figcaption>La troupe de Montpellier</figcaption></figure><a class="vprev" href="#prevenez-moi" data-ville="Montpellier">Être prévenu pour Montpellier &rarr;</a></div></details>
+      <details class="vd"><summary>Marseille<em>Dès janvier 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir.</p><a class="vprev" href="#prevenez-moi" data-ville="Marseille">Être prévenu pour Marseille &rarr;</a></div></details>
+      
+            <h3 class="vbloc-t">La tournée, à partir d'avril 2027</h3>
+      <details class="vd"><summary>Lille<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Lille">Être prévenu pour Lille &rarr;</a></div></details>
+      <details class="vd"><summary>Strasbourg<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Strasbourg">Être prévenu pour Strasbourg &rarr;</a></div></details>
+      <details class="vd"><summary>Grenoble<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Grenoble">Être prévenu pour Grenoble &rarr;</a></div></details>
+      <details class="vd"><summary>Rouen<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Rouen">Être prévenu pour Rouen &rarr;</a></div></details>
+      <details class="vd"><summary>Toulon<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Toulon">Être prévenu pour Toulon &rarr;</a></div></details>
+      <details class="vd"><summary>Saint-Étienne<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Saint-Étienne">Être prévenu pour Saint-Étienne &rarr;</a></div></details>
+      <details class="vd"><summary>Tours<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Tours">Être prévenu pour Tours &rarr;</a></div></details>
+      <details class="vd"><summary>Clermont-Ferrand<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Clermont-Ferrand">Être prévenu pour Clermont-Ferrand &rarr;</a></div></details>
+      <details class="vd"><summary>Nancy<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Nancy">Être prévenu pour Nancy &rarr;</a></div></details>
+      <details class="vd"><summary>Nice<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Nice">Être prévenu pour Nice &rarr;</a></div></details>
+      <details class="vd"><summary>Reims<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Reims">Être prévenu pour Reims &rarr;</a></div></details>
+      <details class="vd"><summary>Angers<em>Dès avril 2027</em></summary><div class="vbody"><p class="vavenir">Date à venir — à partir d'avril 2027. Laissez-nous vos coordonnées&nbsp;: vous serez prévenu dès que la date et le théâtre sont fixés.</p><a class="vprev" href="#prevenez-moi" data-ville="Angers">Être prévenu pour Angers &rarr;</a></div></details>
+    </div>
+      </div>
+      <div class="field full" id="f-autre-wrap" style="display:none"><label for="f-autre">Laquelle&nbsp;?</label><input id="f-autre" type="text" autocomplete="address-level2"></div>
+      <input id="f-site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+      <div class="field full" id="f-date-wrap" style="display:none"><label for="f-date">Date et horaire</label>
+        <select id="f-date"></select>
+      </div>
+      <div class="field full" id="soiree" style="display:none"><div style="background:#fff;border-left:4px solid var(--accent);padding:16px 18px;margin:.4rem 0">
+        <h3 style="margin:0 0 .5rem;font-family:'Cormorant Garamond',serif;font-size:1.35rem">Une soirée pas comme les autres</h3>
+        <p class="petit" style="margin:0 0 .5rem;color:#2b2b2b"><b>ON VOUS RAPPELLERA</b> est une comédie : vous allez rire, et elle va vous faire réfléchir. Comme elle parle d’emploi et qu’elle est écrite par un recruteur, elle a aussi vocation à vous aider à trouver un emploi… ou à recruter.</p>
+        <div id="soiree-prog" class="petit" style="color:#2b2b2b"></div>
+      </div></div>
+      <div class="field resa-only"><label for="f-prenom">Prénom</label><input id="f-prenom" type="text" autocomplete="given-name" required></div>
+      <div class="field resa-only"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
+      <div class="field full" id="f-email-wrap"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
+      <div class="field resa-only"><label for="f-tel">Portable</label><input id="f-tel" type="tel" autocomplete="tel"></div>
+      <div class="field full resa-only" id="f-reco-wrap"><label for="f-reco">Je suis recommandé par</label><select id="f-reco" required><option value="">— Choisissez —</option></select><input id="f-reco-autre" type="text" placeholder="Qui vous a recommandé la pièce ?" style="display:none;margin-top:.4rem"></div>
+    </div>
+    <div id="f-resa" style="display:none">
+      <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
+      <div class="tarifs">
+        <label class="tarif star"><input type="radio" name="tarif" value="partenaire"><span id="t-norm-txt"><b>Tarif normal — 20&nbsp;€</b></span></label>
+        <label class="tarif"><input type="radio" name="tarif" value="reduit"><span id="t-red-txt"><b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d'emploi…) · justificatif à présenter à l'entrée</span></label>
+        <p id="red-accord" style="display:none;margin:.1rem 0 .6rem 1.8rem;color:#444;font-size:.78rem;line-height:1.4">✔ J’autorise que mes informations soient partagées avec des acteurs susceptibles d’accélérer mon retour à l’emploi.</p>
+        <label class="tarif" id="t-ent" style="display:none"><input type="radio" name="tarif" value="entreprise"><span><b>Mon entreprise recrute — 10 places, 200&nbsp;€</b><span id="t-ent-txt"></span> <b id="t-ent-slots" style="color:var(--accent)"></b></span></label>
+        <div id="f-ent-wrap" class="fgrid" style="display:none;margin-top:.6rem">
+          <div class="field" style="grid-column:1/-1"><label for="f-poste">Poste(s) à présenter</label><input id="f-poste" type="text" placeholder="ex. commercial terrain, comptable"></div>
+          <div id="f-ent-fact" style="grid-column:1/-1"></div>
+        </div>
+        <div id="f-red-wrap" class="fgrid" style="display:none;margin-top:.6rem">
+          <div class="field"><label for="f-statut">Je suis</label><select id="f-statut"><option value="Demandeur d'emploi">Demandeur d'emploi</option><option value="Étudiant">Étudiant</option><option value="Autre">Autre</option></select></div>
+          <div class="field" id="f-ft-wrap"><p class="petit" style="margin:.4rem 0 0">Votre statut sera vérifié à l'entrée : pensez à apporter votre justificatif.</p><input id="f-ft" type="hidden" value=""></div>
+        </div>
+        <label class="tarif privilege" id="t-priv"><input type="radio" name="tarif" value="privilege"><span><b>Offre Privilège — 50&nbsp;€ TTC</b><small>Vous invitez un client ou un proche pour un moment un peu spécial&nbsp;?</small><a href="#" class="priv-i" id="priv-i" aria-expanded="false" aria-controls="priv-pop">Voir tout ce qui est inclus</a>
+          <div class="privpop" id="priv-pop" role="dialog" hidden>
+            <h4>Vous invitez vos clients ou un proche pour une occasion spéciale&nbsp;?</h4>
+            <ul>
+              <li>Une place numérotée à votre nom en <b>Carré Or</b> (3 premiers rangs)</li>
+              <li>Un coffret cadeau sur son siège : un livre (prix de vente seul : 20&nbsp;€) — <a href="/livres.html?livre=reuje#bon" target="_blank" rel="noopener">Recruter est un jeu d'enfant</a> ou <a href="/livres.html?livre=tjej#bon" target="_blank" rel="noopener">Trouver un job est un jeu d'enfant</a> — et un pack souvenir (prix de vente seul : 15&nbsp;€)</li>
+              <li>Un verre au bar du théâtre ou au bar partenaire à côté</li>
+              <li>Une place à offrir (valeur 20&nbsp;€, adressée au lendemain de la représentation)</li>
+            </ul>
+            <p class="fin">Faites vivre un moment d'exception à votre invité.</p>
+          </div></span></label>
+        <hr class="tsep">
+        <label class="refus"><input type="checkbox" id="f-accord"><span class="petit"><b>Option veille d'emploi</b> — Je suis à l'écoute d'une opportunité d'emploi, je souhaite que mes coordonnées soient transmises à des cabinets de recrutement et à des portails d'emploi.</span></label>
+      </div>
+      <label class="refus"><input type="checkbox" id="f-cadeau"><span class="petit"><b>C'est pour faire un cadeau</b> — un document à imprimer et à offrir vous sera adressé en même temps que vos places.</span></label>
+      <div id="f-cad-wrap" style="display:none;margin:.5rem 0 .8rem">
+        <p class="petit">Vous préférez lui laisser choisir sa ville et sa date ? <a href="#cadeau" id="f-vers-open">Offrez plutôt un billet open &rarr;</a></p>
+        <label class="refus"><input type="radio" name="occasion" value="santa"><span class="petit">C'est pour un Secret Santa</span></label>
+        <label class="refus"><input type="radio" name="occasion" value="noel" checked><span class="petit">C'est un cadeau de Noël à mettre sous le sapin</span></label>
+        <label class="refus"><input type="radio" name="occasion" value="anniv"><span class="petit">C'est un cadeau d'anniversaire</span></label>
+        <div class="fgrid" style="margin-top:.5rem">
+          <div class="field"><label for="f-cad-n">Places offertes</label><select id="f-cad-n"><option value="1">1 place</option><option value="2" selected>2 places</option></select></div>
+          <div class="field"><label for="f-cad-pour">Pour (facultatif)</label><input id="f-cad-pour" type="text" maxlength="50" placeholder="Prénom de la personne"></div>
+          <div class="field" id="f-cad-de-wrap"><label for="f-cad-de">De la part de (facultatif)</label><input id="f-cad-de" type="text" maxlength="50"></div>
+        </div>
+      </div>
+      <a href="#" id="f-code-lien" class="codelien">Vous avez un code&nbsp;?</a>
+      <div id="f-code-wrap" style="display:none"><input id="f-code" class="codeinput" type="text" placeholder="Votre code" autocomplete="off"></div>
+      <div id="fe-ancre"></div>
+      <p class="photonote">Si je suis pris en photo ou filmé pendant la soirée, j'accepte que ces images servent à la communication de la pièce. Je peux retirer mon accord à tout moment en écrivant à <a href="mailto:contact@onvousrappellera.fr">contact@onvousrappellera.fr</a>.</p>
+    </div>
+    <div id="f-alerte" style="display:none">
+      <label class="refus"><input type="checkbox" id="f-part">
+        <span class="petit"><b>Option veille d'emploi</b> — Je suis à l'écoute d'une opportunité d'emploi, je souhaite que mes coordonnées soient transmises à des cabinets de recrutement et à des portails d'emploi.</span></label>
+    </div>
+    <button class="btn" id="f-btn" type="button">Prévenez-moi &rarr;</button>
+    <div class="msg" id="f-msg"></div>
+    <details class="cadeau" id="cadeau">
+      <summary>🎁 Je fais un cadeau — pour Noël, un anniversaire… &rarr;</summary>
+      <div class="cbody">
+        <p>Un <strong>billet open</strong> : la personne qui le reçoit choisit sa ville et sa date, sur toutes nos représentations de 2026 et 2027. Vous recevez un billet à imprimer, avec le code cadeau. 20&nbsp;€ la place.</p>
+        <div class="fgrid">
+          <div class="field"><label for="c-qty">Nombre de billets</label><select id="c-qty"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
+          <div class="field"><label for="c-prenom">Votre prénom</label><input id="c-prenom" type="text" autocomplete="given-name"></div>
+          <div class="field"><label for="c-nom">Votre nom</label><input id="c-nom" type="text" autocomplete="family-name"></div>
+          <div class="field"><label for="c-email">Votre email</label><input id="c-email" type="email" autocomplete="email"></div>
+          <div class="field"><label for="c-tel">Votre portable</label><input id="c-tel" type="tel" autocomplete="tel"></div>
+        </div>
+        <label class="refus"><input type="radio" name="c-occ" value="santa"><span class="petit">C'est pour un Secret Santa</span></label>
+        <label class="refus"><input type="radio" name="c-occ" value="noel" checked><span class="petit">C'est un cadeau de Noël à mettre sous le sapin</span></label>
+        <label class="refus"><input type="radio" name="c-occ" value="anniv"><span class="petit">C'est un cadeau d'anniversaire</span></label>
+        <div class="fgrid" style="margin-top:.5rem">
+          <div class="field"><label for="c-pour">Pour (facultatif)</label><input id="c-pour" type="text" maxlength="40" placeholder="Prénom de la personne"></div>
+          <div class="field" id="c-de-wrap"><label for="c-de">De la part de (facultatif)</label><input id="c-de" type="text" maxlength="40"></div>
+        </div>
+        <button class="btn" id="c-btn" type="button">Payer mes billets cadeaux &rarr;</button>
+        <div class="msg" id="c-msg"></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+
+
+
+<section>
+  <div class="wrap">
+
+  </div>
+</section>
+
+
+
+
+<section>
+  <div class="wrap">
+    <span class="sec-tag">Les répliques</span>
+    <div class="rslide"><button type="button" class="rnav rprev" aria-label="Réplique précédente">&#8249;</button><div class="punchlines">
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-delphine-anne.jpg" alt="Delphine, sur scène"></figure><p>« Et comment vous m'avez eue&nbsp;? Le standard a pour directive de ne pas nous passer les candidats en direct. »</p><div class="who">Delphine, la RH</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-daniel-fritz.jpg" alt="Daniel, le psy, sur scène"></figure><p>« Lorsque le jeune loup veut se faire adopter par la meute… »</p><div class="who">Daniel(e), le psy</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-pascal-arthur-scene.jpg" alt="Pascal, sur scène"></figure><p>« J'ai fait une étude… Les mecs, c'est bordélique… Alors que les femmes… »</p><div class="who">Pascal, le manager</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-pascal-bruno-scene.jpg" alt="Pascal et Delphine, sur scène"></figure><p>« Aujourd'hui, s'ils ont pas bac+5, ils savent plus ni lire ni écrire. »</p><div class="who">Pascal, le manager</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1PHCT9sow4JkE8FfekRfHDr7zKVLdJ4sG&sz=w1000" alt="On Vous Rappellera, Paris 2026"></figure><p>« Pourquoi quelqu'un qui ferait la même chose ailleurs viendrait chez nous ? POURQUOI NOUS ? C'est ça, la vraie question ! »</p><div class="who">Delphine, la RH</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/repliques/rep-julien-clarence.jpg" alt="Julien, sur scène"></figure><p>« C'est la peur de perdre qui vous empêche de gagner. »</p><div class="who">Julien, le candidat</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/ovr/johanna.jpg" alt="Johana, sur scène"></figure><p>« — Donc, on recrute les meilleurs menteurs ? — Disons qu'on recrute ceux qui savent le mieux séduire. »</p><div class="who">Johana &amp; Pascal</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="https://drive.google.com/thumbnail?id=1xhqcbc6mGTd6mOPkOzunXX6eDR9UshDw&sz=w1000" alt="On Vous Rappellera, Paris 2026"></figure><p>« C'est tout un métier de dire bonjour. Votre bonjour n'était PAS vendeur. »</p><div class="who">Dominique, le senior</div></div>
+      <div class="punch"><figure class="pimg"><img loading="lazy" src="assets/comediens/beatrice-laout-candidate-20261112.jpg" alt="Dominique, le senior"></figure><p>« L'entreprise, c'est un théâtre. Ce n'est pas parce que tout n'est pas vrai, que tout est faux. »</p><div class="who">Dominique, le senior</div></div>
+    </div><button type="button" class="rnav rnext" aria-label="Réplique suivante">&#8250;</button></div>
+  </div>
+</section>
+
+
+<section class="contact-final">
+  <div class="wrap">
+    <h2>Réservez vos billets</h2>
+    <p>Choisissez votre ville et votre date, puis réservez vos places.</p>
+    <div class="cta-row">
+      <a href="#prevenez-moi">Je réserve mes places</a>
+    </div>
+    <p class="liens">Une question ? <a href="tel:0610703090">06 10 70 30 90</a></p>
+    <p class="liens" style="font-size:.8rem;margin-top:.6rem"><a href="/entreprises.html" style="color:var(--gris)">Vous voulez faire jouer la pièce en représentation privée dans votre entreprise ?</a></p>
+  </div>
+</section>
+
+
+<script src="/assets/facture-entreprise.js?v=3"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(window.FE) FE.monter(document.getElementById('fe-ancre'), null);
+
+  var vbox=document.getElementById('vbox'), vslot=document.getElementById('vslot'), vtitre=document.getElementById('vtitre');
+  function fermerVideo(){ vbox.classList.remove('on'); vslot.innerHTML=''; document.body.style.overflow=''; }
+  document.querySelectorAll('.conf-grid .conf').forEach(function(b){
+    b.addEventListener('click',function(){
+      var n=b.querySelector('.cname');
+      vtitre.textContent = n ? n.textContent : '';
+      vslot.innerHTML='<iframe src="https://drive.google.com/file/d/'+b.dataset.v+'/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+      vbox.classList.add('on'); document.body.style.overflow='hidden';
+    });
+  });
+  document.getElementById('vclose').addEventListener('click',fermerVideo);
+  vbox.addEventListener('click',function(e){ if(e.target===vbox) fermerVideo(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
+  var DATES=window.DATES_PROP={
+    "Paris":[{d:"2 décembre 2026 · 19h",t:"Séance de 19h",l:"T1",c:"PAR-1202-19",tr:"Engagement"},{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T1",c:"PAR-1209-19",tr:"Honnêteté"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T5",c:"PAR-1212-2130",tr:"Esprit d'équipe"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T5",c:"PAR-1218-1930",tr:"Esprit d'équipe"}],
+    "Toulouse":[{d:"2 décembre 2026 · 21h",t:"Séance de 21h — présentation des entreprises 19h, dîner 19h30",l:"T2",c:"TLS-1203"}],
+    "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T3",c:"REN-1209-20"}],
+    "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4",c:"BOR-1217-2030"}],
+    "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"T6",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"T6",c:"LYO-1216-21"}]
+  };
+  // Séances affichées mais non réservables (réactivable en retirant le code de la liste)
+  var EN_PAUSE=["PAR-1122","PAR-1126"];
+  function pause(o){ return !!(o && EN_PAUSE.indexOf(o.c)>=0); }
+  // Billetterie : false = pré-réservation (aucun paiement). true = paiement en ligne Stripe. ?billetterie=1 force l'ouverture pour les tests.
+  var BILLETTERIE_OUVERTE=true || new URLSearchParams(location.search).get('billetterie')==='1';
+  var LIEUX={
+    "T1":{n:"Théâtre Clavel",a:"3 rue Clavel, 75019 Paris"},
+    "T2":{n:"Cabaret Le 9",a:"9 rue Lejeune, 31000 Toulouse"},
+    "T3":{n:"La Comédie de Rennes",a:"31 rue Xavier Grall, 35700 Rennes"},
+    "T4":{n:"Théâtre Artisse",a:"29 rue Ausone, 33000 Bordeaux"},
+    "T5":{n:"Théâtre Montmartre Galabru",a:"4 rue de l'Armée d'Orient, 75018 Paris"},
+    "T6":{n:"Le Croiseur",a:"4 rue Croix-Barret, 69007 Lyon"}
+  };
+  function lieuHTML(k){ var o=LIEUX[k]; if(!o) return ''; return '<p class="vlieu">📍 <strong>'+esc(o.n)+'</strong><br><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(o.n.replace(/ \(lieu à confirmer\)/,'')+', '+o.a)+'" target="_blank" rel="noopener">'+esc(o.a)+' — voir sur Google Maps</a></p>'; }
+  function troupeHTML(tr){ if(tr&&/^les 3 troupes/i.test(tr)) return '<p class="vtrp">🎭 <strong>Les 3 troupes parisiennes</strong>, une par séance</p>'; return tr?'<p class="vtrp">🎭 Troupe <strong>'+esc(tr)+'</strong></p>':''; }
+  var AUCUNE='Aucune de ces dates — prévenez-moi du prochain créneau';
+  function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+  // Places restantes par séance (calculées par le service de billetterie, à l'ouverture de la page)
+  var DISPO={};
+  function reste(o){ if(pause(o)) return 0; return (o.c && (o.c in DISPO)) ? DISPO[o.c] : null; }
+  function rendreDates(){
+    document.querySelectorAll('.vdates').forEach(function(box){
+      var L=DATES[box.dataset.ville]||[]; if(box.dataset.codes){ var K=box.dataset.codes.split(','); L=L.filter(function(o){return K.indexOf(o.c)>=0||K.indexOf('tr:'+o.tr)>=0;}); }
+      if(!L.length && box.dataset.codes){ box.innerHTML='<p style="margin:6px 0;color:#666;font-style:italic">Dates à venir</p>'; return; }
+      // Même lieu (et même troupe) sur plusieurs séances : une seule carte compacte
+      var G=[],IX={}; L.forEach(function(o){ var k=(o.l||'')+'|'+(o.tr||''); if(!(k in IX)){ IX[k]=G.length; G.push([]); } G[IX[k]].push(o); });
+      if(G.some(function(g){return g.length>1;})){ box.innerHTML=G.map(function(g){ return g.length>1?carteMulti(g,box.dataset.ville):carteSeule(g[0],box.dataset.ville); }).join(''); return; }
+      box.innerHTML=L.map(function(o){ var r=reste(o);
+        var BT='<button type="button" class="vtbtn">Découvrir la troupe</button>';
+        if(r!==null && r<=0) return '<div class="vcarte vplein"><div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+(pause(o)?'Non réservable':'Complet')+'</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>';
+        return '<div class="vcarte"><a class="vdate" href="#prevenez-moi" data-ville="'+esc(box.dataset.ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=20)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr)+BT+'</div>'; }).join('');
+    });
+    if(window.ovrMinis) window.ovrMinis();
+  }
+  var MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'], JOURS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+  function decoupe(o){ var p=o.d.split(' · '), m=p[0].match(/^(\d+)\s+(\S+)\s+(\d{4})$/), jour=p[0], an='';
+    if(m){ var i=MOIS.indexOf(m[2]); an=m[3]; if(i>=0){ jour=JOURS[new Date(+m[3],i,+m[1]).getDay()]+' '+m[1]+' '+m[2]; } }
+    return {jour:jour, an:an, h:p[1]||o.t}; }
+  function carteSeule(o,ville){ var r=reste(o);
+    if(r!==null && r<=0) return '<div class="vcarte vplein"><div class="vdate vplein"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+(pause(o)?'Non réservable':'Complet')+'</b></div>'+lieuHTML(o.l)+troupeHTML(o.tr)+'</div>';
+    return '<div class="vcarte"><a class="vdate" href="#prevenez-moi" data-ville="'+esc(ville)+'" data-date="'+esc(o.d)+'"><strong>'+esc(o.d)+'</strong><span>'+esc(o.t)+'</span><b>'+((r!==null&&r<=20)?'Plus que '+r+' place'+(r>1?'s':'')+' &mdash; ':'')+'Choisir cette date &rarr;</b></a>'+lieuHTML(o.l)+troupeHTML(o.tr)+'</div>'; }
+  function carteMulti(g,ville){ var J=[],JX={}, ans={};
+    g.forEach(function(o){ var x=decoupe(o); ans[x.an]=1; if(!(x.jour+x.an in JX)){ JX[x.jour+x.an]=J.length; J.push({jour:x.jour,an:x.an,s:[]}); } J[JX[x.jour+x.an]].s.push({o:o,h:x.h}); });
+    var plusAn=Object.keys(ans).length>1;
+    return '<div class="vcarte vmulti"><p class="vmh">Choisissez votre séance</p>'+J.map(function(j){
+      return '<div class="vjour"><span class="vj">'+esc(j.jour+(plusAn?' '+j.an:''))+'</span><div class="vhs">'+j.s.map(function(x){ var r=reste(x.o);
+        if(r!==null && r<=0) return '<span class="vdate vh vplein">'+esc(x.h)+'<small>'+(pause(x.o)?'non réservable':'complet')+'</small></span>';
+        return '<a class="vdate vh" href="#prevenez-moi" data-ville="'+esc(ville)+'" data-date="'+esc(x.o.d)+'">'+esc(x.h)+((r!==null&&r<=20)?'<small>plus que '+r+'</small>':'')+'</a>'; }).join('')+'</div></div>'; }).join('')
+      +lieuHTML(g[0].l)+troupeHTML(g[0].tr)+'</div>'; }
+  rendreDates();
+  /* Une troupe rangée dans « date à venir » qui a désormais une date en sort toute seule */
+  (function(){ document.querySelectorAll('details.vautres').forEach(function(dd){ var gs=dd.querySelectorAll(':scope > .vgrp'); gs.forEach(function(g){ if(g.querySelector('.vcarte')) dd.parentNode.insertBefore(g,dd); }); var reste=dd.querySelectorAll(':scope > .vgrp'); if(!reste.length){ dd.remove(); } else { var sm=dd.querySelector('summary'); if(sm) sm.textContent=(reste.length>1?'Les troupes ':'La troupe ')+Array.prototype.map.call(reste,function(x){return x.dataset.troupe;}).join(', ')+' — date à venir'; } }); })();
+  /* Places restantes : lues dans /dispo.json, fichier recalculé une fois par jour (GitHub Actions) — aucune exécution n8n quand on consulte la page. Le paiement revérifie toujours les places en direct. */
+  function auGeste(fn){ fn(); }
+  function lireDispo(){ var j=new Date().toISOString().slice(0,10).replace(/-/g,''); return fetch('/dispo.json?j='+j).then(function(r){ if(!r.ok) throw 0; return r.json(); }); }
+  auGeste(function(){ lireDispo('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement').then(function(d){ if(d&&d.dispo){ DISPO=d.dispo; rendreDates(); var v=document.getElementById('f-ville'); if(v&&v.value){ var sd=document.getElementById('f-date').value; majDates(v.value, sd); } } }).catch(function(){}); });
+  function montreVille(v){ document.querySelectorAll('#f-info details.vd').forEach(function(d){ var sm=d.querySelector('summary'), n=(sm&&sm.firstChild&&sm.firstChild.nodeType===3)?sm.firstChild.nodeValue.trim():''; var on=(!!v && n===v); d.classList.toggle('vd-on',on); if(on) d.setAttribute('open','');
+    /* lien par troupe (?troupe=) : seule cette troupe est affichée dans le bloc de la ville */
+    var F=(on && window.FILTRE_TR && FILTRE_TR.v===v)?FILTRE_TR:null, tous=d.querySelector('.vtous');
+    d.querySelectorAll('.vgrp').forEach(function(g){ if(F && g.dataset.troupe!==F.t) g.style.setProperty('display','none','important'); else g.style.removeProperty('display'); });
+    if(F && !F.url && !tous && d.querySelectorAll('.vgrp').length>1){ tous=document.createElement('a'); tous.href='#'; tous.className='vtous'; tous.style.cssText='display:block;margin:10px 0;font-weight:700;color:inherit;text-decoration:underline'; tous.textContent='Voir les autres troupes de '+v+' →'; tous.addEventListener('click',function(e){ e.preventDefault(); window.FILTRE_TR=null; majDates(v,''); }); var vb=d.querySelector('.vbody'); if(vb) vb.appendChild(tous); }
+    if((!F||F.url) && tous) tous.remove(); }); }
+  /* date choisie dans une ville à plusieurs troupes : on n'affiche plus que la troupe de cette date */
+  function fixeTroupe(v,d){ if(window.FILTRE_TR && FILTRE_TR.url) return; var L=DATES[v]||[], o=L.filter(function(x){return x.d===d;})[0], T={}; L.forEach(function(x){ if(x.tr) T[x.tr]=1; }); if(!o || !o.tr || Object.keys(T).length<2) return; window.FILTRE_TR={v:v,t:o.tr,d:L.filter(function(x){return x.tr===o.tr;}).map(function(x){return x.d;})}; }
+  function majDates(v,choix){
+    montreVille(v);
+    var w=document.getElementById('f-date-wrap'), s=document.getElementById('f-date'), L=DATES[v];
+    if(L && window.FILTRE_TR && FILTRE_TR.v===v){ L=L.filter(function(o){ return FILTRE_TR.d.indexOf(o.d)>=0; }); } /* lien par troupe (?troupe=) : seules ses dates */
+    if(!L){ w.style.display='none'; s.innerHTML=''; modeResa(); return; }
+    s.innerHTML='<option value="">— Choisissez une date —</option>'+L.map(function(o){ var r=reste(o), plein=(r!==null&&r<=0); return '<option value="'+esc(o.d)+'"'+(plein?' disabled':'')+'>'+esc(o.d)+' ('+esc(o.t)+')'+(plein?(pause(o)?' — non réservable':' — complet'):'')+'</option>'; }).join('');
+    w.style.display=''; s.value=choix||'';
+    modeResa();
+  }
+  function enResa(){ var s=document.getElementById('f-date'); return document.getElementById('f-date-wrap').style.display!=='none' && s.value && s.value!=='__autre'; }
+  function modeResa(){ var r=enResa();
+    document.getElementById('f-resa').style.display=r?'':'none';
+    document.querySelectorAll('.resa-only').forEach(function(x){ x.style.display=r?'':'none'; });
+    document.getElementById('f-email-wrap').className=r?'field':'field full';
+    var mm=['Marseille','Montpellier'].indexOf(document.getElementById('f-ville').value)>=0;
+    document.getElementById('f-email-wrap').style.display=(r||mm)?'':'none';
+    document.getElementById('f-btn').style.display=(r||mm)?'':'none';
+    document.getElementById('f-btn').innerHTML=r?'Réserver mes places &rarr;':'Prévenez-moi &rarr;'; }
+  function tarifChoisi(){ var x=document.querySelector('input[name=tarif]:checked'); return x?x.value:'partenaire'; }
+  function majReduit(){ var red=tarifChoisi()==='reduit';
+    document.getElementById('f-red-wrap').style.display=red?'':'none';
+    document.getElementById('f-ft-wrap').style.display=(red && document.getElementById('f-statut').value==="Demandeur d'emploi")?'':'none'; }
+  document.querySelectorAll('input[name=tarif]').forEach(function(r){ r.addEventListener('change',majReduit); });
+  document.getElementById('f-statut').addEventListener('change',majReduit);
+  (function(){ var lab=document.getElementById('t-priv'), pop=document.getElementById('priv-pop'), lien=document.getElementById('priv-i'); if(!lab||!pop||!lien) return;
+    function ouvre(o){ pop.hidden=!o; lien.setAttribute('aria-expanded',o?'true':'false'); }
+    lien.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); ouvre(pop.hidden); });
+    lab.addEventListener('mouseenter',function(){ if(window.matchMedia('(hover:hover)').matches) ouvre(true); });
+    lab.addEventListener('mouseleave',function(){ if(window.matchMedia('(hover:hover)').matches) ouvre(false); });
+    lab.querySelector('input').addEventListener('change',function(){ ouvre(true); });
+    document.addEventListener('click',function(e){ if(!lab.contains(e.target)) ouvre(false); });
+  })();
+  document.getElementById('f-date').addEventListener('change',modeResa);
+  document.getElementById('f-date').addEventListener('change',function(){ var v=document.getElementById('f-ville').value, d=this.value; if(!d||d==='__autre') return; var av=window.FILTRE_TR; fixeTroupe(v,d); if(window.FILTRE_TR!==av) majDates(v,d); });
+  document.getElementById('f-code-lien').addEventListener('click',function(e){ e.preventDefault(); document.getElementById('f-code-wrap').style.display=''; this.style.display='none'; document.getElementById('f-code').focus(); });
+  (function(){ var sv=document.getElementById('f-ville'); Object.keys(DATES).sort(function(a,b){return a.localeCompare(b,'fr');}).forEach(function(v){ var o=document.createElement('option'); o.textContent=v; sv.appendChild(o); });
+    /* Villes avec une troupe résidente mais sans date encore */
+    ['Marseille','Montpellier'].forEach(function(v){ if(DATES[v]) return; var o=document.createElement('option'); o.value=v; o.textContent=v+' — date à venir'; sv.appendChild(o); }); })();
+  window.urlVille=function(v){ try{ var q=new URLSearchParams(location.search); ['merci','annule'].forEach(function(k){q.delete(k);}); if(v && v!=='Autre ville'){ q.set('ville',v); } else { q.delete('ville'); } var s=q.toString(); history.replaceState(null,'',location.pathname+(s?'?'+s:'')); }catch(e){} };
+  document.addEventListener('click',function(e){ var a=e.target.closest('a[href="#prevenez-moi"]'); if(!a || e.defaultPrevented) return; e.preventDefault(); var pm=document.getElementById('prevenez-moi'); if(pm) pm.scrollIntoView({behavior:'smooth'}); },true);
+  if(location.hash==='#prevenez-moi'){ try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){} }
+  document.getElementById('f-ville').addEventListener('change',function(){ window.FILTRE_TR=null; majDates(this.value,''); urlVille(this.value); document.getElementById('f-autre-wrap').style.display=(this.value==='Autre ville')?'':'none'; });
+  modeResa();
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('.vdate, .vprev'); if(!a) return;
+    if(a.closest('#f-info')){ e.preventDefault(); setTimeout(function(){ var w=document.getElementById('f-date-wrap'); if(w) w.scrollIntoView({behavior:'smooth',block:'center'}); },0); }
+    if(!DATES[a.dataset.ville] && ['Marseille','Montpellier'].indexOf(a.dataset.ville)<0){ e.preventDefault(); if(window.ovrNL) window.ovrNL(a.dataset.ville); return; } var s=document.getElementById('f-ville'); s.value=a.dataset.ville; if(a.dataset.date) fixeTroupe(a.dataset.ville,a.dataset.date); majDates(a.dataset.ville,a.dataset.date||''); urlVille(a.dataset.ville);
+  });
+  var btn=document.getElementById('f-btn'), msg=document.getElementById('f-msg');
+  (function(){ var q=new URLSearchParams(location.search);
+    if(q.get('merci')){ msg.className='msg ok'; msg.innerHTML='<b>Paiement reçu, merci !</b> Vos billets arrivent par mail dans quelques minutes. Pensez à vérifier vos courriers indésirables.'; try{ var kc=JSON.parse(localStorage.getItem('ovrCadeau')||'null'); if(kc&&kc.u&&Date.now()-kc.t<864e5){ msg.innerHTML+='<br><br>🎁 <a href="'+kc.u.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener"><b>Ouvrir votre document cadeau à imprimer et à offrir</b></a>'; } }catch(e){} document.getElementById('prevenez-moi').scrollIntoView(); if(window.FE) FE.auRetour(msg); }
+    if(q.get('ville')){ var vv=q.get('ville'), sv=document.getElementById('f-ville'); if(!DATES[vv] && ['Marseille','Montpellier'].indexOf(vv)<0){ sv=null; } if(sv){ sv.value=vv; majDates(vv,''); var pm=document.getElementById('prevenez-moi'); if(pm) setTimeout(function(){ pm.scrollIntoView(); },300); } }
+    if(q.get('code')){ var cw=document.getElementById('f-code-wrap'), ci=document.getElementById('f-code'), cl=document.getElementById('f-code-lien'); if(ci){ ci.value=q.get('code'); if(cw) cw.style.display=''; if(cl) cl.style.display='none'; } }
+    if(q.get('seance')){ var sc=q.get('seance'), sv2=document.getElementById('f-ville'); Object.keys(DATES).forEach(function(v){ DATES[v].forEach(function(o){ if(o.c===sc && sv2){ sv2.value=v; majDates(v,o.d); var x=decoupe(o), lu=LIEUX[o.l], bt=document.getElementById('seance-top'); if(bt){ bt.innerHTML='Votre séance : <strong>'+esc(v.toUpperCase()+' · '+x.jour+' · '+x.h)+'</strong>'+(lu?'<br><span style="font-weight:500">'+esc(lu.n)+'</span>':'')+'<br><a href="#prevenez-moi" style="display:inline-block;margin-top:8px;color:#fff;text-decoration:underline;font-weight:700">Réserver mes places pour cette date &darr;</a>'; bt.hidden=false; } } }); }); }
+    if(q.get('troupe')){ var nz=function(t){ return (t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z]+/g,''); }, tq=nz(q.get('troupe')).replace(/^espritdequipe$|^espritequipe$/,'espritdequipe'), sv3=document.getElementById('f-ville'); Object.keys(DATES).forEach(function(v){ var L=DATES[v].filter(function(o){ var n=nz(o.tr); return n===tq || n.replace('de','')===tq.replace('de',''); }); if(L.length && sv3){ sv3.value=v; window.FILTRE_TR={v:v,t:L[0].tr,d:L.map(function(o){ return o.d; }),url:true}; majDates(v, L.length===1?L[0].d:''); var lu=LIEUX[L[0].l], bt=document.getElementById('seance-top'); if(bt){ bt.innerHTML='La troupe <strong>'+esc(L[0].tr)+'</strong> à '+esc(v)+' : <strong>'+L.map(function(o){ var x=decoupe(o); return esc(x.jour+' · '+x.h); }).join(' ou ')+'</strong>'+(lu?'<br><span style="font-weight:500">'+esc(lu.n)+'</span>':'')+'<br><a href="#prevenez-moi" style="display:inline-block;margin-top:8px;color:#fff;text-decoration:underline;font-weight:700">Réserver mes places &darr;</a>'; bt.hidden=false; } } }); }
+    if(q.get('annule')){ msg.className='msg ko'; msg.innerHTML='Le paiement a été abandonné, rien n\'a été débité. Vous pouvez recommencer ci-dessous.'; document.getElementById('prevenez-moi').scrollIntoView(); } })();
+  var g=function(i){return document.getElementById(i);};
+  function show(cls,txt){ msg.className='msg '+cls; msg.innerHTML=txt; }
+  (function(){ var l=g('f-vers-open'); if(l) l.addEventListener('click',function(e){ e.preventDefault(); var dd=g('cadeau'); dd.open=true; dd.scrollIntoView({behavior:'smooth',block:'start'}); });
+    document.querySelectorAll('input[name=c-occ]').forEach(function(r){ r.addEventListener('change',function(){ g('c-de-wrap').style.display=(r.value==='santa'&&r.checked)?'none':''; }); }); })();
+  (function(){ var c=g('f-cadeau'), w=g('f-cad-wrap'); if(!c) return;
+    function maj(){ w.style.display=c.checked?'':'none'; var o=document.querySelector('input[name=occasion]:checked'); g('f-cad-de-wrap').style.display=(o&&o.value==='santa')?'none':''; }
+    function majN(){ var n=Math.max(1,parseInt(g('f-places').value,10)||1), sel=g('f-cad-n'), v=parseInt(sel.value,10)||2, h=''; for(var i=1;i<=n;i++) h+='<option value="'+i+'">'+i+' place'+(i>1?'s':'')+'</option>'; sel.innerHTML=h; sel.value=String(Math.min(v,n)); }
+    g('f-places').addEventListener('input',majN); g('f-places').addEventListener('change',majN); majN();
+    c.addEventListener('change',maj); document.querySelectorAll('input[name=occasion]').forEach(function(r){ r.addEventListener('change',maj); }); })();
+  function cadeauUrl(S,p,tf){ if(!g('f-cadeau')||!g('f-cadeau').checked) return ''; var o=document.querySelector('input[name=occasion]:checked'), x=decoupe(S), lu=LIEUX[S.l]||{}, oc=o?o.value:'noel';
+    var q=new URLSearchParams({occasion:oc, n:(g('f-cad-n')&&g('f-cad-n').value)||p.places||'1', nom:(p.prenom+' '+p.nom).trim(), ref:S.c, troupe:S.tr||'', jour:(x.jour+(x.an?' '+x.an:'')), heure:x.h||'', theatre:lu.n||'', adresse:lu.a||p.ville});
+    var pour=g('f-cad-pour').value.trim(), de=oc==='santa'?'':g('f-cad-de').value.trim(); if(pour) q.set('pour',pour); if(de) q.set('de',de); if(tf==='privilege') q.set('privilege','1');
+    return 'https://onvousrappellera.fr/cadeau-noel.html?'+q.toString(); }
+  function lienCadeau(u){ return '<br><br>🎁 <a href="'+esc(u)+'" target="_blank" rel="noopener"><b>Ouvrir votre document cadeau à imprimer et à offrir</b></a>'; }
+  btn.addEventListener('click', function(){
+    var p={prenom:g('f-prenom').value.trim(), nom:g('f-nom').value.trim(),
+           email:g('f-email').value.trim(), telephone:g('f-tel').value.trim(),
+           ville:g('f-ville').value, date:(g('f-date').value==='__autre'?'':g('f-date').value),
+           entreprise:'', fonction:'', cadre:'', places:'',
+           info:true, partenaire:g('f-part').checked};
+    var PRIX={partenaire:20, reduit:15, privilege:50}, LIB={partenaire:'Tarif normal', reduit:'Tarif réduit', privilege:'Offre Privilège'};
+    if(enResa()){ var tf=tarifChoisi();
+      p.places=String(Math.max(1,parseInt(g('f-places').value,10)||1));
+      p.tarif=LIB[tf]; p.prix=PRIX[tf]; p.partenaire=g('f-accord').checked;
+      p.statut=(tf==='reduit')?g('f-statut').value:''; p.france_travail=(tf==='reduit' && p.statut==="Demandeur d'emploi")?g('f-ft').value.trim():'';
+      p.code=g('f-code').value.trim();
+    }
+    if(!p.ville){ show('ko','Merci de choisir votre ville.'); return; }
+    if(DATES[p.ville] && !g('f-date').value){ show('ko','Merci de choisir une date, ou d\'indiquer qu\'aucune ne vous convient.'); return; }
+    if(enResa() && (!p.prenom||!p.nom)){ show('ko','Merci d\'indiquer votre prénom et votre nom.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
+    if(BILLETTERIE_OUVERTE && enResa()){
+      var S=(DATES[p.ville]||[]).filter(function(o){return o.d===p.date;})[0];
+      if(!S||!S.c){ show('ko','Cette séance n\'est pas encore ouverte à la vente. Appelez-nous au 06 10 70 30 90.'); return; }
+      if(!p.telephone){ show('ko','Merci d\'indiquer votre portable.'); return; }
+      var fe=window.FE?FE.lire():null; if(fe&&fe.erreur){ show('ko',fe.erreur); return; }
+      p.reco=window.ovrReco?ovrReco():''; if(p.reco===null){ show('ko','Merci d\'indiquer qui vous a recommandé la pièce.'); var rw=g('f-reco-wrap'); if(rw) rw.scrollIntoView({block:'center'}); return; }
+      btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
+      var tfp=tarifChoisi();
+      if(window.ovrOrigine) ovrOrigine(p.email,S.c,'Site onvousrappellera.fr',p.code,p.reco);
+      fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},
+        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,reco:p.reco||'',source:'grand-public',cadeau_url:cadeauUrl(S,p,tfp)})})
+        .then(function(r){return r.json();})
+        .then(function(d){ var cu=cadeauUrl(S,p,tfp); if(d&&d.ok&&d.invite){ if(cu){ show('ok','<b>'+esc(d.message)+'</b>'+lienCadeau(cu)); return; } var lu2=LIEUX[S.l], rep=/^[a-z]{2,3}(22|26)nov$/i.test(p.code||''); show('ok','<b>'+esc(d.message)+'</b>'+(rep&&lu2?'<br><br><span style="color:#c00;font-weight:700">⚠️ Attention, le lieu a changé : ce n\'est plus le Passage vers les Étoiles.</span><br><b>Votre nouveau lieu : <u>'+esc(lu2.n)+', '+esc(lu2.a)+'</u></b>':'')); return; } if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:p.ville+' — '+p.date,qty:parseInt(p.places,10)||1,pu:PRIX[tfp],tarif:LIB[tfp],prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone}); if(cu){ try{ localStorage.setItem('ovrCadeau',JSON.stringify({u:cu,t:Date.now()})); }catch(e){} } location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
+        .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
+      return;
+    }
+    btn.disabled=true; show('ok','Envoi en cours…');
+    var src=new URLSearchParams(location.search).get('src');
+    fetch('https://thierryb.app.n8n.cloud/webhook/ovr-newsletter',
+      {method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({email:p.email, ville:p.ville, autre_ville:g('f-autre').value.trim(), site_web:g('f-site').value, source:'site — prévenez-moi'+(src?' ('+src+')':'')})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d && d.ok){ show('ok', 'C\'est noté ! Vous recevrez les actualités de la pièce, et la date à <b>'+esc(p.ville==='Autre ville'?(g('f-autre').value.trim()||'votre ville'):p.ville)+'</b> dès qu\'elle est fixée. Un email de confirmation vient de vous être envoyé.');
+          ['f-prenom','f-nom','f-email','f-tel','f-autre'].forEach(function(x){g(x).value='';}); g('f-autre-wrap').style.display='none';
+          g('f-ville').value=''; majDates('',''); g('f-part').checked=false; g('f-code').value=''; g('f-ft').value='';
+        } else { show('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; }
+      })
+      .catch(function(){ show('ko','Votre inscription n\'a PAS été enregistrée. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
+  });
+});
+</script>
+<div class="vbox" id="vbox" role="dialog" aria-modal="true">
+  <div class="vinner">
+    <span class="vtitre" id="vtitre"></span>
+    <button class="vclose" id="vclose" type="button" aria-label="Fermer la vidéo">&times;</button>
+    <div id="vslot"></div>
+  </div>
+</div>
+<script>
+/* Mini-CV des comédiens : lus à l'ouverture de la page dans /assets/cv-comediens.json (alimenté par le formulaire « Mon CV » de l'espace troupes) */
+
+(function(){
+ function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+ /* Paris : chaque troupe commence par son nom, puis sa photo (moitié de largeur) avec les comédiens à côté */
+ document.querySelectorAll('figure.vtroupe').forEach(function(f){ if(f.parentNode.classList.contains('vmedia')) return;
+   var md=document.createElement('div'); md.className='vmedia'; f.parentNode.insertBefore(md,f); md.appendChild(f);
+   /* villes : la date et le théâtre d'abord, la photo de troupe et les comédiens ensuite */
+   if(md.parentNode.classList.contains('vbody')){ var an=md.parentNode.querySelector(':scope > .vdates, :scope > .vavenir'); if(an) an.after(md); } });
+ document.querySelectorAll('.vgrp').forEach(function(g){ if(g.querySelector('.vgrp-t')) return;
+   g.insertAdjacentHTML('afterbegin','<p class="vgrp-t">Troupe '+e(g.dataset.troupe)+'</p>'); });
+ fetch('/assets/cv-comediens.json?'+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
+  if(!d||!d.comediens||!d.comediens.length) return;
+  var par={}; d.comediens.forEach(function(c){ if(c.prenom==='Anne'&&c.nom==='Dupuy'){ c.portrait='/assets/comediens/anne-dupuy-bloquee.jpg'; c.photos=[c.portrait]; } /* photo bloquée 26/10 */ (par[c.ville]=par[c.ville]||[]).push(c);});
+  document.querySelectorAll('details.vd, .vgrp').forEach(function(dt){
+   var grp=dt.classList.contains('vgrp'); if(!grp && dt.querySelector('.vgrp')) return;
+   var sm=grp?null:dt.querySelector('summary'); if(!grp && !sm) return;
+   var v=dt.dataset.cvville||(sm&&sm.firstChild&&sm.firstChild.textContent||'').trim(), L=par[v]; if(!L) return; L=L.filter(function(c){ return (c.photos&&c.photos.length)||c.portrait||(c.parcours||[]).length||(c.videos||[]).length; }); if(!L.length) return; /* 19/10 : un comédien sans photo sert seulement à retrouver son personnage */ if(dt.dataset.troupe){ L=L.filter(function(c){return c.troupe===dt.dataset.troupe;}); if(!L.length) return; }
+   var b=grp?dt:dt.querySelector('.vbody'); if(!b) return;
+   var h='<div class="vcv">'+L.map(function(c){
+     var p=(c.parcours||[]).filter(Boolean), vi=(c.videos||[]).filter(Boolean);
+     var vign=function(u){ var id=(u.match(/\/d\/([A-Za-z0-9_-]{15,})/)||u.match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; return id?'https://drive.google.com/thumbnail?id='+id+'&sz=w600':u; };
+     var Ls=((c.photos&&c.photos.length)?c.photos:(c.portrait?[c.portrait]:[])).slice(0,3).map(vign), ph=Ls[0]||'';
+     return '<div class="vcv-c">'+(Ls.length?'<span class="vcv-ph">'+Ls.map(function(u,i){ return '<img class="vcv-p" src="'+e(u)+'" data-i="'+i+'" data-ph="'+e(JSON.stringify(Ls))+'" alt="'+e(c.prenom)+' '+e(c.nom)+'" loading="lazy">'; }).join('')+'</span>':'')+'<p class="vcv-n">'+e(c.prenom)+' '+e(c.nom)+'</p>'
+      +(c.personnage?'<p class="vcv-r">'+e(c.personnage)+'</p>':'')
+      +(p.length?'<ul>'+p.map(function(x){return '<li>'+e(x)+'</li>';}).join('')+'</ul>':'')
+      +(vi.length?'<div class="vcv-v">'+vi.map(function(u,i){return '<a href="'+e(u)+'" target="_blank" rel="noopener">&#9654; Vidéo '+(i+1)+'</a>';}).join('')+'</div>':'')
+      +'</div>';}).join('')+'</div>';
+   var f=b.querySelector('figure.vtroupe');
+   if(grp){ var md=b.querySelector('.vmedia'); (md||b).insertAdjacentHTML('beforeend',h); } else if(f){ var m2=f.closest('.vmedia'); if(m2) m2.insertAdjacentHTML('beforeend',h); else f.insertAdjacentHTML('afterend',h); } else { var an2=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an2) an2.insertAdjacentHTML('afterend',h); else b.insertAdjacentHTML('afterbegin',h); }
+  });
+  /* Photos homogènes (08/10) : si la 1re photo d'un comédien est en paysage et qu'il en a une en portrait, la portrait passe devant (aucun recadrage) */
+  document.querySelectorAll('.vcv-ph').forEach(function(ph){ var L=[].slice.call(ph.querySelectorAll('img.vcv-p')); if(L.length<2) return;
+   var n=0; function ok(){ if(++n<L.length) return; var a=L[0]; if(!(a.naturalWidth>a.naturalHeight)) return;
+    var p=L.filter(function(i){return i.naturalHeight>i.naturalWidth;})[0]; if(p) ph.insertBefore(p,a); }
+   L.forEach(function(i){ i.loading='eager'; if(i.complete) ok(); else { i.addEventListener('load',ok); i.addEventListener('error',ok); } }); });
+ }).catch(function(){});
+})();
+</script>
+<style>
+/* Galerie des troupes (14/10) : photo de troupe + comédiens + photos de répétition, sur deux lignes complètes, sans recadrage */
+.vgal-on .vmedia > figure.vtroupe,.vgal-on .vcv,#f-info .vtz.vgal-on .vcv,#f-info .vtz.vgal-on .vmedia > figure.vtroupe,#f-info .vbody.vtz.vgal-on .vmedia > .vtroupe{display:none!important;}
+.vgal-on .vmedia{display:block!important;}
+.vgal{flex:1 1 100%;width:100%;min-width:0;}
+.vmedia .vgal{display:block!important;max-width:100%;} /* 19/10 : les 2 lignes de photos l'une sous l'autre, dans le pavé rose */
+.vgal-r{display:flex;gap:4px;margin:0 0 4px;justify-content:flex-start;}
+.vgal-r.court{justify-content:center;}
+.vgal-c{flex:none;min-width:0;}
+.vgal-i{display:flex;gap:2px;}
+.vgal-i img{display:block;flex:none;cursor:zoom-in;margin:0;background:#eee;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.vgal-r:first-child{margin-bottom:10px;}
+.vgal-vid{border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.vgal-t{min-height:0!important;}
+.vgal-t{font-size:.6rem;line-height:1.2;color:var(--marine);text-align:center;margin:2px 0 0;min-height:2.4em;overflow:hidden;}
+.vgal-t b{font-weight:600;display:block;}
+.vgal-t i{font-style:normal;color:var(--accent);}
+.vgal-vid{position:relative;display:block;flex:none;padding:0;margin:0;border:0;cursor:pointer;background:#000 center/cover no-repeat;}
+.vgal-vid:after{content:"";position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#d51e29 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 6l10 6-10 6z'/%3E%3C/svg%3E") center/18px no-repeat;box-shadow:0 3px 10px rgba(0,0,0,.3);}
+</style>
+<script>
+(function(){
+ var GAP=4, GAPI=2, CACHE={};
+ /* Vidéos de répétition : une par ville, dans la galerie de chaque troupe (Paris : vidéo commune aux 3 troupes, placée dans la galerie du haut de page) */
+ var REP={"Paris":1,"Lyon":1,"Bordeaux":1,"Nantes":1}, REPV={};
+ /* Montages consacrés à une troupe (dossier Vidéos de promotion de Thierry) : clé « Ville|Troupe » pour Paris, « Ville » ailleurs */
+ var TV={
+ };
+ function repv(v){ if(!REP[v]) return null; var k=v.toLowerCase(); return {src:'/assets/insta/'+k+'-repetitions/reel.jpg',mp4:'/assets/insta/'+k+'-repetitions/reel.mp4?v=20261108b',titre:'Répétitions — '+v}; }
+ function e(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+ function vign(u){ var id=(String(u).match(/\/d\/([A-Za-z0-9_-]{15,})/)||String(u).match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; return id?'https://drive.google.com/thumbnail?id='+id+'&sz=w600':u; }
+ function charge(u){ if(CACHE[u]) return CACHE[u]; CACHE[u]=new Promise(function(ok){ var i=new Image(); i.onload=function(){ ok(i.naturalWidth&&i.naturalHeight?i.naturalWidth/i.naturalHeight:0); }; i.onerror=function(){ ok(0); }; i.src=u; }); return CACHE[u]; }
+ var J=function(u){ return fetch(u+'?'+Date.now()).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}); };
+ /* Photos déposées par les chargés de com (17/10) : liste Google publique, lue une fois au chargement */
+ var LPC=fetch('https://docs.google.com/spreadsheets/d/1ss6Mrds_tS8evr_WYcOy6Zb5X0HIlgzIQN4dU5Vkj64/gviz/tq?tqx=out:json&headers=1&_='+Date.now()).then(function(r){return r.ok?r.text():'';}).then(function(t){
+  var o={}; try{ var d=JSON.parse(t.slice(t.indexOf('(')+1,t.lastIndexOf(')'))); (d.table.rows||[]).forEach(function(r){ var v=function(i){var c=r.c[i];return c&&c.v!=null?String(c.v):'';};
+   if(!v(1)||!v(3)||v(9)==='retirée') return; var k=v(1), x={src:'https://drive.google.com/thumbnail?id='+v(3)+'&sz=w1600',legende:v(5)};
+   o[k]=o[k]||{troupe:null,photos:[],perso:{}}; if(v(2)==='troupe') o[k].troupe=x; else if(/^perso:/.test(v(7))) o[k].perso[v(7)]={src:x.src,nom:v(5)}; else o[k].photos.unshift(x); }); }catch(e){}
+  Object.keys(o).forEach(function(k){ o[k].photos=o[k].photos.slice(0,12); }); return o; }).catch(function(){return {};});
+/* Photos bloquées par Thierry (26/10) : jamais remplacées par le robot ni par un envoi */
+ var BLOQ={'annedupuy':'/assets/comediens/anne-dupuy-bloquee.jpg'};
+ function bloq(c){ var k=String((c.prenom||'')+(c.nom||'')).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,''); if(BLOQ[k]){ c.portrait=BLOQ[k]; c.photos=[BLOQ[k]]; } return c; }
+ Promise.all([J('/assets/cv-comediens.json'),J('/assets/troupes/galerie.json'),LPC]).then(function(R){
+  var cv=(R[0]&&R[0].comediens)||[], gal=R[1]||{}, PC=R[2]||{};
+  cv.forEach(bloq);
+  document.querySelectorAll('details.vd, .vgrp').forEach(function(dt){
+   var grp=dt.classList.contains('vgrp'); if(!grp && dt.querySelector('.vgrp')) return;
+   var sm=grp?null:dt.querySelector('summary'); var v=grp?dt.dataset.cvville:(sm&&sm.firstChild&&sm.firstChild.nodeType===3?sm.firstChild.nodeValue.trim():'');
+   if(!v) return; var tr=grp?(dt.dataset.troupe||''):'';
+   var b=grp?dt:dt.querySelector('.vbody'); if(!b) return;
+   var L=cv.filter(function(c){ return c.ville===v && (!tr || c.troupe===tr); });
+   var T=[].slice.call(b.querySelectorAll('figure.vtroupe img')).map(function(i){return {src:i.getAttribute('src'),alt:i.alt};});
+   var X=(gal[tr?v+'|'+tr:v]||[]).filter(function(x){return x&&x.src;});
+   var RV=(v==='Paris')?null:repv(v); /* 19/10 : la vidéo de répétition de Paris (les 3 troupes) est dans la galerie du haut de page, pas dans les troupes */
+   /* Photos déposées par le chargé de com de la troupe (17/10) : photo de troupe + photos de scène + une photo par comédien ; elles remplacent les photos « Mon CV » */
+   /* 18/10 : une seule photo par comédien (sa dernière, envoyée par lui-même) ; photos de scène et photo de troupe à part */
+   var pc=PC[tr?v+'|'+tr:v], PK=pc?Object.keys(pc.perso||{}):[], com=!!(pc&&(pc.troupe||(pc.photos&&pc.photos.length)||PK.length));
+   if(com){ var nz=function(t){return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,'');};
+    var LP=PK.map(function(q){ var c=pc.perso[q], w=String(c.nom||'').trim().split(/\s+/), ref=L.filter(function(z){return nz(z.prenom+z.nom)===nz(c.nom);})[0];
+      return {prenom:w[0]||'',nom:w.slice(1).join(' '),personnage:ref?(ref.personnage||''):'',photos:[c.src]}; }).sort(function(x,y){return (x.prenom+x.nom).localeCompare(y.prenom+y.nom,'fr');});
+    if(pc.troupe) T=[{src:pc.troupe.src,alt:'La troupe '+(tr?tr+', à '+v:'de '+v)}]; L=LP.concat(L.filter(function(z){ return ((z.photos&&z.photos.length)||z.portrait) && !LP.some(function(y){return nz(y.prenom+y.nom)===nz(z.prenom+z.nom);}); })).map(function(z){ return {prenom:z.prenom,nom:z.nom,personnage:z.personnage,photos:((z.photos&&z.photos.length)?z.photos:[z.portrait]).slice(0,1)}; }).sort(function(x,y){return (x.prenom+x.nom).localeCompare(y.prenom+y.nom,'fr');}); /* 19/10 : l'ancienne photo reste tant que le comédien n'a pas envoyé la sienne */ L.forEach(bloq); X=(pc.photos||[]).map(function(x){return {src:x.src,legende:x.legende||''};}); }
+   if(!L.length && !T.length && !X.length && !RV) return;
+   var md=b.querySelector('.vmedia');
+   if(!md){ md=document.createElement('div'); md.className='vmedia'; var an=b.querySelector(':scope > .vdates, :scope > .vavenir'); if(an) an.after(md); else b.prepend(md); }
+   var g=document.createElement('div'); g.className='vgal'; md.appendChild(g); b.classList.add('vgal-on');
+   g._d={T:T,L:L.map(function(c){ var P=((c.photos&&c.photos.length)?c.photos:(c.portrait?[c.portrait]:[])).slice(0,3).map(vign); return {nom:c.prenom+' '+c.nom,role:c.personnage||'',P:P}; }).filter(function(c){return c.P.length;}),X:X};
+   g._d.com=com; g._d.V=(TV[tr?v+'|'+tr:v]||[]).concat(RV?[RV]:[]); prepare(g);
+  });
+ });
+ function prepare(g){
+  var d=g._d, U=[]; d.T.forEach(function(t){U.push(t.src);}); d.L.forEach(function(c){U=U.concat(c.P);}); d.X.forEach(function(x){U.push(x.src);}); d.V.forEach(function(x){U.push(x.src);});
+  Promise.all(U.map(charge)).then(function(A){
+   var k=0, ar={}; U.forEach(function(u){ ar[u]=A[k++]; });
+   d.T=d.T.filter(function(t){return ar[t.src]>0;}).map(function(t){t.a=ar[t.src];return t;});
+   d.L.forEach(function(c){ c.P=c.P.filter(function(u){return ar[u]>0;}); c.A=c.P.map(function(u){return ar[u];}); });
+   d.L=d.L.filter(function(c){return c.P.length;});
+   d.X=d.X.filter(function(x){return ar[x.src]>0;}).map(function(x){x.a=ar[x.src];return x;});
+   d.V=d.V.filter(function(x){return ar[x.src]>0;}).map(function(x){x.a=ar[x.src];return x;});
+   g._ok=true; dessine(g);
+   if(window.ResizeObserver){ new ResizeObserver(function(){ dessine(g); }).observe(g); } else window.addEventListener('resize',function(){ dessine(g); });
+  });
+ }
+ function dessine(g){
+  if(!g._ok) return; var W=Math.floor(g.clientWidth); if(W<60||W===g._w) return; g._w=W; var d=g._d;
+  var Ht=Math.max(80,Math.min(118,W/4.2)), cible=2*W/Ht;
+  /* cellules obligatoires : photo(s) de troupe, puis un portrait par comédien */
+  /* 19/10 : photo de troupe et vidéos en tête, en grand, sur leur propre ligne ; les comédiens dessous */
+  var H=[], C=[]; d.T.forEach(function(t){ H.push({im:[{u:t.src,a:t.a}],alt:t.alt,t:''}); });
+  d.V.forEach(function(x){ H.push({im:[{u:x.src,a:x.a,mp4:x.mp4}],alt:x.titre,t:'<b>'+e(x.cap||'Répétitions')+'</b>'}); });
+  var CC=d.L.map(function(c){ return {im:[{u:c.P[0],a:c.A[0]}],alt:c.nom+(c.role?' — '+c.role:''),t:'<b>'+e(c.nom)+'</b>'+(c.role?'<i>'+e(c.role)+'</i>':''),c:c}; });
+  C=C.concat(CC);
+  var som=function(){ return C.reduce(function(s,x){ return s+x.im.reduce(function(a,i){return a+i.a;},0); },0); };
+  /* compléments jusqu'à remplir deux lignes : photos de répétition, puis 2e et 3e photos des comédiens */
+  if(d.com){ d.X.forEach(function(x){ C.push({im:[{u:x.src,a:x.a}],alt:x.legende||'',t:x.legende?'<b>'+e(x.legende)+'</b>':''}); }); }
+  var plus=(d.com?[]:d.X).map(function(x){ return function(){ C.push({im:[{u:x.src,a:x.a}],alt:x.legende||'',t:x.legende?'<b>'+e(x.legende)+'</b>':''}); }; });
+  [1,2].forEach(function(n){ CC.forEach(function(cl){ if(cl.c.P[n]) plus.push(function(){ cl.im.push({u:cl.c.P[n],a:cl.c.A[n]}); }); }); });
+  for(var p=0;p<plus.length && som()<cible*0.92;p++) plus[p]();
+  /* deux lignes, coupées au plus près de l'équilibre */
+  var w=C.map(function(x){ return x.im.reduce(function(a,i){return a+i.a;},0); }), tot=w.reduce(function(a,b){return a+b;},0), cut=C.length, best=1e9, acc=0;
+  /* 19/10 : peu de photos → une seule ligne, sans les agrandir */
+  if(C.length>1 && tot*Ht*1.3>W){ for(var i=0;i<C.length-1;i++){ acc+=w[i]; var df=Math.abs(tot-2*acc); if(df<best){best=df;cut=i+1;} } }
+  var lignes=[C.slice(0,cut),C.slice(cut)].filter(function(l){return l.length;}), cap=lignes.map(function(){return Ht*1.6;});
+  if(H.length){ lignes.unshift(H); cap.unshift(Math.min(260,W*0.62)); }
+  var tous=[]; H.concat(C).forEach(function(x){ x.im.forEach(function(i){ if(!i.mp4) tous.push(i.u); }); });
+  var ph=e(JSON.stringify(tous)), html='';
+  lignes.forEach(function(l,li){
+   var sa=0, gaps=GAP*(l.length-1); l.forEach(function(x){ sa+=x.im.reduce(function(a,i){return a+i.a;},0); gaps+=GAPI*(x.im.length-1); });
+   var h=(W-gaps-1)/sa, court=false; if(h>cap[li]){ h=cap[li]; court=true; }
+   html+='<div class="vgal-r'+(court?' court':'')+'">'+l.map(function(x){
+     var cw=0; var ims=x.im.map(function(i){ var iw=Math.floor(h*i.a); cw+=iw; if(i.mp4) return '<button type="button" class="vgal-vid" data-mp4="'+e(i.mp4)+'" data-poster="'+e(i.u)+'" aria-label="Voir la vidéo : '+e(x.alt)+'" style="width:'+iw+'px;height:'+Math.round(h)+'px;background-image:url(\''+e(i.u)+'\')"></button>'; return '<img class="vcv-p" src="'+e(i.u)+'" style="width:'+iw+'px;height:'+Math.round(h)+'px" data-i="'+tous.indexOf(i.u)+'" data-ph="'+ph+'" alt="'+e(x.alt)+'" loading="lazy">'; }).join('');
+     cw+=GAPI*(x.im.length-1);
+     return '<div class="vgal-c" style="width:'+cw+'px"><div class="vgal-i">'+ims+'</div><p class="vgal-t">'+x.t+'</p></div>'; }).join('')+'</div>';
+  });
+  g.innerHTML=html;
+ }
+ document.addEventListener('click',function(ev){
+  var b=ev.target.closest&&ev.target.closest('.vgal-vid'); if(!b) return; ev.preventDefault();
+  var box=document.getElementById('vg-box'), lv=box&&box.querySelector('video'); if(!lv) return;
+  var m=document.querySelector('#vg-main video'); if(m) m.pause();
+  lv.poster=b.getAttribute('data-poster'); lv.src=b.getAttribute('data-mp4'); box.classList.add('on'); var pr=lv.play(); if(pr&&pr.catch) pr.catch(function(){});
+ });
+})();
+</script>
+<div id="ovr-zoom" role="dialog" aria-label="Photo agrandie"><button type="button" aria-label="Fermer">&times;</button><img alt=""><p></p></div>
+<script>
+/* Agrandissement au clic des photos de troupe et de comédiens */
+(function(){
+ var z=document.getElementById('ovr-zoom'), zi=z.querySelector('img'), zp=z.querySelector('p');
+ var zg=document.createElement('button'), zd=document.createElement('button'), zn=document.createElement('span');
+ zg.type=zd.type='button'; zg.className='zz zg'; zd.className='zz zd'; zg.innerHTML='&lsaquo;'; zd.innerHTML='&rsaquo;'; zg.setAttribute('aria-label','Photo précédente'); zd.setAttribute('aria-label','Photo suivante'); zn.className='zn';
+ z.appendChild(zg); z.appendChild(zd); z.appendChild(zn);
+ function montre(){ var L=z._L||[], i=z._i||0; zi.src=String(L[i]||'').replace(/([?&]sz=w)\d+/,'$11600'); var n=L.length>1; zg.style.display=zd.style.display=n?'':'none'; zn.textContent=n?(i+1)+' / '+L.length:''; }
+ function pas(d,ev){ ev.stopPropagation(); var L=z._L||[]; if(L.length<2) return; z._i=((z._i||0)+d+L.length)%L.length; montre(); }
+ zg.addEventListener('click',function(ev){pas(-1,ev);}); zd.addEventListener('click',function(ev){pas(1,ev);});
+ document.addEventListener('keydown',function(ev){ if(!z.classList.contains('on')) return; if(ev.key==='ArrowLeft') pas(-1,ev); if(ev.key==='ArrowRight') pas(1,ev); });
+ function fermer(){ z.classList.remove('on'); zi.removeAttribute('src'); document.body.style.overflow=''; }
+ document.addEventListener('click',function(ev){
+  var im=ev.target.closest&&ev.target.closest('.vtroupe img, img.vcv-p'); if(!im) return;
+  ev.preventDefault(); var L=[]; try{ L=JSON.parse(im.getAttribute('data-ph')||'[]'); }catch(x){}
+  if(!L.length) L=[im.currentSrc||im.src]; z._L=L; z._i=Math.min(L.length-1,+(im.getAttribute('data-i')||0)); montre(); zi.alt=im.alt||'';
+  var c=im.closest('.vcv-c'), f=im.closest('figure');
+  zp.textContent=c?(c.querySelector('.vcv-n')||{}).textContent||im.alt:(f&&f.querySelector('figcaption')?f.querySelector('figcaption').textContent:im.alt);
+  z.classList.add('on'); document.body.style.overflow='hidden';
+ });
+ z.addEventListener('click',fermer);
+ document.addEventListener('keydown',function(ev){ if(ev.key==='Escape') fermer(); });
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.vgrp').forEach(function(g){ g.classList.add('vtz'); });
+  document.querySelectorAll('.vbody').forEach(function(b){ if(!b.querySelector('.vgrp')) b.classList.add('vtz'); });
+  document.querySelectorAll('.vtz').forEach(function(z){
+    if(z.querySelector('.vtsolo')) return;
+    var p=document.createElement('p'); p.className='vtsolo'; p.innerHTML='<button type="button" class="vtbtn">Découvrir la troupe</button>';
+    var dl=z.querySelector('.vdates'), av=z.querySelector('.vavenir'), t=z.querySelector('.vgrp-t');
+    if(dl) dl.after(p); else if(av) av.after(p); else if(t) t.after(p); else z.prepend(p);
+  });
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.vtbtn'); if(!b) return; e.preventDefault();
+    var z=b.closest('.vtz'); if(!z) return; var o=z.classList.toggle('vtopen');
+    z.querySelectorAll('.vtbtn').forEach(function(x){ x.textContent=o?'Masquer la troupe':'Découvrir la troupe'; });
+  });
+})();
+</script>
+<script>
+/* Vignette de la photo de troupe à côté de chaque bouton « Découvrir la troupe » : clic = même effet que le bouton */
+(function(){
+  window.ovrMinis=function(){
+    document.querySelectorAll('.vtz').forEach(function(z){
+      var src=z.querySelector('figure.vtroupe img'); if(!src) return;
+      var o=z.classList.contains('vtopen');
+      z.querySelectorAll('.vtbtn').forEach(function(b){
+        b.textContent=o?'Masquer la troupe':'Découvrir la troupe';
+        var p=b.previousElementSibling; if(p&&p.classList.contains('vtmini')) return;
+        var m=document.createElement('img'); m.className='vtmini'; m.src=src.getAttribute('src'); m.alt=src.alt; m.loading='lazy';
+        b.parentNode.insertBefore(m,b);
+      });
+    });
+  };
+  
+  window.ovrMinis();
+  document.addEventListener('click',function(e){
+    var m=e.target.closest&&e.target.closest('.vtmini'); if(!m) return; e.preventDefault();
+    var b=m.nextElementSibling; if(b&&b.classList.contains('vtbtn')) b.click();
+  });
+})();
+</script>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest('.rnav');if(!b)return;var t=b.parentNode.querySelector('.punchlines');var c=t.querySelector('.punch');var w=c?c.getBoundingClientRect().width+14:300;t.scrollBy({left:b.classList.contains('rprev')?-w:w,behavior:'smooth'});});
+</script>
+<script>
+/* Villes sans date : non dépliables, et rangées sous les villes datées de leur bloc (après l'affichage des dates) */
+document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
+  var L=document.querySelector('.vlist'); if(!L) return;
+  function datee(d){ return [].some.call(d.querySelectorAll('.vdates'),function(x){ return x.children.length>0; }); }
+  document.querySelectorAll('.vlist details.vd').forEach(function(d){
+    if(datee(d)) return;
+    d.classList.add('vd-off'); d.removeAttribute('open');
+    var sm=d.querySelector('summary'); if(sm){ sm.setAttribute('tabindex','-1'); sm.addEventListener('click',function(e){ e.preventDefault(); });
+      var v=(sm.firstChild&&sm.firstChild.nodeType===3)?sm.firstChild.nodeValue.trim():'';
+      if(v && window.ovrNL){ var bt=document.createElement('button'); bt.type='button'; bt.className='vnl'; bt.innerHTML='Être prévenu pour '+v+' &rarr;';
+        bt.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); window.ovrNL(v); }); sm.appendChild(bt); } }
+  });
+  var seg=[], blocs=[seg];
+  [].slice.call(L.children).forEach(function(c){ if(c.tagName==='H3'){ seg=[]; blocs.push(seg); seg.h=c; } else if(c.matches('details.vd')) seg.push(c); });
+  blocs.forEach(function(B){ if(!B.length) return;
+    var ordre=B.filter(function(d){return !d.classList.contains('vd-off');}).concat(B.filter(function(d){return d.classList.contains('vd-off');}));
+    var ref=document.createComment('t'); B[0].parentNode.insertBefore(ref,B[0]); ordre.forEach(function(d){ ref.parentNode.insertBefore(d,ref); }); ref.remove();
+  });
+
+},0); });
+</script>
+<script>
+(function(){
+  var g=function(i){return document.getElementById(i);}, btn=g('c-btn'), msg=g('c-msg'); if(!btn) return;
+  function e(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function show(k,t){ msg.className='msg '+k; msg.innerHTML=t; }
+  if(/[?&]cadeau=1/.test(location.search)){ g('cadeau').open=true; setTimeout(function(){ g('cadeau').scrollIntoView({block:'center'}); },300); }
+  btn.addEventListener('click',function(){
+    var oc=(document.querySelector('input[name=c-occ]:checked')||{}).value||'noel'; var d={action:'cadeau', occasion:oc, pour:g('c-pour').value.trim(), de:(oc==='santa'?'':g('c-de').value.trim()), qty:parseInt(g('c-qty').value,10)||1, prenom:g('c-prenom').value.trim(), nom:g('c-nom').value.trim(), email:g('c-email').value.trim(), portable:g('c-tel').value.trim(), source:'grand-public'};
+    if(!d.prenom||!d.nom){ show('ko','Merci d\'indiquer votre prénom et votre nom.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(d.email)){ show('ko','Votre adresse email semble incorrecte.'); return; }
+    if(!d.portable){ show('ko','Merci d\'indiquer votre portable.'); return; }
+    btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
+    fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)})
+      .then(function(r){return r.json();})
+      .then(function(r){ if(r&&r.ok&&r.url){ location.href=r.url; return; } show('ko',e((r&&r.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
+      .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
+  });
+})();
+</script>
+<footer style="margin:40px auto 0;padding:22px 16px 30px;border-top:1px solid #e5e5e5;text-align:center;font-size:1rem;color:var(--marine);background:#fff">
+  Une question ? Écrivez-nous : <a href="mailto:contact@onvousrappellera.fr" style="color:var(--accent);font-weight:600">contact@onvousrappellera.fr</a>
+</footer>
+<script id="ovr-origine">
+/* Origine des réservations : chaque passage au paiement est noté (page, lien suivi ?src=, provenance) dans l'onglet « Origines réservations ». */
+window.ovrOrigine=function(email,seance,source,code,reco){try{var q=new URLSearchParams(location.search);
+fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Origines réservations'!A:I",valueInputOption:'RAW',
+values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(email||'').trim().toLowerCase(),seance||'',source,String(code||'').toUpperCase(),q.get('src')||q.get('utm_campaign')||'',location.pathname+location.search,document.referrer||'',String(reco||'')]]})}).catch(function(){});}catch(e){}};
+</script>
+
+<script>
+/* Pitch : sous chaque personnage, les comédiens qui le jouent (photos + « X est Pascal à Paris ») */
+(function(){
+ var ul=document.querySelector('.persos-pitch'); if(!ul||!window.fetch) return;
+ var R=[{t:"son manager à foutre en taule",k:"pascal"},{t:"sa DRH au bord de la crise de nerfs",k:"delphine"},{t:"son petit nouveau qui en fait des tonnes",k:"johana"},{t:"le candidat trop vieux pour le poste",k:"dominique"},{t:"le candidat idéal qui se fout de tout le monde",k:"julien"},{t:"le psy barjot… Qu'est-ce qu'il fout là&nbsp;?",k:"daniel"}];
+ function fam(n){ n=(n||'').toLowerCase().trim(); if(/^pascal/.test(n))return 'pascal'; if(/^delphine/.test(n))return 'delphine'; if(/^johana/.test(n))return 'johana'; if(/^dominique/.test(n))return 'dominique'; if(/^juli/.test(n))return 'julien'; if(/^daniel/.test(n))return 'daniel'; return ''; }
+ function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+ fetch('/assets/cv-comediens.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){
+  var L=(d&&d.comediens)||[], B={}; R.forEach(function(r){B[r.k]=[];});
+  var dbl={}; /* troupes où deux comédiens tiennent psy + senior : le 1er en psy, le 2e en senior */
+  L.forEach(function(c){ if(!c.portrait||!c.personnage) return; var tr=(c.ville||'')+'|'+(c.troupe||''), p=c.personnage.split('+').map(function(s){return s.trim();});
+   var im=String(c.portrait), id=(im.match(/\/d\/([A-Za-z0-9_-]{15,})/)||im.match(/[?&]id=([A-Za-z0-9_-]{15,})/)||[])[1]; if(id) im='https://drive.google.com/thumbnail?id='+id+'&sz=w400'; if(/^anne ?dupuy$/i.test((c.prenom+' '+c.nom).trim())) im='/assets/comediens/anne-dupuy-bloquee.jpg'; var RI={}; R.forEach(function(r,i){RI[r.k]=i;}); var mn=Math.min.apply(null,p.map(function(n){var f=fam(n);return f in RI?RI[f]:99;})); p.forEach(function(nom){ var role=fam(nom); if(B[role]) B[role].push({n:c.prenom+' '+c.nom,img:im,p:nom,v:(c.ville||''),sec:RI[role]>mn}); });
+  });
+  var st=document.getElementById('cast-strip'), vu={}, H='';
+  R.forEach(function(r){ B[r.k].filter(function(c){return !c.sec;}).forEach(function(c){ if(vu[c.n]) return; vu[c.n]=1; H+='<span class="cs"><img loading="lazy" onerror="this.parentNode.style.display=\'none\'" src="'+esc(c.img)+'" alt="'+esc(c.n)+'"><b>'+esc(c.n)+'</b>'+esc(c.p)+' · '+esc(c.v)+'</span>'; }); });
+  if(st) st.innerHTML=H;
+ }).catch(function(){});
+})();
+</script>
+<script>
+window.PROP_LIVE=true;
+/* Proposition : soirées avec présentation des entreprises qui recrutent (5 entreprises, 5 minutes chacune) */
+(function(){
+ var EMP={"PAR-1209-19":{ent:"18h",piece:"19h",bar:"Un bar, juste à côté du théâtre, permet de prolonger les échanges."},
+  "TLS-1203":{ent:"19h",diner:"19h30",piece:"21h",bar:"Le bar reste ouvert pour prolonger les échanges."},
+  "REN-1209-20":{ent:"19h",piece:"20h",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "BOR-1210-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "BOR-1217-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "LYO-1216-19":{ent:"18h",piece:"19h",bar:"Un bar est ouvert pour prolonger les échanges."}};
+ var PRIS={}; /* créneaux déjà pris par séance : à brancher sur les réservations */
+ function g(i){return document.getElementById(i);}
+ function seance(){ var v=g('f-ville').value, d=g('f-date').value; return ((window.DATES_PROP||{})[v]||[]).filter(function(o){return o.d===d;})[0]; }
+ function maj(){
+  var s=seance(), e=s&&EMP[s.c];
+  g('soiree').style.display=e?'':'none';
+  g('t-ent').style.display=e?'':'none';
+  if(e){
+   g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Les entreprises qui recrutent se présentent. Les spectateurs en recherche d’emploi viennent assister aux présentations.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — Dîner sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
+   g('t-norm-txt').innerHTML='<b>Tarif normal — 20&nbsp;€</b><br>Arrivée à partir de <b>'+e.ent+'</b>, et au plus tard à <b>'+e.piece+'</b> pour le lever de rideau.';
+   g('t-red-txt').innerHTML='<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.ent+'</b> pour assister aux présentations des entreprises qui recrutent.';
+   g('t-ent-txt').innerHTML='<br>Je réserve 10 places et je présente mes offres d’emploi sur scène à <b>'+e.ent+'</b>. ';
+   var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?'Il reste au moins une des 5 places.':'Les 5 places sont déjà prises.';
+  } else {
+   g('t-norm-txt').innerHTML='<b>Tarif normal — 20&nbsp;€</b>';
+   g('t-red-txt').innerHTML='<b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d’emploi…) · justificatif à présenter à l’entrée';
+   var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x&&x.checked){ document.querySelector('input[name=tarif][value=partenaire]').checked=true; }
+  }
+  var t=(document.querySelector('input[name=tarif]:checked')||{}).value;
+  g('red-accord').style.display=(t==='reduit'&&e)?'':'none';
+  var veille=g('f-accord').closest('label'); veille.style.display=e?'none':'';
+  if(e) g('f-accord').checked=(t==='reduit');
+  g('f-ent-wrap').style.display=t==='entreprise'?'':'none';
+  g('f-red-wrap').style.display=(t==='reduit'&&!e)?'':'none';
+  if(t==='reduit'&&e) g('f-statut').value="Demandeur d'emploi";
+  var fc=g('fe-case'); if(fc){ var fw=fc.closest('label').parentNode; if(t==='entreprise'){ if(fw.parentNode!==g('f-ent-fact')) g('f-ent-fact').appendChild(fw); fc.checked=true; g('fe-bloc').style.display=''; } else { if(fw.parentNode!==g('fe-ancre').parentNode) g('fe-ancre').after(fw); fc.checked=false; g('fe-bloc').style.display='none'; } }
+  var pl=g('f-places'); if(t==='entreprise'){ pl.value=10; pl.disabled=true; } else pl.disabled=false;
+ }
+ document.addEventListener('change',function(ev){ var x=ev.target; if(x && (x.id==='f-date'||x.id==='f-ville'||x.name==='tarif')) setTimeout(maj,0); });
+ g('f-btn').addEventListener('click',function(ev){ var m=g('f-msg'); var enR=g('f-resa').style.display!=='none'; var sel=document.querySelector('input[name=tarif]:checked');
+  if(enR && !sel){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Merci de choisir votre tarif.'; return; }
+  if(!window.PROP_LIVE){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ok'; m.innerHTML='Proposition : le paiement n’est pas branché sur cette page.'; return; }
+  if(enR && sel.value==='entreprise'){ /* 10 places au tarif normal = 200 € ; l'entreprise et ses postes sont notés dans l'onglet « Pitch entreprises » */
+   var s=seance(); var ent=(g('fe-raison')&&g('fe-raison').value.trim())||''; var po=g('f-poste').value.trim();
+   if(!ent||!po){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Merci d’indiquer le nom de l’entreprise et le ou les postes à présenter.'; return; }
+   var fe=window.FE?FE.lire():null; if(!(fe&&fe.erreur)&&g('f-prenom').value.trim()&&g('f-tel').value.trim()) try{ fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Pitch entreprises'!A1:I1",values:[[(s&&s.d)||'',g('f-ville').value,ent,(g('f-prenom').value+' '+g('f-nom').value).trim(),g('f-email').value.trim(),po,'réservation en cours (site)',new Date().toLocaleString('fr-FR'),'']]})}).catch(function(){}); }catch(e){}
+   document.querySelector('input[name=tarif][value=partenaire]').checked=true; g('f-places').disabled=false; g('f-places').value=10;
+   setTimeout(function(){ var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x){ x.checked=true; g('f-places').disabled=true; } },50);
+  }
+ },true);
+ (function(){ var r=g('f-red-wrap'); r.parentNode.insertBefore(g('red-accord'), r); var pv=g('t-priv'); pv.after(g('t-ent')); g('t-ent').after(g('f-ent-wrap')); var cd=g('f-cadeau'); if(cd && !window.PROP_LIVE) cd.closest('label').style.display='none'; })();
+ maj();
+})();
+/* Un seul menu : Ville — date — heure — troupe — formule */
+(function menu(){ if(!window.DATES_PROP||!Object.keys(window.DATES_PROP).length){ return setTimeout(menu,100); }
+ var EMPC=["PAR-1209-19","TLS-1203","REN-1209-20","BOR-1210-1830","BOR-1217-1830","LYO-1216-19"];
+ var JR=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],MO={janvier:0,'février':1,mars:2,avril:3,mai:4,juin:5,juillet:6,'août':7,septembre:8,octobre:9,novembre:10,'décembre':11};
+ function g(i){return document.getElementById(i);}
+ var D=window.DATES_PROP||{}, sv=g('f-ville'), sd=g('f-date');
+ var wrap=document.createElement('div'); wrap.className='field full';
+ wrap.innerHTML='<label for="f-seance">Votre séance</label><select id="f-seance"><option value="">— Choisissez votre séance —</option></select>';
+ var vw=sv.closest('.field'); vw.parentNode.insertBefore(wrap,vw);
+ var ss=g('f-seance');
+ Object.keys(D).sort(function(a,b){return a.localeCompare(b,'fr');}).forEach(function(v){
+  D[v].forEach(function(o){
+   var m=o.d.match(/^(\d+)\s+(\S+)\s+(\d{4})\s*·\s*(.+)$/), jour='', h='';
+   if(m){ var dt=new Date(+m[3],MO[m[2]],+m[1]); jour=JR[dt.getDay()]+' '+m[1]+' '+m[2]; h=m[4]; } else jour=o.d;
+   var tr=o.tr?('Troupe '+o.tr):('Troupe de '+v);
+   var f=EMPC.indexOf(o.c)>=0?'Pièce + présentation d’employeurs':'Pièce';
+   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=v+' — '+jour+' — '+h+' — '+tr+' — '+f; ss.appendChild(op);
+  });
+ });
+ var au=document.createElement('option'); au.value='__ville'; au.textContent='Ma ville n’est pas dans la liste — être prévenu'; ss.appendChild(au);
+ vw.style.display='none'; 
+ function fire(el){ el.dispatchEvent(new Event('change',{bubbles:true})); }
+ ss.addEventListener('change',function(){
+  if(ss.value==='__ville'){ vw.style.display=''; sv.value=''; fire(sv); return; }
+  vw.style.display='none'; if(!ss.value){ sv.value=''; fire(sv); return; }
+  var p=ss.value.split('|'); sv.value=p[0]; fire(sv);
+  setTimeout(function(){ sd.value=p[1]; fire(sd);  },0);
+ });
+})();
+/* Bandeau de la troupe : fond blanc pour toutes les villes */
+(function(){
+ var st=document.createElement('style'); st.textContent='#f-info details.vd .vtz{background:#fff!important;border:1px solid #e5e5e5!important;color:#161616!important}#f-info details.vd .vtz *{color:#161616!important}#f-info details.vd .vtz a{color:#c8102e!important}'; document.head.appendChild(st);
+})();
+/* D'abord le tarif, ensuite les champs qui dépendent du tarif */
+(function(){
+ function g(i){return document.getElementById(i);}
+ var tf=document.querySelector('#f-resa .tarifs'), first=document.querySelector('#prevenez-moi .fgrid .resa-only');
+ if(!tf||!first) return;
+ var box=document.createElement('div'); box.id='tarif-d-abord'; box.style.gridColumn='1/-1'; box.innerHTML='<label style="display:block;margin:.4rem 0">Votre tarif</label>'; first.parentNode.insertBefore(box,first); box.appendChild(tf);
+ function vis(){
+  var date=g('f-resa').style.display!=='none', t=document.querySelector('input[name=tarif]:checked');
+  box.style.display=date?'':'none';
+  var on=date&&!!t;
+  document.querySelectorAll('#prevenez-moi .resa-only').forEach(function(x){ x.style.display=on?'':'none'; });
+  g('f-email-wrap').style.display=on?'':(date?'none':g('f-email-wrap').style.display);
+  var pw=g('f-places')&&g('f-places').closest('.fgrid'); if(pw) pw.style.display=(on&&t.value!=='entreprise')?'':'none';
+  g('f-btn').style.display=(on||!date)?g('f-btn').style.display:'none'; if(on) g('f-btn').style.display='';
+ }
+ document.addEventListener('change',function(){ setTimeout(vis,5); });
+ setInterval(vis,700);
+ vis();
+})();
+
+</script>
+<script id="ovr-reco">
+/* « Je suis recommandé par » : comédiens de la troupe qui joue la séance choisie + Thierry Bismuth + Autre (obligatoire) */
+(function(){
+ function g(i){return document.getElementById(i);}
+ var sel=g('f-reco'), autre=g('f-reco-autre'); if(!sel) return;
+ var PARIS={"Engagement":["Arthur Pichon","Bruno Rodet","Nathalie Charade","Isabelle Ricard","Nolwenn Canal","Thomas Delaporte","Pauline de Leusse","Béatrice Laout","Fritz Sönnichsen"],
+  "Honnêteté":["Clémentine Teixeira","Mélanie Cauvé","Anne Dupuy","Caroline de Laquintane","Fanny Cony","Clarence Pernot","Nathalie Codani"],
+  "Esprit d'équipe":["Daniel Vandeberg","Alicia Bader","Marine Luc","Nicolas Sacroug","Adèle Bloch-Mazier","Frederique Gautier","Nadège Garnier"]};
+ var AUSSI={"Toulouse":"Bordeaux"}; /* la troupe commune Toulouse–Bordeaux joue à Toulouse */
+ var PETITS=['de','du','des','la','le','d'];
+ function propre(n){ return String(n||'').trim().split(/\s+/).map(function(w,i){ var l=w.toLowerCase(); if(i>0 && PETITS.indexOf(l)>=0) return l; if(w===w.toUpperCase()||w===l) return l.split('-').map(function(x){return x.charAt(0).toUpperCase()+x.slice(1);}).join('-'); return w; }).join(' '); }
+ var COM=null; fetch('https://thierrybismuth.com/ovr-comediens.json?x='+Date.now()).then(function(r){return r.json();}).then(function(d){ COM=(d&&d.comediens)||[]; maj(); }).catch(function(){ COM=[]; maj(); });
+ function seance(){ var v=g('f-ville').value, d=g('f-date').value; return {v:v, s:((window.DATES_PROP||{})[v]||[]).filter(function(o){return o.d===d;})[0]}; }
+ var cle='';
+ function maj(){ var x=seance(), v=x.v, s=x.s, tr=(s&&s.tr)||''; var k=v+'|'+tr+'|'+(COM?COM.length:'-'); if(k===cle) return; cle=k;
+  var noms=[];
+  if(v==='Paris'){ if(PARIS[tr]) noms=PARIS[tr].slice(); else Object.keys(PARIS).forEach(function(t){ noms=noms.concat(PARIS[t]); }); }
+  else if(COM){ var vv=AUSSI[v]||v; COM.forEach(function(c){ if(c.v===vv) noms.push(propre(c.n)); }); }
+  var vu={}; noms=noms.filter(function(n){ var z=n.toLowerCase(); if(vu[z]) return false; vu[z]=1; return true; }).sort(function(a,b){return a.localeCompare(b,'fr');});
+  var avant=sel.value;
+  sel.innerHTML='<option value="">— Choisissez —</option>'+noms.map(function(n){ return '<option>'+n.replace(/</g,'&lt;')+'</option>'; }).join('')+'<option>Thierry Bismuth</option><option value="__autre">Autre</option>';
+  if(avant && [].some.call(sel.options,function(o){return o.value===avant;})) sel.value=avant;
+  autre.style.display=sel.value==='__autre'?'':'none';
+ }
+ sel.addEventListener('change',function(){ autre.style.display=sel.value==='__autre'?'':'none'; if(sel.value==='__autre') autre.focus(); });
+ document.addEventListener('change',function(ev){ var t=ev.target; if(t&&(t.id==='f-date'||t.id==='f-ville'||t.id==='f-seance')) setTimeout(maj,20); });
+ setInterval(maj,1000);
+ /* null = manquant (bloque) ; sinon le nom retenu */
+ window.ovrReco=function(){ var w=g('f-reco-wrap'); if(!w||w.style.display==='none') return ''; var v=sel.value; if(!v) return null; if(v==='__autre'){ var a=autre.value.trim(); return a?('Autre : '+a):null; } return v; };
+})();
+</script>
+</body>
+</html>
