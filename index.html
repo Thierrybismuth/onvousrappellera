@@ -578,6 +578,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <div class="field resa-only"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
       <div class="field full" id="f-email-wrap"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
       <div class="field resa-only"><label for="f-tel">Portable</label><input id="f-tel" type="tel" autocomplete="tel"></div>
+      <div class="field full resa-only" id="f-reco-wrap"><label for="f-reco">Je suis recommandé par</label><select id="f-reco" required><option value="">— Choisissez —</option></select><input id="f-reco-autre" type="text" placeholder="Qui vous a recommandé la pièce ?" style="display:none;margin-top:.4rem"></div>
     </div>
     <div id="f-resa" style="display:none">
       <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
@@ -880,11 +881,12 @@ document.addEventListener('DOMContentLoaded',function(){
       if(!S||!S.c){ show('ko','Cette séance n\'est pas encore ouverte à la vente. Appelez-nous au 06 10 70 30 90.'); return; }
       if(!p.telephone){ show('ko','Merci d\'indiquer votre portable.'); return; }
       var fe=window.FE?FE.lire():null; if(fe&&fe.erreur){ show('ko',fe.erreur); return; }
+      p.reco=window.ovrReco?ovrReco():''; if(p.reco===null){ show('ko','Merci d\'indiquer qui vous a recommandé la pièce.'); var rw=g('f-reco-wrap'); if(rw) rw.scrollIntoView({block:'center'}); return; }
       btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
       var tfp=tarifChoisi();
-      if(window.ovrOrigine) ovrOrigine(p.email,S.c,'Site onvousrappellera.fr',p.code);
+      if(window.ovrOrigine) ovrOrigine(p.email,S.c,'Site onvousrappellera.fr',p.code,p.reco);
       fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},
-        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,source:'grand-public',cadeau_url:cadeauUrl(S,p,tfp)})})
+        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,reco:p.reco||'',source:'grand-public',cadeau_url:cadeauUrl(S,p,tfp)})})
         .then(function(r){return r.json();})
         .then(function(d){ var cu=cadeauUrl(S,p,tfp); if(d&&d.ok&&d.invite){ if(cu){ show('ok','<b>'+esc(d.message)+'</b>'+lienCadeau(cu)); return; } var lu2=LIEUX[S.l], rep=/^[a-z]{2,3}(22|26)nov$/i.test(p.code||''); show('ok','<b>'+esc(d.message)+'</b>'+(rep&&lu2?'<br><br><span style="color:#c00;font-weight:700">⚠️ Attention, le lieu a changé : ce n\'est plus le Passage vers les Étoiles.</span><br><b>Votre nouveau lieu : <u>'+esc(lu2.n)+', '+esc(lu2.a)+'</u></b>':'')); return; } if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:p.ville+' — '+p.date,qty:parseInt(p.places,10)||1,pu:PRIX[tfp],tarif:LIB[tfp],prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone}); if(cu){ try{ localStorage.setItem('ovrCadeau',JSON.stringify({u:cu,t:Date.now()})); }catch(e){} } location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
         .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
@@ -1189,9 +1191,9 @@ document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
 </footer>
 <script id="ovr-origine">
 /* Origine des réservations : chaque passage au paiement est noté (page, lien suivi ?src=, provenance) dans l'onglet « Origines réservations ». */
-window.ovrOrigine=function(email,seance,source,code){try{var q=new URLSearchParams(location.search);
-fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Origines réservations'!A:H",valueInputOption:'RAW',
-values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(email||'').trim().toLowerCase(),seance||'',source,String(code||'').toUpperCase(),q.get('src')||q.get('utm_campaign')||'',location.pathname+location.search,document.referrer||'']]})}).catch(function(){});}catch(e){}};
+window.ovrOrigine=function(email,seance,source,code,reco){try{var q=new URLSearchParams(location.search);
+fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Origines réservations'!A:I",valueInputOption:'RAW',
+values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(email||'').trim().toLowerCase(),seance||'',source,String(code||'').toUpperCase(),q.get('src')||q.get('utm_campaign')||'',location.pathname+location.search,document.referrer||'',String(reco||'')]]})}).catch(function(){});}catch(e){}};
 </script>
 
 <script>
@@ -1318,6 +1320,37 @@ window.PROP_LIVE=true;
  vis();
 })();
 
+</script>
+<script id="ovr-reco">
+/* « Je suis recommandé par » : comédiens de la troupe qui joue la séance choisie + Thierry Bismuth + Autre (obligatoire) */
+(function(){
+ function g(i){return document.getElementById(i);}
+ var sel=g('f-reco'), autre=g('f-reco-autre'); if(!sel) return;
+ var PARIS={"Engagement":["Arthur Pichon","Bruno Rodet","Nathalie Charade","Isabelle Ricard","Nolwenn Canal","Thomas Delaporte","Pauline de Leusse","Béatrice Laout","Fritz Sönnichsen"],
+  "Honnêteté":["Clémentine Teixeira","Mélanie Cauvé","Anne Dupuy","Caroline de Laquintane","Fanny Cony","Clarence Pernot","Nathalie Codani"],
+  "Esprit d'équipe":["Daniel Vandeberg","Alicia Bader","Marine Luc","Nicolas Sacroug","Adèle Bloch-Mazier","Frederique Gautier","Nadège Garnier"]};
+ var AUSSI={"Toulouse":"Bordeaux"}; /* la troupe commune Toulouse–Bordeaux joue à Toulouse */
+ var PETITS=['de','du','des','la','le','d'];
+ function propre(n){ return String(n||'').trim().split(/\s+/).map(function(w,i){ var l=w.toLowerCase(); if(i>0 && PETITS.indexOf(l)>=0) return l; if(w===w.toUpperCase()||w===l) return l.split('-').map(function(x){return x.charAt(0).toUpperCase()+x.slice(1);}).join('-'); return w; }).join(' '); }
+ var COM=null; fetch('https://thierrybismuth.com/ovr-comediens.json?x='+Date.now()).then(function(r){return r.json();}).then(function(d){ COM=(d&&d.comediens)||[]; maj(); }).catch(function(){ COM=[]; maj(); });
+ function seance(){ var v=g('f-ville').value, d=g('f-date').value; return {v:v, s:((window.DATES_PROP||{})[v]||[]).filter(function(o){return o.d===d;})[0]}; }
+ var cle='';
+ function maj(){ var x=seance(), v=x.v, s=x.s, tr=(s&&s.tr)||''; var k=v+'|'+tr+'|'+(COM?COM.length:'-'); if(k===cle) return; cle=k;
+  var noms=[];
+  if(v==='Paris'){ if(PARIS[tr]) noms=PARIS[tr].slice(); else Object.keys(PARIS).forEach(function(t){ noms=noms.concat(PARIS[t]); }); }
+  else if(COM){ var vv=AUSSI[v]||v; COM.forEach(function(c){ if(c.v===vv) noms.push(propre(c.n)); }); }
+  var vu={}; noms=noms.filter(function(n){ var z=n.toLowerCase(); if(vu[z]) return false; vu[z]=1; return true; }).sort(function(a,b){return a.localeCompare(b,'fr');});
+  var avant=sel.value;
+  sel.innerHTML='<option value="">— Choisissez —</option>'+noms.map(function(n){ return '<option>'+n.replace(/</g,'&lt;')+'</option>'; }).join('')+'<option>Thierry Bismuth</option><option value="__autre">Autre</option>';
+  if(avant && [].some.call(sel.options,function(o){return o.value===avant;})) sel.value=avant;
+  autre.style.display=sel.value==='__autre'?'':'none';
+ }
+ sel.addEventListener('change',function(){ autre.style.display=sel.value==='__autre'?'':'none'; if(sel.value==='__autre') autre.focus(); });
+ document.addEventListener('change',function(ev){ var t=ev.target; if(t&&(t.id==='f-date'||t.id==='f-ville'||t.id==='f-seance')) setTimeout(maj,20); });
+ setInterval(maj,1000);
+ /* null = manquant (bloque) ; sinon le nom retenu */
+ window.ovrReco=function(){ var w=g('f-reco-wrap'); if(!w||w.style.display==='none') return ''; var v=sel.value; if(!v) return null; if(v==='__autre'){ var a=autre.value.trim(); return a?('Autre : '+a):null; } return v; };
+})();
 </script>
 </body>
 </html>
