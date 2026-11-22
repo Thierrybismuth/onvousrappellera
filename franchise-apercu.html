@@ -245,5 +245,10 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);flex-shri
 </footer>
 
 
+<script>
+(function(){ var t=document.querySelector('.trio2'); if(!t) return;
+  if(!('IntersectionObserver' in window)){ t.classList.add('vu'); return; }
+  var io=new IntersectionObserver(function(e){ if(e[0].isIntersecting){ t.classList.add('vu'); io.disconnect(); } },{threshold:.35}); io.observe(t); })();
+</script>
 </body>
 </html>
