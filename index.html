@@ -1354,7 +1354,7 @@ window.PROP_LIVE=true;
   else if(COM){ var vv=AUSSI[v]||v; COM.forEach(function(c){ if(c.v===vv) noms.push(propre(c.n)); }); }
   var vu={}; noms=noms.filter(function(n){ var z=n.toLowerCase(); if(vu[z]) return false; vu[z]=1; return true; }).sort(function(a,b){return a.localeCompare(b,'fr');});
   var avant=sel.value;
-  sel.innerHTML='<option value="">— Choisissez —</option>'+noms.map(function(n){ return '<option>'+n.replace(/</g,'&lt;')+'</option>'; }).join('')+'<option>Thierry Bismuth</option><option value="__autre">Autre</option>';
+  sel.innerHTML='<option value="">— Choisissez —</option>'+noms.map(function(n){ return '<option>'+n.replace(/</g,'&lt;')+'</option>'; }).join('')+'<option>Thierry Bismuth</option><option>Personne (mail, réseaux sociaux, bouche-à-oreille)</option><option value="__autre">Autre personne (précisez)</option>';
   if(avant && [].some.call(sel.options,function(o){return o.value===avant;})) sel.value=avant;
   autre.style.display=sel.value==='__autre'?'':'none';
  }
