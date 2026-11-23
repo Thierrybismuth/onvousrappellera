@@ -1300,13 +1300,16 @@ window.PROP_LIVE=true;
  wrap.innerHTML='<label for="f-seance">Votre séance</label><select id="f-seance"><option value="">— Choisissez votre séance —</option></select>';
  var vw=sv.closest('.field'); vw.parentNode.insertBefore(wrap,vw);
  var ss=g('f-seance');
+ var leg=document.createElement('p'); leg.id='emp-legende'; leg.style.cssText='margin:.35rem 0 0;font-size:.9rem;color:#c8102e;font-weight:700'; leg.textContent='★ = soirée avec présentation d’entreprises et de postes avant la pièce'; ss.after(leg);
+ var bdg=document.createElement('p'); bdg.id='emp-choisie'; bdg.style.cssText='display:none;margin:.5rem 0 0;padding:.5rem .7rem;border:2px solid #c8102e;border-radius:8px;color:#c8102e;font-weight:700;background:#fff'; bdg.textContent='+ Présentation d’entreprises et de postes avant la pièce'; leg.after(bdg);
+ ss.addEventListener('change',function(){ var o=ss.options[ss.selectedIndex]; var e=!!(o&&o.className==='opt-emp'); bdg.style.display=e?'':'none'; ss.style.color=e?'#c8102e':''; ss.style.fontWeight=e?'700':''; });
  Object.keys(D).sort(function(a,b){return a.localeCompare(b,'fr');}).forEach(function(v){
   D[v].forEach(function(o){
    var m=o.d.match(/^(\d+)\s+(\S+)\s+(\d{4})\s*·\s*(.+)$/), jour='', h='';
    if(m){ var dt=new Date(+m[3],MO[m[2]],+m[1]); jour=JR[dt.getDay()]+' '+m[1]+' '+m[2]; h=m[4]; } else jour=o.d;
    var tr=o.tr?('Troupe '+o.tr):('Troupe de '+v);
-   var f=EMPC.indexOf(o.c)>=0?'Pièce + présentation d’employeurs':'Pièce';
-   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=v+' — '+jour+' — '+h+' — '+tr+' — '+f; ss.appendChild(op);
+   var emp=EMPC.indexOf(o.c)>=0, f=emp?'Pièce + PRÉSENTATION D’ENTREPRISES ET DE POSTES':'Pièce';
+   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=(emp?'★ ':'')+v+' — '+jour+' — '+h+' — '+tr+' — '+f; if(emp){ op.className='opt-emp'; op.style.color='#c8102e'; op.style.fontWeight='700'; } ss.appendChild(op);
   });
  });
  var au=document.createElement('option'); au.value='__ville'; au.textContent='Ma ville n’est pas dans la liste — être prévenu'; ss.appendChild(au);
