@@ -1306,9 +1306,9 @@ window.PROP_LIVE=true;
   D[v].forEach(function(o){
    var m=o.d.match(/^(\d+)\s+(\S+)\s+(\d{4})\s*·\s*(.+)$/), jour='', h='';
    if(m){ var dt=new Date(+m[3],MO[m[2]],+m[1]); jour=JR[dt.getDay()]+' '+m[1]+' '+m[2]; h=m[4]; } else jour=o.d;
-   var tr=o.tr?('Troupe '+o.tr):('Troupe de '+v);
+   var tr=o.tr||'';
    var emp=EMPC.indexOf(o.c)>=0, f=emp?'Pièce + présentation d’employeurs':'Pièce';
-   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=(emp?'★ ':'')+v+' — '+jour+' — '+h+' — '+tr+' — '+f; if(emp){ op.className='opt-emp'; op.style.color='#c8102e'; op.style.fontWeight='700'; } ss.appendChild(op);
+   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=(emp?'★ ':'')+v+' — '+jour+' — '+h+(tr?' — '+tr:'')+' — '+f; op.dataset.base=v+' · '+(m?JR[new Date(+m[3],MO[m[2]],+m[1]).getDay()].slice(0,3)+'. '+m[1]+' '+({janvier:'janv.','février':'févr.',septembre:'sept.',octobre:'oct.',novembre:'nov.','décembre':'déc.',juillet:'juil.'}[m[2]]||m[2]):jour)+' · '+h+(tr?' · '+tr:''); op.dataset.emp=emp?'1':''; if(emp){ op.className='opt-emp'; op.style.color='#c8102e'; op.style.fontWeight='700'; } ss.appendChild(op);
   });
  });
  var au=document.createElement('option'); au.value='__ville'; au.textContent='Ma ville n’est pas dans la liste — être prévenu'; ss.appendChild(au);
@@ -1335,6 +1335,21 @@ window.PROP_LIVE=true;
   var p=ss.value.split('|'); sv.value=p[0]; fire(sv);
   setTimeout(function(){ sd.value=p[1]; fire(sd);  },0);
  });
+ /* Liste personnalisée : une ligne par séance, petite police, présentation d'employeurs en rouge et gras (les listes natives des téléphones ignorent tout style) */
+ (function(){
+  var st=document.createElement('style'); st.textContent='#seance-btn{width:100%;text-align:left;padding:.7rem .8rem;border:1px solid #ddd;border-radius:8px;background:#faf6ee;font:inherit;font-size:.95rem;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#seance-btn:after{content:" ▾";float:right}#seance-liste{border:1px solid #ddd;border-radius:8px;background:#fff;margin-top:4px;max-height:70vh;overflow-y:auto}#seance-liste div{padding:.55rem .45rem;border-bottom:1px solid #eee;white-space:nowrap;overflow:hidden;font-size:12px;cursor:pointer;color:#161616}#seance-liste div:hover{background:#fdf1ef}#seance-liste .emp{color:#c8102e;font-weight:700}#seance-liste .sel{background:#fdf1ef}'; document.head.appendChild(st);
+  var btn=document.createElement('button'); btn.type='button'; btn.id='seance-btn';
+  var lst=document.createElement('div'); lst.id='seance-liste'; lst.hidden=true;
+  ss.style.display='none'; ss.after(btn); btn.after(lst);
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function lib(op){ return op.dataset.base ? esc(op.dataset.base)+(op.dataset.emp?' <span class="emp">+ présentation d’employeurs</span>':'') : esc(op.textContent); }
+  function maj(){ var op=ss.options[ss.selectedIndex]; btn.innerHTML=op?lib(op):''; if(op&&op.dataset.emp){ btn.style.color='#161616'; } }
+  function ajuste(el){ var f=12; el.style.fontSize=f+'px'; while(el.scrollWidth>el.clientWidth && f>9){ f-=.5; el.style.fontSize=f+'px'; } }
+  function ouvre(){ lst.innerHTML=''; [].forEach.call(ss.options,function(op,i){ var d=document.createElement('div'); d.innerHTML=(op.dataset.emp?'<span class="emp">★</span> ':'')+lib(op); if(i===ss.selectedIndex) d.className='sel'; d.onclick=function(){ ss.selectedIndex=i; lst.hidden=true; fire(ss); maj(); if(ss.value==='__tout'||ss.options.length!==lst.childElementCount){} }; lst.appendChild(d); }); lst.hidden=false; var f=13, k=[].slice.call(lst.children); function trop(){ return k.some(function(el){ return el.scrollWidth>el.clientWidth; }); } lst.style.fontSize=f+'px'; k.forEach(function(el){ el.style.fontSize='inherit'; }); while(trop() && f>10){ f-=.5; lst.style.fontSize=f+'px'; } }
+  btn.onclick=function(){ if(lst.hidden) ouvre(); else lst.hidden=true; };
+  ss.addEventListener('change',function(){ setTimeout(maj,0); });
+  maj();
+ })();
  if(choix){ ss.value=choix; setTimeout(function(){ fire(ss); },50); }
 })();
 /* Bandeau de la troupe : fond blanc pour toutes les villes */
