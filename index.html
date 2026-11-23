@@ -1254,9 +1254,9 @@ window.PROP_LIVE=true;
   g('soiree').style.display=e?'':'none';
   g('t-ent').style.display=e?'':'none';
   if(e){
-   g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Les entreprises qui recrutent se présentent. Les spectateurs en recherche d’emploi viennent assister aux présentations.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — Dîner sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
+   g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Présentation d’employeurs : des employeurs qui recrutent présentent leurs postes. Les spectateurs en recherche d’emploi viennent y assister.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — Dîner sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
    g('t-norm-txt').innerHTML='<b>Tarif normal — 20&nbsp;€</b><br>Arrivée à partir de <b>'+(e.diner||e.ent)+'</b>'+(e.diner?' pour le dîner':'')+', et au plus tard à <b>'+e.piece+'</b> pour le lever de rideau.';
-   g('t-red-txt').innerHTML='<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.ent+'</b> pour assister aux présentations des entreprises qui recrutent.';
+   g('t-red-txt').innerHTML='<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.ent+'</b> pour assister à la présentation d’employeurs.';
    g('t-ent-txt').innerHTML='<br>Je réserve 10 places et je présente mes offres d’emploi sur scène à <b>'+e.ent+'</b>. ';
    var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?'Il reste au moins une des 5 places.':'Les 5 places sont déjà prises.';
   } else {
