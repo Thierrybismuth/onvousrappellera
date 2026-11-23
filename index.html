@@ -650,7 +650,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <details class="cadeau" id="cadeau">
       <summary>🎁 Je fais un cadeau — pour Noël, un anniversaire… &rarr;</summary>
       <div class="cbody">
-        <p>Un <strong>billet open</strong> : la personne qui le reçoit choisit sa ville et sa date, sur toutes nos représentations de 2026 et 2027. Vous recevez un billet à imprimer, avec le code cadeau. 20&nbsp;€ la place.</p>
+        <p><strong>Billet open — 20&nbsp;€ la place.</strong> Vous choisirez votre date plus tard : vous recevez par mail un code, à saisir dans « Vous avez un code ? » quand vous réservez la date de votre choix.</p>
         <div class="fgrid">
           <div class="field"><label for="c-qty">Nombre de billets</label><select id="c-qty"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
           <div class="field"><label for="c-prenom">Votre prénom</label><input id="c-prenom" type="text" autocomplete="given-name"></div>
@@ -665,7 +665,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
           <div class="field"><label for="c-pour">Pour (facultatif)</label><input id="c-pour" type="text" maxlength="40" placeholder="Prénom de la personne"></div>
           <div class="field" id="c-de-wrap"><label for="c-de">De la part de (facultatif)</label><input id="c-de" type="text" maxlength="40"></div>
         </div>
-        <button class="btn" id="c-btn" type="button">Payer mes billets cadeaux &rarr;</button>
+        <button class="btn" id="c-btn" type="button">Payer mes billets open &rarr;</button>
         <div class="msg" id="c-msg"></div>
       </div>
     </details>
@@ -1335,6 +1335,14 @@ window.PROP_LIVE=true;
   var p=ss.value.split('|'); sv.value=p[0]; fire(sv);
   setTimeout(function(){ sd.value=p[1]; fire(sd);  },0);
  });
+ /* Billet open (23/11/2026) : remplace « C'est pour faire un cadeau » — une ligne « Billet open » par ville dans la liste des séances */
+ var OPEN=null, zone=sv.closest('.wrap'), cad=g('cadeau');
+ (function(){ var st=document.createElement('style'); st.textContent='#cadeau>summary{display:none!important}#cadeau [name=c-occ],#cadeau [name=c-occ]+span,#c-pour,#c-de-wrap{display:none!important}#cadeau label.refus:has([name=c-occ]){display:none!important}#cadeau .fgrid:has(#c-pour){display:none!important}#cadeau:not([open]){display:none!important}.mode-open>.fgrid>:not(.seance-champ),.mode-open>#f-resa,.mode-open>#f-alerte,.mode-open>#f-btn,.mode-open>#f-msg{display:none!important}label.refus:has(#f-cadeau),#f-cad-wrap{display:none!important}'; document.head.appendChild(st);
+  var c=g('f-cadeau'); if(c) c.checked=false; wrap.classList.add('seance-champ'); if(cad) cad.open=false; })();
+ window.ovrOpen=function(v){ OPEN=v||''; zone.classList.add('mode-open'); if(cad){ cad.open=true; } };
+ function finOpen(){ if(OPEN===null) return; OPEN=null; zone.classList.remove('mode-open'); if(cad) cad.open=false; }
+ ss.addEventListener('change',finOpen);
+ if(/[?&]cadeau=1/.test(location.search)) setTimeout(function(){ window.ovrOpen(''); },350);
  /* Liste personnalisée : une ligne par séance, petite police, présentation d'employeurs en rouge et gras (les listes natives des téléphones ignorent tout style) */
  (function(){
   var st=document.createElement('style'); st.textContent='#seance-btn{width:100%;text-align:left;padding:.7rem .8rem;border:1px solid #ddd;border-radius:8px;background:#faf6ee;font:inherit;font-size:.95rem;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#seance-btn:after{content:" ▾";float:right}#seance-liste{border:1px solid #ddd;border-radius:8px;background:#fff;margin-top:4px;max-height:70vh;overflow-y:auto}#seance-liste div{padding:.55rem .45rem;border-bottom:1px solid #eee;white-space:nowrap;overflow:hidden;font-size:12px;cursor:pointer;color:#161616}#seance-liste div:hover{background:#fdf1ef}#seance-liste .emp{color:#c8102e;font-weight:700}#seance-liste .sel{background:#fdf1ef}'; document.head.appendChild(st);
@@ -1343,9 +1351,12 @@ window.PROP_LIVE=true;
   ss.style.display='none'; ss.after(btn); btn.after(lst);
   function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
   function lib(op){ return op.dataset.base ? esc(op.dataset.base)+(op.dataset.emp?' <span class="emp">+ présentation d’employeurs</span>':'') : esc(op.textContent); }
-  function maj(){ var op=ss.options[ss.selectedIndex]; btn.innerHTML=op?lib(op):''; if(op&&op.dataset.emp){ btn.style.color='#161616'; } }
+  function maj(){ if(OPEN!==null){ btn.innerHTML=esc((OPEN?OPEN+' · ':'')+'Billet open — date au choix'); return; } var op=ss.options[ss.selectedIndex]; btn.innerHTML=op?lib(op):''; }
   function ajuste(el){ var f=12; el.style.fontSize=f+'px'; while(el.scrollWidth>el.clientWidth && f>9){ f-=.5; el.style.fontSize=f+'px'; } }
-  function ouvre(){ lst.innerHTML=''; [].forEach.call(ss.options,function(op,i){ var d=document.createElement('div'); d.innerHTML=(op.dataset.emp?'<span class="emp">★</span> ':'')+lib(op); if(i===ss.selectedIndex) d.className='sel'; d.onclick=function(){ ss.selectedIndex=i; lst.hidden=true; fire(ss); maj(); if(ss.value==='__tout'||ss.options.length!==lst.childElementCount){} }; lst.appendChild(d); }); lst.hidden=false; var f=13, k=[].slice.call(lst.children); function trop(){ return k.some(function(el){ return el.scrollWidth>el.clientWidth; }); } lst.style.fontSize=f+'px'; k.forEach(function(el){ el.style.fontSize='inherit'; }); while(trop() && f>10){ f-=.5; lst.style.fontSize=f+'px'; } }
+  function ouvre(){ lst.innerHTML=''; var ops=[].slice.call(ss.options);
+   ops.forEach(function(op,i){ var d=document.createElement('div'); d.innerHTML=(op.dataset.emp?'<span class="emp">★</span> ':'')+lib(op); if(i===ss.selectedIndex&&OPEN===null) d.className='sel'; d.onclick=function(){ ss.selectedIndex=i; lst.hidden=true; fire(ss); maj(); }; lst.appendChild(d);
+    var v=(op.value||'').split('|')[0], nx=ops[i+1], vn=nx?(nx.value||'').split('|')[0]:'';
+    if(op.dataset.base && v!==vn){ var o=document.createElement('div'); o.innerHTML=esc(v)+' · <b>Billet open</b> — date au choix'; if(OPEN===v) o.className='sel'; o.onclick=function(){ lst.hidden=true; ss.value=''; fire(ss); window.ovrOpen(v); maj(); setTimeout(function(){ g('c-qty').focus(); },50); }; lst.appendChild(o); } }); lst.hidden=false; var f=13, k=[].slice.call(lst.children); function trop(){ return k.some(function(el){ return el.scrollWidth>el.clientWidth; }); } lst.style.fontSize=f+'px'; k.forEach(function(el){ el.style.fontSize='inherit'; }); while(trop() && f>10){ f-=.5; lst.style.fontSize=f+'px'; } }
   btn.onclick=function(){ if(lst.hidden) ouvre(); else lst.hidden=true; };
   ss.addEventListener('change',function(){ setTimeout(maj,0); });
   maj();
