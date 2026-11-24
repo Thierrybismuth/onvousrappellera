@@ -652,7 +652,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     <details class="cadeau" id="cadeau">
       <summary>🎁 Je fais un cadeau — pour Noël, un anniversaire… &rarr;</summary>
       <div class="cbody">
-        <p><strong>Billet open — 20&nbsp;€ la place.</strong> Vous choisirez votre date plus tard : vous recevez par mail un code, à saisir dans « Vous avez un code ? » quand vous réservez la date de votre choix.</p>
+        <p><strong>Billet open — 20&nbsp;€ la place, toutes villes, toutes dates.</strong> Vous recevez par mail un code, à saisir dans « Vous avez un code ? » au moment de réserver la ville et la date de votre choix.</p>
         <div class="fgrid">
           <div class="field"><label for="c-qty">Nombre de billets</label><select id="c-qty"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>
           <div class="field"><label for="c-prenom">Votre prénom</label><input id="c-prenom" type="text" autocomplete="given-name"></div>
@@ -1304,7 +1304,7 @@ window.PROP_LIVE=true;
   var p=ss.value.split('|'); sv.value=p[0]; fire(sv);
   setTimeout(function(){ sd.value=p[1]; fire(sd);  },0);
  });
- /* Billet open (23/11/2026) : remplace « C'est pour faire un cadeau » — une ligne « Billet open » par ville dans la liste des séances */
+ /* Billet open : une seule ligne « Vous offrez un cadeau ? Billet open — toutes villes, toutes dates » en tête de la liste des séances */
  var OPEN=null, zone=sv.closest('.wrap'), cad=g('cadeau');
  (function(){ var st=document.createElement('style'); st.textContent='#cadeau>summary{display:none!important}#cadeau [name=c-occ],#cadeau [name=c-occ]+span,#c-pour,#c-de-wrap{display:none!important}#cadeau label.refus:has([name=c-occ]){display:none!important}#cadeau .fgrid:has(#c-pour){display:none!important}#cadeau:not([open]){display:none!important}.mode-open>.fgrid>:not(.seance-champ),.mode-open>#f-resa,.mode-open>#f-alerte,.mode-open>#f-btn,.mode-open>#f-msg{display:none!important}label.refus:has(#f-cadeau),#f-cad-wrap{display:none!important}'; document.head.appendChild(st);
   var c=g('f-cadeau'); if(c) c.checked=false; wrap.classList.add('seance-champ'); if(cad) cad.open=false; })();
@@ -1320,12 +1320,11 @@ window.PROP_LIVE=true;
   ss.style.display='none'; ss.after(btn); btn.after(lst);
   function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
   function lib(op){ return op.dataset.base ? esc(op.dataset.base)+(op.dataset.emp?' <span class="emp">+ présentation d’employeurs</span>':'') : esc(op.textContent); }
-  function maj(){ if(OPEN!==null){ btn.innerHTML=esc((OPEN?OPEN+' · ':'')+'Billet open — date au choix'); return; } var op=ss.options[ss.selectedIndex]; btn.innerHTML=op?lib(op):''; }
+  function maj(){ if(OPEN!==null){ btn.innerHTML='🎁 <b>Billet open</b> — toutes villes, toutes dates'; return; } var op=ss.options[ss.selectedIndex]; btn.innerHTML=op?lib(op):''; }
   function ajuste(el){ var f=12; el.style.fontSize=f+'px'; while(el.scrollWidth>el.clientWidth && f>9){ f-=.5; el.style.fontSize=f+'px'; } }
   function ouvre(){ lst.innerHTML=''; var ops=[].slice.call(ss.options);
    ops.forEach(function(op,i){ var d=document.createElement('div'); d.innerHTML=(op.dataset.emp?'<span class="emp">★</span> ':'')+lib(op); if(i===ss.selectedIndex&&OPEN===null) d.className='sel'; d.onclick=function(){ ss.selectedIndex=i; lst.hidden=true; fire(ss); maj(); }; lst.appendChild(d);
-    var v=(op.value||'').split('|')[0], nx=ops[i+1], vn=nx?(nx.value||'').split('|')[0]:'';
-    if(op.dataset.base && v!==vn){ var o=document.createElement('div'); o.innerHTML=esc(v)+' · <b>Billet open</b> — date au choix'; if(OPEN===v) o.className='sel'; o.onclick=function(){ lst.hidden=true; ss.value=''; fire(ss); window.ovrOpen(v); maj(); setTimeout(function(){ g('c-qty').focus(); },50); }; lst.appendChild(o); } }); lst.hidden=false; var f=13, k=[].slice.call(lst.children); function trop(){ return k.some(function(el){ return el.scrollWidth>el.clientWidth; }); } lst.style.fontSize=f+'px'; k.forEach(function(el){ el.style.fontSize='inherit'; }); while(trop() && f>10){ f-=.5; lst.style.fontSize=f+'px'; } }
+   }); var o=document.createElement('div'); o.style.whiteSpace='normal'; o.style.color='#c8102e'; o.innerHTML='🎁 Vous offrez un cadeau ? <b>Billet open</b> — toutes villes, toutes dates'; if(OPEN!==null) o.className='sel'; o.onclick=function(){ lst.hidden=true; ss.value=''; fire(ss); window.ovrOpen(''); maj(); setTimeout(function(){ g('c-qty').focus(); },50); }; lst.insertBefore(o,lst.firstChild); lst.hidden=false; var f=13, k=[].slice.call(lst.children); function trop(){ return k.some(function(el){ return el.scrollWidth>el.clientWidth; }); } lst.style.fontSize=f+'px'; k.forEach(function(el){ el.style.fontSize='inherit'; }); while(trop() && f>10){ f-=.5; lst.style.fontSize=f+'px'; } }
   btn.onclick=function(){ if(lst.hidden) ouvre(); else lst.hidden=true; };
   ss.addEventListener('change',function(){ setTimeout(maj,0); });
   maj();
