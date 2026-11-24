@@ -592,7 +592,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <div class="field resa-only"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
       <div class="field full" id="f-email-wrap"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
       <div class="field resa-only"><label for="f-tel">Portable</label><input id="f-tel" type="tel" autocomplete="tel"></div>
-      <div class="field full resa-only" id="f-reco-wrap"><label for="f-reco">Je suis recommandé par</label><select id="f-reco" required><option value="">— Choisissez —</option></select><input id="f-reco-autre" type="text" placeholder="Qui vous a recommandé la pièce ?" style="display:none;margin-top:.4rem"></div>
+      <div class="field full resa-only" id="f-reco-wrap"><label for="f-reco">J'ai entendu parler de la pièce par</label><select id="f-reco"><option>Web, réseaux sociaux…</option></select><input id="f-reco-autre" type="text" placeholder="Précisez (facultatif)" style="display:none;margin-top:.4rem"></div>
     </div>
     <div id="f-resa" style="display:none">
       <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
@@ -1389,7 +1389,7 @@ window.PROP_LIVE=true;
 
 </script>
 <script id="ovr-reco">
-/* « Je suis recommandé par » : comédiens de la troupe qui joue la séance choisie + Thierry Bismuth + Autre (obligatoire) */
+/* « Je suis recommandé par » : comédiens de la troupe qui joue la séance choisie + Thierry Bismuth + Autre (facultatif, « Web, réseaux sociaux… » par défaut) */
 (function(){
  function g(i){return document.getElementById(i);}
  var sel=g('f-reco'), autre=g('f-reco-autre'); if(!sel) return;
@@ -1408,7 +1408,7 @@ window.PROP_LIVE=true;
   else if(COM){ var vv=AUSSI[v]||v; COM.forEach(function(c){ if(c.v===vv) noms.push(propre(c.n)); }); }
   var vu={}; noms=noms.filter(function(n){ var z=n.toLowerCase(); if(vu[z]) return false; vu[z]=1; return true; }).sort(function(a,b){return a.localeCompare(b,'fr');});
   var avant=sel.value;
-  sel.innerHTML='<option value="">— Choisissez —</option>'+noms.map(function(n){ return '<option>'+n.replace(/</g,'&lt;')+'</option>'; }).join('')+'<option>Thierry Bismuth</option><option>Personne (mail, réseaux sociaux, bouche-à-oreille)</option><option value="__autre">Autre personne (précisez)</option>';
+  sel.innerHTML='<option>Web, réseaux sociaux…</option>'+noms.map(function(n){ return '<option>'+n.replace(/</g,'&lt;')+'</option>'; }).join('')+'<option>Thierry Bismuth</option><option value="__autre">Autre (précisez)</option>';
   if(avant && [].some.call(sel.options,function(o){return o.value===avant;})) sel.value=avant;
   autre.style.display=sel.value==='__autre'?'':'none';
  }
@@ -1416,7 +1416,7 @@ window.PROP_LIVE=true;
  document.addEventListener('change',function(ev){ var t=ev.target; if(t&&(t.id==='f-date'||t.id==='f-ville'||t.id==='f-seance')) setTimeout(maj,20); });
  setInterval(maj,1000);
  /* null = manquant (bloque) ; sinon le nom retenu */
- window.ovrReco=function(){ var w=g('f-reco-wrap'); if(!w||w.style.display==='none') return ''; var v=sel.value; if(!v) return null; if(v==='__autre'){ var a=autre.value.trim(); return a?('Autre : '+a):null; } return v; };
+ window.ovrReco=function(){ var w=g('f-reco-wrap'); if(!w||w.style.display==='none') return ''; var v=sel.value; if(!v) return ''; if(v==='__autre'){ var a=autre.value.trim(); return a?('Autre : '+a):'Autre'; } return v; };
 })();
 </script>
 </body>
