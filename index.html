@@ -1272,7 +1272,7 @@ window.PROP_LIVE=true;
   g('f-red-wrap').style.display=(t==='reduit'&&!e)?'':'none';
   if(t==='reduit'&&e) g('f-statut').value="Demandeur d'emploi";
   var fc=g('fe-case'); if(fc){ var fw=fc.closest('label').parentNode; if(t==='entreprise'){ if(fw.parentNode!==g('f-ent-fact')) g('f-ent-fact').appendChild(fw); fc.checked=true; g('fe-bloc').style.display=''; } else { if(fw.parentNode!==g('fe-ancre').parentNode) g('fe-ancre').after(fw); fc.checked=false; g('fe-bloc').style.display='none'; } }
-  var pl=g('f-places'); if(t==='entreprise'){ pl.value=10; pl.disabled=true; } else pl.disabled=false;
+  var pl=g('f-places'); if(t==='entreprise'){ pl.value=10; pl.disabled=true; pl.dataset.ent='1'; } else { pl.disabled=false; if(pl.dataset.ent){ delete pl.dataset.ent; pl.value=1; pl.dispatchEvent(new Event('input')); } }
  }
  document.addEventListener('change',function(ev){ var x=ev.target; if(x && (x.id==='f-date'||x.id==='f-ville'||x.name==='tarif')) setTimeout(maj,0); });
  g('f-btn').addEventListener('click',function(ev){ var m=g('f-msg'); var enR=g('f-resa').style.display!=='none'; var sel=document.querySelector('input[name=tarif]:checked');
