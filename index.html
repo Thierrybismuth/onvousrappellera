@@ -590,6 +590,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
         <h3 style="margin:0 0 .5rem;font-family:'Cormorant Garamond',serif;font-size:1.35rem">Une soirée pas comme les autres</h3>
         <p class="petit" style="margin:0 0 .5rem;color:#2b2b2b"><b>ON VOUS RAPPELLERA</b> est une comédie : vous allez rire, et elle va vous faire réfléchir. Comme elle parle d’emploi et qu’elle est écrite par un recruteur, elle a aussi vocation à vous aider à trouver un emploi… ou à recruter.</p>
         <div id="soiree-prog" class="petit" style="color:#2b2b2b"></div>
+        <label id="f-diner-wrap" style="display:none;margin:.8rem 0 0;align-items:flex-start;gap:.6rem;cursor:pointer;font-size:.95rem;line-height:1.45;text-transform:none;letter-spacing:normal;font-weight:400;color:#1c1c1c"><input type="checkbox" id="f-diner" style="width:20px;height:20px;min-width:20px;margin:.15rem 0 0;padding:0;flex:none;accent-color:#d8281f"><span id="f-diner-txt"></span></label>
       </div></div>
       <div class="field resa-only"><label for="f-prenom">Prénom</label><input id="f-prenom" type="text" autocomplete="given-name" required></div>
       <div class="field resa-only"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
@@ -868,9 +869,9 @@ document.addEventListener('DOMContentLoaded',function(){
       p.reco=window.ovrReco?ovrReco():''; if(p.reco===null){ show('ko','Merci d\'indiquer qui vous a recommandé la pièce.'); var rw=g('f-reco-wrap'); if(rw) rw.scrollIntoView({block:'center'}); return; }
       btn.disabled=true; show('ok','Préparation du paiement sécurisé…');
       var tfp=tarifChoisi();
-      if(window.ovrOrigine) ovrOrigine(p.email,S.c,'Site onvousrappellera.fr',p.code,p.reco);
+      window.OVR_DINER=!!(g('f-diner')&&g('f-diner').checked); if(window.ovrOrigine) ovrOrigine(p.email,S.c,'Site onvousrappellera.fr',p.code,p.reco);
       fetch('https://thierryb.app.n8n.cloud/webhook/billetterie-paiement',{method:'POST',headers:{'Content-Type':'text/plain'},
-        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,reco:p.reco||'',source:'grand-public',cadeau_url:cadeauUrl(S,p,tfp)})})
+        body:JSON.stringify({seance:S.c,tarif:tfp,qty:parseInt(p.places,10)||1,prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone,statut:p.statut,ft:p.france_travail,accord:g('f-accord').checked,code:p.code,reco:p.reco||'',source:'grand-public',diner:!!(g('f-diner')&&g('f-diner').checked),cadeau_url:cadeauUrl(S,p,tfp)})})
         .then(function(r){return r.json();})
         .then(function(d){ var cu=cadeauUrl(S,p,tfp); if(d&&d.ok&&d.invite){ if(cu){ show('ok','<b>'+esc(d.message)+'</b>'+lienCadeau(cu)); return; } var lu2=LIEUX[S.l], rep=/^[a-z]{2,3}(22|26)nov$/i.test(p.code||''); show('ok','<b>'+esc(d.message)+'</b>'+(rep&&lu2?'<br><br><span style="color:#c00;font-weight:700">⚠️ Attention, le lieu a changé : ce n\'est plus le Passage vers les Étoiles.</span><br><b>Votre nouveau lieu : <u>'+esc(lu2.n)+', '+esc(lu2.a)+'</u></b>':'')); return; } if(d&&d.ok&&d.url){ if(window.FE) FE.memoriser({seance:p.ville+' — '+p.date,qty:parseInt(p.places,10)||1,pu:PRIX[tfp],tarif:LIB[tfp],prenom:p.prenom,nom:p.nom,email:p.email,portable:p.telephone}); if(cu){ try{ localStorage.setItem('ovrCadeau',JSON.stringify({u:cu,t:Date.now()})); }catch(e){} } location.href=d.url; return; } show('ko',esc((d&&d.message)||'Le paiement n\'a pas pu être préparé.')+' Rien n\'a été débité.'); btn.disabled=false; })
         .catch(function(){ show('ko','Connexion impossible avec le service de paiement. Rien n\'a été débité. Réessayez dans un instant, ou appelez-nous au 06 10 70 30 90.'); btn.disabled=false; });
@@ -1176,8 +1177,8 @@ document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
 <script id="ovr-origine">
 /* Origine des réservations : chaque passage au paiement est noté (page, lien suivi ?src=, provenance) dans l'onglet « Origines réservations ». */
 window.ovrOrigine=function(email,seance,source,code,reco){try{var q=new URLSearchParams(location.search);
-fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Origines réservations'!A:I",valueInputOption:'RAW',
-values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(email||'').trim().toLowerCase(),seance||'',source,String(code||'').toUpperCase(),q.get('src')||q.get('utm_campaign')||'',location.pathname+location.search,document.referrer||'',String(reco||'')]]})}).catch(function(){});}catch(e){}};
+fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Origines réservations'!A:J",valueInputOption:'RAW',
+values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(email||'').trim().toLowerCase(),seance||'',source,String(code||'').toUpperCase(),q.get('src')||q.get('utm_campaign')||'',location.pathname+location.search,document.referrer||'',String(reco||''),(window.OVR_DINER?'Oui':'')]]})}).catch(function(){});}catch(e){}};
 </script>
 
 <script>
@@ -1224,11 +1225,13 @@ window.PROP_LIVE=true;
   g('t-ent').style.display=e?'':'none';
   if(e){
    g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Présentation d’employeurs : des employeurs qui recrutent présentent leurs postes. Les spectateurs en recherche d’emploi viennent y assister.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — '+(e.carte&&window.carte9?carte9('Dîner à la carte'):'Dîner')+' sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
+   var dw=g('f-diner-wrap'); if(dw){ dw.style.display=(e.carte&&e.diner)?'flex':'none'; if(!e.carte) g('f-diner').checked=false; g('f-diner-txt').innerHTML='Je viens dîner à partir de '+e.diner+' ('+(window.carte9?carte9('voir la carte'):'à la carte')+'). <span style="color:#6b7280">Sans engagement, réglé sur place : c\'est juste pour prévenir le restaurant.</span>'; }
    g('t-norm-txt').innerHTML='<b>Tarif normal — 20&nbsp;€</b><br>Arrivée à partir de <b>'+(e.diner||e.ent)+'</b>'+(e.diner?' pour le '+(e.carte&&window.carte9?carte9('dîner'):'dîner'):'')+', et au plus tard à <b>'+e.piece+'</b> pour le lever de rideau.';
    g('t-red-txt').innerHTML='<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.ent+'</b> pour assister à la présentation d’employeurs.';
    g('t-ent-txt').innerHTML='<br>Je réserve 10 places et je présente mes offres d’emploi sur scène à <b>'+e.ent+'</b>. ';
    var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?'Il reste au moins une des 5 places.':'Les 5 places sont déjà prises.';
   } else {
+   if(g('f-diner')) g('f-diner').checked=false;
    g('t-norm-txt').innerHTML='<b>Tarif normal — 20&nbsp;€</b>';
    g('t-red-txt').innerHTML='<b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d’emploi…) · justificatif à présenter à l’entrée';
    var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x&&x.checked){ document.querySelector('input[name=tarif][value=partenaire]').checked=true; }
