@@ -25,6 +25,7 @@
   .share button{background:#d12a2f;color:#fff;border:0;border-radius:24px;padding:12px 22px;font-size:16px;font-weight:bold;width:100%}
   .sh-links{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:12px}
 </style>
+<script src="/carte-le9.js"></script>
 </head>
 <body>
 <div class="top"><h1>ON VOUS RAPPELLERA</h1><p>Ils ont mis le recrutement en pièce</p></div>
@@ -85,7 +86,7 @@
     e.innerHTML='<b>'+x.ville+'</b> — '+x.jour+' · '+x.heure+(x.precision?' ('+x.precision+')':'')+'<br>'+(x.theatre==='Le 9'?'Cabaret Le 9':x.theatre)+', '+x.adresse;
     e.style.display='block';
     ville=x.ville; lien=BDR?BDRURL:'https://onvousrappellera.fr/?ville='+encodeURIComponent(x.ville); majPartage();
-    if(/d[iî]ner|restaurant/i.test(x.precision||'')){ var dn=document.getElementById('diner'); dn.innerHTML='<b>Envie de dîner sur place ?</b> Le restaurant vous accueille dès 19h pour l\'apéro et le dîner, avant le lever de rideau à '+x.heure+'.'; dn.style.display='block'; }
+    if(/d[iî]ner|restaurant/i.test(x.precision||'')){ var dn=document.getElementById('diner'); dn.innerHTML='<b>Envie de dîner sur place ?</b> Le restaurant vous accueille dès 19h pour l\'apéro et le '+(/Le 9/.test(x.theatre||'')&&window.carte9?carte9('dîner à la carte'):'dîner')+', avant le lever de rideau à '+x.heure+'.'; dn.style.display='block'; }
   }).catch(function(){});
 })();
 </script>
