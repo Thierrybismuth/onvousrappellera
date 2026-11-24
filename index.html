@@ -592,15 +592,15 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
       <div class="field resa-only"><label for="f-nom">Nom</label><input id="f-nom" type="text" autocomplete="family-name" required></div>
       <div class="field full" id="f-email-wrap"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
       <div class="field resa-only"><label for="f-tel">Portable</label><input id="f-tel" type="tel" autocomplete="tel"></div>
-      <div class="field full resa-only" id="f-reco-wrap"><label for="f-reco">J'ai entendu parler de la pièce par</label><select id="f-reco"><option>Web, réseaux sociaux…</option></select><input id="f-reco-autre" type="text" placeholder="Précisez (facultatif)" style="display:none;margin-top:.4rem"></div>
+      <div class="field full resa-only" id="f-reco-wrap"><label for="f-reco">J'ai entendu parler de la pièce par</label><select id="f-reco"><option value="">— Choisissez (facultatif) —</option><option>Web, réseaux sociaux…</option></select><input id="f-reco-autre" type="text" placeholder="Précisez (facultatif)" style="display:none;margin-top:.4rem"></div>
     </div>
     <div id="f-resa" style="display:none">
-      <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"></div></div>
+      <div class="fgrid"><div class="field"><label for="f-places">Nombre de places</label><input id="f-places" type="number" min="1" max="20" value="1"><div id="f-places-min" style="display:none;color:#d62828;font-size:.85rem;margin-top:.4rem">Si vous prenez l'option entreprise pour pitcher sur scène, vous devez prendre au moins 10 billets. Si vous voulez juste venir en équipe, passez par les billets unitaires et mettez le nombre que vous souhaitez.</div></div></div>
       <div class="tarifs">
         <label class="tarif star"><input type="radio" name="tarif" value="partenaire"><span id="t-norm-txt"><b>Tarif normal — 20&nbsp;€</b></span></label>
         <label class="tarif"><input type="radio" name="tarif" value="reduit"><span id="t-red-txt"><b>Tarif réduit — 15&nbsp;€</b> (étudiants, demandeurs d'emploi…) · justificatif à présenter à l'entrée</span></label>
         <p id="red-accord" style="display:none;margin:.1rem 0 .6rem 1.8rem;color:#444;font-size:.78rem;line-height:1.4">✔ J’autorise que mes informations soient partagées avec des acteurs susceptibles d’accélérer mon retour à l’emploi.</p>
-        <label class="tarif" id="t-ent" style="display:none"><input type="radio" name="tarif" value="entreprise"><span><b>Mon entreprise recrute — 10 places, 200&nbsp;€</b><span id="t-ent-txt"></span> <b id="t-ent-slots" style="color:var(--accent)"></b></span></label>
+        <label class="tarif" id="t-ent" style="display:none"><input type="radio" name="tarif" value="entreprise"><span><b>Mon entreprise recrute — dès 10 places, 200&nbsp;€</b><span id="t-ent-txt"></span> <b id="t-ent-slots" style="color:var(--accent)"></b></span></label>
         <div id="f-ent-wrap" class="fgrid" style="display:none;margin-top:.6rem">
           <div class="field" style="grid-column:1/-1"><label>Vous recrutez des</label><div id="f-statuts" style="display:flex;flex-wrap:wrap;gap:14px;font-size:.95rem"><label style="display:flex;gap:6px;align-items:center"><input type="checkbox" value="Salariés">Salariés</label><label style="display:flex;gap:6px;align-items:center"><input type="checkbox" value="Indépendants">Indépendants</label><label style="display:flex;gap:6px;align-items:center"><input type="checkbox" value="Franchisés">Franchisés</label></div></div>
           <div class="field" style="grid-column:1/-1"><label for="f-poste">Intitulé du poste ou de la mission</label><input id="f-poste" type="text" placeholder="ex. commercial terrain, consultant RH, franchisé"></div>
@@ -669,6 +669,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
         <div class="msg" id="c-msg"></div>
       </div>
     </details>
+    <p class="liens" style="text-align:center;margin-top:1.4rem;color:var(--gris);font-size:.92rem">Une question ? <a href="tel:0610703090">06 10 70 30 90</a></p>
+    <p class="liens" style="text-align:center;font-size:.8rem;margin-top:.6rem"><a href="/entreprises.html" style="color:var(--gris)">Vous voulez faire jouer la pièce en représentation privée dans votre entreprise ?</a></p>
   </div>
 </section>
 
@@ -678,6 +680,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 
 
 <script src="/assets/facture-entreprise.js?v=3"></script>
+<script>function pmin(){ var p=document.getElementById('f-places'), m=document.getElementById('f-places-min'); if(!p||!m) return; m.style.display=(p.dataset.ent&&(parseInt(p.value,10)||0)<10)?'':'none'; }
+document.addEventListener('input',function(e){ if(e.target&&e.target.id==='f-places') pmin(); });</script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   if(window.FE) FE.monter(document.getElementById('fe-ancre'), null);
@@ -1234,18 +1238,19 @@ window.PROP_LIVE=true;
   g('f-red-wrap').style.display=(t==='reduit'&&!e)?'':'none';
   if(t==='reduit'&&e) g('f-statut').value="Demandeur d'emploi";
   var fc=g('fe-case'); if(fc){ var fw=fc.closest('label').parentNode; if(t==='entreprise'){ if(fw.parentNode!==g('f-ent-fact')) g('f-ent-fact').appendChild(fw); fc.checked=true; g('fe-bloc').style.display=''; } else { if(fw.parentNode!==g('fe-ancre').parentNode) g('fe-ancre').after(fw); fc.checked=false; g('fe-bloc').style.display='none'; } }
-  var pl=g('f-places'); if(t==='entreprise'){ pl.value=10; pl.disabled=true; pl.dataset.ent='1'; } else { pl.disabled=false; if(pl.dataset.ent){ delete pl.dataset.ent; pl.value=1; pl.dispatchEvent(new Event('input')); } }
+  var pl=g('f-places'); pl.disabled=false; if(t==='entreprise'){ pl.min=10; if(!pl.dataset.ent){ pl.dataset.ent='1'; pl.value=10; pl.dispatchEvent(new Event('input')); } } else { pl.min=1; if(pl.dataset.ent){ delete pl.dataset.ent; pl.value=1; pl.dispatchEvent(new Event('input')); } } pmin();
  }
  document.addEventListener('change',function(ev){ var x=ev.target; if(x && (x.id==='f-date'||x.id==='f-ville'||x.name==='tarif')) setTimeout(maj,0); });
  g('f-btn').addEventListener('click',function(ev){ var m=g('f-msg'); var enR=g('f-resa').style.display!=='none'; var sel=document.querySelector('input[name=tarif]:checked');
   if(enR && !sel){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Merci de choisir votre tarif.'; return; }
   if(!window.PROP_LIVE){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ok'; m.innerHTML='Proposition : le paiement n’est pas branché sur cette page.'; return; }
+  if(enR && sel.value==='entreprise' && (parseInt(g('f-places').value,10)||0)<10){ ev.stopImmediatePropagation(); ev.preventDefault(); pmin(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Option entreprise : au moins 10 billets.'; g('f-places').scrollIntoView({block:'center'}); return; }
   if(enR && sel.value==='entreprise'){ /* 10 places au tarif normal = 200 € ; l'entreprise et ses postes sont notés dans l'onglet « Pitch entreprises » */
    var s=seance(); var ent=(g('fe-raison')&&g('fe-raison').value.trim())||''; var po=g('f-poste').value.trim(); var st=[].map.call(document.querySelectorAll('#f-statuts input:checked'),function(x){return x.value;}).join(', '); var li=(g('f-lien').value||'').trim();
    if(!ent||!po||!st){ ev.stopImmediatePropagation(); ev.preventDefault(); m.style.display='block'; m.className='msg ko'; m.innerHTML='Merci d’indiquer le nom de l’entreprise, qui vous recrutez (salariés, indépendants ou franchisés) et l’intitulé du poste ou de la mission.'; return; }
    var fe=window.FE?FE.lire():null; if(!(fe&&fe.erreur)&&g('f-prenom').value.trim()&&g('f-tel').value.trim()) try{ fetch('https://thierryb.app.n8n.cloud/webhook/sheets-gateway',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'append',spreadsheetId:'1CqFrk0RgkO9xJuglSTPz3dgcd-tbU33VrYaM0lt_BJg',range:"'Pitch entreprises'!A1:K1",values:[[(s&&s.d)||'',g('f-ville').value,ent,(g('f-prenom').value+' '+g('f-nom').value).trim(),g('f-email').value.trim(),po,'réservation en cours (site)',new Date().toLocaleString('fr-FR'),'',st,li]]})}).catch(function(){}); }catch(e){}
-   document.querySelector('input[name=tarif][value=partenaire]').checked=true; g('f-places').disabled=false; g('f-places').value=10;
-   setTimeout(function(){ var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x){ x.checked=true; g('f-places').disabled=true; } },50);
+   document.querySelector('input[name=tarif][value=partenaire]').checked=true; g('f-places').disabled=false;
+   setTimeout(function(){ var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x){ x.checked=true; } },50);
   }
  },true);
  (function(){ var r=g('f-red-wrap'); r.parentNode.insertBefore(g('red-accord'), r); var pv=g('t-priv'); pv.after(g('t-ent')); g('t-ent').after(g('f-ent-wrap')); var cd=g('f-cadeau'); if(cd && !window.PROP_LIVE) cd.closest('label').style.display='none'; })();
@@ -1341,7 +1346,7 @@ window.PROP_LIVE=true;
   var on=date&&!!t;
   document.querySelectorAll('#prevenez-moi .resa-only').forEach(function(x){ x.style.display=on?'':'none'; });
   g('f-email-wrap').style.display=on?'':(date?'none':g('f-email-wrap').style.display);
-  var pw=g('f-places')&&g('f-places').closest('.fgrid'); if(pw) pw.style.display=(on&&t.value!=='entreprise')?'':'none';
+  var pw=g('f-places')&&g('f-places').closest('.fgrid'); if(pw) pw.style.display=on?'':'none';
   g('f-btn').style.display=(on||!date)?g('f-btn').style.display:'none'; if(on) g('f-btn').style.display='';
  }
  document.addEventListener('change',function(){ setTimeout(vis,5); });
@@ -1370,7 +1375,7 @@ window.PROP_LIVE=true;
   else if(COM){ var vv=AUSSI[v]||v; COM.forEach(function(c){ if(c.v===vv) noms.push(propre(c.n)); }); }
   var vu={}; noms=noms.filter(function(n){ var z=n.toLowerCase(); if(vu[z]) return false; vu[z]=1; return true; }).sort(function(a,b){return a.localeCompare(b,'fr');});
   var avant=sel.value;
-  sel.innerHTML='<option>Web, réseaux sociaux…</option>'+noms.map(function(n){ return '<option>'+n.replace(/</g,'&lt;')+'</option>'; }).join('')+'<option>Thierry Bismuth</option><option value="__autre">Autre (précisez)</option>';
+  sel.innerHTML='<option value="">— Choisissez (facultatif) —</option><option>Web, réseaux sociaux…</option>'+noms.map(function(n){ return '<option>'+n.replace(/</g,'&lt;')+'</option>'; }).join('')+'<option>Thierry Bismuth</option><option value="__autre">Autre (précisez)</option>';
   if(avant && [].some.call(sel.options,function(o){return o.value===avant;})) sel.value=avant;
   autre.style.display=sel.value==='__autre'?'':'none';
  }
