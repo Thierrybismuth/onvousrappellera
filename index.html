@@ -1211,12 +1211,12 @@ values:[[new Date().toLocaleString('fr-FR',{timeZone:'Europe/Paris'}),String(ema
 window.PROP_LIVE=true;
 /* Proposition : soirées avec présentation des entreprises qui recrutent (5 entreprises, 5 minutes chacune) */
 (function(){
- var EMP={"PAR-1209-19":{ent:"18h",piece:"19h",bar:"Un bar, juste à côté du théâtre, permet de prolonger les échanges."},
+ var EMP={"PAR-1209-19":{ent:"18h30",piece:"19h",bar:"Un bar, juste à côté du théâtre, permet de prolonger les échanges."},
   "TLS-1203":{carte:1,ent:"",pres:"20h",diner:"19h",piece:"20h30",bar:"Le bar reste ouvert pour prolonger les échanges."},
-  "REN-1209-20":{ent:"19h",piece:"20h",bar:"Un bar est ouvert pour prolonger les échanges."},
-  "BOR-1210-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
-  "BOR-1217-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
-  "LYO-1216-19":{ent:"18h",piece:"19h",bar:"Un bar est ouvert pour prolonger les échanges."}};
+  "REN-1209-20":{ent:"19h30",piece:"20h",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "BOR-1210-1830":{ent:"18h",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "BOR-1217-1830":{ent:"18h",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
+  "LYO-1216-19":{ent:"18h30",piece:"19h",bar:"Un bar est ouvert pour prolonger les échanges."}};
  var PRIS={}; /* créneaux déjà pris par séance : à brancher sur les réservations */
  function g(i){return document.getElementById(i);}
  function seance(){ var v=g('f-ville').value, d=g('f-date').value; return ((window.DATES_PROP||{})[v]||[]).filter(function(o){return o.d===d;})[0]; }
@@ -1225,7 +1225,7 @@ window.PROP_LIVE=true;
   g('soiree').style.display=e?'':'none';
   g('t-ent').style.display=(e&&(e.ent||e.pres))?'':'none';
   if(e){
-   g('soiree-prog').innerHTML=(e.ent?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Présentation d’employeurs : des employeurs qui recrutent présentent leurs postes. Les spectateurs en recherche d’emploi viennent y assister.</p>':'')+(e.pres&&!e.ent?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.pres+' – '+e.piece+'</b> — plusieurs associations prennent la parole pour se présenter aux participants.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">En option, dès '+e.diner+'</b> — pour ceux qui le souhaitent, '+(e.carte&&window.carte9?carte9('dîner à la carte'):'dîner')+' sur place avant la pièce.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
+   g('soiree-prog').innerHTML=(e.ent?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Présentations d’employeurs et de regroupements d’entreprises (entreprise qui recrute, fédération locale…), 30 minutes avant le lever de rideau. Les spectateurs en recherche d’emploi viennent y assister.</p>':'')+(e.pres&&!e.ent?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.pres+' – '+e.piece+'</b> — plusieurs associations prennent la parole pour se présenter aux participants.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">En option, dès '+e.diner+'</b> — pour ceux qui le souhaitent, '+(e.carte&&window.carte9?carte9('dîner à la carte'):'dîner')+' sur place avant la pièce.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
    var dw=g('f-diner-wrap'); if(dw){ dw.style.display=(e.carte&&e.diner)?'flex':'none'; if(!e.carte) g('f-diner').checked=false; g('f-diner-txt').innerHTML='En option : je viens aussi dîner à partir de '+e.diner+' ('+(window.carte9?carte9('voir la carte'):'à la carte')+'). <span style="color:#6b7280">Sans engagement, réglé sur place : c\'est juste pour prévenir le restaurant.</span>'; }
    g('t-norm-txt').innerHTML=(!e.ent&&e.diner)?'<b>Tarif normal — 20&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.piece+'</b> pour le lever de rideau (dîner en option dès '+e.diner+').':'<b>Tarif normal — 20&nbsp;€</b><br>Arrivée à partir de <b>'+(e.diner||e.ent)+'</b>'+(e.diner?' pour le '+(e.carte&&window.carte9?carte9('dîner'):'dîner'):'')+', et au plus tard à <b>'+e.piece+'</b> pour le lever de rideau.';
    g('t-red-txt').innerHTML=e.ent?'<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.ent+'</b> pour assister à la présentation d’employeurs.':'<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b> · justificatif à présenter à l’entrée';
