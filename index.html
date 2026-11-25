@@ -1284,7 +1284,7 @@ window.PROP_LIVE=true;
    var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=(emp?'★ ':'')+v+' — '+jour+' — '+h+(tr?' — '+tr:'')+' — '+f; op.dataset.base=v+' · '+(m?JR[new Date(+m[3],MO[m[2]],+m[1]).getDay()].slice(0,3)+'. '+m[1]+' '+({janvier:'janv.','février':'févr.',septembre:'sept.',octobre:'oct.',novembre:'nov.','décembre':'déc.',juillet:'juil.'}[m[2]]||m[2]):jour)+' · '+h+(tr?' · '+tr:''); op.dataset.emp=emp?'1':''; if(emp){ op.className='opt-emp'; op.style.color='#c8102e'; op.style.fontWeight='700'; } ss.appendChild(op);
   });
  });
- var au=document.createElement('option'); au.value='__ville'; au.textContent='Ma ville n’est pas dans la liste — être prévenu'; ss.appendChild(au);
+ /* plus d'option « ma ville n'est pas dans la liste » (décision de Thierry du 25/11) */
  vw.style.display='none'; 
  function fire(el){ el.dispatchEvent(new Event('change',{bubbles:true})); }
  /* Lien par troupe (?troupe=), par séance (?seance=) ou par ville (?ville=) : le menu ne propose que les séances concernées */
@@ -1295,7 +1295,7 @@ window.PROP_LIVE=true;
   /* séance passée ou annulée (vieille affiche) : les séances de la même ville */
   if(!Object.keys(garde).length) Object.keys(D).forEach(function(v){ D[v].forEach(function(o){ if(String(o.c||'').split('-')[0]===px) garde[v+'|'+o.d]=1; }); }); }
  else if(q.get('ville') && D[q.get('ville')]){ garde={}; D[q.get('ville')].forEach(function(o){ garde[q.get('ville')+'|'+o.d]=1; }); }
- else if(q.get('ville')){ /* ville sans date : directement « être prévenu » pour cette ville */ var vx=q.get('ville'); if(![].some.call(sv.options,function(o){return o.value===vx;}) && window.ovrNL){ setTimeout(function(){ window.ovrNL(vx); },400); } else setTimeout(function(){ ss.value='__ville'; fire(ss); setTimeout(function(){ if(![].some.call(sv.options,function(o){return o.value===vx;})){ var on=document.createElement('option'); on.value=on.textContent=vx; sv.appendChild(on); } sv.value=vx; fire(sv); },30); },60); }
+ else if(q.get('ville')){ /* ville sans date : directement « être prévenu » pour cette ville */ var vx=q.get('ville'); if(![].some.call(sv.options,function(o){return o.value===vx;}) && window.ovrNL){ setTimeout(function(){ window.ovrNL(vx); },400); } }
  if(garde && Object.keys(garde).length){
   TOUT.forEach(function(op){ if(op.value && op.value!=='__ville' && !garde[op.value]) op.remove(); });
   var ks=Object.keys(garde); if(ks.length===1) choix=ks[0];
