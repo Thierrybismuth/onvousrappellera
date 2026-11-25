@@ -705,7 +705,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && vbox.classList.contains('on')) fermerVideo(); });
   var DATES=window.DATES_PROP={
     "Paris":[{d:"2 décembre 2026 · 19h",t:"Séance de 19h",l:"T1",c:"PAR-1202-19",tr:"Engagement"},{d:"9 décembre 2026 · 19h",t:"Séance de 19h",l:"T1",c:"PAR-1209-19",tr:"Honnêteté"},{d:"12 décembre 2026 · 21h30",t:"Séance de 21h30",l:"T5",c:"PAR-1212-2130",tr:"Esprit d'équipe"},{d:"18 décembre 2026 · 19h30",t:"Séance de 19h30",l:"T5",c:"PAR-1218-1930",tr:"Esprit d'équipe"}],
-    "Toulouse":[{d:"2 décembre 2026 · 20h30",t:"Séance de 20h30 — présentation d’employeurs 18h, dîner 19h",l:"T2",c:"TLS-1203"}],
+    "Toulouse":[{d:"2 décembre 2026 · 20h30",t:"Séance de 20h30 — dîner à la carte dès 19h",l:"T2",c:"TLS-1203"}],
     "Rennes":[{d:"9 décembre 2026 · 20h",t:"Séance de 20h",l:"T3",c:"REN-1209-20"}],
     "Bordeaux":[{d:"10 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4",c:"BOR-1210-1830"},{d:"10 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4",c:"BOR-1210-2030"},{d:"17 décembre 2026 · 18h30",t:"Séance de 18h30",l:"T4",c:"BOR-1217-1830"},{d:"17 décembre 2026 · 20h30",t:"Séance de 20h30",l:"T4",c:"BOR-1217-2030"}],
     "Lyon":[{d:"16 décembre 2026 · 19h",t:"Séance de 19h",l:"T6",c:"LYO-1216-19"},{d:"16 décembre 2026 · 21h",t:"Séance de 21h",l:"T6",c:"LYO-1216-21"}]
@@ -1211,7 +1211,7 @@ window.PROP_LIVE=true;
 /* Proposition : soirées avec présentation des entreprises qui recrutent (5 entreprises, 5 minutes chacune) */
 (function(){
  var EMP={"PAR-1209-19":{ent:"18h",piece:"19h",bar:"Un bar, juste à côté du théâtre, permet de prolonger les échanges."},
-  "TLS-1203":{carte:1,ent:"18h",diner:"19h",piece:"20h30",bar:"Le bar reste ouvert pour prolonger les échanges."},
+  "TLS-1203":{carte:1,ent:"",diner:"19h",piece:"20h30",bar:"Le bar reste ouvert pour prolonger les échanges."},
   "REN-1209-20":{ent:"19h",piece:"20h",bar:"Un bar est ouvert pour prolonger les échanges."},
   "BOR-1210-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
   "BOR-1217-1830":{ent:"17h30",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
@@ -1222,12 +1222,12 @@ window.PROP_LIVE=true;
  function maj(){
   var s=seance(), e=s&&EMP[s.c];
   g('soiree').style.display=e?'':'none';
-  g('t-ent').style.display=e?'':'none';
+  g('t-ent').style.display=(e&&e.ent)?'':'none';
   if(e){
-   g('soiree-prog').innerHTML='<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Présentation d’employeurs : des employeurs qui recrutent présentent leurs postes. Les spectateurs en recherche d’emploi viennent y assister.</p>'+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — '+(e.carte&&window.carte9?carte9('Dîner à la carte'):'Dîner')+' sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
+   g('soiree-prog').innerHTML=(e.ent?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.ent+'</b> — Présentation d’employeurs : des employeurs qui recrutent présentent leurs postes. Les spectateurs en recherche d’emploi viennent y assister.</p>':'')+(e.diner?'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.diner+'</b> — '+(e.carte&&window.carte9?carte9('Dîner à la carte'):'Dîner')+' sur place.</p>':'')+'<p style="margin:.3rem 0"><b style="color:var(--accent)">'+e.piece+'</b> — La pièce.</p><p style="margin:.3rem 0"><b style="color:var(--accent)">Après</b> — '+e.bar+'</p>';
    var dw=g('f-diner-wrap'); if(dw){ dw.style.display=(e.carte&&e.diner)?'flex':'none'; if(!e.carte) g('f-diner').checked=false; g('f-diner-txt').innerHTML='Je viens dîner à partir de '+e.diner+' ('+(window.carte9?carte9('voir la carte'):'à la carte')+'). <span style="color:#6b7280">Sans engagement, réglé sur place : c\'est juste pour prévenir le restaurant.</span>'; }
    g('t-norm-txt').innerHTML='<b>Tarif normal — 20&nbsp;€</b><br>Arrivée à partir de <b>'+(e.diner||e.ent)+'</b>'+(e.diner?' pour le '+(e.carte&&window.carte9?carte9('dîner'):'dîner'):'')+', et au plus tard à <b>'+e.piece+'</b> pour le lever de rideau.';
-   g('t-red-txt').innerHTML='<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.ent+'</b> pour assister à la présentation d’employeurs.';
+   g('t-red-txt').innerHTML=e.ent?'<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b><br>Arrivée au plus tard à <b>'+e.ent+'</b> pour assister à la présentation d’employeurs.':'<b>Tarif réduit (demandeurs d’emploi et étudiants) — 15&nbsp;€</b> · justificatif à présenter à l’entrée';
    g('t-ent-txt').innerHTML='<br>Je réserve 10 places et je présente mes offres d’emploi sur scène à <b>'+e.ent+'</b>. ';
    var l=5-(PRIS[s.c]||0); g('t-ent-slots').textContent=l>0?'Il reste au moins une des 5 places.':'Les 5 places sont déjà prises.';
   } else {
@@ -1237,7 +1237,7 @@ window.PROP_LIVE=true;
    var x=document.querySelector('input[name=tarif][value=entreprise]'); if(x&&x.checked){ document.querySelector('input[name=tarif][value=partenaire]').checked=true; }
   }
   var t=(document.querySelector('input[name=tarif]:checked')||{}).value;
-  g('red-accord').style.display=(t==='reduit'&&e)?'':'none';
+  g('red-accord').style.display=(t==='reduit'&&e&&e.ent)?'':'none';
   var veille=g('f-accord').closest('label'); veille.style.display=e?'none':'';
   if(e) g('f-accord').checked=(t==='reduit');
   g('f-ent-wrap').style.display=t==='entreprise'?'':'none';
@@ -1264,7 +1264,7 @@ window.PROP_LIVE=true;
 })();
 /* Un seul menu : Ville — date — heure — troupe — formule */
 (function menu(){ if(!window.DATES_PROP||!Object.keys(window.DATES_PROP).length){ return setTimeout(menu,100); }
- var EMPC=["PAR-1209-19","TLS-1203","REN-1209-20","BOR-1210-1830","BOR-1217-1830","LYO-1216-19"];
+ var EMPC=["PAR-1209-19","REN-1209-20","BOR-1210-1830","BOR-1217-1830","LYO-1216-19"];
  var JR=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],MO={janvier:0,'février':1,mars:2,avril:3,mai:4,juin:5,juillet:6,'août':7,septembre:8,octobre:9,novembre:10,'décembre':11};
  function g(i){return document.getElementById(i);}
  var D=window.DATES_PROP||{}, sv=g('f-ville'), sd=g('f-date');
