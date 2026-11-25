@@ -1281,7 +1281,7 @@ window.PROP_LIVE=true;
    if(m){ var dt=new Date(+m[3],MO[m[2]],+m[1]); jour=JR[dt.getDay()]+' '+m[1]+' '+m[2]; h=m[4]; } else jour=o.d;
    var tr=o.tr||'';
    var emp=EMPC.indexOf(o.c)>=0, f=emp?'Pièce + présentation d’employeurs':'Pièce';
-   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=(emp?'★ ':'')+v+' — '+jour+' — '+h+(tr?' — '+tr:'')+' — '+f; op.dataset.base=v+' · '+(m?JR[new Date(+m[3],MO[m[2]],+m[1]).getDay()].slice(0,3)+'. '+m[1]+' '+({janvier:'janv.','février':'févr.',septembre:'sept.',octobre:'oct.',novembre:'nov.','décembre':'déc.',juillet:'juil.'}[m[2]]||m[2]):jour)+' · '+h+(tr?' · '+tr:''); op.dataset.emp=emp?'1':''; if(emp){ op.className='opt-emp'; op.style.color='#c8102e'; op.style.fontWeight='700'; } ss.appendChild(op);
+   var op=document.createElement('option'); op.value=v+'|'+o.d; op.textContent=(emp?'★ ':'')+v+' — '+jour+' — '+h+' — '+f; op.dataset.base=v+' · '+(m?JR[new Date(+m[3],MO[m[2]],+m[1]).getDay()].slice(0,3)+'. '+m[1]+' '+({janvier:'janv.','février':'févr.',septembre:'sept.',octobre:'oct.',novembre:'nov.','décembre':'déc.',juillet:'juil.'}[m[2]]||m[2]):jour)+' · '+h; op.dataset.emp=emp?'1':''; if(emp){ op.className='opt-emp'; op.style.color='#c8102e'; op.style.fontWeight='700'; } ss.appendChild(op);
   });
  });
  /* plus d'option « ma ville n'est pas dans la liste » (décision de Thierry du 25/11) */
