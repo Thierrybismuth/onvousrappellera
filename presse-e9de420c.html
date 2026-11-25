@@ -31,6 +31,12 @@ a{color:var(--r)}
 .gal figure{margin:0}.gal img{width:100%;height:auto;display:block}
 .gal figcaption{font-size:13px;color:var(--g);margin-top:4px}
 @media(max-width:560px){.gal{grid-template-columns:1fr}}
+.finv{margin-top:8px;display:grid;gap:12px}.finv label{display:grid;gap:4px;font-size:14px;color:var(--g)}
+.finv input,.finv select,.finv textarea{font:16px Outfit,sans-serif;padding:10px;border:1px solid #ccc;border-radius:3px;background:#fff;color:var(--n);width:100%}
+.l2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hp{position:absolute;left:-9999px}
+.finv button{font:600 16px Outfit,sans-serif;padding:12px;border:0;border-radius:3px;background:var(--r);color:#fff;cursor:pointer}
+.fmsg{margin:0;font-weight:600}
+@media(max-width:560px){.l2{grid-template-columns:1fr}}
 @media print{.barre{display:none}}
 </style>
 </head>
@@ -81,7 +87,35 @@ a{color:var(--r)}
 <p>Durée : 1h15 · Tarifs : 20 € — tarif réduit 15 € (étudiants, demandeurs d'emploi…)<br>Dates et réservation : <a href="https://onvousrappellera.fr">onvousrappellera.fr</a></p>
 
 <p class="dispo"><b>L'auteur est à votre disposition</b> pour échanger sur le projet de la pièce, avant même la représentation, ou si vous ne pouvez pas venir mais que le sujet vous intéresse.</p>
-<div class="contact"><b>Contact presse</b><br>Thierry Bismuth — <a href="tel:+33610703090">06 10 70 30 90</a> — <a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a><br>Invitations presse sur demande.</div>
+<div class="contact"><b>Contact presse</b><br>Thierry Bismuth — <a href="tel:+33610703090">06 10 70 30 90</a> — <a href="mailto:bismuththierry@gmail.com">bismuththierry@gmail.com</a><br><a href="#invitation">Demander une invitation presse</a></div>
+<h2 id="invitation">Je suis journaliste, je souhaite recevoir une invitation</h2>
+<form id="finv" class="finv">
+<div class="l2"><label>Prénom<input name="prenom" required autocomplete="given-name"></label><label>Nom<input name="nom" required autocomplete="family-name"></label></div>
+<label>Média<input name="media" required></label>
+<div class="l2"><label>E-mail<input name="email" type="email" required autocomplete="email"></label><label>Téléphone (facultatif)<input name="tel" type="tel" autocomplete="tel"></label></div>
+<label>Représentation<select name="seance" id="fseance" required><option value="">Choisissez une date…</option></select></label>
+<label>Message (facultatif)<textarea name="message" rows="3"></textarea></label>
+<input name="site" class="hp" tabindex="-1" autocomplete="off">
+<button type="submit">Envoyer ma demande</button>
+<p id="fmsg" class="fmsg"></p>
+</form>
+<script>
+(function(){
+var sel=document.getElementById('fseance');
+function add(v){var o=document.createElement('option');o.value=o.textContent=v;sel.appendChild(o);}
+fetch('seances.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+ var today=new Date().toISOString().slice(0,10);
+ (d.seances||[]).filter(function(x){return x.date>=today}).sort(function(a,b){return (a.date+a.heure).localeCompare(b.date+b.heure)}).forEach(function(x){add(x.ville+' — '+x.jour+' à '+x.heure+' — '+x.theatre);});
+}).catch(function(){}).then(function(){add("Je ne pourrai pas venir, mais je souhaite échanger avec l'auteur");});
+var f=document.getElementById('finv'),m=document.getElementById('fmsg');
+f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;m.textContent='Envoi…';
+ var o={};new FormData(f).forEach(function(v,k){o[k]=v;});
+ fetch('https://thierryb.app.n8n.cloud/webhook/ovr-invitation-presse',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)})
+ .then(function(r){if(!r.ok)throw 0;f.reset();m.textContent='Merci, votre demande est bien arrivée. Thierry Bismuth revient vers vous très vite.';})
+ .catch(function(){m.textContent='L\'envoi n\'a pas fonctionné. Écrivez-nous à bismuththierry@gmail.com ou appelez le 06 10 70 30 90.';b.disabled=false;});
+});
+})();
+</script>
 </div>
 </body>
 </html>
