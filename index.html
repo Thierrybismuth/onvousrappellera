@@ -1212,7 +1212,7 @@ window.PROP_LIVE=true;
 /* Proposition : soirées avec présentation des entreprises qui recrutent (5 entreprises, 5 minutes chacune) */
 (function(){
  var EMP={"PAR-1209-19":{ent:"18h30",piece:"19h",bar:"Un bar, juste à côté du théâtre, permet de prolonger les échanges."},
-  "TLS-1203":{carte:1,ent:"",pres:"20h",diner:"19h",piece:"20h30",bar:"Le bar reste ouvert pour prolonger les échanges."},
+  "TLS-1203":{carte:1,ent:"20h",diner:"19h",piece:"20h30",bar:"Le bar reste ouvert pour prolonger les échanges."},
   "REN-1209-20":{ent:"19h30",piece:"20h",bar:"Un bar est ouvert pour prolonger les échanges."},
   "BOR-1210-1830":{ent:"18h",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
   "BOR-1217-1830":{ent:"18h",piece:"18h30",bar:"Un bar est ouvert pour prolonger les échanges."},
@@ -1265,7 +1265,7 @@ window.PROP_LIVE=true;
 })();
 /* Un seul menu : Ville — date — heure — troupe — formule */
 (function menu(){ if(!window.DATES_PROP||!Object.keys(window.DATES_PROP).length){ return setTimeout(menu,100); }
- var EMPC=["PAR-1209-19","REN-1209-20","BOR-1210-1830","BOR-1217-1830","LYO-1216-19"];
+ var EMPC=["TLS-1203","PAR-1209-19","REN-1209-20","BOR-1210-1830","BOR-1217-1830","LYO-1216-19"];
  var JR=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],MO={janvier:0,'février':1,mars:2,avril:3,mai:4,juin:5,juillet:6,'août':7,septembre:8,octobre:9,novembre:10,'décembre':11};
  function g(i){return document.getElementById(i);}
  var D=window.DATES_PROP||{}, sv=g('f-ville'), sd=g('f-date');
