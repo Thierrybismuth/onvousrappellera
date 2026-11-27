@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-24T17:30:58.395Z",
+ "maj": "2026-11-27T18:16:14.072Z",
  "seances": [
   {
    "code": "PAR-1202-19",
@@ -24,7 +24,7 @@
    "theatre": "Cabaret Le 9",
    "adresse": "9 rue Lejeune, 31000 Toulouse",
    "jauge": 150,
-   "precision": "dîner à la carte en option dès 19h",
+   "precision": "présentation d'employeurs 18h, dîner 19h",
    "confirmee": true
   },
   {
@@ -154,6 +154,32 @@
    "theatre": "Théâtre Montmartre Galabru",
    "adresse": "4 rue de l'Armée d'Orient, 75018 Paris",
    "jauge": 90,
+   "precision": "",
+   "confirmee": false
+  },
+  {
+   "code": "NAN-0110-15",
+   "ville": "Nantes",
+   "date": "2027-01-10",
+   "jour": "Dimanche 10 janvier 2027",
+   "heure": "15h",
+   "troupe": "",
+   "theatre": "Salle Les Variétés – Bonne Garde",
+   "adresse": "2 rue Paul Théry, 44200 Nantes",
+   "jauge": 180,
+   "precision": "",
+   "confirmee": false
+  },
+  {
+   "code": "NAN-0117-15",
+   "ville": "Nantes",
+   "date": "2027-01-17",
+   "jour": "Dimanche 17 janvier 2027",
+   "heure": "15h",
+   "troupe": "",
+   "theatre": "Salle Les Variétés – Bonne Garde",
+   "adresse": "2 rue Paul Théry, 44200 Nantes",
+   "jauge": 180,
    "precision": "",
    "confirmee": false
   }
